@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,14 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        @font-face {
+    font-family: 'KBO-Dia-Gothic_bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+    </style>
 </head>
 
 <body>
@@ -17,8 +26,8 @@
         crossorigin="anonymous"></script>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="height: 9rem">
         <div class="container-fluid">
-            <a class="navbar-brand" href=" ??? ">
-                <img src="images/mainlogo.PNG" alt="Logo" width="250" height="140" class="d-inline-block align-text-top"> <!-- img 경로 수정해야함 -->
+            <a class="navbar-brand m-lg-2" href="main">
+                <img src="images/mainlogo.PNG" alt="Logo" width="250" height="100" class="d-inline-block align-text-top">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -28,59 +37,59 @@
                 <div class="dropdown mb-2 mb-lg-0">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        style="font-size: 1.2rem; background-color: rgb(248, 249, 250); color: black; border-color: rgb(248,249,250);">
+                        style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.7rem; background-color: rgb(248, 249, 250); color: black; border-color: rgb(248,249,250);">
                         🍽️ 맛집 찾기
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">인천 SSG 랜더스 필드</a></li>
-                        <li><a class="dropdown-item" href="#">고척 스카이돔</a></li>
-                        <li><a class="dropdown-item" href="#">잠실 종합 운동장</a></li>
-                        <li><a class="dropdown-item" href="#">수원 KT 위즈 파크</a></li>
-                        <li><a class="dropdown-item" href="#">광주 KIA 챔피언스 필드</a></li>
-                        <li><a class="dropdown-item" href="#">창원 NC 파크</a></li>
-                        <li><a class="dropdown-item" href="#">대구 삼성 라이온즈 파크</a></li>
-                        <li><a class="dropdown-item" href="#">부산 사직 야구장</a></li>
-                        <li><a class="dropdown-item" href="#">대전 한화생명 이글스파크</a></li>
+                        <li><a class="dropdown-item" href="r_SSG"  style="font-family: 'KBO-Dia-Gothic_bold';">인천 SSG 랜더스 필드</a></li>
+                        <li><a class="dropdown-item" href="r_kiwoom" style="font-family: 'KBO-Dia-Gothic_bold';">고척 스카이돔</a></li>
+                        <li><a class="dropdown-item" href="r_jamsil" style="font-family: 'KBO-Dia-Gothic_bold';">잠실 종합 운동장</a></li>
+                        <li><a class="dropdown-item" href="r_KT" style="font-family: 'KBO-Dia-Gothic_bold';">수원 KT 위즈 파크</a></li>
+                        <li><a class="dropdown-item" href="r_KIA" style="font-family: 'KBO-Dia-Gothic_bold';">광주 KIA 챔피언스 필드</a></li>
+                        <li><a class="dropdown-item" href="r_NC" style="font-family: 'KBO-Dia-Gothic_bold';">창원 NC 파크</a></li>
+                        <li><a class="dropdown-item" href="r_samsung" style="font-family: 'KBO-Dia-Gothic_bold';">대구 삼성 라이온즈 파크</a></li>
+                        <li><a class="dropdown-item" href="r_lotte" style="font-family: 'KBO-Dia-Gothic_bold';">부산 사직 야구장</a></li>
+                        <li><a class="dropdown-item" href="r_hanwha" style="font-family: 'KBO-Dia-Gothic_bold';">대전 한화생명 이글스파크</a></li>
                     </ul>
                 </div>
                 <div class="dropdown mb-2 mb-lg-0 mx-2 ">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        style="font-size: 1.2rem; background-color: rgb(248, 249, 250); color: black; border-color: rgb(248,249,250);">
+                        style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.7rem; background-color: rgb(248, 249, 250); color: black; border-color: rgb(248,249,250);">
                         💒 숙소 찾기
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">인천 SSG 랜더스 필드</a></li>
-                        <li><a class="dropdown-item" href="#">고척 스카이돔</a></li>
-                        <li><a class="dropdown-item" href="#">잠실 종합 운동장</a></li>
-                        <li><a class="dropdown-item" href="#">수원 KT 위즈 파크</a></li>
-                        <li><a class="dropdown-item" href="#">광주 KIA 챔피언스 필드</a></li>
-                        <li><a class="dropdown-item" href="#">창원 NC 파크</a></li>
-                        <li><a class="dropdown-item" href="#">대구 삼성 라이온즈 파크</a></li>
-                        <li><a class="dropdown-item" href="#">부산 사직 야구장</a></li>
-                        <li><a class="dropdown-item" href="#">대전 한화생명 이글스파크</a></li>
+                        <li><a class="dropdown-item" href="l_SSG" style="font-family: 'KBO-Dia-Gothic_bold';">인천 SSG 랜더스 필드</a></li>
+                        <li><a class="dropdown-item" href="l_kiwoom" style="font-family: 'KBO-Dia-Gothic_bold';">고척 스카이돔</a></li>
+                        <li><a class="dropdown-item" href="l_jamsil" style="font-family: 'KBO-Dia-Gothic_bold';">잠실 종합 운동장</a></li>
+                        <li><a class="dropdown-item" href="l_KT" style="font-family: 'KBO-Dia-Gothic_bold';">수원 KT 위즈 파크</a></li>
+                        <li><a class="dropdown-item" href="l_KIA" style="font-family: 'KBO-Dia-Gothic_bold';">광주 KIA 챔피언스 필드</a></li>
+                        <li><a class="dropdown-item" href="l_NC" style="font-family: 'KBO-Dia-Gothic_bold';">창원 NC 파크</a></li>
+                        <li><a class="dropdown-item" href="l_samsung" style="font-family: 'KBO-Dia-Gothic_bold';">대구 삼성 라이온즈 파크</a></li>
+                        <li><a class="dropdown-item" href="l_lotte" style="font-family: 'KBO-Dia-Gothic_bold';">부산 사직 야구장</a></li>
+                        <li><a class="dropdown-item" href="l_hanwha" style="font-family: 'KBO-Dia-Gothic_bold';">대전 한화생명 이글스파크</a></li>
                     </ul>
                 </div>
             <div class="dropdown me-auto mb-2 mb-lg-0 mx-2 ">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    style="font-size: 1.2rem; background-color: rgb(248, 249, 250); color: black; border-color: rgb(248,249,250);">
+                    style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.7rem; background-color: rgb(248, 249, 250); color: black; border-color: rgb(248,249,250);">
                     ⚾️ 자유게시판
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li style="display: flex; align-items: center;"><img src="images/logo/ssg_logo.svg" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">SSG 랜더스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/kiwoom_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">키움 히어로즈</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/lg_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">LG 트윈스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/ktwiz_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">KT wiz</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/kia_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">KIA 타이거즈</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/nc_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">NC 다이노스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/samsung_logo.png" alt="Logo" width="30" height="35"><a class="dropdown-item" href="#">삼성 라이온즈</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/lotte_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">롯데 자이언츠</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/doosan_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">두산 베어스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/hanwah_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#">한화 이글스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/ssg_logo.svg" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">SSG 랜더스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/kiwoom_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">키움 히어로즈</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/lg_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">LG 트윈스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/ktwiz_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">KT wiz</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/kia_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">KIA 타이거즈</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/nc_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">NC 다이노스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/samsung_logo.png" alt="Logo" width="30" height="35"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">삼성 라이온즈</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/lotte_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">롯데 자이언츠</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/doosan_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">두산 베어스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/hanwah_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">한화 이글스</a></li>
                 </ul>
             </div>
 
@@ -88,21 +97,21 @@
                 <c:if test="${empty login}">
                     <ul class="navbar-nav me-auto mb-2 me-lg-5">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="<c:url value='' />"><span
-                                    style="font-size: 1.2rem">로그인</span></a>
+                            <a class="nav-link mx-3" aria-current="page" href="<c:url value='' />"><span
+                                    style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">로그인</span></a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value=''/>"><span
-                                    style="font-size: 1.2rem">회원가입</span></a></li>
+                                    style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">회원가입</span></a></li>
                     </ul>
                 </c:if>
                 <c:if test="${!empty login}">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="<c:url value=''/>"><span
-                                    style="font-size: 1.2rem">로그아웃</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="<c:url value=''/>"><span
-                                    style="font-size: 1.2rem">마이페이지</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="<c:url value=''/>"><span
-                                    style="font-size: 1.2rem">찜 목록</span></a></li>
+                        <li class="nav-item"><a class="nav-link mx-3" href="<c:url value=''/>"><span
+                                    style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">로그아웃</span></a></li>
+                        <li class="nav-item"><a class="nav-link mx-3" href="<c:url value=''/>"><span
+                                    style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">마이페이지</span></a></li>
+                        <li class="nav-item"><a class="nav-link mx-3" href="<c:url value=''/>"><span
+                                    style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">찜💙 보러가기</span></a></li>
                     </ul>
                 </c:if> 
             </form>

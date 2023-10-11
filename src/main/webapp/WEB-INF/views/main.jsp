@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인 홈페이지</title>
 </head>
 <body>
-test jsp 입니다
+	<jsp:include page="common/nav.jsp" flush="true"/> 
+	<hr>
+	
 </body>
 </html>

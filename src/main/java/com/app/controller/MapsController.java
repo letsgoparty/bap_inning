@@ -13,8 +13,4 @@ public class MapsController {
 		return "maps/samsung";
 	}
 	
-	@RequestMapping("/main")
-	public String main() {
-		return "main";
-	}
 }

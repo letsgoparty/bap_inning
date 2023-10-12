@@ -31,11 +31,12 @@ public class MypageController {
 	}
 	@GetMapping("/my_r_review")
 	public String myRestaurantReview() {
-		return "mypage/myRestautantReview";
+		return "mypage/myRestaurantReview";
 	}
 	@GetMapping("/my_l_review")
 	public String myLodgingReview() {
 		return "mypage/myLodgingReview";
 	}
+
 
 }

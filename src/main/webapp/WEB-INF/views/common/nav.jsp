@@ -18,6 +18,7 @@
     font-style: normal;
 }
     </style>
+    
 </head>
 
 <body>
@@ -80,16 +81,16 @@
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li style="display: flex; align-items: center;"><img src="images/logo/ssg_logo.svg" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">SSG 랜더스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/kiwoom_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">키움 히어로즈</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/lg_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">LG 트윈스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/ktwiz_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">KT wiz</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/kia_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">KIA 타이거즈</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/nc_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">NC 다이노스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/samsung_logo.png" alt="Logo" width="30" height="35"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">삼성 라이온즈</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/lotte_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">롯데 자이언츠</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/doosan_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">두산 베어스</a></li>
-                    <li style="display: flex; align-items: center;"><img src="images/logo/hanwah_logo.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">한화 이글스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/SSG.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">SSG 랜더스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/키움.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">키움 히어로즈</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/LG.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">LG 트윈스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/KT.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">KT wiz</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/KIA.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">KIA 타이거즈</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/NC.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">NC 다이노스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/삼성.png" alt="Logo" width="30" height="35"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">삼성 라이온즈</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/롯데.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">롯데 자이언츠</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/두산.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">두산 베어스</a></li>
+                    <li style="display: flex; align-items: center;"><img src="images/logo/한화.png" alt="Logo" width="30" height="30"><a class="dropdown-item" href="#" style="font-family: 'KBO-Dia-Gothic_bold';">한화 이글스</a></li>
                 </ul>
             </div>
 

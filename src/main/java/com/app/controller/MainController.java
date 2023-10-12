@@ -8,21 +8,31 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.service.ScrapingService;
 
 @Controller
 public class MainController {
 	/*******************************************
 	임시 Controller 입니다.
 	********************************************/
+	@Autowired
+	private ScrapingService service;
+	
 	@RequestMapping("/main")
 	public String main(Model m) {
 		  try {
-	            // Jsoup을 사용하여 웹페이지의 HTML 가져오기
+			  
+			  List<ScheduleDTO> ScheduleList = service.scrapeData();
+			  m.addAttribute("ScheduleList", ScheduleList);
+			  /****************************************************/
+	            // KBO 리그 순위 가져오기
 	            Document doc = Jsoup.connect("https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
 	                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
 	                    .get();
@@ -46,7 +56,7 @@ public class MainController {
 	                Element winning = baseballTeam.selectFirst("td:nth-child(9)"); // 연승
 	                Element recent = baseballTeam.selectFirst("td:nth-child(12)"); // 최근 10경기
 	                
-	               System.out.println(rank.text() + " " + title.text() + " " + match.text() + " " + victory.text() + " " + defeat.text() + " " + draw.text() + " " + rate.text() + " " + winning.text() + " " + recent.text());
+//	               System.out.println(rank.text() + " " + title.text() + " " + match.text() + " " + victory.text() + " " + defeat.text() + " " + draw.text() + " " + rate.text() + " " + winning.text() + " " + recent.text());
 	                
 	                if (title != null) {
 	                	String image = title.text();

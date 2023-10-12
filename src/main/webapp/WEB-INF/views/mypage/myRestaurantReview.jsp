@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>숙소리뷰</title>
+<title>마이페이지</title>
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
-	<jsp:include page="../mypage_content/myLodgingReview.jsp" flush="true"/> 
+	<jsp:include page="../mypage_content/myRestaurantReview.jsp" flush="true"/> 
 </body>
 </html>

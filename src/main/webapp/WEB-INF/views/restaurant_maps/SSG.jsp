@@ -1,30 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <!DOCTYPE html>
-    <html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SSG 주변 맛집 지도</title>
-    </head>
-    <style>
-        body {
-            margin: 0; /* body의 기본 margin 제거 */
-            padding: 0; /* body의 기본 padding 제거 */
-        }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSG 주변 맛집 지도</title>
+</head>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
 
-        #googleMap {
-            width: 100%;
-            height: 100%;
-            margin: 0 auto; /* 가운데 정렬을 위해 margin을 auto로 설정 */
-            max-width: 1500px; /* 최대 너비 지정 (필요에 따라 조절) */
-        }
-    </style>
-    <body>
-        <div id="googleMap" style="width: 100%; height: 700px;"></div>
+#googleMap {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	max-width: 1500px; /* 최대 너비 지정 (필요에 따라 조절) */
+}
 
-        <script>
+.container {
+	margin-left: 300px;
+}
 
+#sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 100vh;
+	display: none; /* 초기에 숨김 상태로 설정 */
+}
+
+#sidebar-divider {
+	width: 1px;
+	height: 100vh;
+	background-color: black;
+	float: right;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#cancel').on('click', function () {
+    	event.preventDefault();
+        console.log("hello");
+        $('#sidebar').hide();
+        // 본문의 내용들 사라진 사이드바의 영역만큼 여백 제거
+        $('.container').css("margin-left", 300);
+    });
+});
+</script>
+<body style="background-color: rgba(248, 249, 250) !important;">
+	<div id="sidebar"
+		style="position: fixed; top: 0; left: 0; width: 400px; height: 100vh; background-color: rgb(248, 249, 250)">
+		<!-- 가게 정보 띄우기  -->
+		<form action="" method="get">
+			<input type="hidden" id="res_id" name="res_id">
+			<div class="card mt-3">
+				<div id="res_image"></div>
+				<div class="card-body">
+					<h1 class="card-title mt-3 mb-4" id="res_name"
+						style="font-family: 'KBO-Dia-Gothic_bold'; text-align: center;"></h1>
+					<div class="">
+						<img src="images/icon/icon1.png" width="13" height="13"> <span
+							id="res_addr" style="font-family: 'KBO-Dia-Gothic_light';"></span>
+						<p></p>
+						<img src="images/icon/icon2.png" width="13" height="13"><span
+							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;SSG 랜더스
+							필드에서 <span id="distance"
+							style="font-family: 'KBO-Dia-Gothic_light'; color: green;"></span>
+						</span>
+					</div>
+					<p></p>
+					<img src="images/icon/icon3.png" width="13" height="13"><span
+						style="font-family: 'KBO-Dia-Gothic_bold';">&nbsp;4.5</span>
+					<p class="card-text mt-3" id="res_content"
+						style="font-family: 'KBO-Dia-Gothic_light';"></p>
+					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
+						보러가기</button>
+						<button id="cancel" class="btn btn-primary mx-3">닫기</button>
+				</div>
+			</div>
+			</form>
+	</div>
+	<div id="containerDiv">
+		<div id="googleMap" style="width: 100%; height: 700px;"></div>
+	</div>
+	<script>
+	 $('#containerDiv').addClass('container');
             function initMap() {
                 const styledMapType = new google.maps.StyledMapType(
                     [
@@ -70,16 +136,46 @@
 
                         var infowindow = new google.maps.InfoWindow({
                             content: locations[i].place
-                            // 마커 클릭시 상세 보기 
+                            // 마커 클릭시 가게 이름 띄우기 -> 나중에 제거 
+                          
                         });
 
                         // 마커를 클릭했을 때 정보 창을 표시
                         marker.addListener('click', function () {
-                            if (infowindow.getMap()) {
-                                infowindow.close();
-                            } else {
                                 infowindow.open(map, marker);
-                            }
+                                $('#sidebar').show();
+                                // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
+                                $('.container').css("margin-left", 400);
+                                
+                                // 가게 이름 가져오기
+                                var res_name = locations[i].place;
+                                
+                                // console.log(res_name);
+                                
+                                $.ajax({
+                                    url: 'find_res', 
+                                    method: 'GET',
+                                    data: { res_name: res_name },
+                                    success: function (data) {
+                                        // 성공적으로 데이터를 받아왔을 때의 처리
+                                        console.log(data);
+                                        console.log(data.res_content);
+                                        var imagePath = 'images/restaurant_images/' + data.res_image + '.png';
+                                        var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
+                                        $('#res_image').html(imgTag);
+                                        $('#res_name').text(data.res_name);
+                                        $('#res_addr').text(data.res_addr);
+                                        $('#distance').text(data.distance);
+                                        $('#res_content').text(data.res_content);
+                                        $('#res_id').val(data.res_id);
+                                        
+                                    },
+                                    error: function (error) {
+                                        // 오류 발생 시의 처리
+                                        console.error('Error:', error);
+                                    }
+                                });
+                            
                         });
                     })(i); // 즉시 실행 함수로 현재의 i 값을 전달
                 }
@@ -100,10 +196,10 @@
             ];
 
             window.initMap = initMap;
-
+	
         </script>
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>
-    </body>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>
+</body>
 
-    </html>
+</html>

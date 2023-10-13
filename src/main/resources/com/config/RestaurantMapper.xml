@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RestaurantMapper">
+	<!-- res_name에 해당하는 RestaurantDTO 얻기 -->
+	<select id="find_res" parameterType="string" resultType="RestaurantDTO">
+		select *
+		from restaurant
+		where res_name = #{res_name}
+	</select>
+</mapper>

@@ -57,7 +57,6 @@ background-color:rgba(248, 249, 250, 0.5);
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
 
-            <!-- 기존 드롭다운 추가 -->
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <!-- 맛집 찾기 드롭다운 -->

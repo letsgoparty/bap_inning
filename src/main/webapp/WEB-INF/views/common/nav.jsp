@@ -137,7 +137,7 @@
 										style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">로그인</span></a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
-									href="<c:url value=''/>"><span
+									href="<c:url value='memberForm'/>"><span
 										style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">회원가입</span></a></li>
 							</ul>
 						</c:if>

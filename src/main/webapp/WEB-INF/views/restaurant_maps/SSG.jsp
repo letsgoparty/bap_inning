@@ -7,7 +7,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SSG 주변 맛집 지도</title>
     </head>
+    <style>
+        body {
+            margin: 0; /* body의 기본 margin 제거 */
+            padding: 0; /* body의 기본 padding 제거 */
+        }
 
+        #googleMap {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto; /* 가운데 정렬을 위해 margin을 auto로 설정 */
+            max-width: 1500px; /* 최대 너비 지정 (필요에 따라 조절) */
+        }
+    </style>
     <body>
         <div id="googleMap" style="width: 100%; height: 700px;"></div>
 

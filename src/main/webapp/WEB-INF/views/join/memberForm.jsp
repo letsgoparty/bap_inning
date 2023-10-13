@@ -74,7 +74,7 @@
     <div class="container">
         <div class="input-form-backgroud row">
             <div class="input-form col-md-12 mx-auto">
-                <h4 class="mb-3">회원가입</h4>
+                <h3 class="mb-3">회원가입</h3>
                 <form action="" method="" class="validation-form" novalidate onsubmit="return validateForm()">
 
                     <label for="userid">아이디</label> <span style="color: red" id="result"></span>
@@ -124,13 +124,13 @@
                                 required>
                             <div class="invalid-feedback">이메일을 입력해주세요.</div>
                         </div>
-                        <div class="col-md-4 mt-2 ">
+                        <div class="col-md-4 mb-3 ">
                             <label for="email"></label>
                             <input type="text" class="form-control" id="email2" name="email2" placeholder="직접입력"
                                 required>
                             <div class="invalid-feedback"></div>
                         </div>
-                        <div class="col-md-4 mt-2">
+                        <div class="col-md-4 mb-3">
                             <label for="email"></label>
                             <select id="emailDomain" class="form-select">
                                 <option value="">--직접입력--</option>

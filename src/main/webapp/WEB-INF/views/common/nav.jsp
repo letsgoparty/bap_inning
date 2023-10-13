@@ -41,10 +41,10 @@
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
 	<nav class="navbar navbar-expand-lg bg-body-tertiary"
-		style="height: 9rem">
+		style="height: 12rem">
 		<div class="container-fluid">
 			<a class="navbar-brand m-lg-2" href="main"> <img
-				src="images/mainlogo.PNG" alt="Logo" width="250" height="100"
+				src="images/mainlogo.PNG" alt="Logo" width="280" height="120"
 				class="d-inline-block align-text-top">
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -133,11 +133,11 @@
 						<c:if test="${empty login}">
 							<ul class="navbar-nav me-auto mb-2 me-lg-5">
 								<li class="nav-item"><a class="nav-link mx-3"
-									aria-current="page" href="<c:url value='' />"><span
+									aria-current="page" href="<c:url value='loginForm' />"><span
 										style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">로그인</span></a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
-									href="<c:url value=''/>"><span
+									href="<c:url value='memberForm'/>"><span
 										style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">회원가입</span></a></li>
 							</ul>
 						</c:if>

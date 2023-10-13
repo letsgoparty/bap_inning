@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app.dto.ScheduleDTO;
@@ -74,4 +75,11 @@ public class MainController {
 		
 		return "main";
 	}
+	
+	// test Controller
+	@GetMapping("find_res_review")
+	public String find_res_review() {
+		return "test";
+	}
+	
 }

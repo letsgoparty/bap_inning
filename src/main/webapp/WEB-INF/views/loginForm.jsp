@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 페이지</title>
+<title>로그인 페이지</title>
 </head>
 <style>
 @font-face {
@@ -21,6 +21,6 @@
 
 	<jsp:include page="common/nav.jsp" flush="true" />
 
-	<jsp:include page="join/memberForm.jsp" flush="true"/>
+	<jsp:include page="login/loginForm.jsp" flush="true"/>
 </body>
 </html>

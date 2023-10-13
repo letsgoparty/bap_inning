@@ -133,7 +133,7 @@
 						<c:if test="${empty login}">
 							<ul class="navbar-nav me-auto mb-2 me-lg-5">
 								<li class="nav-item"><a class="nav-link mx-3"
-									aria-current="page" href="<c:url value='' />"><span
+									aria-current="page" href="<c:url value='loginForm' />"><span
 										style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.6rem; color: black;">로그인</span></a>
 								</li>
 								<li class="nav-item"><a class="nav-link"

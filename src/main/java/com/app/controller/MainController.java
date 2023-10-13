@@ -76,10 +76,5 @@ public class MainController {
 		return "main";
 	}
 	
-	// test Controller
-	@GetMapping("find_res_review")
-	public String find_res_review() {
-		return "test";
-	}
-	
+
 }

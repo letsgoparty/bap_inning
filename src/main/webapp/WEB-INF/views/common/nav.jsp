@@ -41,10 +41,10 @@
 		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
 		crossorigin="anonymous"></script>
 	<nav class="navbar navbar-expand-lg bg-body-tertiary"
-		style="height: 9rem">
+		style="height: 12rem">
 		<div class="container-fluid">
 			<a class="navbar-brand m-lg-2" href="main"> <img
-				src="images/mainlogo.PNG" alt="Logo" width="250" height="100"
+				src="images/mainlogo.PNG" alt="Logo" width="280" height="120"
 				class="d-inline-block align-text-top">
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

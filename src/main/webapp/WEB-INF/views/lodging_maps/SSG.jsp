@@ -40,6 +40,11 @@ body {
 	background-color: black;
 	float: right;
 }
+
+.card {
+	margin-top: 120px !important;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -68,10 +73,11 @@ $(document).ready(function () {
 						<img src="images/icon/icon1.png" width="13" height="13"> <span
 							id="lodging_addr" style="font-family: 'KBO-Dia-Gothic_light';"></span>
 						<p></p>
-						<img src="images/icon/icon2.png" width="13" height="13"><span
+						<img src="images/icon/icon4.png" width="13" height="13"><span
 							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;SSG 랜더스
-							필드에서 걸어서 <span id="distance"
-							style="font-family: 'KBO-Dia-Gothic_bold'; color: green;"></span> 분
+							필드에서 차로 <span id="distance"
+							style="font-family: 'KBO-Dia-Gothic_bold'; color: green;"></span>
+							분
 						</span>
 					</div>
 					<p></p>
@@ -79,12 +85,13 @@ $(document).ready(function () {
 						style="font-family: 'KBO-Dia-Gothic_bold';">&nbsp;4.5</span>
 					<p class="card-text mt-3" id="lodging_content"
 						style="font-family: 'KBO-Dia-Gothic_light';"></p>
+					<div id="lodging_url"></div>
 					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
 						보러가기</button>
-						<button id="cancel" class="btn btn-primary mx-3">닫기</button>
+					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
 				</div>
 			</div>
-			</form>
+		</form>
 	</div>
 	<div id="containerDiv">
 		<div id="googleMap" style="width: 100%; height: 700px;"></div>
@@ -105,8 +112,8 @@ $(document).ready(function () {
 
                 // 인천 SSG 랜더스 필드
                 var mapOptions = {
-                    center: new google.maps.LatLng(37.442683, 126.702852),
-                    zoom: 15 /* 음식점 & 숙소 마커 포함 이후 zoom 확대 예정 */
+                    center: new google.maps.LatLng(37.445581, 126.701600),
+                    zoom: 15.3 /* 음식점 & 숙소 마커 포함 이후 zoom 확대 예정 */
                 };
 
                 var map = new google.maps.Map(
@@ -158,10 +165,24 @@ $(document).ready(function () {
                                         var imagePath = 'images/lodging_images/' + data.lodging_image + '.png';
                                         var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
                                         $('#lodging_image').html(imgTag);
+                                        
+                                        var lodging_url = data.lodging_url;
+ 
+   										
+   								     	 var linkElement = $('<a>', {
+   								        	href: lodging_url,
+   								        	target: '_blank',
+   								        	text: '최저가 보러가기'
+   								      	});
+   										
+                                        $('#lodging_url').html(linkElement);
+                                        console.log(lodging_url);
+                                        
                                         $('#lodging_name').text(data.lodging_name);
                                         $('#lodging_addr').text(data.lodging_addr);
                                         $('#distance').text(data.distance);
                                         $('#lodging_content').text(data.lodging_content);
+             
                                         $('#lodging_id').val(data.lodging_id);
                                         
                                     },
@@ -185,6 +206,9 @@ $(document).ready(function () {
                 { place: "느낌호텔", lat: 37.441555, lng: 126.708558},
                 { place: "호텔 디자이너스 인천", lat: 37.4510155, lng: 126.7071381 },
                 { place: "호텔 아라", lat: 37.441197, lng: 126.708572 },
+                { place: "호텔 진", lat: 37.451973, lng: 126.706017 },
+                { place: "알로아 호텔", lat: 37.452175, lng: 126.706135 },
+                { place: "구월 호텔 카카오", lat: 37.451880, lng: 126.703279 },
             ];
 
             window.initMap = initMap;

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>잠실 종합 운동장 주변 맛집 지도</title>
+<title>수원 KT 위즈파크 주변 맛집 지도</title>
 </head>
 <style>
 body {
@@ -40,6 +40,10 @@ body {
 	background-color: black;
 	float: right;
 }
+
+.card {
+	margin-top: 120px !important;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -69,8 +73,8 @@ $(document).ready(function () {
 							id="res_addr" style="font-family: 'KBO-Dia-Gothic_light';"></span>
 						<p></p>
 						<img src="images/icon/icon2.png" width="13" height="13"><span
-							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;고척 스카이돔에서 걸어서 <span id="distance"
-							style="font-family: 'KBO-Dia-Gothic_bold'; color: green;"></span> 분
+							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;<span style="font-family: 'KBO-Dia-Gothic_bold">KT 위즈파크</span>에서 걸어서 <span id="distance"
+							style="font-family: 'KBO-Dia-Gothic_bold'; color: rgb(194, 48, 48);"></span> 분
 						</span>
 					</div>
 					<p></p>
@@ -188,7 +192,7 @@ $(document).ready(function () {
                 { place: "김경자소문난대구왕뽈찜", lat: 37.3033285, lng: 127.0052111},
                 { place: "할머니손순대", lat: 37.3017317, lng: 127.010065},
                 { place: "보영만두", lat:  37.299360, lng: 127.010470},
-                { place: "이비가짬뽕 수원KT위즈파크", lat: 37.300689, lng: 127.011064},
+                { place: "이비가짬뽕 수원KT위즈파크점", lat: 37.300689, lng: 127.011064},
                 { place: "서진불닭발", lat: 37.300771, lng: 127.007103},
                 { place: "닭갈비잔치", lat: 37.299467, lng: 127.012333},
                 { place: "마왕소곱창", lat: 37.3012219, lng: 127.0080872},

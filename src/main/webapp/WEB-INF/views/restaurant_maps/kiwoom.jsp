@@ -40,6 +40,10 @@ body {
 	background-color: black;
 	float: right;
 }
+
+.card {
+	margin-top: 120px !important;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -69,8 +73,8 @@ $(document).ready(function () {
 							id="res_addr" style="font-family: 'KBO-Dia-Gothic_light';"></span>
 						<p></p>
 						<img src="images/icon/icon2.png" width="13" height="13"><span
-							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;고척 스카이돔에서 걸어서 <span id="distance"
-							style="font-family: 'KBO-Dia-Gothic_bold'; color: green;"></span> 분
+							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;<span style="font-family: 'KBO-Dia-Gothic_bold">고척 스카이돔</span>에서 걸어서 <span id="distance"
+							style="font-family: 'KBO-Dia-Gothic_bold'; color: rgb(194, 48, 48);"></span> 분
 						</span>
 					</div>
 					<p></p>

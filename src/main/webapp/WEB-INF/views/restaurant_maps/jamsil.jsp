@@ -40,6 +40,10 @@ body {
 	background-color: black;
 	float: right;
 }
+
+.card {
+	margin-top: 120px !important;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

@@ -8,13 +8,15 @@ public class LodgingDTO {
 	String lodging_image;
 	String lodging_content;
 	String distance;
+	String lodging_url;
 
 	public LodgingDTO() {
 
 	}
 
 	public LodgingDTO(String lodging_id, String lodging_name, String lodging_post, String lodging_addr,
-			String lodging_image, String lodging_content, String distance) {
+			String lodging_image, String lodging_content, String distance, String lodging_url) {
+		super();
 		this.lodging_id = lodging_id;
 		this.lodging_name = lodging_name;
 		this.lodging_post = lodging_post;
@@ -22,6 +24,7 @@ public class LodgingDTO {
 		this.lodging_image = lodging_image;
 		this.lodging_content = lodging_content;
 		this.distance = distance;
+		this.lodging_url = lodging_url;
 	}
 
 	public String getLodging_id() {
@@ -80,11 +83,21 @@ public class LodgingDTO {
 		this.distance = distance;
 	}
 
+	public String getLodging_url() {
+		return lodging_url;
+	}
+
+	public void setLodging_url(String lodging_url) {
+		this.lodging_url = lodging_url;
+	}
+
 	@Override
 	public String toString() {
 		return "LodgingDTO [lodging_id=" + lodging_id + ", lodging_name=" + lodging_name + ", lodging_post="
 				+ lodging_post + ", lodging_addr=" + lodging_addr + ", lodging_image=" + lodging_image
-				+ ", lodging_content=" + lodging_content + ", distance=" + distance + "]";
+				+ ", lodging_content=" + lodging_content + ", distance=" + distance + ", lodging_url=" + lodging_url
+				+ "]";
 	}
+
 
 }

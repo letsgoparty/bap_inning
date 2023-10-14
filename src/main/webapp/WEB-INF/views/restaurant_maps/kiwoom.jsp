@@ -69,8 +69,8 @@ $(document).ready(function () {
 							id="res_addr" style="font-family: 'KBO-Dia-Gothic_light';"></span>
 						<p></p>
 						<img src="images/icon/icon2.png" width="13" height="13"><span
-							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;고척 스카이돔에서 <span id="distance"
-							style="font-family: 'KBO-Dia-Gothic_light'; color: green;"></span>
+							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;고척 스카이돔에서 걸어서 <span id="distance"
+							style="font-family: 'KBO-Dia-Gothic_bold'; color: green;"></span> 분
 						</span>
 					</div>
 					<p></p>

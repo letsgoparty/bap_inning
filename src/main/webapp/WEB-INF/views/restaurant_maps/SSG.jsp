@@ -70,8 +70,8 @@ $(document).ready(function () {
 						<p></p>
 						<img src="images/icon/icon2.png" width="13" height="13"><span
 							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;SSG 랜더스
-							필드에서 <span id="distance"
-							style="font-family: 'KBO-Dia-Gothic_light'; color: green;"></span>
+							필드에서 걸어서 <span id="distance"
+							style="font-family: 'KBO-Dia-Gothic_bold'; color: green;"></span> 분
 						</span>
 					</div>
 					<p></p>

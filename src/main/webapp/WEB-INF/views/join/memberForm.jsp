@@ -110,8 +110,8 @@
 
 
                     <div class="mb-3">
-                        <label for="username">닉네임</label>
-                        <input type="text" class="form-control" id="username" name="username" required
+                        <label for="nickname">닉네임</label>
+                        <input type="text" class="form-control" id="nickname" name="nickname" required
                             autocomplete="off">
                         <div class="invalid-feedback">닉네임을 입력해주세요.</div>
                     </div>

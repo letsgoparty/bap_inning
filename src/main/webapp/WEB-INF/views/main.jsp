@@ -29,29 +29,6 @@
 	href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
 	rel="stylesheet" />
 <link href="css/styles.css" rel="stylesheet" />
-<style>
-@font-face {
-	font-family: 'KBO-Dia-Gothic_bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff')
-		format('woff');
-	font-weight: 700;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'KBO-Dia-Gothic_light';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_light.woff')
-		format('woff');
-	font-weight: 300;
-	font-style: normal;
-}
-
-body {
-	background-color: rgba(248, 249, 250, 0.5);
-}
-</style>
 </head>
 
 <body id="page-top">
@@ -159,7 +136,6 @@ body {
 						href="loginForm" role="button">로그인</a></li>
 					<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
 						href="memberForm" role="button">회원가입</a></li>
-
 				</ul>
 			</div>
 		</div>
@@ -186,29 +162,108 @@ body {
 	<section id="scroll">
 		<div class="row">
 			<!--  KBO 경기 일정  -->
-			<div class="col-md-5 offset-md-1 pt-5">
+			<div class="col-md-7 offset-md-1 pt-5">
 				<h4 style="font-family: 'KBO-Dia-Gothic_bold';">KBO 리그 경기 일정</h4>
-
-				<table class="table table-striped">
-					<thead style="text-align: center;">
+				<div class="container mt-2"
+					style="font-family: 'KBO-Dia-Gothic_bold';">
+					<ul class="nav list-unstyled d-flex">
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img src="images/icon/baseball_icon.png" width="20" height="20"> 전체 </a></li>
+						<li class="nav-item mt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_SK.png"
+								alt="SSG">SSG</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_WO.png"
+								alt="키움">키움</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_LG.png"
+								alt="LG"> LG</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_KT.png"
+								alt="kt"> KT</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_HT.png"
+								alt="KIA"> KIA</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_NC.png"
+								alt="NC"> NC</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_SS.png"
+								alt="삼성"> 삼성</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_LT.png"
+								alt="롯데"> 롯데</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_OB.png"
+								alt="두산"> 두산</a></li>
+						<li class="nav-item pt-1"><a href="#"
+							class="nav-link text-decoration-none text-dark"><img
+								src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_HH.png"
+								alt="한화"> 한화</a></li>
+					</ul>
+				</div>
+				<table class="table table-hover" style="font-family:KBO-Dia-Gothic_bold" >
+					<thead style="text-align: center; background-color:rgb(137,136,140,0.2);">
 						<tr>
 							<th scope="col">날짜</th>
 							<th scope="col">시간</th>
 							<th scope="col">경기</th>
 							<th scope="col">구장</th>
+							<th scope="col"></th>
 
 						</tr>
 					</thead>
 					<tbody style="text-align: center;">
-						<c:forEach var="schedule" items="${ScheduleList}">
+						<c:forEach var="schedule" items="${ScheduleList}" varStatus="loop">
+							<c:if
+								test="${loop.first or ScheduleList[loop.index - 1].day ne schedule.day}">
+								<tr style="background-color:rgb(255,236,170,0.2)">
+									<td>${schedule.day}</td>
+									<td>${schedule.time}</td>
+									<td style="font-weight: bold"><c:set var="vsArray"
+											value="${fn:split(schedule.vs, 'vs')}" /> <c:set
+											var="number1" value="${vsArray[0]}" /> <c:set var="number2"
+											value="${vsArray[1]}" />
+										${schedule.team1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
+											<c:when test="${number1 > number2}">
+												<span style="color: black;">${number1}</span> vs <span
+													style="color: gray;">${number2}</span>
+											</c:when>
+											<c:when test="${number1 < number2}">
+												<span style="color: gray;">${number1}</span> vs <span
+													style="color: black;">${number2}</span>
+											</c:when>
+											<c:otherwise>
+												<span>${number1} vs ${number2}</span>
+											</c:otherwise>
+										</c:choose> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${schedule.team2}</td>
+									<td style="font-weight: bold"><c:choose>
+											<c:when test="${schedule.location eq '문학'}">인천</c:when>
+											<c:otherwise>${schedule.location}</c:otherwise>
+										</c:choose></td>
+										<td>
+											<button class="btn btn-primary">티켓 예매바로가기</button>
+										</td>
+								</tr>
+							</c:if>
 							<tr>
-								<td>${schedule.day}</td>
-								<td>${schedule.time}</td>
-								<td><c:set var="vsArray"
-										value="${fn:split(schedule.vs, 'vs')}" /> <c:set
+								<td></td>
+								<td></td>
+								<td style="font-weight: bold">
+									<!-- vsArray 및 number1, number2를 설정하는 부분은 그대로 유지 --> <c:set
+										var="vsArray" value="${fn:split(schedule.vs, 'vs')}" /> <c:set
 										var="number1" value="${vsArray[0]}" /> <c:set var="number2"
 										value="${vsArray[1]}" />
-									${schedule.team1}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <c:choose>
+									${schedule.team1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
 										<c:when test="${number1 > number2}">
 											<span style="color: black;">${number1}</span> vs <span
 												style="color: gray;">${number2}</span>
@@ -220,26 +275,29 @@ body {
 										<c:otherwise>
 											<span>${number1} vs ${number2}</span>
 										</c:otherwise>
-									</c:choose> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${schedule.team2}</td>
-								<td><c:choose>
-										<c:when test="${schedule.location eq '문학'}"> 인천
-                                </c:when>
-										<c:otherwise>
-                                    ${schedule.location}
-                                </c:otherwise>
+									</c:choose> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${schedule.team2}
+								</td>
+								<td style="font-weight: bold"><c:choose>
+										<c:when test="${schedule.location eq '문학'}">인천</c:when>
+										<c:otherwise>${schedule.location}</c:otherwise>
 									</c:choose></td>
+																			<td>
+																			<button class="btn btn-primary">티켓 예매바로가기</button>
+										</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				<!-- 첫 번째거나 날짜가 다를 때만 날짜&시간을 출력 -->
+
 			</div>
 			<!--  KBO 경기 일정 끝 -->
 
 			<!--  KBO 리그 순위 -->
-			<div class="col-md-4 offset-md-1 pt-5">
+			<div class="col-md-3 offset-md-1 pt-5 ">
 				<h4 style="font-family: 'KBO-Dia-Gothic_bold';">KBO 리그 순위</h4>
 				<table class="table table-striped"
-					style="font-family: 'KBO-Dia-Gothic_light';">
+					style="font-family: 'KBO-Dia-Gothic_light';font-size: 0.9rem">
 					<thead>
 						<tr style="font-family: 'KBO-Dia-Gothic_bold';">
 							<th scope="col">순위</th>

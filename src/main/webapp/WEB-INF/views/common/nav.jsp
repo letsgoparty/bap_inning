@@ -19,7 +19,8 @@
 	crossorigin="anonymous">
 <link rel="icon" type="image/x-icon" href="아이콘" />
 <link href="css/styles.css" rel="stylesheet" />
-
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 <style>
 @font-face {
 	font-family: 'KBO-Dia-Gothic_bold';

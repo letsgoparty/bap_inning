@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 </head>
 <style>
 @font-face {

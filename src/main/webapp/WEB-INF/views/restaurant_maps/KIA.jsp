@@ -145,10 +145,10 @@ $(document).ready(function () {
 
                         // 마커를 클릭했을 때 정보 창을 표시
                         marker.addListener('click', function () {
-                            if (locations[i].place === "광주 KIA 챔피언스필드") {
+                            if (locations[i].place === "광주 KIA 챔피언스 필드") {
                                 // 경기장인 경우에는 InfoWindow를 사용하여 라벨 텍스트를 표시
                                 var infoWindow = new google.maps.InfoWindow({
-                                    content: '광주 KIA 챔피언스필드'
+                                    content: '광주 KIA 챔피언스 필드'
                                 });
 
                                 infoWindow.open(map, marker);

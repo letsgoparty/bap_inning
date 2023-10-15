@@ -59,6 +59,59 @@ body {
   background-color: rgba(248, 249, 250, 0.5) !important;
 }
 
+@font-face {
+	font-family: 'KBO-Dia-Gothic_bold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff')
+		format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'KBO-Dia-Gothic_light';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_light.woff')
+		format('woff');
+	font-weight: 300;
+	font-style: normal;
+}
+
+body {
+	background-color: rgba(248, 249, 250, 0.5);
+}
+
+.nav-item {
+	height: 45px;
+	/* 각 li 요소의 가로 길이를 조절합니다. 필요에 따라 조절하세요. */
+	text-align: center;
+	/* 텍스트를 가운데 정렬합니다. */
+}
+
+.text-decoration-none:hover {
+	background-color: #474747;
+	/* 어두운 배경색으로 변경 */
+	
+}
+.nav-item:hover {
+}
+
+.nav-item:hover a {
+	color: #fff !important;
+	/* 하얀색 글자로 변경 */
+}
+
+img {
+	vertical-align: top;
+	image-rendering: -webkit-optimize-contrast;
+}
+
+.list-unstyled {
+	width: 100%;
+	border-top: 1px solid #929292;
+	border-bottom: 1px solid #929292;
+}
+
 
 /* 추가 */
 hr {

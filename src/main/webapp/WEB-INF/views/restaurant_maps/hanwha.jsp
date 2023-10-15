@@ -79,11 +79,10 @@ $(document).ready(function () {
 					</div>
 					<p></p>
 					<img src="images/icon/icon3.png" width="13" height="13"><span
-						style="font-family: 'KBO-Dia-Gothic_bold';">&nbsp;4.5</span>
+						style="font-family: 'KBO-Dia-Gothic_bold';">&nbsp;4.5</span> <!--  나중에 수정 -->
 					<p class="card-text mt-3" id="res_content"
 						style="font-family: 'KBO-Dia-Gothic_light';"></p>
-					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
-						보러가기</button>
+					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>
 						<button id="cancel" class="btn btn-primary mx-3">닫기</button>
 				</div>
 			</div>
@@ -123,7 +122,7 @@ $(document).ready(function () {
 
 
                 for (var i = 0; i < locations.length; i++) {
-                    // 마커에 대한 클로저를 생성합니다.
+                    // 마커에 대한 클로저를 생성
                     (function (i) {
                         var markerIcon = myIcon; // 기본 아이콘을 사용
 
@@ -141,11 +140,17 @@ $(document).ready(function () {
                             icon: markerIcon
                         });
 
-     
-
+    
                         // 마커를 클릭했을 때 정보 창을 표시
                         marker.addListener('click', function () {
+                            if (locations[i].place === "한화생명 이글스파크") {
+                                // 경기장인 경우에는 InfoWindow를 사용하여 라벨 텍스트를 표시
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content: '한화생명 이글스파크'
+                                });
 
+                                infoWindow.open(map, marker);
+                            } else {
                                 $('#sidebar').show();
                                 // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
                                 $('.container').css("margin-left", 400);
@@ -178,7 +183,7 @@ $(document).ready(function () {
                                         console.error('Error:', error);
                                     }
                                 });
-                            
+                            }
                         });
                     })(i); // 즉시 실행 함수로 현재의 i 값을 전달
                 }

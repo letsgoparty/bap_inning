@@ -145,7 +145,14 @@ $(document).ready(function () {
 
                         // 마커를 클릭했을 때 정보 창을 표시
                         marker.addListener('click', function () {
+                            if (locations[i].place === "인천 SSG 랜더스 필드") {
+                                // 경기장인 경우에는 InfoWindow를 사용하여 라벨 텍스트를 표시
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content: '인천 SSG 랜더스 필드'
+                                });
 
+                                infoWindow.open(map, marker);
+                            } else {
                                 $('#sidebar').show();
                                 // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
                                 $('.container').css("margin-left", 400);
@@ -178,7 +185,7 @@ $(document).ready(function () {
                                         console.error('Error:', error);
                                     }
                                 });
-                            
+                            }
                         });
                     })(i); // 즉시 실행 함수로 현재의 i 값을 전달
                 }

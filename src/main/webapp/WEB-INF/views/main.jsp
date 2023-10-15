@@ -226,7 +226,7 @@
 						<c:forEach var="schedule" items="${ScheduleList}" varStatus="loop">
 							<c:if
 								test="${loop.first or ScheduleList[loop.index - 1].day ne schedule.day}">
-								<tr style="background-color:rgb(255,236,170,0.2)">
+								<tr style="background-color:rgb(128,128,92,0.1)">
 									<td>${schedule.day}</td>
 									<td>${schedule.time}</td>
 									<td style="font-weight: bold"><c:set var="vsArray"
@@ -265,12 +265,12 @@
 										value="${vsArray[1]}" />
 									${schedule.team1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
 										<c:when test="${number1 > number2}">
-											<span style="color: black;">${number1}</span> vs <span
+											<span style="color: rgb(134, 24, 24);">${number1}</span> vs <span
 												style="color: gray;">${number2}</span>
 										</c:when>
 										<c:when test="${number1 < number2}">
 											<span style="color: gray;">${number1}</span> vs <span
-												style="color: black;">${number2}</span>
+												style="color: rgb(134, 24, 24);">${number2}</span>
 										</c:when>
 										<c:otherwise>
 											<span>${number1} vs ${number2}</span>
@@ -294,7 +294,7 @@
 			<!--  KBO 경기 일정 끝 -->
 
 			<!--  KBO 리그 순위 -->
-			<div class="col-md-3 offset-md-1 pt-5 ">
+			<div class="col-md-3 offset-md-1 pt-5" style="margin-left: 2px !important">
 				<h4 style="font-family: 'KBO-Dia-Gothic_bold';">KBO 리그 순위</h4>
 				<table class="table table-striped"
 					style="font-family: 'KBO-Dia-Gothic_light';font-size: 0.9rem">

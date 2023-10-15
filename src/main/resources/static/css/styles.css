@@ -88,9 +88,12 @@ body {
 	/* 텍스트를 가운데 정렬합니다. */
 }
 
-.nav-item:hover {
+.text-decoration-none:hover {
 	background-color: #474747;
 	/* 어두운 배경색으로 변경 */
+	
+}
+.nav-item:hover {
 }
 
 .nav-item:hover a {

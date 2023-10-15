@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>창원 NC 파크 주변 맛집</title>
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>잠실 종합 운동장 주변 숙소</title>
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 

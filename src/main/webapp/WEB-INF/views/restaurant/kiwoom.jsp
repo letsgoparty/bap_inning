@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>고척 스카이돔 주변 맛집</title>
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 

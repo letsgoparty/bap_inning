@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>댓글</title>
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 

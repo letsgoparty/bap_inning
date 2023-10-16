@@ -12,42 +12,18 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>밥이닝(inning)</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-	crossorigin="anonymous">
-<link rel="icon" type="image/x-icon" href="아이콘" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
 <link href="css/styles.css" rel="stylesheet" />
-<link rel="icon" type="image/png" sizes="32x32"
-	href="images/icon/favicon-32x32.png">
-<style>
-@font-face {
-	font-family: 'KBO-Dia-Gothic_bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff')
-		format('woff');
-	font-weight: 700;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'KBO-Dia-Gothic_light';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_light.woff')
-		format('woff');
-	font-weight: 300;
-	font-style: normal;
-}
-</style>
 </head>
 
 <body id="page-top">
-	<!-- Navigation-->
+	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 		<div class="container px-5">
-			<a class="navbar-brand" href="main"><img
-				src="images/mainlogo.PNG" width="170" height="70"></a>
+			<a class="navbar-brand" href="main">
+			<img src="images/mainlogo.PNG" width="170" height="70"></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -55,7 +31,6 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<!-- 기존 드롭다운 추가 -->
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<!-- 맛집 찾기 드롭다운 -->
@@ -111,34 +86,34 @@
 						<ul class="dropdown-menu"
 							style="font-family: 'KBO-Dia-Gothic_bold';">
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/SSG.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/SSG.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">SSG 랜더스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/키움.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/키움.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">키움 히어로즈</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/LG.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/LG.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">LG 트윈스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/KT.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/KT.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">KT wiz</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/KIA.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/KIA.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">KIA 타이거즈</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/NC.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/NC.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">NC 다이노스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/삼성.png" alt="Logo" width="35" height="35"><a
+								src="images/logo/삼성.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">삼성 라이온즈</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/롯데.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/롯데.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">롯데 자이언츠</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/두산.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/두산.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">두산 베어스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/한화.png" alt="Logo" width="35" height="30"><a
+								src="images/logo/한화.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">한화 이글스</a></li>
 						</ul>
 					</div>
@@ -147,7 +122,6 @@
 						href="loginForm" role="button">로그인</a></li>
 					<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
 						href="memberForm" role="button">회원가입</a></li>
-
 				</ul>
 			</div>
 		</div>

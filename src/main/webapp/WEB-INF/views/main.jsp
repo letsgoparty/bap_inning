@@ -12,22 +12,13 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>밥이닝(inning)</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-	crossorigin="anonymous">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="images/icon/favicon-32x32.png">
-<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-	crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <!-- Google fonts-->
-<link
-	href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
-	rel="stylesheet" />
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-	rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 <link href="css/styles.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
@@ -40,11 +31,9 @@ $(document).ready(function () {
 });
 </script>
 </head>
-
 <body id="page-top">
-	<!-- Navigation-->
-	<nav
-		class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+<!-- nav -->
+	<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 		<div class="container px-5">
 			<a class="navbar-brand" href="main"><img
 				src="images/mainlogo.PNG" width="170" height="70"></a>
@@ -110,34 +99,34 @@ $(document).ready(function () {
 						<ul class="dropdown-menu"
 							style="font-family: 'KBO-Dia-Gothic_bold';">
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/SSG.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/SSG.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">SSG 랜더스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/키움.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/키움.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">키움 히어로즈</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/LG.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/LG.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">LG 트윈스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/KT.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/KT.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">KT wiz</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/KIA.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/KIA.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">KIA 타이거즈</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/NC.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/NC.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">NC 다이노스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/삼성.png" alt="Logo" width="30" height="35"><a
+								src="images/logo/삼성.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">삼성 라이온즈</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/롯데.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/롯데.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">롯데 자이언츠</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/두산.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/두산.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">두산 베어스</a></li>
 							<li style="display: flex; align-items: center;"><img
-								src="images/logo/한화.png" alt="Logo" width="30" height="30"><a
+								src="images/logo/한화.png" alt="Logo" width="40" height="35"><a
 								class="dropdown-item" href="#">한화 이글스</a></li>
 						</ul>
 					</div>
@@ -150,8 +139,8 @@ $(document).ready(function () {
 			</div>
 		</div>
 	</nav>
-	<!-- 네비게이션 바 끝 -->
-	<!-- Header-->
+	<!-- nav 끝 -->
+	<!-- Header -->
 	<header class="masthead text-center text-white">
 		<div class="masthead-content">
 			<div class="container px-5">
@@ -166,7 +155,7 @@ $(document).ready(function () {
 			</div>
 		</div>
 	</header>
-
+	<!--  Header 끝 -->
 
 	<!-- 경기순위 및 일정-->
 	<section id="scroll">
@@ -1292,9 +1281,6 @@ $(document).ready(function () {
 		</div>
 	</section>
 <script>
-//페이지 로드 시 초기화
-
-
 function hideAllTables() {
     $('.table-container').hide();
 }

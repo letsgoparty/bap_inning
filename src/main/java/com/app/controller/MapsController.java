@@ -4,14 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/*******************************************
+ *
+ * 각 경기장 별 맛집 & 숙소 찾기 페이지 지정 Controller 
+ *
+ ********************************************/
+
 @Controller
 public class MapsController {
-	/*******************************************
-	임시 Controller 입니다. 
-	********************************************/
 
-	/* 각 경기장 별 맛집 찾기 페이지 이동 */
-	
 	// SSG 경기장 주변 맛집 찾기 페이지 이동 
 	@GetMapping("/r_SSG")
 	public String r_SSG() {
@@ -57,8 +58,6 @@ public class MapsController {
 	public String r_hanwha() {
 		return "restaurant/hanwha";
 	}
-	
-	/* 각 경기장 별 숙소 찾기 페이지 이동 */
 	
 	// SSG 경기장 주변 숙소 찾기 페이지 이동 
 	@GetMapping("/l_SSG")

@@ -27,13 +27,19 @@
 - 게시글 및 댓글 작성
 - 마이페이지 : 회원 정보 수정 및 내활동 조회
 
+<br>
+
 ## 기술스택
 프론트 : HTML, CSS, JavaScript, JQuery <br>
 백엔드 : Java, JSP, MyBatis
 
+<br>
+
 ## 개발환경
 Spring Tool Suite 3 <br>
 Oracle SQL Develoepr 
+
+<br>
 
 ## Tools
 Java : 8 version <br>

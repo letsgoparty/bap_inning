@@ -1,6 +1,7 @@
 # ⚾️ 밥이닝 (inning) : Springboot를 이용한 KBO 야구 정보 공유 플랫폼
 ![mainlogo](https://github.com/gangintheremark/bap_inning/assets/81904943/94fa2081-c814-488f-a374-515e4bef8ca3)
 
+<br>
 
 ## 📆 프로젝트 기간
 
@@ -14,6 +15,8 @@
 | 10.22(월)~10.27(금) | 마이페이지 기능 구현<br> 각 페이지 피드백 및 수정<br> |
 | 10.03(월)~11.04(토) | 네이버 클라우드 플랫폼을 통한 배포 |
 
+<br>
+
 ## 서비스 주요 기능
 - 메인화면: KBO 리그 경기일정 및 순위 조회
 - 회원가입 및 로그인/로그아웃
@@ -24,13 +27,19 @@
 - 게시글 및 댓글 작성
 - 마이페이지 : 회원 정보 수정 및 내활동 조회
 
+<br>
+
 ## 기술스택
 프론트 : HTML, CSS, JavaScript, JQuery <br>
 백엔드 : Java, JSP, MyBatis
 
+<br>
+
 ## 개발환경
 Spring Tool Suite 3 <br>
 Oracle SQL Develoepr 
+
+<br>
 
 ## Tools
 Java : 8 version <br>

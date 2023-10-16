@@ -50,7 +50,6 @@ public class ScrapingService {
 
 				if (day != null) {
 					if (currentDay == null || !currentDay.equals(day.text())) {
-						System.out.println(day.text());
 						currentDay = day.text();
 					}
 				}

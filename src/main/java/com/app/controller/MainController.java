@@ -60,7 +60,7 @@ public class MainController {
 //	               System.out.println(rank.text() + " " + title.text() + " " + match.text() + " " + victory.text() + " " + defeat.text() + " " + draw.text() + " " + rate.text() + " " + winning.text() + " " + recent.text());
 	                
 	                if (title != null) {
-	                	String image = title.text();
+	                   String image = title.text();
 	                   TeamDTO teamData = new TeamDTO(rank.text(), image, title.text(), match.text(), victory.text(), defeat.text(), draw.text(), rate.text(), winning.text(), recent.text());
 	                   teamDataList.add(teamData);
 	                }

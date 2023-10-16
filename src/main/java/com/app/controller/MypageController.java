@@ -37,6 +37,11 @@ public class MypageController {
 	public String myLodgingReview() {
 		return "mypage/myLodgingReview";
 	}
+	@GetMapping("/pwchange")
+	public String pwchange() {
+		return "mypage/pwChange";
+	}
 
+	
 
 }

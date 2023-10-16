@@ -4,12 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가쓴글_게시글_</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-	crossorigin="anonymous">
+<title>내가쓴글_게시글</title>
+
 <style type="text/css">
   .table td, .table th {
     white-space: nowrap; /* 줄 바꿈 금지 */
@@ -93,9 +89,6 @@ for (let i=0;i<radioButton.length;i++){
 }
 </script>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-		crossorigin="anonymous"></script>
+
 </body>
 </html>

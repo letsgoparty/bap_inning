@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/sidebar.css" rel="stylesheet" />
-<title>창원NC파크 주변 맛집 지도</title>
+<title>창원 NC파크 주변 맛집 지도</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
@@ -41,12 +41,11 @@
 		</form>
 	</div>
 	<!--  전체 리스트 사이드바  -->
-	<div id="allinfo_sidebar"
-		style="position: fixed; top: 0; left: 0; width: 400px; height: 100vh; background-color: rgb(248, 249, 250)">
+	<div id="allinfo_sidebar">
 		<div id="all_info"></div>
 	</div>
 	<div id="containerDiv">
-		<button class="btn btn-primary mb-2" id="find_all">전체 맛집보기</button>
+        <button class="btn btn-primary mb-2" id="find_all">한눈에 보기👀</button>
 		<div id="googleMap" style="width: 100%; height: 700px;"></div>
 	</div>
 	<script>
@@ -59,8 +58,11 @@
     });
 
     var SidebarOpen = false;
-    // '전체 맛집보기'
+	// '전체 맛집보기' 버튼
     $('#find_all').on('click', function () {
+    	
+    	$('#sidebar').hide();
+    	
         // 사이드바의 현재 상태 확인
         var SidebarOpen = $('#allinfo_sidebar').is(':visible');
 
@@ -78,7 +80,6 @@
                 data: { res_addr: '경남 창원시' },
                 success: function (data) {
                     // 성공적으로 데이터를 받아왔을 때의 처리
-                    console.log(data);
 
                     $.each(data, function (idx, ele) {
 
@@ -98,7 +99,7 @@
                             '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">창원NC파크</span>에서 걸어서 <span id="distance" style="font-family: \'KBO-Dia-Gothic_bold\'; color: rgb(194, 48, 48);">' + ele.distance + '</span> 분</span>' +
                             '</div>' +
                             '<p></p>' +
-                            '<img src="images/icon/icon3.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_bold\';">&nbsp;' + 4.5 + '</span>' +
+                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
                             '<p class="card-text mt-3" id="res_content" style="font-family: \'KBO-Dia-Gothic_light\';">' + ele.res_content + '</p>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
@@ -111,13 +112,11 @@
 
                 },
                 error: function (error) {
-                    // 오류 발생 시의 처리
                     console.error('Error:', error);
                 }
             });
 
             $('#allinfo_sidebar').show();
-            // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
             $('.container').css("margin-left", 400);
         }
     });
@@ -127,7 +126,6 @@
     $(document).on('click', '.find_res_btn', function (event) {
         event.preventDefault();
         var res_name = $(this).data('res-name');
-        // console.log(res_name);
 
         if (markerInfo[res_name]) {
             markerInfo[res_name].infowindow.open(map, markerInfo[res_name].marker);
@@ -165,7 +163,7 @@
 
 
                 for (var i = 0; i < locations.length; i++) {
-                    // 마커에 대한 클로저를 생성합니다.
+                    // 마커에 대한 클로저 생성
                     (function (i) {
                         var markerIcon = myIcon; // 기본 아이콘을 사용
 
@@ -234,7 +232,6 @@
 
                                     },
                                     error: function (error) {
-                                        // 오류 발생 시의 처리
                                         console.error('Error:', error);
                                     }
                                 });

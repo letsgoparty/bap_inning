@@ -22,31 +22,30 @@
 				<div class="card-body">
 					<h1 class="card-title mt-3 mb-4" id="res_name"></h1>
 					<div>
-						<img src="images/icon/icon1.png" width="13" height="13"> 
-						<span id="res_addr"></span>
+						<img src="images/icon/icon1.png" width="13" height="13"> <span
+							id="res_addr"></span>
 						<p></p>
-						<img src="images/icon/icon2.png" width="13" height="13">
-						<span style="font-family: 'KBO-Dia-Gothic_light';">
-						<span class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance"></span>분
+						<img src="images/icon/icon2.png" width="13" height="13"> <span
+							style="font-family: 'KBO-Dia-Gothic_light';"> <span
+							class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance"></span>분
 						</span>
 					</div>
 					<p></p>
-					<img src="images/icon/icon3.png" width="13" height="13">
-					<span>&nbsp;4.5</span>
+					<img src="images/icon/icon3.png" width="13" height="13"> <span>&nbsp;4.5</span>
 					<p class="card-text mt-3" id="res_content"></p>
-					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>
+					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
+						보러가기</button>
 					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
 				</div>
 			</div>
 		</form>
 	</div>
 	<!--  전체 리스트 사이드바  -->
-	<div id="allinfo_sidebar"
-		style="position: fixed; top: 0; left: 0; width: 400px; height: 100vh; background-color: rgb(248, 249, 250)">
+	<div id="allinfo_sidebar">
 		<div id="all_info"></div>
 	</div>
 	<div id="containerDiv">
-		<button class="btn btn-primary mb-2" id="find_all">전체 맛집보기</button>
+        <button class="btn btn-primary mb-2" id="find_all">한눈에 보기👀</button>
 		<div id="googleMap" style="width: 100%; height: 700px;"></div>
 	</div>
 	<script>
@@ -59,8 +58,11 @@
     });
 	
 	var SidebarOpen = false;
-	// '전체 맛집보기'
+	// '전체 맛집보기' 버튼
 	$('#find_all').on('click', function() {  
+		
+		$('#sidebar').hide();
+		
 	    // 사이드바의 현재 상태 확인
 	    var SidebarOpen = $('#allinfo_sidebar').is(':visible');
 		
@@ -78,7 +80,6 @@
             data: { res_addr: '인천' },
             success: function (data) {
                 // 성공적으로 데이터를 받아왔을 때의 처리
-                console.log(data);
                 
                	$.each(data, function(idx, ele){
                		
@@ -179,24 +180,25 @@
                             icon: markerIcon
                         });
 
+
                         var infowindow = new google.maps.InfoWindow({
-                            content: locations[i].place 
+                            content: locations[i].place
                         });
 
                         // 마커와 InfoWindow를 객체에 저장
                         markerInfo[locations[i].place] = { marker: marker, infowindow: infowindow };
-                        
-                        // 마커 클릭 시, 이벤트 처리 
+
+                        // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                        	if ($('#allinfo_sidebar').is(':visible')) {
-                        		// 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
+                            if ($('#allinfo_sidebar').is(':visible')) {
+                                // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place
                                 });
 
                                 infoWindow.open(map, marker);
-                        	}
-                        	else if (locations[i].place === "인천 SSG 랜더스 필드") {
+                            }
+                            else if (locations[i].place === "인천 SSG 랜더스 필드") {
                                 // 경기장인 경우에는 라벨 텍스트를 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: '인천 SSG 랜더스 필드'
@@ -204,15 +206,15 @@
 
                                 infoWindow.open(map, marker);
                             } else {
-                            	// 해당 맛집 정보 사이드바 표시 
+                                // 해당 맛집 정보 사이드바 표시 
                                 $('#sidebar').show();
                                 $('.container').css("margin-left", 400);
-                            
+
                                 // 가게 이름 가져오기
                                 var res_name = locations[i].place;
-                                
+
                                 $.ajax({
-                                    url: 'find_res', 
+                                    url: 'find_res',
                                     method: 'GET',
                                     data: { res_name: res_name },
                                     success: function (data) {
@@ -227,7 +229,7 @@
                                         $('#distance').text(data.distance);
                                         $('#res_content').text(data.res_content);
                                         $('#res_id').val(data.res_id);
-                                        
+
                                     },
                                     error: function (error) {
                                         // 오류 발생 시의 처리

@@ -13,10 +13,28 @@
     text-overflow: ellipsis; /* 길 경우 ... 으로 표시 */
     max-width:200px
   }
-</style>	
+  
+          .input-form {
+            max-width: 800px;
+            margin-top: 80px;
+            padding: 32px;
+            background: #fff;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+</style>
 
 </head>
 <body>
+ <div class="container">
+  <div class="input-form-background row">
+   <div class="input-form col-md-12 mx-auto">
+
+
 	<h1>마이페이지_내가 쓴 글_식당리뷰</h1>
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -71,6 +89,10 @@
     </tr>
   </tbody>
 </table>
+</div>
+   </div>
+  </div>
+ </div>
 
 <script type="text/javascript">
 const radioButton=document.querySelectorAll(".btn-check");

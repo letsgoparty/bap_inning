@@ -7,89 +7,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SSG 주변 맛집 지도</title>
+<link href="css/sidebar.css" rel="stylesheet" />
+<title>SSG 랜더스필드 주변 맛집 지도</title>
 </head>
-<style>
-body {
-	margin: 0;
-	padding: 0;
-}
-
-#googleMap {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	max-width: 1500px; /* 최대 너비 지정 (필요에 따라 조절) */
-}
-
-.container {
-	margin-left: 300px;
-}
-
-#sidebar {
-	display: none; /* 초기에 숨김 상태로 설정 */
-}
-
-#allinfo_sidebar {
-	display: none;
-}
-
-.card {
-	margin-top: 120px !important;
-}
-
-#all_info {
-	margin-left: 10px;
-	max-height: 100%;
-	overflow-y: auto; /* 세로 스크롤 추가 */
-}
-
-#all_info::-webkit-scrollbar {
-	width: 8px; /* 스크롤 바 너비 설정 */
-}
-
-#all_info::-webkit-scrollbar-thumb {
-	background-color: #4CAF50;
-	border-radius: 4px;
-}
-
-#all_info::-webkit-scrollbar-track {
-	background-color: #f1f1f1;
-	border-radius: 4px;
-}
-</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<body style="background-color: rgba(248, 249, 250) !important;">
+<body>
 	<!--  마커 클릭 시 사이드바 -->
-	<div id="sidebar"
-		style="position: fixed; top: 0; left: 0; width: 400px; height: 100vh; background-color: rgb(248, 249, 250)">
+	<div id="sidebar">
 		<!-- 가게 정보 띄우기  -->
 		<form action="" method="get">
 			<input type="hidden" id="res_id" name="res_id">
 			<div class="card mt-5">
 				<div id="res_image"></div>
 				<div class="card-body">
-					<h1 class="card-title mt-3 mb-4" id="res_name"
-						style="font-family: 'KBO-Dia-Gothic_bold'; text-align: center;"></h1>
-					<div class="">
-						<img src="images/icon/icon1.png" width="13" height="13"> <span
-							id="res_addr" style="font-family: 'KBO-Dia-Gothic_light';"></span>
+					<h1 class="card-title mt-3 mb-4" id="res_name"></h1>
+					<div>
+						<img src="images/icon/icon1.png" width="13" height="13"> 
+						<span id="res_addr"></span>
 						<p></p>
-						<img src="images/icon/icon2.png" width="13" height="13"><span
-							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;<span
-							style="font-family: '">SSG 랜더스 필드</span>에서 걸어서 <span
-							id="distance"
-							style="font-family: 'KBO-Dia-Gothic_bold'; color: rgb(194, 48, 48);"></span>
-							분
+						<img src="images/icon/icon2.png" width="13" height="13">
+						<span style="font-family: 'KBO-Dia-Gothic_light';">
+						<span class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance"></span>분
 						</span>
 					</div>
 					<p></p>
-					<img src="images/icon/icon3.png" width="13" height="13"><span
-						style="font-family: 'KBO-Dia-Gothic_bold';">&nbsp;4.5</span>
-					<p class="card-text mt-3" id="res_content"
-						style="font-family: 'KBO-Dia-Gothic_light';"></p>
-					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
-						보러가기</button>
+					<img src="images/icon/icon3.png" width="13" height="13">
+					<span>&nbsp;4.5</span>
+					<p class="card-text mt-3" id="res_content"></p>
+					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>
 					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
 				</div>
 			</div>
@@ -146,15 +91,15 @@ body {
                     '<div class="card">' +
                     '<div"><img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px"></div>' +
                     '<div class="card-body">' +
-                    '<h1 class="card-title mt-3 mb-4" id="res_name" style="font-family: \'KBO-Dia-Gothic_bold\'; text-align: center;">' + ele.res_name + '</h1>' +
+                    '<h1 class="card-title mt-3 mb-4" id="res_name">' + ele.res_name + '</h1>' +
                     '<div class="">' +
-                    '<img src="images/icon/icon1.png" width="13" height="13"> <span id="res_addr" style="font-family: \'KBO-Dia-Gothic_light\';">' + ele.res_addr + '</span>' +
+                    '<img src="images/icon/icon1.png" width="13" height="13"> <span id="res_addr">' + ele.res_addr + '</span>' +
                     '<p></p>' +
-                    '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span style="font-family: \'KBO-Dia-Gothic_bold\">SSG 랜더스 필드</span>에서 걸어서 <span id="distance" style="font-family: \'KBO-Dia-Gothic_bold\'; color: rgb(194, 48, 48);">' + ele.distance + '</span> 분</span>' +
+                    '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance">' + ele.distance + '</span> 분</span>' +
                     '</div>' +
                     '<p></p>' +
-                    '<img src="images/icon/icon3.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_bold\';">&nbsp;' + 4.5 + '</span>' +
-                    '<p class="card-text mt-3" id="res_content" style="font-family: \'KBO-Dia-Gothic_light\';">' + ele.res_content + '</p>' +
+                    '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                    '<p class="card-text mt-3" id="res_content"">' + ele.res_content + '</p>' +
                     '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                     '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
                     '</div>' +
@@ -166,13 +111,11 @@ body {
                 
             },
             error: function (error) {
-                // 오류 발생 시의 처리
                 console.error('Error:', error);
             }
         });
         
 		 $('#allinfo_sidebar').show();
-         // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
          $('.container').css("margin-left", 400);
 	    }
 	});
@@ -182,8 +125,7 @@ body {
 	$(document).on('click', '.find_res_btn', function(event) {
 	    event.preventDefault();
 	    var res_name = $(this).data('res-name');
-	    // console.log(res_name);
-	    
+  
 	    if (markerInfo[res_name]) {
 	        markerInfo[res_name].infowindow.open(map, markerInfo[res_name].marker);
 	    }
@@ -244,7 +186,7 @@ body {
                         // 마커와 InfoWindow를 객체에 저장
                         markerInfo[locations[i].place] = { marker: marker, infowindow: infowindow };
                         
-                        // 마커를 클릭했을 때, 이벤트 처리 
+                        // 마커 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
                         	if ($('#allinfo_sidebar').is(':visible')) {
                         		// 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
@@ -322,5 +264,4 @@ body {
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>
 </body>
-
 </html>

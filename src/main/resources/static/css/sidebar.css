@@ -1,0 +1,74 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#googleMap {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	max-width: 1500px;
+}
+
+.container {
+	margin-left: 300px;
+}
+
+#sidebar, #allinfo_sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 100vh;
+	display: none;
+	font-family: 'KBO-Dia-Gothic_bold' !important;
+}
+
+#sidebar-divider {
+	width: 1px;
+	height: 100vh;
+	background-color: black;
+	float: right;
+}
+
+.card {
+	margin-top: 120px !important;
+}
+
+#all_info {
+	margin-left: 10px;
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+#all_info::-webkit-scrollbar {
+	width: 8px;
+}
+
+#all_info::-webkit-scrollbar-thumb {
+	background-color: #4CAF50;
+	border-radius: 4px;
+}
+
+#all_info::-webkit-scrollbar-track {
+	background-color: #f1f1f1;
+	border-radius: 4px;
+}
+
+#distance {
+	color: rgb(194, 48, 48);
+	font-family: 'KBO-Dia-Gothic_bold';
+}
+
+#res_name {
+	font-family: 'KBO-Dia-Gothic_bold';
+	text-align: center;
+	
+}
+
+#res_content, #res_addr {
+	font-family: 'KBO-Dia-Gothic_light';
+}
+
+
+

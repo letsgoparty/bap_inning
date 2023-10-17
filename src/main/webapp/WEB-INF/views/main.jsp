@@ -131,10 +131,18 @@ $(document).ready(function () {
 						</ul>
 					</div>
 					&nbsp&nbsp&nbsp&nbsp&nbsp
-					<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
-						href="loginForm" role="button">로그인</a></li>
-					<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
-						href="memberForm" role="button">회원가입</a></li>
+						<c:if test="${empty login}">
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="loginForm" role="button">로그인</a></li>
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="memberForm" role="button">회원가입</a></li>
+						</c:if>
+						<c:if test="${!empty login}">
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="" role="button">로그아웃</a></li>
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="mypage" role="button">마이페이지</a></li>
+						</c:if>
 				</ul>
 			</div>
 		</div>

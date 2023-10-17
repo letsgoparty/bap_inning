@@ -12,9 +12,13 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>밥이닝(inning)</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 <link href="css/styles.css" rel="stylesheet" />
 </head>
 
@@ -22,8 +26,8 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 		<div class="container px-5">
-			<a class="navbar-brand" href="main">
-			<img src="images/mainlogo.PNG" width="170" height="70"></a>
+			<a class="navbar-brand" href="main"> <img
+				src="images/mainlogo.PNG" width="170" height="70"></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -118,10 +122,18 @@
 						</ul>
 					</div>
 					&nbsp&nbsp&nbsp&nbsp&nbsp
-					<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
-						href="loginForm" role="button">로그인</a></li>
-					<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
-						href="memberForm" role="button">회원가입</a></li>
+						<c:if test="${empty login}">
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="loginForm" role="button">로그인</a></li>
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="memberForm" role="button">회원가입</a></li>
+						</c:if>
+						<c:if test="${!empty login}">
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="" role="button">로그아웃</a></li>
+							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="mypage" role="button">마이페이지</a></li>
+						</c:if>
 				</ul>
 			</div>
 		</div>

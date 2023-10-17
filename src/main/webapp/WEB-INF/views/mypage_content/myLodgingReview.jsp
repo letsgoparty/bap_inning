@@ -13,10 +13,27 @@
     text-overflow: ellipsis; /* 길 경우 ... 으로 표시 */
     max-width:200px
   }
-</style>	
+  
+          .input-form {
+            max-width: 800px;
+            margin-top: 80px;
+            padding: 32px;
+            background: #fff;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+</style>
 
 </head>
 <body>
+ <div class="container">
+  <div class="input-form-background row">
+   <div class="input-form col-md-12 mx-auto">
+
 	<h1>마이페이지_내가 쓴 글_숙소리뷰</h1>
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -33,10 +50,11 @@
   <label class="btn btn-outline-primary" for="btnradio4">숙소리뷰</label>
 </div>
 <br>
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" style="width: 40px;">식당이름</th>
+      <th scope="col" style="width: 40px;">숙소이름</th>
       <th scope="col" style="width: 200px;">내용</th>
       <th scope="col" style="width: 100px;">작성자</th>
       <th scope="col" style="width: 100px;">날짜</th>
@@ -71,6 +89,10 @@
     </tr>
   </tbody>
 </table>
+</div>
+   </div>
+  </div>
+ </div>
 
 <script type="text/javascript">
 const radioButton=document.querySelectorAll(".btn-check");

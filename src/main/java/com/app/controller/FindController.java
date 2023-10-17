@@ -1,6 +1,9 @@
 package com.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +44,16 @@ public class FindController {
 		
 		System.out.println(dto);
 		return dto;
+	}
+	
+	@GetMapping("/find_all_res")
+	public List<RestaurantDTO> find_all_res(@RequestParam String res_addr) {
+		System.out.println(res_addr);
+		
+		List<RestaurantDTO> list = service.find_all_res(res_addr);
+		System.out.println(list);
+		
+		return list;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class FindServiceImpl implements FindService {
 	@Override
 	public LodgingDTO find_lod(String lodging_name) {
 		return dao.find_lod(lodging_name);
+	}
+
+	@Override
+	public List<RestaurantDTO> find_all_res(String res_addr) {
+		return dao.find_all_res(res_addr);
 	}
 
 }

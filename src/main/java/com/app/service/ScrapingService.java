@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
@@ -43,7 +44,6 @@ public class ScrapingService {
 			// 셀레니움으로 가져온 HTML을 Jsoup으로 파싱
 			Document doc = Jsoup.parse(driver.getPageSource());
 			Elements baseballSchedule = doc.select("#tblScheduleList > tbody > tr");
-//			System.out.println(baseballSchedule);
 
 			String currentDay = null;
 			for (Element Schedule : baseballSchedule) {
@@ -105,8 +105,6 @@ public class ScrapingService {
 				Element winning = baseballTeam.selectFirst("td:nth-child(9)"); // 연승
 				Element recent = baseballTeam.selectFirst("td:nth-child(12)"); // 최근 10경기
 
-//	               System.out.println(rank.text() + " " + title.text() + " " + match.text() + " " + victory.text() + " " + defeat.text() + " " + draw.text() + " " + rate.text() + " " + winning.text() + " " + recent.text());
-
 				if (title != null) {
 					String image = title.text();
 					TeamDTO teamData = new TeamDTO(rank.text(), image, title.text(), match.text(), victory.text(),
@@ -119,5 +117,36 @@ public class ScrapingService {
 			e.printStackTrace();
 		}
 		return teamDataList;
+	}
+	
+	public Elements xxx() {
+
+		Elements postSeason = null;
+		
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/static/driver/chromedriver.exe");
+
+		// 브라우저 창 숨기는 옵션 추가
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("headless");
+		WebDriver driver = new ChromeDriver(options);
+
+		try {
+			// 셀레니움으로 웹 페이지 접근
+			driver.get("https://www.koreabaseball.com/");
+
+			// 셀레니움으로 가져온 HTML을 Jsoup으로 파싱
+			Document doc = Jsoup.parse(driver.getPageSource());
+			postSeason = doc.select(".match-cont");
+			System.out.println(postSeason);
+			
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// WebDriver 종료 (쭝요)
+			driver.quit();
+		}
+		return postSeason;
 	}
 }

@@ -19,7 +19,7 @@
 	crossorigin="anonymous">
 <link rel="icon" type="image/png" sizes="32x32"
 	href="images/icon/favicon-32x32.png">
-<link href="css/styles.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">

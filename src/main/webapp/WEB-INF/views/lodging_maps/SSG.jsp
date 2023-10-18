@@ -6,84 +6,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/sidebar.css" rel="stylesheet" />
 <title>SSG 주변 숙소 지도</title>
 </head>
-<style>
-body {
-	margin: 0;
-	padding: 0;
-}
-
-#googleMap {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	max-width: 1500px; /* 최대 너비 지정 (필요에 따라 조절) */
-}
-
-.container {
-	margin-left: 300px;
-}
-
-#sidebar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 400px;
-	height: 100vh;
-	display: none; /* 초기에 숨김 상태로 설정 */
-}
-
-#sidebar-divider {
-	width: 1px;
-	height: 100vh;
-	background-color: black;
-	float: right;
-}
-
-.card {
-	margin-top: 120px !important;
-}
-
-</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function () {
-    $('#cancel').on('click', function () {
-    	event.preventDefault();
-        console.log("hello");
-        $('#sidebar').hide();
-        // 본문의 내용들 사라진 사이드바의 영역만큼 여백 제거
-        $('.container').css("margin-left", 300);
-    });
-});
-</script>
-<body style="background-color: rgba(248, 249, 250) !important;">
-	<div id="sidebar"
-		style="position: fixed; top: 0; left: 0; width: 400px; height: 100vh; background-color: rgb(248, 249, 250)">
+<body></body>
+	<div id="sidebar">
 		<!-- 숙박 정보 띄우기  -->
 		<form action="" method="get">
 			<input type="hidden" id="lodging_id" name="lodging_id">
 			<div class="card mt-5">
 				<div id="lodging_image"></div>
 				<div class="card-body">
-					<h1 class="card-title mt-3 mb-4" id="lodging_name"
-						style="font-family: 'KBO-Dia-Gothic_bold'; text-align: center;"></h1>
+					<h1 class="card-title mt-3 mb-4" id="lodging_name"></h1>
 					<div class="">
-						<img src="images/icon/icon1.png" width="13" height="13"> <span
-							id="lodging_addr" style="font-family: 'KBO-Dia-Gothic_light';"></span>
+						<img src="images/icon/icon1.png" width="13" height="13"> 
+						<span id="lodging_addr"></span>
 						<p></p>
-						<img src="images/icon/icon4.png" width="13" height="13"><span
-							style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;SSG 랜더스
-							필드에서 차로 <span id="distance"
-							style="font-family: 'KBO-Dia-Gothic_bold'; color: green;"></span>
+						<img src="images/icon/icon4.png" width="13" height="13">
+						<span style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;SSG 랜더스필드에서 <span id="distance"></span>
 						</span>
 					</div>
 					<p></p>
-					<img src="images/icon/icon3.png" width="13" height="13"><span
-						style="font-family: 'KBO-Dia-Gothic_bold';">&nbsp;4.5</span>
-					<p class="card-text mt-3" id="lodging_content"
-						style="font-family: 'KBO-Dia-Gothic_light';"></p>
+					<img src="images/icon/icon3.png" width="13" height="13">
+					<span>&nbsp;4.5</span>
+					<p class="card-text mt-3" id="lodging_content"></p>
 					<div id="lodging_url"></div>
 					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
 						보러가기</button>
@@ -92,10 +39,98 @@ $(document).ready(function () {
 			</div>
 		</form>
 	</div>
+	<div id="allinfo_sidebar">
+		<div id="all_info"></div>
+	</div>
 	<div id="containerDiv">
+    	<button class="btn btn-primary mb-2" id="find_all">한눈에 보기👀</button>
 		<div id="googleMap" style="width: 100%; height: 700px;"></div>
 	</div>
+
 	<script>
+	// '닫기' 버튼
+    $('#cancel').on('click', function () {
+    	event.preventDefault();
+        $('#sidebar').hide();
+        $('.container').css("margin-left", 300);
+    });
+	
+	var SidebarOpen = false;
+	// '한눈에 보기' 버튼
+	$('#find_all').on('click', function() {  
+		
+		$('#sidebar').hide();
+		
+	    // 사이드바의 현재 상태 확인
+	    var SidebarOpen = $('#allinfo_sidebar').is(':visible');
+		
+	    if(SidebarOpen) {
+	    	// 사이드바가 열려있다면 닫기
+	    	$('#allinfo_sidebar').hide();
+	        $('.container').css("margin-left", 300);
+	        SidebarOpen = false;
+	    } else {
+        	
+	    	$.ajax({
+        	// 사이드바가 닫혀있다면 열기
+            url: 'find_all_lod', 
+            method: 'GET',
+            data: { lodging_addr: '인천' },
+            success: function (data) {
+                // 성공적으로 데이터를 받아왔을 때의 처리
+                
+               	$.each(data, function(idx, ele){
+               		
+               		var cardId = 'card_' + idx;      		
+                    var imagePath = 'images/lodging_images/' + ele.lodging_image + '.png';
+                    var lodging_name = ele.lodging_name;
+               		
+               		var cardHtml = '<form id="' + cardId + '" action="" method="get">' +
+                    '<input type="hidden" id="lodging_id" name="lodging_id" value="' + ele.lodging_id + '">' +
+                    '<div class="card">' +
+                    '<div"><img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px"></div>' +
+                    '<div class="card-body">' +
+                    '<h1 class="card-title mt-3 mb-4" id="lodging_name">' + ele.lodging_name + '</h1>' +
+                    '<div class="">' +
+                    '<img src="images/icon/icon1.png" width="13" height="13"> <span id="lodging_addr">' + ele.lodging_addr + '</span>' +
+                    '<p></p>' +
+                    '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance">' + ele.distance + '</span></span>' +
+                    '</div>' +
+                    '<p></p>' +
+                    '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                    '<p class="card-text mt-3" id="lodging_content"">' + ele.lodging_content + '</p>' +
+                    '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
+                    '<button class="btn btn-primary mt-3 mb-3 mx-3 find_lod_btn" data-lod-name="' + lodging_name + '">위치 보러가기</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</form>';
+                    
+                    $('#all_info').append(cardHtml);
+               	});
+                
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            }
+        });
+        
+		 $('#allinfo_sidebar').show();
+         $('.container').css("margin-left", 400);
+	    }
+	});
+	
+	var markerInfo = {};
+	var map;
+	$(document).on('click', '.find_lod_btn', function(event) {
+	    event.preventDefault();
+	    var lodging_name = $(this).data('lod-name');
+  
+	    if (markerInfo[lodging_name]) {
+	        markerInfo[lodging_name].infowindow.open(map, markerInfo[lodging_name].marker);
+	    }
+	    
+	});
+	
 	 $('#containerDiv').addClass('container');
             function initMap() {
                 const styledMapType = new google.maps.StyledMapType(
@@ -140,18 +175,31 @@ $(document).ready(function () {
                             icon: markerIcon
                         });
 
-     
+                        var infowindow = new google.maps.InfoWindow({
+                            content: locations[i].place
+                        });
+
+                        // 마커와 InfoWindow를 객체에 저장
+                        markerInfo[locations[i].place] = { marker: marker, infowindow: infowindow };
 
                         // 마커를 클릭했을 때 정보 창을 표시
                         marker.addListener('click', function () {
-                            if (locations[i].place === "인천 SSG 랜더스 필드") {
-                                // 경기장인 경우에는 InfoWindow를 사용하여 라벨 텍스트를 표시
+                            if ($('#allinfo_sidebar').is(':visible')) {
+                                // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content: locations[i].place
+                                });
+
+                                infoWindow.open(map, marker);
+                            }
+                            else if (locations[i].place === "인천 SSG 랜더스 필드") {
+                                // 경기장인 경우에는 라벨 텍스트를 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: '인천 SSG 랜더스 필드'
                                 });
 
                                 infoWindow.open(map, marker);
-                            } else {
+                            }  else {
                                 $('#sidebar').show();
                                 // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
                                 $('.container').css("margin-left", 400);

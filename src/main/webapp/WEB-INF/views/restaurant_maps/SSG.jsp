@@ -53,12 +53,11 @@
     $('#cancel').on('click', function () {
     	event.preventDefault();
         $('#sidebar').hide();
-        // 본문의 내용들 사라진 사이드바의 영역만큼 여백 제거
         $('.container').css("margin-left", 300);
     });
 	
 	var SidebarOpen = false;
-	// '전체 맛집보기' 버튼
+	// '한눈에 보기' 버튼
 	$('#find_all').on('click', function() {  
 		
 		$('#sidebar').hide();

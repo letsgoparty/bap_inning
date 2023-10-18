@@ -18,10 +18,9 @@ import com.app.dto.TeamDTO;
 
 /*******************************
  * 
- * 1. KBO 리그 일정 크롤링
- * 2. KBO 리그 순위 크롤링
+ * 1. KBO 리그 일정 크롤링 2. KBO 리그 순위 크롤링
  *
-*******************************/
+ *******************************/
 
 @Service
 public class ScrapingService {
@@ -45,7 +44,7 @@ public class ScrapingService {
 			Document doc = Jsoup.parse(driver.getPageSource());
 			Elements baseballSchedule = doc.select("#tblScheduleList > tbody > tr");
 //			System.out.println(baseballSchedule);
-			
+
 			String currentDay = null;
 			for (Element Schedule : baseballSchedule) {
 				Element day = Schedule.selectFirst("td.day");
@@ -54,18 +53,21 @@ public class ScrapingService {
 				Element vs = Schedule.selectFirst("td.play > em");
 				Element team2 = Schedule.selectFirst("td.play > span:nth-child(3)");
 				Element location = Schedule.selectFirst("td:nth-child(8)");
-				if("-".equals(location.text())) {
+				if ("-".equals(location.text())) {
 					location = Schedule.selectFirst("td:nth-child(7)");
-				} 
+				}
 
 				if (day != null) {
 					if (currentDay == null || !currentDay.equals(day.text())) {
 						currentDay = day.text();
 					}
 				}
-				
-				ScheduleDTO dto = new ScheduleDTO(currentDay, time.text(), team1.text(), vs.text(), team2.text(), location.text());
-				ScheduleList.add(dto);
+
+				if (time != null) {
+					ScheduleDTO dto = new ScheduleDTO(currentDay, time.text(), team1.text(), vs.text(), team2.text(),
+							location.text());
+					ScheduleList.add(dto);
+				}
 			}
 
 		} catch (Exception e) {
@@ -76,45 +78,46 @@ public class ScrapingService {
 		}
 		return ScheduleList;
 	}
-	
+
 	// KBO 리그 순위 가져오기 by Jsoup
 	public List<TeamDTO> scrapeRank() {
 		List<TeamDTO> teamDataList = new ArrayList<>();
 		try {
-			 
-	            // KBO 리그 순위 가져오기
-	            Document doc = Jsoup.connect("https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
-	                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
-	                    .get();
 
-	            // select를 이용해서 tr들을 불러오기
-	            Elements baseballTeams = doc.select("#regularTeamRecordList_table > tr");
+			// KBO 리그 순위 가져오기
+			Document doc = Jsoup.connect("https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
+					.userAgent(
+							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
+					.get();
 
-	            
-	            // tr들의 반복문 돌리기
-	            for (Element baseballTeam : baseballTeams) {
-	                Element rank = baseballTeam.selectFirst("th"); // 등 수 	                
-	                Element title = baseballTeam.selectFirst("span:nth-child(2)"); // 팀 명
-	                Element match = baseballTeam.selectFirst("td:nth-child(3)"); // 경기 수 
-	                Element victory = baseballTeam.selectFirst("td:nth-child(4)"); // 승 
-	                Element defeat = baseballTeam.selectFirst("td:nth-child(5)"); // 패
-	                Element draw = baseballTeam.selectFirst("td:nth-child(6)"); // 무
-	                Element rate = baseballTeam.selectFirst("td:nth-child(7)"); // 승률
-	                Element winning = baseballTeam.selectFirst("td:nth-child(9)"); // 연승
-	                Element recent = baseballTeam.selectFirst("td:nth-child(12)"); // 최근 10경기
-	                
+			// select를 이용해서 tr들을 불러오기
+			Elements baseballTeams = doc.select("#regularTeamRecordList_table > tr");
+
+			// tr들의 반복문 돌리기
+			for (Element baseballTeam : baseballTeams) {
+				Element rank = baseballTeam.selectFirst("th"); // 등 수
+				Element title = baseballTeam.selectFirst("span:nth-child(2)"); // 팀 명
+				Element match = baseballTeam.selectFirst("td:nth-child(3)"); // 경기 수
+				Element victory = baseballTeam.selectFirst("td:nth-child(4)"); // 승
+				Element defeat = baseballTeam.selectFirst("td:nth-child(5)"); // 패
+				Element draw = baseballTeam.selectFirst("td:nth-child(6)"); // 무
+				Element rate = baseballTeam.selectFirst("td:nth-child(7)"); // 승률
+				Element winning = baseballTeam.selectFirst("td:nth-child(9)"); // 연승
+				Element recent = baseballTeam.selectFirst("td:nth-child(12)"); // 최근 10경기
+
 //	               System.out.println(rank.text() + " " + title.text() + " " + match.text() + " " + victory.text() + " " + defeat.text() + " " + draw.text() + " " + rate.text() + " " + winning.text() + " " + recent.text());
-	                
-	                if (title != null) {
-	                   String image = title.text();
-	                   TeamDTO teamData = new TeamDTO(rank.text(), image, title.text(), match.text(), victory.text(), defeat.text(), draw.text(), rate.text(), winning.text(), recent.text());
-	                   teamDataList.add(teamData);
-	                }
-	            }
-	            
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+
+				if (title != null) {
+					String image = title.text();
+					TeamDTO teamData = new TeamDTO(rank.text(), image, title.text(), match.text(), victory.text(),
+							defeat.text(), draw.text(), rate.text(), winning.text(), recent.text());
+					teamDataList.add(teamData);
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return teamDataList;
 	}
 }

@@ -60,13 +60,13 @@ body {
 	font-family: 'KBO-Dia-Gothic_bold';
 }
 
-#res_name {
+#res_name, #lodging_name {
 	font-family: 'KBO-Dia-Gothic_bold';
 	text-align: center;
 	
 }
 
-#res_content, #res_addr {
+#res_content, #res_addr, #lodging_url, #lodging_addr, #lodging_content {
 	font-family: 'KBO-Dia-Gothic_light';
 }
 

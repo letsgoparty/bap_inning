@@ -30,4 +30,9 @@ public class FindServiceImpl implements FindService {
 		return dao.find_all_res(res_addr);
 	}
 
+	@Override
+	public List<LodgingDTO> find_all_lod(String lodging_addr) {
+		return dao.find_all_lod(lodging_addr);
+	}
+
 }

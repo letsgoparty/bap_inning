@@ -26,4 +26,8 @@ public class FindDAO {
 	public List<RestaurantDTO> find_all_res(String res_addr) {
 		return session.selectList("FindMapper.find_all_res", res_addr);
 	}
+
+	public List<LodgingDTO> find_all_lod(String lodging_addr) {
+		return session.selectList("FindMapper.find_all_lod", lodging_addr);
+	}
 }

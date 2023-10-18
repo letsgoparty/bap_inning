@@ -21,4 +21,10 @@
 		from restaurant
 		where res_addr like #{res_addr} || '%'
 	</select>
+	<!-- 숙소 전체 리스트 조회 -->
+	<select id="find_all_lod" parameterType="string" resultType="LodgingDTO">
+		select *
+		from lodging
+		where lodging_addr like #{lodging_addr} || '%'
+	</select>
 </mapper>

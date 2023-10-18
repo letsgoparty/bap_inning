@@ -27,4 +27,10 @@
 		from lodging
 		where lodging_addr like #{lodging_addr} || '%'
 	</select>
+	<!-- 숙소 전체 리스트 조회 (잠실, 고척용) -->
+	<select id="find_all_lod_by_content" parameterType="string" resultType="LodgingDTO">
+		select *
+		from lodging
+		where lodging_content like '%' || #{lodging_content} || '%'
+	</select>
 </mapper>

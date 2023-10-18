@@ -1,0 +1,284 @@
+@charset "utf-8";
+
+
+body,
+dd,
+var {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline
+}
+
+.match-cont {
+    overflow: hidden;
+    height: 400px;
+    border-top: 1px solid #929292;
+    background: url("//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/KBOHome/resources/images/main/bg_logo_postseason_2023.png") no-repeat 0 0;
+    background-size: 100px 100px;
+    background-position: 16px 16px;
+    width: 430px !important;
+    margin-bottom: 20px;
+}
+
+.match-cont .game {
+    position: relative;
+    float: left;
+    width: 100%;
+    border-bottom: 1px dashed #bfbfbf;
+}
+
+.match-cont .game .team {
+    float: right;
+}
+
+.match-cont .game .team .box {
+    float: left;
+    padding: 5px 0;
+    border: 1px solid #434343;
+}
+
+.match-cont .game .team .box .emb img {
+    width: 100%;
+}
+
+.match-cont .game .team .box .name {
+    display: block;
+    color: #000;
+    text-align: center;
+    font-weight: 700;
+}
+
+.match-cont .game .team .box .wait {
+    color: #a0a0a0;
+}
+
+.match-cont .game .team .vs {
+    float: left;
+    margin: 0 5px;
+    padding-top: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    font-style: italic;
+    color: #666;
+}
+
+.match-cont .game .score {
+    position: absolute;
+    top: 4px;
+    right: -110px;
+    width: 94px;
+    color: #838181;
+}
+
+.match-cont .game .score dt {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -1px;
+    line-height: 1
+}
+
+.match-cont .game .score dd {
+    font-size: 12px;
+    color: #7d7d7d;
+    text-align: left;
+    letter-spacing: -1.0px
+}
+
+.match-cont .game .score dd strong {
+    margin: 0 5px;
+    font-size: 15px;
+    color: #626262;
+}
+
+.match-cont .game .score dd .date {
+    font-size: 12px;
+}
+
+.match-cont .game .score dd .date span.sat {
+    color: #99edff;
+}
+
+.match-cont .game .score dd .date span.sun {
+    color: #f99698;
+}
+
+.match-cont .game .score dd .win {
+    color: #e60012;
+}
+
+.match-cont .wildcard {
+    margin-top: 10px;
+    border: none;
+}
+
+.match-cont .wildcard .team {
+    float: none;
+    padding-left: 17px;
+}
+
+.match-cont .wildcard .team .box {
+    width: 38px;
+    height: 50px;
+    box-sizing: border-box
+}
+
+.match-cont .wildcard .team .name {
+    font-size: 12px;
+}
+
+.match-cont .wildcard .score {
+    top: 0;
+    left: 140px;
+    right: unset
+}
+
+.match-cont .wildcard .score dt {
+    font-size: 12px;
+    text-align: left
+}
+
+.match-cont .semi-playoff {
+    width: 173px;
+    margin-left: 16px;
+    padding: 8px 0;
+}
+
+.match-cont .semi-playoff .team .box {
+    width: 46px;
+    height: 60px;
+    box-sizing: border-box
+}
+
+.match-cont .semi-playoff .team .box .name {
+    padding-top: 3px;
+    font-size: 15px;
+}
+
+.match-cont .semi-playoff .score {
+    top: 10px;
+    right: -162px;
+}
+
+.match-cont .semi-playoff .score dt {
+    font-size: 14px;
+    text-align: left
+}
+
+.match-cont .playoff {
+    width: 228px;
+    margin-left: 16px;
+    padding: 8px 0 43px;
+}
+
+.match-cont .playoff .score {
+    right: -107px;
+}
+
+.match-cont .playoff .team .box {
+    width: 46px;
+    height: 60px;
+    box-sizing: border-box
+}
+
+.match-cont .playoff .team .box .name {
+    padding-top: 3px;
+    font-size: 15px;
+}
+
+.match-cont .playoff .team .box .name {
+    padding-top: 3px;
+    font-size: 15px;
+}
+
+.match-cont .playoff .score dt {
+    font-size: 14px;
+    text-align: left
+}
+
+.match-cont .koreaseries {
+    width: 260px;
+    margin-left: 55px;
+    padding: 6px 0 53px;
+}
+
+.match-cont .koreaseries .team .box {
+    width: 55px;
+    height: 72px;
+    box-sizing: border-box
+}
+
+.match-cont .koreaseries .team .box .name {
+    padding-top: 7px;
+    font-size: 14px;
+}
+
+.match-cont .koreaseries .score dt {
+    font-size: 16px;
+    text-align: left
+}
+
+.match-cont .on .team .box {
+    border: 1px solid #0068b7;
+}
+
+.match-cont .on .score dt {
+    color: #e60012;
+}
+
+.match-cont .game .team .win {
+    border: 1px solid #ff0000;
+}
+
+.match-cont .game .team .lose {
+    background: #eee;
+    border: 1px solid #bfbfbf;
+}
+
+.match-cont .game .team .lose .name {
+    color: #959595;
+}
+
+.match-cont .game:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 54px;
+    border-left: 3px solid #dcdcdc;
+    border-top: 3px solid #dcdcdc;
+}
+
+.match-cont .end:after {
+    border-left: 3px solid #ff0000;
+    border-top: 3px solid #ff0000;
+}
+
+.match-cont .wildcard:after {
+    top: -57px;
+    left: 34px;
+    width: 26px;
+    height: 42px;
+}
+
+.match-cont .semi-playoff:after {
+    top: -78px;
+    left: 73px;
+    width: 26px;
+    height: 74px;
+}
+
+.match-cont .playoff:after {
+    top: -94px;
+    left: 120px;
+    width: 26px;
+    height: 90px;
+}
+
+.match-cont .koreaseries:after {
+    display: none !important;
+}

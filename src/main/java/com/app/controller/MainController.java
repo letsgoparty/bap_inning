@@ -41,6 +41,8 @@ public class MainController {
 		List<TeamDTO> teamDataList = service.scrapeRank();
 		m.addAttribute("teamDataList", teamDataList);
 
+		m.addAttribute("postSeason", service.xxx());
+		
 		return "main";
 	}
 }

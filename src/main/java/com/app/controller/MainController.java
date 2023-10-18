@@ -41,10 +41,13 @@ public class MainController {
 		List<TeamDTO> teamDataList = service.scrapeRank();
 		m.addAttribute("teamDataList", teamDataList);
 
+		// 포스트 시즌 대진
 		m.addAttribute("postSeason", service.xxx());
 		
+		// 팀 별 일정
 		String[] teams = { "all", "SSG", "키움", "LG", "KT", "KIA", "NC", "삼성", "롯데", "두산", "한화" };
 		m.addAttribute("teams", teams);
+		
 		return "main";
 	}
 }

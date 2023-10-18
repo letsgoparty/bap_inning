@@ -10,7 +10,7 @@
 <title>SSG 주변 숙소 지도</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<body></body>
+<body>
 	<div id="sidebar">
 		<!-- 숙박 정보 띄우기  -->
 		<form action="" method="get">
@@ -84,6 +84,7 @@
                		var cardId = 'card_' + idx;      		
                     var imagePath = 'images/lodging_images/' + ele.lodging_image + '.png';
                     var lodging_name = ele.lodging_name;
+                    var lodging_url = ele.lodging_url;
                		
                		var cardHtml = '<form id="' + cardId + '" action="" method="get">' +
                     '<input type="hidden" id="lodging_id" name="lodging_id" value="' + ele.lodging_id + '">' +
@@ -94,11 +95,12 @@
                     '<div class="">' +
                     '<img src="images/icon/icon1.png" width="13" height="13"> <span id="lodging_addr">' + ele.lodging_addr + '</span>' +
                     '<p></p>' +
-                    '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance">' + ele.distance + '</span></span>' +
+                    '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">SSG 랜더스필드</span>에서 <span id="distance">' + ele.distance + '</span></span>' +
                     '</div>' +
                     '<p></p>' +
                     '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
                     '<p class="card-text mt-3" id="lodging_content"">' + ele.lodging_content + '</p>' +
+                    '<div id="lodging_url"><a href="' + lodging_url + '" target="_blank">최저가 보러가기</a></div>' +
                     '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                     '<button class="btn btn-primary mt-3 mb-3 mx-3 find_lod_btn" data-lod-name="' + lodging_name + '">위치 보러가기</button>' +
                     '</div>' +

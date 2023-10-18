@@ -51,6 +51,14 @@ public class FindController {
 		return list;
 	}
 	
+	@GetMapping("/find_all_lod_by_content")
+	public List<LodgingDTO> find_all_lod_by_content(@RequestParam String lodging_content) {
+		List<LodgingDTO> list = service.find_all_lod_by_content(lodging_content);
+		return list;
+	}
+	
+	
+	
 	
 }
 

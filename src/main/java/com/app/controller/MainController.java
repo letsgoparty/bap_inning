@@ -43,6 +43,8 @@ public class MainController {
 
 		m.addAttribute("postSeason", service.xxx());
 		
+		String[] teams = { "all", "SSG", "키움", "LG", "KT", "KIA", "NC", "삼성", "롯데", "두산", "한화" };
+		m.addAttribute("teams", teams);
 		return "main";
 	}
 }

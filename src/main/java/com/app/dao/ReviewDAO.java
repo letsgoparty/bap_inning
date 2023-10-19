@@ -17,7 +17,7 @@ public class ReviewDAO {
 	@Autowired
 	SqlSessionTemplate session;
 
-	//음식점
+	//음식점 전체 리뷰
 	public int r_totalCount() {
 		return session.selectOne("ReviewMapper.r_totalCount");
 	}
@@ -35,7 +35,7 @@ public class ReviewDAO {
 		return pageDTO;
 	}
 	
-	//숙소
+	//숙소 전체 리뷰
 	public int l_totalCount() {
 		return session.selectOne("ReviewMapper.r_totalCount");
 	}
@@ -54,5 +54,9 @@ public class ReviewDAO {
 	}
 	
 	
+	//음식점 리뷰 등록
+	public int reviewWrite(ReviewDTO reviewDTO) {
+		return session.insert("ReviewMapper.reviewWrite", reviewDTO);
+	}
 	
 }

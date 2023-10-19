@@ -5,19 +5,19 @@ import org.apache.ibatis.type.Alias;
 @Alias("ReviewDTO")
 public class ReviewDTO {
 
-	int review_id;
-	int res_id;
+	String review_id;
+	String res_id;
 	String user_id;
-	int rating;
+	String rating;
 	String review_content;
-	int like_cnt;
+	String like_cnt;
 	String created_date;
 	String modified_date;
 	
 	public ReviewDTO() {
 	}
 
-	public ReviewDTO(int review_id, int res_id, String user_id, int rating, String review_content, int like_cnt,
+	public ReviewDTO(String review_id, String res_id, String user_id, String rating, String review_content, String like_cnt,
 			String created_date, String modified_date) {
 		super();
 		this.review_id = review_id;
@@ -31,22 +31,22 @@ public class ReviewDTO {
 	}
 
 
-	public int getReview_id() {
+	public String getReview_id() {
 		return review_id;
 	}
 
 
-	public void setReview_id(int review_id) {
+	public void setReview_id(String review_id) {
 		this.review_id = review_id;
 	}
 
 
-	public int getRes_id() {
+	public String getRes_id() {
 		return res_id;
 	}
 
 
-	public void setRes_id(int res_id) {
+	public void setRes_id(String res_id) {
 		this.res_id = res_id;
 	}
 
@@ -61,12 +61,12 @@ public class ReviewDTO {
 	}
 
 
-	public int getRating() {
+	public String getRating() {
 		return rating;
 	}
 
 
-	public void setRating(int rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 
@@ -81,12 +81,12 @@ public class ReviewDTO {
 	}
 
 
-	public int getLike_cnt() {
+	public String getLike_cnt() {
 		return like_cnt;
 	}
 
 
-	public void setLike_cnt(int like_cnt) {
+	public void setLike_cnt(String like_cnt) {
 		this.like_cnt = like_cnt;
 	}
 

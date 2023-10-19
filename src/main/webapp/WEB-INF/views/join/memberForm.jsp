@@ -47,7 +47,7 @@
                 // AJAX 연동
                 $.ajax({
                     type: "get",
-                    url: " ",
+                    url: "memberIdCheck",
                     data: {
                         userid: $("#userid").val()
                     },
@@ -75,7 +75,7 @@
         <div class="input-form-backgroud row">
             <div class="input-form col-md-12 mx-auto">
                 <h3 class="mb-3">회원가입</h3>
-                <form action="" method="" class="validation-form" novalidate onsubmit="return validateForm()">
+                <form action="memberAdd" method="POST" class="validation-form" novalidate onsubmit="return validateForm()">
 
                     <label for="userid">아이디</label> <span style="color: red" id="result"></span>
                     <div class="row">
@@ -96,7 +96,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="passwd">비밀번호</label>
-                            <input type="password" class="form-control" name="passwd" id="passwd" required>
+                            <input type="password" class="form-control" name="password" id="passwd" required>
                             <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -144,7 +144,7 @@
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="myTeam">나의 팀</label>
-                            <select name="myTeam" class="form-select" id="myTeam" style="width:120%">
+                            <select name="team_code" class="form-select" id="myTeam" style="width:120%">
                                 <option value="0">---해당없음---</option>
                                 <option value="1">SSG 랜더스</option>
                                 <option value="2">키움 히어로즈</option>

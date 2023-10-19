@@ -49,7 +49,7 @@
 
     <div class="container">
         <div class="input-form-backgroud row">
-            <form action="" method="" class="validation-form" novalidate>
+            <form action="loginsubmit" method="get" class="validation-form" novalidate>
                 <div class="input-form col-md-12 mx-auto">
                     <h4 class="mb-3">로그인</h4>
                     <div id="inputBox">
@@ -58,7 +58,7 @@
                             <div class="invalid-feedback">아이디를 입력해주세요.</div>
                         </div>
                         <div class="input-form-box mb-3"><span style="text-align: left; display: block;">비밀번호 </span>
-                            <input type="password" name="passwd" class="form-control" required>
+                            <input type="password" name="password" class="form-control" required>
                         <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
                         </div>
                         <div class="button-login-box">

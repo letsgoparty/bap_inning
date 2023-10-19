@@ -1,9 +1,9 @@
 package com.app.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,9 +39,18 @@ public class FindController {
 	}
 	
 	@GetMapping("/find_all_res")
-	public List<RestaurantDTO> find_all_res(@RequestParam String res_addr) {
+	public List<RestaurantDTO> find_all_res(@RequestParam int team_code) {
 		
-		List<RestaurantDTO> list = service.find_all_res(res_addr);
+		List<RestaurantDTO> list = service.find_all_res(team_code);
+		return list;
+	}
+	
+	@GetMapping("/find_res_by_category")
+	public List<RestaurantDTO> find_KOR_res(@RequestParam String category, @RequestParam int team_code) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("category", category);
+		map.put("team_code", team_code);
+		List<RestaurantDTO> list = service.find_KOR_res(map);
 		return list;
 	}
 	

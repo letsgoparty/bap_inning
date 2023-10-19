@@ -16,10 +16,16 @@
 		where lodging_name = #{lodging_name}
 	</select>
 	<!--  맛집 전체 리스트 조회  -->
-	<select id="find_all_res" parameterType="string" resultType="RestaurantDTO">
+	<select id="find_all_res" parameterType="int" resultType="RestaurantDTO">
 		select *
 		from restaurant
-		where res_addr like #{res_addr} || '%'
+		where team_code = #{team_code}
+	</select>
+	<!--  한식 리스트 조회  -->
+	<select id="find_KOR_res" parameterType="hashmap" resultType="RestaurantDTO">
+		select *
+		from restaurant
+		where team_code = #{team_code} and category = #{category}
 	</select>
 	<!-- 숙소 전체 리스트 조회 -->
 	<select id="find_all_lod" parameterType="string" resultType="LodgingDTO">

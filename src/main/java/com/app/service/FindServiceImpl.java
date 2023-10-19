@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class FindServiceImpl implements FindService {
 	}
 
 	@Override
-	public List<RestaurantDTO> find_all_res(String res_addr) {
-		return dao.find_all_res(res_addr);
+	public List<RestaurantDTO> find_all_res(int team_code ) {
+		return dao.find_all_res(team_code);
 	}
 
 	@Override
@@ -38,6 +39,11 @@ public class FindServiceImpl implements FindService {
 	@Override
 	public List<LodgingDTO> find_all_lod_by_content(String lodging_content) {
 		return dao.find_all_lod_by_content(lodging_content);
+	}
+
+	@Override
+	public List<RestaurantDTO> find_KOR_res(HashMap map) {
+		return dao.find_KOR_res(map);
 	}
 
 }

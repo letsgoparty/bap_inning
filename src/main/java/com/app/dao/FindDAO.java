@@ -1,5 +1,6 @@
 package com.app.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -23,8 +24,12 @@ public class FindDAO {
 		return session.selectOne("FindMapper.find_lod", lodging_name);
 	}
 	
-	public List<RestaurantDTO> find_all_res(String res_addr) {
-		return session.selectList("FindMapper.find_all_res", res_addr);
+	public List<RestaurantDTO> find_all_res(int team_code) {
+		return session.selectList("FindMapper.find_all_res", team_code);
+	}
+
+	public List<RestaurantDTO> find_KOR_res(HashMap map) {
+		return session.selectList("FindMapper.find_KOR_res", map);
 	}
 
 	public List<LodgingDTO> find_all_lod(String lodging_addr) {

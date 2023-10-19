@@ -11,7 +11,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
-	<div id="sidebar">
+	<div class="sidebar" id="sidebar">
 		<!-- 숙박 정보 띄우기  -->
 		<form action="" method="get">
 			<input type="hidden" id="lodging_id" name="lodging_id">
@@ -39,7 +39,7 @@
 			</div>
 		</form>
 	</div>
-	<div id="allinfo_sidebar">
+	<div class="sidebar" id="allinfo_sidebar">
 		<div id="all_info"></div>
 	</div>
 	<div id="containerDiv">

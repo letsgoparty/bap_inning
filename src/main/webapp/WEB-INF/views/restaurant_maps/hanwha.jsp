@@ -11,7 +11,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <body>
-        <div id="sidebar">
+        <div class="sidebar" id="sidebar">
             <!-- 가게 정보 띄우기  -->
             <form action="" method="get">
                 <input type="hidden" id="res_id" name="res_id">
@@ -39,7 +39,7 @@
             </form>
         </div>
         <!--  전체 리스트 사이드바  -->
-        <div id="allinfo_sidebar">
+        <div class="sidebar" id="allinfo_sidebar">
             <div id="all_info"></div>
         </div>
         <div id="containerDiv">

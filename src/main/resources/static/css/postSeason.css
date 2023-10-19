@@ -8,12 +8,12 @@ var {
     padding: 0;
     border: 0;
     font: inherit;
-    vertical-align: baseline
+    vertical-align: baseline;
 }
 
 .match-cont {
     overflow: hidden;
-    height: 400px;
+    height: 420px;
     border-top: 1px solid #929292;
     background: url("//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/KBOHome/resources/images/main/bg_logo_postseason_2023.png") no-repeat 0 0;
     background-size: 100px 100px;

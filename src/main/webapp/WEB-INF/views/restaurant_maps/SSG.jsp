@@ -15,7 +15,7 @@
 	<!--  마커 클릭 시 사이드바 -->
 	<div id="sidebar">
 		<!-- 가게 정보 띄우기  -->
-		<form action="" method="get">
+		<form action="r_reviewList" method="get">
 			<input type="hidden" id="res_id" name="res_id">
 			<div class="card mt-5">
 				<div id="res_image"></div>

@@ -6,25 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>임시 음식점 리뷰 목록</title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 	function writeui(){
-		location.href="write";
+		location.href="reviewWrite";
 	}
 </script>
 </head>
 <body>
 	<div class="container">
-						<h2 class="text-center">임시 음식점 리뷰 목록</h2>
+			<h2 class="text-center">임시 음식점 리뷰 목록</h2>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -73,7 +64,7 @@
   </tr>
   <!--  page 번호 출력 --> 
 		</table>
-		<button onclick="writeui()">글쓰기</button>
+		<button onclick="writeui()">리뷰작성</button>
 	</div>
 
 </body>

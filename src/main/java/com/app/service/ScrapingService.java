@@ -119,7 +119,7 @@ public class ScrapingService {
 		return teamDataList;
 	}
 	
-	public Elements xxx() {
+	public Elements scrapePost() {
 
 		Elements postSeason = null;
 		
@@ -137,7 +137,7 @@ public class ScrapingService {
 			// 셀레니움으로 가져온 HTML을 Jsoup으로 파싱
 			Document doc = Jsoup.parse(driver.getPageSource());
 			postSeason = doc.select(".match-cont");
-			
+			System.out.println(postSeason);
 
 
 		} catch (Exception e) {

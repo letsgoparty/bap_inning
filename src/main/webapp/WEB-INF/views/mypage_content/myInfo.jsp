@@ -19,7 +19,7 @@
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
     </style>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -91,10 +91,10 @@
 
 
 	<script type="text/javascript">
-	$(document).ready(function(){
+	$(function(){
 		//이메일도메인 변경시 자동입력
 		$("#emailDomain").change(function(){
-			var selectedDomain=$(this).val();
+			var selectedDomain=$("#emailDomain").val();
 			$("#email2").val(selectedDomain);
 		});
 	});

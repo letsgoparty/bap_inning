@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ReviewMapper">
-  	 <!-- 음식점 리뷰 목록 -->
+  	<!-- 음식점 리뷰 목록 -->
    <select id="r_totalCount" resultType="int">
      select count(*)
      from restaurant_reviews
@@ -13,7 +13,7 @@
 				     to_char(created_date, 'YYYY/MM/dd') as created_date,
 				     to_char(modified_date, 'YYYY/MM/dd') as modified_date
      from restaurant_reviews
-     order by review_id
+     order by review_id desc
    </select>
    
    <!-- 숙소 리뷰 목록 -->
@@ -26,9 +26,12 @@
 				     to_char(created_date, 'YYYY/MM/dd') as created_date,
 				     to_char(modified_date, 'YYYY/MM/dd') as modified_date
      from lodging_reviews
-     order by review_id
+     order by review_id desc
    </select>
    
+   <!-- 리뷰 등록 -->
+   <insert id="reviewWrite" parameterType="ReviewDTO">
+	   insert into restaurant_reviews (res_id, user_id, rating, review_content)
+	   values (#{res_id}, 'user1', '3', #{review_content})
+   </insert>
 </mapper>
-
-

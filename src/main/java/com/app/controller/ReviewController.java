@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.dto.ReviewDTO;
 import com.app.dto.ReviewPageDTO;
 import com.app.service.ReviewService;
 
@@ -29,11 +30,18 @@ public class ReviewController {
 		return service.l_reviewList(curPage);
 	}
 	
-	
-	//리뷰 자세히 보기
-	
+
 	//리뷰 작성 화면
-	
-	//리뷰 작성
+	@RequestMapping(value = "/reviewWrite", method = RequestMethod.GET)
+	public String reviewWrite() {
+		return "reviewWrite";
+	}
+
+	//리뷰 등록
+	@RequestMapping(value = "/reviewWrite", method = RequestMethod.POST)
+	public String review(ReviewDTO reviewDTO) {
+		int num = service.reviewWrite(reviewDTO);
+		return "redirect:r_reviewList";
+	}
 	
 }

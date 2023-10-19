@@ -9,11 +9,10 @@
 <link href="css/sidebar.css" rel="stylesheet" />
 <title>삼성 라이온즈파크 주변 맛집 지도</title>
 </head>
-<link href="css/sidebar.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 	<!--  마커 클릭 시 사이드바 -->
-	<div id="sidebar">
+	<div class="sidebar" id="sidebar">
 		<!-- 가게 정보 띄우기  -->
 		<form action="" method="get">
 			<input type="hidden" id="res_id" name="res_id">
@@ -40,7 +39,7 @@
 		</form>
 	</div>
 	<!--  전체 리스트 사이드바  -->
-	<div id="allinfo_sidebar">
+	<div class="sidebar" id="allinfo_sidebar">
 		<div id="all_info"></div>
 	</div>
 	<div id="containerDiv">

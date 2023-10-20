@@ -3,45 +3,93 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardMapper">
-   <delete id="boardDelete" parameterType="int">
-     delete from board
-     where board_num = #{board_num}
-   </delete>
-   <update id="boardUpdate" parameterType="Board">
-   	 update board
-   	 set title=#{title}   , userid = #{userid}, text = #{text}
-   	 where board_num = #{board_num}
-   </update>
-   <insert id="BoardWrite" parameterType="Board">
-    insert into board (board_num,title,userid,text)
-    values (board_seq.nextval, #{title},#{userid},#{text})
-   </insert>
- 
-   <select id="selectList"  resultType="Board">
-     select board_num, title, userid, text, 
-     		to_char(board_date, 'YYYY/MM/dd') as board_date,
-     	    count
-     from board
-     order by board_num desc
-   </select>
-   <select id="totalCount" resultType="int">
-     select count(*)
-     from board
-   </select>
-   
-   
-   <update id="readCnt" parameterType="int">
-      update board
-      set count = count + 1
-      where board_num = #{board_num}
-   </update>
-   <select id="selectByNo"  resultType="Board" parameterType="int">
-     select board_num, title, usernid, text, 
-     		to_char(board_date, 'YYYY/MM/dd') as board_date,
-     	    count
-     from board
-     where board_num = #{board_num}
-   </select>
+	<delete id="boardDelete" parameterType="int">
+		delete from board
+		where
+		board_num = #{board_num}
+	</delete>
+	<update id="boardUpdate" parameterType="Board">
+		update board
+		set
+		title=#{title} , userid = #{userid}, text = #{text}
+		where board_num =
+		#{board_num}
+	</update>
+	<insert id="boardWrite" parameterType="Board">
+		insert into board
+		(board_num,title,userid,text,team_code)
+		values (board_seq.nextval,
+		#{title},#{userid},#{text},#{team_code})
+	</insert>
+
+
+	<select id="selectList" resultType="Board">
+		select board_num, title,
+		userid, text,
+		to_char(board_date, 'YYYY/MM/dd') as board_date,
+		count
+		from board
+		order by board_num desc
+	</select>
+
+	<select id="totalCount" resultType="int">
+		select count(*)
+		from board
+	</select>
+
+
+	<update id="readCnt" parameterType="int">
+		update board
+		set count = count
+		+ 1
+		where board_num = #{board_num}
+	</update>
+	<select id="selectByNo" resultType="Board" parameterType="int">
+		select
+		board_num, title, userid, text,
+		to_char(board_date, 'YYYY/MM/dd') as
+		board_date,
+		count
+		from board
+		where board_num = #{board_num}
+	</select>
+
+	<select id="getListWithPaging"
+		resultType="Board">
+		<![CDATA[
+			select board_num, title,
+		userid, text,
+		to_char(board_date, 'YYYY/MM/dd') as board_date,
+		count
+		from board
+		where
+		]]>
+
+		<include refid="search"></include>
+	</select>
+
+	<sql id="search">
+		<if test="type != null and keyword != null">
+			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+				<foreach item="type" collection="typeArr">
+					<trim prefix="OR">
+						<choose>
+							<when test="type =='T'.toString()">
+								(TITLE LIKE '%'||#{keyword})||'%')
+							</when>
+							<when test="type =='C'.toString()">
+								(TEXT LIKE '%'||#{keyword})||'%')
+							</when>
+							<when test="type =='W'.toString()">
+								(USERID LIKE '%'||#{keyword})||'%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+
 </mapper>
 
 

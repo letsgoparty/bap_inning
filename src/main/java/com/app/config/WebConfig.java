@@ -16,15 +16,11 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor)
-		        .addPathPatterns("/loginsubmit","/mypage");
+		        .addPathPatterns("/mypage");
 	}
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/mypage")
-		        .setViewName("main");
-		
-	}
+	
+
 
 	
 	

@@ -75,8 +75,8 @@ public class MemberController {
 				  (MemberDTO)session.getAttribute("login");
 		// 로그인 여부 확인은 Interceptor 이용한다.
 		 String userid = dbdto.getUserid();
-		 MemberDTO mypage = service.mypage(userid);
-		 session.setAttribute("login", mypage);
+		 MemberDTO getmypage = service.mypage(userid);
+		 session.setAttribute("login", getmypage);
 		return "mypage/myPage";  
 	}
 	

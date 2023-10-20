@@ -5,67 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>임시 음식점 리뷰 목록</title>
-
-<script type="text/javascript">
-	function writeui(){
-		location.href="reviewWrite";
-	}
-</script>
+<title>임시 음식점 리뷰 페이지</title>
+<link rel="icon" type="image/png" sizes="32x32"
+	href="images/icon/favicon-32x32.png">
 </head>
-<body>
-	<div class="container">
-			<h2 class="text-center">임시 음식점 리뷰 목록</h2>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>리뷰번호</th>
-					<th>내용</th>
-					<th>리뷰이미지</th>
-					<th>작성자</th>
-					<th>별점</th>
-					<th>추천</th>
-					<th>작성일</th>
-				</tr>
-			</thead>
-			<tbody>
-			<c:set var="pageDTO" value="${pageDTO}" />
-			<c:forEach var="reviewDTO" items="${pageDTO.list}">
-				<tr>
-					<td>${reviewDTO.review_id}</td>
-					<td><a href="retrieve?no=${reviewDTO.review_id}">${reviewDTO.review_content}</a></td>
-					<td>이미지추가</td>
-					<td>${reviewDTO.user_id}</td>
-					<td>${reviewDTO.rating}</td>
-					<td>${reviewDTO.like_cnt}</td>
-					<td>${reviewDTO.modified_date}</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-			 <!--  page 번호 출력 -->
-  <c:set var="perPage" value="${pageDTO.perPage}" />
-  <c:set var="curPage" value="${pageDTO.curPage}" />
-  <c:set var="totalCount" value="${pageDTO.totalCount}" />
-  <c:set var="totalNum" value="${totalCount / perPage}" />
-  <c:if test="${totalCount%perPage != 0}">
-    <c:set var="totalNum" value="${totalNum+1}" />
-  </c:if>
-   <tr>
-    <td colspan="6">
-    <c:forEach var="i" begin="1" end="${totalNum}" >
-    	<c:if test="${curPage==i}">
-    	   ${i}
-    	</c:if>
-    	<c:if test="${curPage!=i}">
-    	  <a href="list?curPage=${i}">${i}</a>
-    	</c:if>
-    </c:forEach>
-     </td>
-  </tr>
-  <!--  page 번호 출력 --> 
-		</table>
-		<button onclick="writeui()">리뷰작성</button>
-	</div>
+<style>
+@font-face {
+	font-family: 'KBO-Dia-Gothic_bold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff')
+		format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+</style>
+<body style="background-color:rgba(248, 249, 250) !important;">
 
+	<jsp:include page="../common/nav.jsp" flush="true" />
+	<jsp:include page="../review_content/r_reviewList.jsp" flush="true"/>
 </body>
 </html>

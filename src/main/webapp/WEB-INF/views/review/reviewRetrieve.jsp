@@ -21,7 +21,7 @@
 </style>
 <body style="background-color:rgba(248, 249, 250) !important;">
 
-	<jsp:include page="common/nav.jsp" flush="true" />
-	<jsp:include page="review/reviewWrite.jsp" flush="true"/>
+	<jsp:include page="../common/nav.jsp" flush="true" />
+	<jsp:include page="../review_content/reviewRetrieve.jsp" flush="true"/>
 </body>
 </html>

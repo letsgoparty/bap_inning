@@ -84,42 +84,8 @@
 					<!-- 자유게시판 드롭다운 -->
 					<div class="dropdown me-auto mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="#"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false"
-							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.4rem">
+							role="button" style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.4rem">
 							⚾️ 자유게시판 </a>
-						<ul class="dropdown-menu"
-							style="font-family: 'KBO-Dia-Gothic_bold';">
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/SSG.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">SSG 랜더스</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/키움.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">키움 히어로즈</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/LG.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">LG 트윈스</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/KT.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">KT wiz</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/KIA.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">KIA 타이거즈</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/NC.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">NC 다이노스</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/삼성.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">삼성 라이온즈</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/롯데.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">롯데 자이언츠</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/두산.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">두산 베어스</a></li>
-							<li style="display: flex; align-items: center;"><img
-								src="images/logo/한화.png" alt="Logo" width="40" height="35"><a
-								class="dropdown-item" href="#">한화 이글스</a></li>
-						</ul>
 					</div>
 					&nbsp&nbsp&nbsp&nbsp&nbsp
 						<c:if test="${empty login}">

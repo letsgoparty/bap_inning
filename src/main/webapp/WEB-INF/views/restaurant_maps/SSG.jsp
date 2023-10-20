@@ -68,13 +68,13 @@
                 <div id="FF_info"></div>
             </div>
             <div class="mt-3 mb-2" id="containerDiv">
-                <button class="btn btn-primary mb-2" id="find_all">맛집 전체보기</button>
-                <button class="btn btn-primary mb-2" id="find_KOR">🥘 한식</button>
-                <button class="btn btn-primary mb-2" id="find_USA">🍖 양식</button>
-                <button class="btn btn-primary mb-2" id="find_CHN">🥟 중식</button>
-                <button class="btn btn-primary mb-2" id="find_JPN">🍣 일식</button>
-                <button class="btn btn-primary mb-2" id="find_CAFE">☕️ 카페</button>
-                <button class="btn btn-primary mb-2" id="find_FF">🍔 패스트푸드</button>
+                <button class="btn btn-primary mb-2 category" id="find_all">맛집 전체보기</button>
+                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘 한식</button>
+                <button class="btn btn-primary mb-2 category" id="find_USA">🍖 양식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟 중식</button>
+                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣 일식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️ 카페</button>
+                <button class="btn btn-primary mb-2 category" id="find_FF">🍔 패스트푸드</button>
                 <div id="googleMap" style="width: 100%; height: 700px;"></div>
             </div>
             <script>

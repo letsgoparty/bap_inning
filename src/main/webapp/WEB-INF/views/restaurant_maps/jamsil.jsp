@@ -67,13 +67,13 @@
                 <div id="FF_info"></div>
             </div>
             <div class="mt-3 mb-2" id="containerDiv">
-                <button class="btn btn-primary mb-2" id="find_all">맛집 전체보기</button>
-                <button class="btn btn-primary mb-2" id="find_KOR">🥘 한식</button>
-                <button class="btn btn-primary mb-2" id="find_USA">🍖 양식</button>
-                <button class="btn btn-primary mb-2" id="find_CHN">🥟 중식</button>
-                <button class="btn btn-primary mb-2" id="find_JPN">🍣 일식</button>
-                <button class="btn btn-primary mb-2" id="find_CAFE">☕️ 카페</button>
-                <button class="btn btn-primary mb-2" id="find_FF">🍔 패스트푸드</button>
+                <button class="btn btn-primary mb-2 category" id="find_all">맛집 전체보기</button>
+                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘 한식</button>
+                <button class="btn btn-primary mb-2 category" id="find_USA">🍖 양식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟 중식</button>
+                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣 일식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️ 카페</button>
+                <button class="btn btn-primary mb-2 category" id="find_FF">🍔 패스트푸드</button>
                 <div id="googleMap" style="width: 100%; height: 700px;"></div>
             </div>
 	<script>
@@ -282,7 +282,7 @@
                             // 경기장은 다른 아이콘을 사용
                             markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
-                        if(locations[i].place === "카페바른생활" || locations[i].place === "달콤 잠실야구장 3루점") {
+                        if(locations[i].place === "나폴레옹과자 잠실점" || locations[i].place === "백미당 잠실야구장점" || locations[i].place === "이디야 종합운동장역점" || locations[i].place === "스타벅스 아시아선수촌점") {
                         	// 카페는 다른 아이콘을 사용
                         	markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
@@ -301,7 +301,7 @@
 
                         // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                        	if ($('.sidebar').is(':visible')) {
+                        	if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                 // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place
@@ -357,7 +357,7 @@
                 { place: "생생아구", lat: 37.5087722, lng: 127.0802639 },
                 { place: "한국계", lat: 37.5107107, lng: 127.0799608 },
                 { place: "대홍집", lat: 37.5099459, lng:  127.0808892 },
-                { place: "요리하는 남자", lat: 37.510818, lng: 127.081911},
+                { place: "미태리 잠실새내점", lat: 37.510183, lng: 127.080094},
                 { place: "잠실 장어와 한우", lat: 37.510478, lng: 127.0838773},
                 { place: "도삭면공방", lat: 37.5098491, lng: 127.079739},
                 { place: "쨍앤 신짜오 쌀국수", lat: 37.509237, lng: 127.0831369 },
@@ -366,10 +366,23 @@
                 { place: "아궁이왕돌구이", lat: 37.5107835, lng: 127.0804403},
                 { place: "맘스터치 잠실야구장점", lat: 37.512110, lng: 127.072934 },
                 { place: "도미노피자 잠실야구장점", lat: 37.512632, lng: 127.071117 },
-                { place: "카페바른생활", lat: 37.515260, lng: 127.073786 },
+                { place: "백미당 잠실야구장점", lat: 37.512406, lng: 127.071459 },
                 { place: "잭슨피자 잠실본점", lat: 37.511346, lng: 127.078800},
-                { place: "달콤 잠실야구장 3루점", lat: 37.511728, lng: 127.072571},
+                { place: "이디야 종합운동장역점", lat: 37.511535, lng: 127.079222},
 
+                { place: "상무초밥 잠실점", lat: 37.511516, lng: 127.081175 },
+                { place: "옥기린", lat: 37.510267, lng: 127.080800 },
+                { place: "코이라멘 신천점", lat: 37.509819, lng: 127.079704 },
+                { place: "사보텐 신천점", lat: 37.510418, lng: 127.079389 },
+                { place: "나무수", lat: 37.50916, lng: 127.080271 },
+                { place: "요리하는남자", lat: 37.510795, lng: 127.081893 },
+                { place: "비엘라", lat: 37.511396, lng: 127.083578 },
+                { place: "케이웍", lat: 37.510302, lng: 127.079671 },
+                { place: "마라공방 잠실시내점", lat: 37.509961, lng: 127.080157 },
+                { place: "무한리필 홍태관", lat: 37.510077, lng: 127.080869 },
+                { place: "나폴레옹과자 잠실점", lat: 37.510735, lng: 127.078912 },
+                { place: "스타벅스 아시아선수촌점", lat: 37.510579, lng: 127.078957 },
+                { place: "BHC치킨 잠실야구장3호점", lat: 37.511629, lng: 127.072649 },
             ];
 
             window.initMap = initMap;

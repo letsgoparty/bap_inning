@@ -67,5 +67,9 @@ body {
 	font-family: 'KBO-Dia-Gothic_light';
 }
 
+.category {
+	border-radius: 30px !important; 
+}
+
 
 

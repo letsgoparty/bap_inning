@@ -54,6 +54,11 @@ public class ScheduleDTO {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	@Override
+	public String toString() {
+		return "ScheduleDTO [day=" + day + ", time=" + time + ", team1=" + team1 + ", vs=" + vs + ", team2=" + team2
+				+ ", location=" + location + "]";
+	}
 	
 	
 }

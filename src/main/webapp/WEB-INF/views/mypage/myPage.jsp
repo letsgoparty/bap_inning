@@ -11,6 +11,8 @@
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
-	<jsp:include page="../mypage_content/myPage.jsp" flush="true"/> 
+	<jsp:include page="../mypage_content/myPage.jsp"/>
+
+		
 </body>
 </html>

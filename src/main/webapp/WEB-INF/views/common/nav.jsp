@@ -42,7 +42,7 @@
 						<a class="btn btn-secondary dropdown-toggle" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false"
 							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.4rem">
-							🍽️ 맛집 찾기 </a>
+							🍽️ 음식점 찾기 </a>
 						<ul class="dropdown-menu"
 							style="font-family: 'KBO-Dia-Gothic_bold';">
 							<li><a class="dropdown-item" href="r_SSG">인천 SSG 랜더스 필드</a></li>

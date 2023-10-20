@@ -67,13 +67,13 @@
                 <div id="FF_info"></div>
             </div>
             <div class="mt-3 mb-2" id="containerDiv">
-                <button class="btn btn-primary mb-2" id="find_all">맛집 전체보기</button>
-                <button class="btn btn-primary mb-2" id="find_KOR">🥘 한식</button>
-                <button class="btn btn-primary mb-2" id="find_USA">🍖 양식</button>
-                <button class="btn btn-primary mb-2" id="find_CHN">🥟 중식</button>
-                <button class="btn btn-primary mb-2" id="find_JPN">🍣 일식</button>
-                <button class="btn btn-primary mb-2" id="find_CAFE">☕️ 카페</button>
-                <button class="btn btn-primary mb-2" id="find_FF">🍔 패스트푸드</button>
+                <button class="btn btn-primary mb-2 category" id="find_all">맛집 전체보기</button>
+                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘 한식</button>
+                <button class="btn btn-primary mb-2 category" id="find_USA">🍖 양식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟 중식</button>
+                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣 일식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️ 카페</button>
+                <button class="btn btn-primary mb-2 category" id="find_FF">🍔 패스트푸드</button>
                 <div id="googleMap" style="width: 100%; height: 700px;"></div>
             </div>
 	<script>
@@ -283,7 +283,7 @@
                             // 경기장은 다른 아이콘을 사용
                             markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
-                        if(locations[i].place === "카페젠틀피그") {
+                        if(locations[i].place === "카페젠틀피그" || locations[i].place === "키움A탐앤탐스" || locations[i].place === "이디야커피 동양대점" || locations[i].place === "데일리스위츠" || locations[i].place === "스타벅스 구로고척점") {
                         	// 카페는 다른 아이콘을 사용
                         	markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
@@ -302,7 +302,7 @@
 
                         // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                        	if ($('.sidebar').is(':visible')) {
+                        	if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                 // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place

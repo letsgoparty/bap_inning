@@ -59,7 +59,7 @@ nav {
 				<h1 class="masthead-heading mb-0"
 					style="font-family: 'KBO-Dia-Gothic_bold';">야구 보러가자!</h1>
 				<p class="masthead-subheading mb-0"
-					style="font-size: 1.3rem; font-family: 'KBO-Dia-Gothic_light';"> 경기장 주변 맛집과
+					style="font-size: 1.3rem; font-family: 'KBO-Dia-Gothic_light';"> 경기장 주변 음식점과
 					숙소를 한눈에👀 볼 수 있는 밥이닝</p>
 				<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll"
 					style="font-size: 1.5rem; font-family: 'KBO-Dia-Gothic_bold';">경기일정

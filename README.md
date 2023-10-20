@@ -46,7 +46,6 @@ Java : 8 version <br>
 Spring Boot : 2.4.2 <br>
 Build Tool : Maven <br>
 DB : Oracle <br>
-Deploy : Naver Cloud Platform <br>
 협업 : github, Zoom <br>
 Etc : JSP <br>
 

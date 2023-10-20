@@ -6,10 +6,13 @@ public class PageDTO {
 
 	List<Board> list;
 	int curPage;
-	int perPage = 3;
+	int perPage = 5;
 	int totalCount;
-	
-	public PageDTO() {}
+	String type;
+	String keyword;
+
+	public PageDTO() {
+	}
 
 	public PageDTO(List<Board> list, int curPage, int perPage, int totalCount) {
 		super();
@@ -51,6 +54,26 @@ public class PageDTO {
 		this.totalCount = totalCount;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String[] getTypeArr() {
+	    return type == null? new String[] {}: type.split("");
+	  }
+	
 	@Override
 	public String toString() {
 		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount

@@ -29,6 +29,9 @@ public class BoardController {
 	// 2. 글쓰기
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(Board board) {
+		
+		// userid member dto에서 가져올예정
+		board.setUserid("xxx");
 		int num = service.boardWrite(board);
 		return "redirect:list";
 	}

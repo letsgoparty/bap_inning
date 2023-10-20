@@ -14,20 +14,20 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	
+
 <script type="text/javascript">
-	function go_list(){
-		location.href="list";
+	function go_list() {
+		location.href = "list";
 	}
-</script>	
+</script>
 </head>
 <body>
 	<div class="container">
 		<form class="form-horizontal" action="write" method="post">
 			<div class="form-group">
-				<div class="col-sm-10" >
-						<img src="image/multicampus.png">
-						<h2 class="text-center">공지사항 글쓰기 화면</h2>
+				<div class="col-sm-10">
+					<img src="image/multicampus.png">
+					<h2 class="text-center">공지사항 글쓰기 화면</h2>
 				</div>
 			</div>
 			<div class="form-group">
@@ -37,27 +37,41 @@
 						placeholder="title">
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="username" class="col-sm-2 control-label">작성자</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" name="author"
-						placeholder="author">
+			<div class="row">
+				<div class="col-md-3 mb-3">
+					<label for="team_code">나의 팀</label> <select name="team_code"
+						class="form-select" id="team_code" style="width: 120%">
+						<option value="0" selected>---해당없음---</option>
+						<option value="1">SSG 랜더스</option>
+						<option value="2">키움 히어로즈</option>
+						<option value="3">LG 트윈스</option>
+						<option value="4">KT wiz</option>
+						<option value="4">KIA 타이거즈</option>
+						<option value="6">NC 다이노스</option>
+						<option value="7">삼성 라이온즈</option>
+						<option value="8">롯데 자이언츠</option>
+						<option value="9">두산 베어스</option>
+						<option value="10">한화 이글스</option>
+					</select>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="text" class="col-sm-2 control-label">내용</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="3" name="content"></textarea>
+					<textarea class="form-control" rows="3" name="text"></textarea>
 				</div>
 			</div>
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">저장</button>
-					<input type="button" value="목록" class="btn btn-default" onclick="go_list()">
+					<input type="button" value="목록" class="btn btn-default"
+						onclick="go_list()">
 				</div>
 			</div>
 		</form>
-		
+
 	</div>
 </body>
 </html>

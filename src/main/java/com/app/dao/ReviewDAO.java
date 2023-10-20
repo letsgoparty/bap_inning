@@ -59,4 +59,19 @@ public class ReviewDAO {
 		return session.insert("ReviewMapper.reviewWrite", reviewDTO);
 	}
 	
+	//음식점 리뷰 수정
+	public int reviewUpdate(ReviewDTO reviewDTO) {
+		return session.update("ReviewMapper.reviewUpdate", reviewDTO);
+	}
+	//리뷰 상세 보기 (수정용)
+	public ReviewDTO reviewRetrieve(String review_id) {
+		ReviewDTO dto = session.selectOne("ReviewMapper.reviewRetrieve", review_id);
+		return dto;
+	}
+
+	//음식점 리뷰 삭제
+	public int reviewDelete(String review_id) {
+		return session.delete("ReviewMapper.reviewDelete", review_id);
+	}
+	
 }

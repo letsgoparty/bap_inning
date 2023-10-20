@@ -29,4 +29,20 @@ public class ReviewServiceImpl implements ReviewService {
 		return dao.reviewWrite(reviewDTO);
 	}
 
+	@Override
+	public int reviewUpdate(ReviewDTO reviewDTO) {
+		return dao.reviewUpdate(reviewDTO);
+	}
+
+	@Override
+	public int reviewDelete(String review_id) {
+		return dao.reviewDelete(review_id);
+	}
+
+	@Override
+	public ReviewDTO reviewRetrieve(String review_id) {
+		ReviewDTO dto = dao.reviewRetrieve(review_id);
+		return dto;
+	}
+
 }

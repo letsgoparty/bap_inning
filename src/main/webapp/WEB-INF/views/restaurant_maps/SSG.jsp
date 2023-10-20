@@ -282,7 +282,7 @@
                                 // 경기장은 다른 아이콘을 사용
                                 markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                             }
-                            if (locations[i].place === "투썸플레이스 인천문학점" || locations[i].place === "스타벅스 SSG랜더스필드") {
+                            if (locations[i].place === "투썸플레이스 인천문학점" || locations[i].place === "스타벅스 SSG랜더스필드" || locations[i].place === "8퍼센트커피 관교점" || locations[i].place === "더앨리 ssg랜더스필드점" ) {
                                 // 카페는 다른 아이콘을 사용
                                 markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                             }
@@ -302,7 +302,7 @@
 
                             // 마커를 클릭 시, 이벤트 처리 
                             marker.addListener('click', function () {
-                                if ($('.sidebar').is(':visible')) {
+                                if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                     // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                     var infoWindow = new google.maps.InfoWindow({
                                         content: locations[i].place
@@ -371,6 +371,23 @@
                     { place: "영주셀프한우 문학점", lat: 37.435039, lng: 126.692174 },
                     { place: "곤드레가마솥추어탕", lat: 37.439687, lng: 126.694949 },
                     { place: "스타벅스 SSG랜더스필드", lat: 37.436619, lng: 126.692257 },
+                    { place: "참치학교", lat: 37.437321, lng: 126.686867 },
+                    { place: "돈가스유리2 세종점", lat: 37.437664, lng: 126.685495 },
+                    { place: "빅브라더돈까스", lat: 37.435752, lng: 126.699119 },
+                    { place: "브런치2017", lat: 37.442433, lng: 126.692603 },
+                    { place: "카렌 롯데백화점 인천점", lat: 37.442174, lng: 126.701228 },
+                    { place: "차이홍", lat: 37.437490, lng: 126.686189},
+                    { place: "천하원", lat: 37.438232, lng: 126.684928 },
+                    { place: "마화쿵부", lat: 37.437492, lng: 126.683157},
+                    { place: "간도양꼬치본점", lat: 37.438245, lng: 126.681075 },
+                    { place: "라마마라탕 관교점", lat: 37.441245, lng: 126.695329 },
+                    { place: "라멘이찌방 롯데백화점 인천점", lat: 37.442772, lng: 126.701397 },
+                    { place: "키노야 롯데백화점 인천점", lat: 37.442169, lng: 126.701222 },
+                    { place: "오늘은카레 인천관교점", lat: 37.443332, lng: 126.692801 },
+                    { place: "더앨리 ssg랜더스필드점", lat: 37.435953, lng: 126.690558 },
+                    { place: "8퍼센트커피 관교점", lat: 37.440767, lng: 126.694190 },
+                    { place: "노브랜드버거 SSG랜더스필드점", lat: 37.435819, lng: 126.690062 },
+                    { place: "파파존스 SSG랜더스점", lat: 37.437247, lng: 126.692659 },
                 ];
 
                 window.initMap = initMap;

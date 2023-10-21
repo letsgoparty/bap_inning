@@ -193,18 +193,47 @@
             });
         }, false);
     </script>
-    <script>
-        function validateForm() {
-            var passwd1 = document.getElementById("passwd").value;
-            var passwd2 = document.getElementById("passwd2").value;
+     <script>
+     var passwordInput = document.getElementById('passwd');
+     var password2Input = document.getElementById('passwd2');
+     var passwordValid = false; // 비밀번호 유효성 상태를 저장하는 변수
 
-            if (passwd1 !== passwd2) {
-                alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-                return false;
-            }
-            return true;
+       passwordInput.addEventListener('input', function () {
+        var password = this.value;
+        var passwdcheck = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,}$/;
+        
+        // 비밀번호 유효성 검사
+        if (password.match(passwdcheck)) {
+            passwordValid = true;
+        } else {
+            passwordValid = false;
         }
-    </script>
+       });
+
+     password2Input.addEventListener('focus', function () {
+        if (!passwordValid) {
+            alert("비밀번호는 8자리 이상의 숫자, 영문자, 특수문자를 포함해야 합니다.");
+            passwordInput.focus(); // 비밀번호 필드로 포커스
+        }
+      });
+
+     function validateForm() {
+        if (!passwordValid) {
+            alert("비밀번호는 8자리 이상의 숫자, 영문자, 특수문자를 포함해야 합니다.");
+            passwordInput.focus(); // 비밀번호 필드로 포커스
+            return false;
+        }
+
+        var passwd1 = passwordInput.value;
+        var passwd2 = password2Input.value;
+
+        if (passwd1 !== passwd2) {
+            alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            return false;
+        }
+        return true;
+     }
+   </script>
 </body>
 
 </html>

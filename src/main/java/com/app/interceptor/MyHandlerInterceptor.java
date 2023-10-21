@@ -35,7 +35,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
       //System.out.println("getmypage: " + getmypage);
 
       
-	  // 마이페이지 로딩 안 되는 문제가 인터셉터 때문인 듯 하여 수정해야함
+	  
 	}
 	
 	

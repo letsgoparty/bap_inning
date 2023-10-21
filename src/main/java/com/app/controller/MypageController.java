@@ -3,14 +3,21 @@ package com.app.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.app.dto.MemberDTO;
 import com.app.dto.ScheduleDTO;
+import com.app.service.MemberService;
 import com.app.service.ScrapingService;
 
 @Controller
@@ -21,13 +28,23 @@ public class MypageController {
 //http://localhost:8090/app/mypage 
 	
 	@Autowired
-	private ScrapingService service;
+	private ScrapingService scrapService;
+	@Autowired
+	private MemberService memberService;
 	
 	
 	@RequestMapping("/mypage")
-	public String mypage(Model model) {
+	public String mypage(Model model,HttpSession session) {
+		//사용자정보가져오기
+		 MemberDTO dbdto =
+				  (MemberDTO)session.getAttribute("login");
+			// 로그인 여부 확인은 Interceptor 이용한다.
+		 String userid = dbdto.getUserid();
+		 MemberDTO mypage = memberService.mypage(userid);
+		 session.setAttribute("login", mypage);
+		
 		//전체일정 가져오기
-		List<ScheduleDTO> allScheduleList=service.scrapeSchedule();
+		List<ScheduleDTO> allScheduleList=scrapService.scrapeSchedule();
 		//나의 팀 가져오기
 		String selectedTeam="NC"; //나중에 수정하기
 		
@@ -40,6 +57,8 @@ public class MypageController {
 		}
 		model.addAttribute("filterScheduleList",filterScheduleList);
 		System.out.println(filterScheduleList);
+		
+		
 		return "mypage/myPage";
 	}
 

@@ -7,7 +7,7 @@
 <title>비밀번호 변경</title>
     <style>
         .input-form {
-            max-width: 500px;
+            max-width: 600px;
             margin-top: 80px;
             padding: 32px;
             background: #fff;
@@ -23,7 +23,24 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		//새비번 확인
+		//새비번 에 유효성검사 주기. 
+		$("#newpw").on("keyup", function(){
+			var newpw=$(this).val();
+			var numAlphabet=/[a-zA-Z].*\d|\d.*[a-zA-Z]/;
+			var specialChar=/[!@#$%^&*]/;
+			var isVaild = (newpw.length>=8) && numAlphabet.test(newpw) && specialChar.test(newpw);
+			
+			//비번조건 메세지 표시 와 버튼 활성화
+			if(isVaild){
+				$(".pwRequire").hide();
+			}else{
+				$(".pwRequire").show();		
+			}
+			
+		});
+		
+		
+		//새비번 확인 이 새비번 과 일치하게 썼는지.
 		$("#newpw2").on("keyup", function() {
 			var newpw = $("#newpw").val();
 			var newpw2 = $("#newpw2").val();
@@ -54,13 +71,14 @@
 							name="currpw" aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-default">
 					</div>
-					<span>비번 조건 아직 미정. (8-16글자, 영어, 특수문자, 숫자 필수?)</span>
+					<span class="pwRequire">비밀번호는 영문 숫자 특수문자를 포함한 8자리 이상 입니다</span>
 					<div class="input-group mb-3">
-						<span class="input-group-text col-4" >새 비밀번호</span> 
+						<span class="input-group-text col-4">새 비밀번호</span> 
 						<input
 							type="password" class="form-control" required id="newpw"
 							name="newpw" aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-default">
+							aria-describedby="inputGroup-sizing-default"
+							placeholder="영문 숫자 특수문자를 포함한 8자리이상">
 					</div>
 					<div class="input-group ">
 						<span class="input-group-text col-4" >새 비밀번호 확인</span> 
@@ -73,7 +91,7 @@
 							<strong><span class="" style="color:green" id="pwcheck"></span></strong>
 					</div><br><br>
             <div class="d-flex justify-content-center" >
-                <button type="" class="btn btn-primary" style="width:30%">변경하기</button>
+                <button type="submit" class="btn btn-primary" style="width:30%" >변경하기</button>
             </div>
 				</form>
 			</div>

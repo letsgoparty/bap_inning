@@ -69,15 +69,5 @@ public class MemberController {
 	}
 	
 
-	@GetMapping("/mypage")
-	public String mypage(HttpSession session) {
-		 MemberDTO dbdto =
-				  (MemberDTO)session.getAttribute("login");
-		// 로그인 여부 확인은 Interceptor 이용한다.
-		 String userid = dbdto.getUserid();
-		 MemberDTO getmypage = service.mypage(userid);
-		 session.setAttribute("login", getmypage);
-		return "mypage/myPage";  
-	}
 	
 }

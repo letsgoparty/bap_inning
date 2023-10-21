@@ -83,7 +83,7 @@
 
 					<!-- 자유게시판 드롭다운 -->
 					<div class="dropdown me-auto mb-2 mb-lg-0 mx-2 mt-2">
-						<a class="btn btn-secondary dropdown-toggle" href="#"
+						<a class="btn btn-secondary dropdown-toggle" href="list"
 							role="button" style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.4rem">
 							⚾️ 자유게시판 </a>
 					</div>

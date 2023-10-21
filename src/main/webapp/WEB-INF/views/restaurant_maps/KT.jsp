@@ -307,7 +307,7 @@
 
                      // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                        	if ($('.sidebar').is(':visible')) {
+                            if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                 // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place
@@ -370,13 +370,18 @@
                 { place: "서진불닭발", lat: 37.300771, lng: 127.007103},
                 { place: "닭갈비잔치", lat: 37.299467, lng: 127.012333},
                 { place: "마왕소곱창", lat: 37.3012219, lng: 127.0080872},
-                
                 { place: "스타벅스 수원종합운동장점", lat: 37.301346, lng: 127.008886 },
                 { place: "잔칫집", lat: 37.299596, lng: 127.005832 },
                 { place: "미누알레", lat: 37.299685, lng: 127.006599 },
                 { place: "장안먹거리", lat: 37.301884, lng: 127.010365},
                 { place: "뉴욕핫도그앤커피", lat: 37.300119, lng: 127.009226},
-
+                { place: "북경", lat: 37.300684, lng: 127.008031 },
+                { place: "울금향 마라탕", lat: 37.301092, lng: 127.007983},
+                { place: "홍콩반점0410 수원장안구청점", lat: 37.301933, lng: 127.009256 },
+                { place: "남바완돈카츠 수원장안점", lat: 37.294668, lng: 127.008943 },
+                { place: "미소야 수원장안구청점", lat: 37.301704, lng: 127.008236 },
+                { place: "초밥집", lat: 37.302080, lng: 127.010497 },
+                { place: "신기소 홈플러스북수원점", lat: 37.302535, lng: 127.008837 },
             ];
 
             window.initMap = initMap;

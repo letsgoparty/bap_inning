@@ -96,7 +96,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="passwd">비밀번호</label>
-                            <input type="password" class="form-control" name="password" id="passwd" required>
+                            <input type="password" class="form-control" name="password" id="passwd" required placeholder="8자리 이상 숫자, 영문자, 특문" required>
                             <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
                         </div>
                         <div class="col-md-6 mb-3">

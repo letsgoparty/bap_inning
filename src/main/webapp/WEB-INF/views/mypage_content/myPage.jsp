@@ -141,9 +141,10 @@
 				<div
 					style="display: flex; justify-content: space-between; align-items: flex-end;">
 					<div>
-						<img src="images/logo/SSG.png" width="100" height="100"
-							class="img-thumbnail" id="myTeamLogo">
+						<img src="images/logo/SSG.png" width="50" height="50" class="img-thumbnail" id="myTeamLogo">
+						<span>환영합니다 "${user.nickname}" 님</span>
 					</div>
+					<span id="myTeamCode" hidden>${user.team_code}</span>
 					<div>
 						<a class="btn btn-primary" href=".." role="button" id="myTeamPage">내
 							팀 홈페이지</a> <a class="btn btn-primary" href=".." role="button"
@@ -254,7 +255,7 @@
 		}
 		function updateTeamElement() {
 			//내팀 찾는 변수 지정
-			var selectedTeam = "1";
+			var selectedTeam = document.getElementById("myTeamCode").textContent;
 			//내팀 찾는 변수 지정
 			var logoElement = document.getElementById("myTeamLogo");
 			var pageElement = document.getElementById("myTeamPage");

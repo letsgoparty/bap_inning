@@ -12,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
@@ -145,5 +144,34 @@ public class ScrapingService {
 			driver.quit();
 		}
 		return postSeason;
+	}
+	
+	/***************** 캐싱 처리 **********************/
+	
+	private List<ScheduleDTO> cachedScheduleList = null;
+	private Elements cachedPostData = null;
+	private List<TeamDTO> cachedRankData = null;
+
+	public List<ScheduleDTO> cacheScheduleData() {
+	    // 이미 데이터를 가져온 경우 다시 가져오지 않도록 체크
+	    if (cachedScheduleList == null) {
+	        cachedScheduleList = scrapeSchedule();
+	    }
+	    
+	    return cachedScheduleList;
+	}
+	
+	public Elements cachedPostData() {
+		if(cachedPostData == null) {
+			cachedPostData = scrapePost();
+		}
+		return cachedPostData;
+	}
+	
+	public List<TeamDTO> cachedRankData() {
+		if(cachedRankData == null) {
+			cachedRankData = scrapeRank();
+		}
+		return cachedRankData;
 	}
 }

@@ -111,12 +111,25 @@
 
 <script>
 	$(document).ready(function() {
+		//swiper 처음 보여줄 슬라이드 지정하기
+		var totalSlide=$('.swiper-slide').length;
+		var initialSlideIndex = totalSlide-1; 
+	    $('.swiper-slide').each(function(index) {
+	        var status = $(this).find('.type span').text();
+	        console.log(status);
+
+	        if (status === '경기예정') {
+	            initialSlideIndex = index; // 예정 슬라이드를 찾았을 때 인덱스 설정
+	            return false; 
+	        }
+	    });
+		
 		// swiper초기화 
 		var swiper = new Swiper(".swiper-container", {
 			slidesPerView : 1,
 			speed : 1000,
 			loop : false,
-			initialSlide : 0, // 첫번째로 보여줄 슬라이드
+			initialSlide : initialSlideIndex, // 첫번째로 보여줄 슬라이드
 			navigation : {
 				prevEl : '.swiper-button-prev',
 				nextEl : '.swiper-button-next',
@@ -124,6 +137,9 @@
 		});
 
 	});
+	
+	
+	
 </script>
 
 </head>

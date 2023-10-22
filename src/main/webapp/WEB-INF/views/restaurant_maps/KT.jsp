@@ -287,7 +287,7 @@
                             // 경기장은 다른 아이콘을 사용
                             markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
-                        if(locations[i].place === "스타벅스 수원종합운동장점" || locations[i].place === "미누알레") {
+                        if(locations[i].place === "스타벅스 수원종합운동장점" || locations[i].place === "미누알레" || locations[i].place === "슈아라크렘" ) {
                         	// 카페는 다른 아이콘을 사용
                         	markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
@@ -382,6 +382,14 @@
                 { place: "미소야 수원장안구청점", lat: 37.301704, lng: 127.008236 },
                 { place: "초밥집", lat: 37.302080, lng: 127.010497 },
                 { place: "신기소 홈플러스북수원점", lat: 37.302535, lng: 127.008837 },
+                { place: "UNIT101", lat: 37.297522, lng: 127.017041 },
+                { place: "어반포크", lat: 37.303082, lng: 127.008166 },
+                { place: "키친에프", lat: 37.303366, lng: 127.007482 },
+                { place: "심야스테이크 송죽점", lat: 37.302747, lng: 127.005277 },
+                { place: "피자헛 송죽점", lat: 37.299885, lng: 127.007652 },
+                { place: "맘스터치 수원조원점", lat: 37.302194, lng: 127.009464 },
+                { place: "BBQ치킨 수원조원점", lat: 37.301550, lng: 127.009657 },
+                { place: "슈아라크렘", lat: 37.301107, lng: 127.008302 },
             ];
 
             window.initMap = initMap;

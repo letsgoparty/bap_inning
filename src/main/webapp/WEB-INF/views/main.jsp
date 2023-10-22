@@ -43,12 +43,12 @@
 </head>
 <style>
 nav {
-  position: fixed !important;
-  top: 0 !important;
-  right: 0 !important;
-  left: 0 !important;
-  z-index: 1030 !important;
-  }
+	position: fixed !important;
+	top: 0 !important;
+	right: 0 !important;
+	left: 0 !important;
+	z-index: 1030 !important;
+}
 </style>
 <body id="page-top">
 	<jsp:include page="common/nav.jsp" flush="true" />
@@ -59,8 +59,8 @@ nav {
 				<h1 class="masthead-heading mb-0"
 					style="font-family: 'KBO-Dia-Gothic_bold';">야구 보러가자!</h1>
 				<p class="masthead-subheading mb-0"
-					style="font-size: 1.3rem; font-family: 'KBO-Dia-Gothic_light';"> 경기장 주변 음식점과
-					숙소를 한눈에👀 볼 수 있는 밥이닝</p>
+					style="font-size: 1.3rem; font-family: 'KBO-Dia-Gothic_light';">
+					경기장 주변 음식점과 숙소를 한눈에👀 볼 수 있는 밥이닝</p>
 				<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll"
 					style="font-size: 1.5rem; font-family: 'KBO-Dia-Gothic_bold';">경기일정
 					및 순위 보러가기</a>
@@ -148,7 +148,8 @@ nav {
 				<!--  전체 일정 조회 테이블  -->
 
 				<c:forEach var="team" items="${teams}">
-					<table class="table table-hover table-container" id="${team}" style="font-family: KBO-Dia-Gothic_bold">
+					<table class="table table-hover table-container" id="${team}"
+						style="font-family: KBO-Dia-Gothic_bold">
 						<thead
 							style="text-align: center; background-color: rgb(137, 136, 140, 0.2);">
 							<tr>
@@ -179,10 +180,19 @@ nav {
 											<td></td>
 											<td>${schedule.time}</td>
 											<td style="font-weight: bold"><c:set var="vsArray"
-													value="${fn:split(schedule.vs, 'vs')}" /> <c:set
-													var="number1" value="${vsArray[0]}" /> <c:set
-													var="number2" value="${vsArray[1]}" />
-												${schedule.team1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
+													value="${fn:split(schedule.vs, 'vs')}" /> <c:choose>
+													<c:when
+														test="${not empty vsArray[0] && not empty vsArray[1]}">
+														<c:set var="number1"
+															value="${Integer.parseInt(vsArray[0])}" />
+														<c:set var="number2"
+															value="${Integer.parseInt(vsArray[1])}" />
+													</c:when>
+													<c:otherwise>
+														<c:set var="number1" value="" />
+														<c:set var="number2" value="" />
+													</c:otherwise>
+												</c:choose> ${schedule.team1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
 													<c:when test="${number1 > number2}">
 														<span style="color: rgb(134, 24, 24);">${number1}</span> vs
                                         <span style="color: gray;">${number2}</span>
@@ -206,54 +216,54 @@ nav {
 															href="https://www.ticketlink.co.kr/sports/baseball/476#reservation"
 															target="_blank">티켓 예매바로가기</a>
 													</c:when>
-													 <c:when
-                                                        test="${schedule.location eq '잠실' and schedule.team2 eq 'LG'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://www.ticketlink.co.kr/sports/baseball/59#reservation"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when
-                                                        test="${schedule.location eq '잠실' and schedule.team2 eq '두산'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB004"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when test="${schedule.location eq '수원'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://www.ticketlink.co.kr/sports/baseball/62#reservation"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when test="${schedule.location eq '광주'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://www.ticketlink.co.kr/sports/baseball/58#reservation"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when test="${schedule.location eq '대구'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://www.ticketlink.co.kr/sports/baseball/57#reservation"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when test="${schedule.location eq '대전'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://www.ticketlink.co.kr/sports/baseball/63#reservation"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when test="${schedule.location eq '고척'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB003"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when test="${schedule.location eq '사직'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://ticket.giantsclub.com/loginForm.do"
-                                                            target="_blank">티켓 예매바로가기</a>
-                                                    </c:when>
-                                                    <c:when test="${schedule.location eq '창원'}">
-                                                        <a class="btn btn-primary"
-                                                            href="https://ticket.ncdinos.com/login" target="_blank">티켓
-                                                            예매바로가기</a>
-                                                    </c:when>
-													
+													<c:when
+														test="${schedule.location eq '잠실' and schedule.team2 eq 'LG'}">
+														<a class="btn btn-primary"
+															href="https://www.ticketlink.co.kr/sports/baseball/59#reservation"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when
+														test="${schedule.location eq '잠실' and schedule.team2 eq '두산'}">
+														<a class="btn btn-primary"
+															href="https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB004"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when test="${schedule.location eq '수원'}">
+														<a class="btn btn-primary"
+															href="https://www.ticketlink.co.kr/sports/baseball/62#reservation"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when test="${schedule.location eq '광주'}">
+														<a class="btn btn-primary"
+															href="https://www.ticketlink.co.kr/sports/baseball/58#reservation"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when test="${schedule.location eq '대구'}">
+														<a class="btn btn-primary"
+															href="https://www.ticketlink.co.kr/sports/baseball/57#reservation"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when test="${schedule.location eq '대전'}">
+														<a class="btn btn-primary"
+															href="https://www.ticketlink.co.kr/sports/baseball/63#reservation"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when test="${schedule.location eq '고척'}">
+														<a class="btn btn-primary"
+															href="https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB003"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when test="${schedule.location eq '사직'}">
+														<a class="btn btn-primary"
+															href="https://ticket.giantsclub.com/loginForm.do"
+															target="_blank">티켓 예매바로가기</a>
+													</c:when>
+													<c:when test="${schedule.location eq '창원'}">
+														<a class="btn btn-primary"
+															href="https://ticket.ncdinos.com/login" target="_blank">티켓
+															예매바로가기</a>
+													</c:when>
+
 												</c:choose></td>
 										</c:when>
 									</c:choose>

@@ -259,8 +259,8 @@
 
                 // 대전 한화생명 이글스파크
                 var mapOptions = {
-                        center: new google.maps.LatLng(36.318588, 127.429706),
-                    zoom: 17.2 /* 음식점 & 숙소 마커 포함 이후 zoom 확대 예정 */
+                        center: new google.maps.LatLng(36.321492, 127.429100),
+                    zoom: 16.3 /* 음식점 & 숙소 마커 포함 이후 zoom 확대 예정 */
                 };
 
                 var map = new google.maps.Map(
@@ -282,7 +282,7 @@
                             // 경기장은 다른 아이콘을 사용
                             markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
-                        if(locations[i].place === "스트릿츄러스 대전구장점") {
+                        if(locations[i].place === "스트릿츄러스 대전구장점" || locations[i].place === "더가든" || locations[i].place === "극동제과") {
                         	// 카페는 다른 아이콘을 사용
                         	markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
@@ -302,7 +302,7 @@
 
                         // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                        	if ($('.sidebar').is(':visible')) {
+                            if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                 // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place
@@ -370,6 +370,18 @@
                 { place: "민스김밥카페", lat: 36.317181, lng: 127.426379 },
                 { place: "다미치킨", lat: 36.318094, lng: 127.429059 },
                 { place: "오성식당", lat: 36.319114, lng: 127.429932 },
+                { place: "극동제과", lat: 36.317271, lng: 127.425731 },
+                { place: "더가든", lat: 36.317693, lng: 127.432434 },
+                { place: "맥도날드 대전부사DT점", lat: 36.319526, lng: 127.431778 },
+                { place: "교촌치킨 대사부사점", lat: 36.318616, lng: 127.430320 },
+                { place: "만나 대흥본점", lat: 36.323633, lng: 127.427330 },
+                { place: "동백카츠 대흥점", lat: 36.325207, lng: 127.428149 },
+                { place: "신가우동", lat: 36.321002, lng: 127.430141 },
+                { place: "죠샌드위치 대전대흥점", lat: 36.323988, lng: 127.425364 },
+                { place: "턱스키친", lat: 36.323190, lng: 127.426521 },
+                { place: "도프차일드키친", lat: 36.324945, lng: 127.425369 },
+                { place: "광저우중화요리", lat: 36.318634, lng: 127.430553 },
+                { place: "피자마루 대전대흥점", lat: 36.320929, lng: 127.427819 },
 
             ];
 

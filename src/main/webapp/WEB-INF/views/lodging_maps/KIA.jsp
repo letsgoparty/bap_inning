@@ -13,7 +13,7 @@
  <body>
     <div class="sidebar" id="sidebar">
         <!-- 숙박 정보 띄우기  -->
-        <form action="" method="get">
+        <form action="l_reviewList" method="get">
             <input type="hidden" id="lodging_id" name="lodging_id">
             <div class="card mt-5">
                 <div id="lodging_image"></div>
@@ -74,7 +74,7 @@
                 // 사이드바가 닫혀있다면 열기
                 url: 'find_all_lod',
                 method: 'GET',
-                data: { lodging_addr: '광주' },
+                data: { team_code: 5 },
                 success: function (data) {
                     // 성공적으로 데이터를 받아왔을 때의 처리
 
@@ -85,7 +85,7 @@
                         var lodging_name = ele.lodging_name;
                         var lodging_url = ele.lodging_url;
 
-                        var cardHtml = '<form id="' + cardId + '" action="" method="get">' +
+                        var cardHtml = '<form id="' + cardId + '" action="l_reviewList" method="get">' +
                             '<input type="hidden" id="lodging_id" name="lodging_id" value="' + ele.lodging_id + '">' +
                             '<div class="card">' +
                             '<div"><img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px"></div>' +

@@ -13,7 +13,7 @@
 <body>
 	<div class="sidebar" id="sidebar">
 		<!-- 숙박 정보 띄우기  -->
-		<form action="" method="get">
+		<form action="l_reviewList" method="get">
 			<input type="hidden" id="lodging_id" name="lodging_id">
 			<div class="card mt-5">
 				<div id="lodging_image"></div>
@@ -74,7 +74,7 @@
                 // 사이드바가 닫혀있다면 열기
                 url: 'find_all_lod_by_content',
                 method: 'GET',
-                data: { lodging_content: '구로' },
+                data: { team_code: 2 },
                 success: function (data) {
                     // 성공적으로 데이터를 받아왔을 때의 처리
 
@@ -85,7 +85,7 @@
                         var lodging_name = ele.lodging_name;
                         var lodging_url = ele.lodging_url;
 
-                        var cardHtml = '<form id="' + cardId + '" action="" method="get">' +
+                        var cardHtml = '<form id="' + cardId + '" action="l_reviewList" method="get">' +
                             '<input type="hidden" id="lodging_id" name="lodging_id" value="' + ele.lodging_id + '">' +
                             '<div class="card">' +
                             '<div"><img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px"></div>' +
@@ -262,6 +262,11 @@
                     { place: "광명JS부티크호텔", lat: 37.474350, lng: 126.868866 },                    
                     { place: "신라스테이 구로", lat: 37.485560, lng: 126.904133},
                     { place: "포포인츠 바이 쉐라톤 서울 구로", lat: 37.483223, lng: 126.898718},
+                    { place: "모텔샬", lat: 37.494568, lng: 126.856612 },
+                    { place: "로얄모텔", lat: 37.495596, lng: 126.856677 },
+                    { place: "샘모텔", lat: 37.506614, lng: 126.859040 },
+                    { place: "쎄비앙 호텔", lat: 37.496233, lng: 126.845797 },
+                    { place: "세븐모텔", lat: 37.496194, lng: 126.845541},
             ];
 
             window.initMap = initMap;

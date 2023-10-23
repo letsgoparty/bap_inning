@@ -74,7 +74,7 @@
                 // 사이드바가 닫혀있다면 열기
                 url: 'find_all_lod',
                 method: 'GET',
-                data: { lodging_addr: '부산' },
+                data: { team_code: 8 },
                 success: function (data) {
                     // 성공적으로 데이터를 받아왔을 때의 처리
 

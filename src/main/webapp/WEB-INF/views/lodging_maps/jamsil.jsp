@@ -74,7 +74,7 @@
                 // 사이드바가 닫혀있다면 열기
                 url: 'find_all_lod_by_content',
                 method: 'GET',
-                data: { lodging_content: '잠실' },
+                data: { team_code: 3 },
                 success: function (data) {
                     // 성공적으로 데이터를 받아왔을 때의 처리
 
@@ -270,6 +270,10 @@
                     { place: "호텔 페이토 삼성", lat: 37.508494, lng:  127.058701 },
                     { place: "이비스 스타일 앰배서더 강남3", lat: 37.505205, lng:  127.057162 },
                     { place: "호텔 더 캐슬 신천", lat: 37.511099, lng:  127.081836 },
+                    { place: "히트모텔", lat: 37.511093, lng:  127.079706 },
+                    { place: "칸모텔", lat: 37.510808, lng:  127.079753 },
+                    { place: "에이플러스모텔", lat: 37.511027, lng:  127.080645 },
+                    { place: "식스티모텔", lat: 37.511248, lng:  127.082327 },
 
                     
 

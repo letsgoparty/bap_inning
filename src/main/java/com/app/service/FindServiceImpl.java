@@ -32,18 +32,17 @@ public class FindServiceImpl implements FindService {
 	}
 
 	@Override
-	public List<LodgingDTO> find_all_lod(String lodging_addr) {
-		return dao.find_all_lod(lodging_addr);
+	public List<LodgingDTO> find_all_lod(int team_code) {
+		return dao.find_all_lod(team_code);
 	}
 
 	@Override
-	public List<LodgingDTO> find_all_lod_by_content(String lodging_content) {
-		return dao.find_all_lod_by_content(lodging_content);
+	public List<RestaurantDTO> find_res_by_category(HashMap map) {
+		return dao.find_res_by_category(map);
 	}
 
 	@Override
-	public List<RestaurantDTO> find_KOR_res(HashMap map) {
-		return dao.find_KOR_res(map);
+	public List<LodgingDTO> find_lod_by_category(HashMap map) {
+		return dao.find_lod_by_category(map);
 	}
-
 }

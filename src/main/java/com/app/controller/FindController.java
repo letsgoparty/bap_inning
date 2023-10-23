@@ -46,28 +46,28 @@ public class FindController {
 	}
 	
 	@GetMapping("/find_res_by_category")
-	public List<RestaurantDTO> find_KOR_res(@RequestParam String category, @RequestParam int team_code) {
+	public List<RestaurantDTO> find_res_by_category(@RequestParam String category, @RequestParam int team_code) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("category", category);
 		map.put("team_code", team_code);
-		List<RestaurantDTO> list = service.find_KOR_res(map);
+		List<RestaurantDTO> list = service.find_res_by_category(map);
 		return list;
 	}
 	
 	@GetMapping("/find_all_lod")
-	public List<LodgingDTO> find_all_lod(@RequestParam String lodging_addr) {
-		List<LodgingDTO> list = service.find_all_lod(lodging_addr);
+	public List<LodgingDTO> find_all_lod(@RequestParam int team_code) {
+		List<LodgingDTO> list = service.find_all_lod(team_code);
 		return list;
 	}
 	
-	@GetMapping("/find_all_lod_by_content")
-	public List<LodgingDTO> find_all_lod_by_content(@RequestParam String lodging_content) {
-		List<LodgingDTO> list = service.find_all_lod_by_content(lodging_content);
+	@GetMapping("/find_lod_by_category")
+	public List<LodgingDTO> find_lod_by_category(@RequestParam String category, @RequestParam int team_code) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("category", category);
+		map.put("team_code", team_code);
+		List<LodgingDTO> list = service.find_lod_by_category(map);
 		return list;
 	}
-	
-	
-	
 	
 }
 

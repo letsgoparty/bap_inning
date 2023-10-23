@@ -13,7 +13,7 @@
 <body>
 	<div class="sidebar" id="sidebar">
 		<!-- 숙박 정보 띄우기  -->
-		<form action="" method="get">
+		<form action="l_reviewList" method="get">
 			<input type="hidden" id="lodging_id" name="lodging_id">
 			<div class="card mt-5">
 				<div id="lodging_image"></div>
@@ -85,7 +85,7 @@
                         var lodging_name = ele.lodging_name;
                         var lodging_url = ele.lodging_url;
 
-                        var cardHtml = '<form id="' + cardId + '" action="" method="get">' +
+                        var cardHtml = '<form id="' + cardId + '" action="l_reviewList" method="get">' +
                             '<input type="hidden" id="lodging_id" name="lodging_id" value="' + ele.lodging_id + '">' +
                             '<div class="card">' +
                             '<div"><img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px"></div>' +

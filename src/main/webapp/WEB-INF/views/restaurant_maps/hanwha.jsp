@@ -81,7 +81,6 @@
     $('#cancel').on('click', function () {
         event.preventDefault();
         $('#sidebar').hide();
-        // 본문의 내용들 사라진 사이드바의 영역만큼 여백 제거
         $('.container').css("margin-left", 300);
     });
 
@@ -330,9 +329,6 @@
                                     method: 'GET',
                                     data: { res_name: res_name },
                                     success: function (data) {
-                                        // 성공적으로 데이터를 받아왔을 때의 처리
-                                        console.log(data);
-                                        console.log(data.res_content);
                                         var imagePath = 'images/restaurant_images/' + data.res_image + '.png';
                                         var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
                                         $('#res_image').html(imgTag);
@@ -382,7 +378,6 @@
                 { place: "도프차일드키친", lat: 36.324945, lng: 127.425369 },
                 { place: "광저우중화요리", lat: 36.318634, lng: 127.430553 },
                 { place: "피자마루 대전대흥점", lat: 36.320929, lng: 127.427819 },
-
             ];
 
             window.initMap = initMap;

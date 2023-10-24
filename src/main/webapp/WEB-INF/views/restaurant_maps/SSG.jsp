@@ -292,7 +292,6 @@
                                 icon: markerIcon
                             });
 
-
                             var infowindow = new google.maps.InfoWindow({
                                 content: locations[i].place
                             });

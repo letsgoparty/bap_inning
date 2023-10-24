@@ -25,7 +25,7 @@
 							id="res_addr"></span>
 						<p></p>
 						<img src="images/icon/icon2.png" width="13" height="13">
-						<span style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;<span class="location">라이온즈파크</span>에서 걸어서 <spanid="distance"></span>분
+						<span style="font-family: 'KBO-Dia-Gothic_light';">&nbsp;<span class="location">라이온즈파크</span>에서 걸어서 <span id="distance"></span>분
 						</span>
 					</div>
 					<p></p>
@@ -258,7 +258,7 @@
 
         //삼성 라이온즈파크
         var mapOptions = { 
-            center: new google.maps.LatLng(35.840891, 128.686557),
+            center: new google.maps.LatLng(35.839579, 128.688307),
             zoom: 16.5 /* 음식점 & 숙소 마커 포함 이후 zoom 확대 예정 */
         };
 
@@ -281,7 +281,7 @@
                 	markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                 }
             	
-                if(locations[i].place === "쌀빵라팡" || locations[i].place === "카페봄봄 수성IC점") {
+                if(locations[i].place === "쌀빵라팡" || locations[i].place === "핑퐁커피 알파시티점"|| locations[i].place === "버터우드 대구점") {
                     // 카페는 다른 아이콘을 사용
                     markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                 }
@@ -302,7 +302,7 @@
 
                 // 마커를 클릭 시, 이벤트 처리 
                 marker.addListener('click', function () {
-                    if ($('.sidebar').is(':visible')) {
+                    if ($('.sidebar:not(#sidebar)').is(':visible')) {
                         // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                         var infoWindow = new google.maps.InfoWindow({
                             content: locations[i].place
@@ -363,14 +363,21 @@
                 { place: "해피치즈스마일", lat: 35.841071,  lng: 128.680899 },
                 { place: "파파존스 대구삼성라이온즈파크점", lat: 35.841553,  lng: 128.681084 },
                 { place: "땅땅치킨 삼성라이온즈파크점", lat: 35.841780,  lng: 128.681388},
-                { place: "쌀빵라팡", lat: 35.841369,  lng: 128.686849 },
-                { place: "카페봄봄 수성IC점", lat: 35.837728,  lng: 128.683645},
+                { place: "쌀빵라팡", lat: 35.841369,  lng: 128.686849 }, 
                 { place: "채다올김밥 알파시티점", lat: 35.839629,  lng: 128.691826},
                 { place: "닭올닭 삼계탕 시지 직영점", lat: 35.841248,  lng: 128.692148},
                 { place: "봉창이해물칼국수", lat: 35.840597,  lng: 128.693893},
                 { place: "금족발 시지 본점", lat: 35.840298,  lng: 128.692688},
-                { place: "진강정 대구수성알파시티점", lat: 35.39764,  lng: 128.691382 },
+                { place: "진강정 대구수성알파시티점", lat: 35.839752,  lng: 128.691268 },
                 { place: "미스터삼겹", lat: 35.840334,  lng: 128.692026 },
+                { place: "중화면가", lat: 35.840077,  lng: 128.693189 },
+                { place: "멘츠로에비야", lat: 35.839554,  lng: 128.691405 },
+                { place: "핑퐁커피 알파시티점", lat: 35.839631,  lng: 128.691886 },
+                { place: "코레와카레 시지점", lat: 35.840704,  lng: 128.691960 },
+                { place: "마리테이블", lat: 35.840985,  lng: 128.692115 },
+                { place: "듀얼몬스터 시지점", lat: 35.839503,  lng: 128.696377 },
+                { place: "하이니콜 수성본점", lat: 35.837826,  lng: 128.683847 },
+                { place: "버터우드 대구점", lat: 35.841449,  lng: 128.682271 },
   	];
 
     window.initMap = initMap;

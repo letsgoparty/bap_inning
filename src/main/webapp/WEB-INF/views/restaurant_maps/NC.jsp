@@ -285,7 +285,7 @@
                             // 경기장은 다른 아이콘을 사용
                             markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
-                        if(locations[i].place === "스타벅스 창원NC파크R점" || locations[i].place === "카페소담아") {
+                        if(locations[i].place === "스타벅스 창원NC파크R점" || locations[i].place === "카페소담아"|| locations[i].place === "워터스카페"|| locations[i].place === "페인트커피") {
                         	// 카페는 다른 아이콘을 사용
                         	markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
@@ -304,7 +304,7 @@
 
                         // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                            if ($('.sidebar').is(':visible')) {
+                            if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                 // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place
@@ -372,6 +372,15 @@
                 { place: "카페소담아", lat: 35.219311, lng: 128.582925 },
                 { place: "꽃돼지연탄구이", lat: 35.219723, lng: 128.584509},
                 { place: "OK산호동닭발집", lat: 35.220053, lng: 128.584152},
+                { place: "월명관", lat: 35.220209, lng: 128.584825  },
+                { place: "마라도마라탕", lat: 35.220443, lng: 128.586155  },
+                { place: "뽕까스", lat: 35.222423, lng: 128.587429  },
+                { place: "세븐스테이크 신세계백화점 마산점", lat: 35.219744, lng: 128.586276  },
+                { place: "피자헛 마산산호점", lat: 35.220121, lng: 128.582133  },
+                { place: "굽네치킨 마산산호점", lat: 35.220775, lng: 128.583146  },
+                { place: "명랑핫도그 마산산호점", lat: 35.222192, lng: 128.584633  },
+                { place: "워터스카페", lat: 35.220370, lng: 128.582365  },
+                { place: "페인트커피", lat: 35.219483, lng: 128.582287  },
  
             ];
 

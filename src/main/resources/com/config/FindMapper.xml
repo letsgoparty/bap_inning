@@ -15,28 +15,29 @@
 		from lodging
 		where lodging_name = #{lodging_name}
 	</select>
-	<!--  맛집 전체 리스트 조회  -->
+	<!--  음식점 전체 리스트 조회  -->
 	<select id="find_all_res" parameterType="int" resultType="RestaurantDTO">
 		select *
 		from restaurant
 		where team_code = #{team_code}
 	</select>
-	<!--  한식 리스트 조회  -->
-	<select id="find_KOR_res" parameterType="hashmap" resultType="RestaurantDTO">
+	<!--  카테고리 별 음식점 리스트 조회  -->
+	<select id="find_res_by_category" parameterType="hashmap" resultType="RestaurantDTO">
 		select *
 		from restaurant
 		where team_code = #{team_code} and category = #{category}
 	</select>
 	<!-- 숙소 전체 리스트 조회 -->
-	<select id="find_all_lod" parameterType="string" resultType="LodgingDTO">
+	<select id="find_all_lod" parameterType="int" resultType="LodgingDTO">
 		select *
 		from lodging
-		where lodging_addr like #{lodging_addr} || '%'
+		where team_code = #{team_code}
+		order by 1
 	</select>
-	<!-- 숙소 전체 리스트 조회 (잠실, 고척용) -->
-	<select id="find_all_lod_by_content" parameterType="string" resultType="LodgingDTO">
+	<!--  카테고리 별 숙소 리스트 조회  -->
+	<select id="find_lod_by_category" parameterType="hashmap" resultType="LodgingDTO">
 		select *
 		from lodging
-		where lodging_content like '%' || #{lodging_content} || '%'
+		where team_code = #{team_code} and category = #{category}
 	</select>
 </mapper>

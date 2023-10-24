@@ -284,7 +284,7 @@
                             // 경기장은 다른 아이콘을 사용
                             markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
-                        if(locations[i].place === "카페나니") {
+                        if(locations[i].place === "카페나니" || locations[i].place === "눈섬베이커리" || locations[i].place === "홀트커피" ) {
                         	// 카페는 다른 아이콘을 사용
                         	markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
@@ -302,7 +302,7 @@
 
                         // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                        	if ($('.sidebar').is(':visible')) {
+                            if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                 // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place
@@ -370,6 +370,17 @@
                 { place: "만남흑염소", lat: 35.171827, lng: 126.886994 },
                 { place: "부영식당", lat: 35.166962, lng: 126.897804 },
                 { place: "미트맨 운암점", lat: 35.170361, lng: 126.885686 },
+                { place: "황궁쟁반자금성", lat: 35.171933, lng: 126.883426 },
+                { place: "설화원", lat: 35.172714, lng: 126.885147 },
+                { place: "고기짬뽕", lat: 35.173169, lng: 126.883033 },
+                { place: "홍스시 운암점", lat: 35.173273, lng: 126.880678 },
+                { place: "타코센세", lat: 35.173078, lng: 126.889242 },
+                { place: "블랙모밀 광주본점", lat: 35.174127, lng: 126.889139 },
+                { place: "도미노피자 광주운암점", lat: 35.172538, lng: 126.888078 },
+                { place: "제일햄버거", lat: 35.168415, lng: 126.888585 },
+                { place: "파스타입니다 운암점", lat: 35.173149, lng: 126.888203 },
+                { place: "눈섬베이커리", lat: 35.172463, lng: 126.889335 },
+                { place: "홀트커피", lat: 35.173107, lng: 126.890099 },
             ];
 
             window.initMap = initMap;

@@ -28,15 +28,15 @@ public class FindDAO {
 		return session.selectList("FindMapper.find_all_res", team_code);
 	}
 
-	public List<RestaurantDTO> find_KOR_res(HashMap map) {
-		return session.selectList("FindMapper.find_KOR_res", map);
+	public List<RestaurantDTO> find_res_by_category(HashMap map) {
+		return session.selectList("FindMapper.find_res_by_category", map);
 	}
 
-	public List<LodgingDTO> find_all_lod(String lodging_addr) {
-		return session.selectList("FindMapper.find_all_lod", lodging_addr);
+	public List<LodgingDTO> find_all_lod(int team_code) {
+		return session.selectList("FindMapper.find_all_lod", team_code);
 	}
 	
-	public List<LodgingDTO> find_all_lod_by_content(String lodging_content) {
-		return session.selectList("FindMapper.find_all_lod_by_content", lodging_content);
+	public List<LodgingDTO> find_lod_by_category(HashMap map) {
+		return session.selectList("FindMapper.find_lod_by_category", map);
 	}
 }

@@ -285,7 +285,7 @@
                             // 경기장은 다른 아이콘을 사용
                             markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
-                        if(locations[i].place === "스타벅스 사직구장점") {
+                        if(locations[i].place === "스타벅스 사직구장점" || locations[i].place === "이디야커피 부산사직야구장점" || locations[i].place === "설빙 사직점") {
                         	// 카페는 다른 아이콘을 사용
                         	markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                         }
@@ -304,7 +304,7 @@
 
                         // 마커를 클릭 시, 이벤트 처리 
                         marker.addListener('click', function () {
-                        	if ($('.sidebar').is(':visible')) {
+                            if ($('.sidebar:not(#sidebar)').is(':visible')) {
                                 // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: locations[i].place
@@ -373,8 +373,18 @@
                 { place: "스타벅스 사직구장점", lat: 35.196002, lng: 129.061634 },
                 { place: "고피자 사직점", lat: 35.196350, lng: 129.063526 },
                 { place: "송보리밥한식뷔페", lat: 35.195291, lng: 129.064778},
-
- 
+                { place: "해울", lat: 35.195817, lng: 129.059522 },
+                { place: "메이웍", lat: 35.196025, lng: 129.058393 },
+                { place: "소아베", lat: 35.195852, lng: 129.059797 },
+                { place: "안디아모 사직점", lat: 35.196286, lng: 129.061023 },
+                { place: "코알라식당", lat: 35.195999, lng: 129.059290 },
+                { place: "교촌치킨 사직2호점", lat: 35.195591, lng: 129.059306 },
+                { place: "대림참치 사직점", lat: 35.195618, lng: 129.059689 },
+                { place: "우마이라멘 in 사직 본점", lat: 35.195949, lng: 129.061527 },
+                { place: "오니기리와이규동 사직운동장점", lat: 35.196797, lng: 129.060611 },
+                { place: "야끼니꾸 소량 사직점", lat: 35.196896, lng: 129.059663 },
+                { place: "이디야커피 부산사직야구장점", lat: 35.195738, lng: 129.060307 },
+                { place: "설빙 사직점", lat: 35.196253, lng: 129.060747 },
             ];
 
             window.initMap = initMap;

@@ -269,15 +269,7 @@
 
                         // 마커를 클릭했을 때 정보 창을 표시
                         marker.addListener('click', function () {
-                            if ($('.sidebar:not(#sidebar)').is(':visible')) {
-                                // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
-                                var infoWindow = new google.maps.InfoWindow({
-                                    content: locations[i].place
-                                });
-
-                                infoWindow.open(map, marker);
-                            }
-                            else if (locations[i].place === "마산 종합운동장") {
+                             if (locations[i].place === "마산 종합운동장") {
                                 // 경기장인 경우에는 라벨 텍스트를 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: '마산 종합운동장'
@@ -285,6 +277,7 @@
 
                                 infoWindow.open(map, marker);
                             } else {
+                            	$('.sidebar:not(#sidebar)').hide();
                                 $('#sidebar').show();
                                 // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
                                 $('.container').css("margin-left", 400);

@@ -316,15 +316,7 @@
 
                             // 마커를 클릭 시, 이벤트 처리 
                             marker.addListener('click', function () {
-                                if ($('.sidebar:not(#sidebar)').is(':visible')) {
-                                    // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
-                                    var infoWindow = new google.maps.InfoWindow({
-                                        content: locations[i].place
-                                    });
-
-                                    infoWindow.open(map, marker);
-                                }
-                                else if (locations[i].place === "인천 SSG 랜더스 필드") {
+                                 if (locations[i].place === "인천 SSG 랜더스 필드") {
                                     // 경기장인 경우에는 라벨 텍스트를 표시
                                     var infoWindow = new google.maps.InfoWindow({
                                         content: '인천 SSG 랜더스 필드'
@@ -332,6 +324,7 @@
 
                                     infoWindow.open(map, marker);
                                 } else {
+                                    $('.sidebar:not(#sidebar)').hide();
                                     // 해당 맛집 정보 사이드바 표시 
                                     $('#sidebar').show();
                                     $('.container').css("margin-left", 400);
@@ -366,11 +359,8 @@
                                         data: { res_name: res_name },
                                         success: function (data) {
                                             // 성공적으로 데이터를 받아왔을 때의 처리
-											if (data === null) {
-    											$('#rating').text("-");
-													} else {
     											$('#rating').text(data);
-																	}
+																
                                         },
                                         error: function (error) {
                                             // 오류 발생 시의 처리

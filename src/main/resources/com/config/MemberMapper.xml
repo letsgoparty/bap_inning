@@ -29,4 +29,15 @@
  	   where userid=#{userid} 
  	</select>
  	
+ 	<update id="memberUpdate" parameterType="MemberDTO">
+	 update Member
+	 set userid=#{userid},email=#{email},nickname=#{nickname},team_code=#{team_code}
+	where userid=#{userid}
+	</update>
+	
+	<delete id="memberDelete">
+	delete from Member
+	where userid=#{userid}
+	</delete>
+ 	
 </mapper>

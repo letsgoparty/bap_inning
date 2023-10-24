@@ -31,7 +31,7 @@
 					<p></p>
 					<img src="images/icon/icon3.png" width="13" height="13"> <span>&nbsp;4.5</span>
 					<p class="card-text mt-3" id="lodging_content"></p>
-					<div id="lodging_url" style="font-family: sans-serif;"></div>
+					<div id="lodging_url"></div>
 					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
 						보러가기</button>
 					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
@@ -112,7 +112,7 @@
                     '<p></p>' +
                     '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
                     '<p class="card-text mt-3" id="lodging_content"">' + ele.lodging_content + '</p>' +
-                    '<div id="lodging_url" style="font-family: sans-serif;"><a href="' + lodging_url + '" target="_blank">최저가 보러가기</a></div>' +
+                    '<div id="lodging_url"><a href="' + lodging_url + '" target="_blank">예약 하러가기</a></div>' +
                     '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                     '<button class="btn btn-primary mt-3 mb-3 mx-3 find_lod_btn" data-lod-name="' + lodging_name + '">위치 보러가기</button>' +
                     '</div>' +
@@ -181,7 +181,7 @@
                             '<p></p>' +
                             '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
                             '<p class="card-text mt-3" id="res_content"">' + ele.lodging_content + '</p>' +
-                            '<div id="lodging_url" style="font-family: sans-serif;"><a href="' + lodging_url + '" target="_blank">예약 하러가기</a></div>' +
+                            '<div id="lodging_url"><a href="' + lodging_url + '" target="_blank">예약 하러가기</a></div>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_lod_btn" data-lod-name="' + lodging_name + '">위치 보러가기</button>' +
                             '</div>' +
@@ -313,13 +313,10 @@
    								      	});
    										
                                         $('#lodging_url').html(linkElement);
-                                        console.log(lodging_url);
-                                        
                                         $('#lodging_name').text(data.lodging_name);
                                         $('#lodging_addr').text(data.lodging_addr);
                                         $('#distance').text(data.distance);
                                         $('#lodging_content').text(data.lodging_content);
-             
                                         $('#lodging_id').val(data.lodging_id);
                                         
                                     },

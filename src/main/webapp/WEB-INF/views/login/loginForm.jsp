@@ -27,7 +27,7 @@
             -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
-
+      
         html,
         body {
             height: 100%;
@@ -44,7 +44,7 @@
 
     </style>
 </head>
-
+   
 <body class="text-center">
 
     <div class="container">
@@ -63,6 +63,17 @@
                         </div>
                         <div class="button-login-box">
                             <button type="submit" class="btn btn-primary btn-xs" style="width:100%">로그인</button>
+                              
+                                 <!-- 에러 메시지 모델에 추가함-->
+                            <div>
+							  <c:if test="${not empty error}">
+							  <c:out value="${error}" escapeXml="false" />
+							    <p style="color: red">${error}</p>
+							 </c:if>
+						    </div>
+                               <div class="center-text">
+                                 <a href="forgotpassword">비밀번호 찾기</a>
+                               </div>
                         </div>
                     </div>
                 </div>
@@ -85,6 +96,7 @@
             });
         }, false);
     </script>
+     
 </body>
 
 </html>

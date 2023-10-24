@@ -38,8 +38,9 @@ public class MemberController {
 	
 	@PostMapping("/memberAdd")
 	public String memberAdd(JspMemberDTO dto) {
-	String combinedEmail = dto.getEmail1() + "@" + dto.getEmail2();
-	 MemberDTO dbdto = new MemberDTO(); // MemberDTO 객체 생성
+		 try {
+		String combinedEmail = dto.getEmail1() + "@" + dto.getEmail2();
+	    MemberDTO dbdto = new MemberDTO(); // MemberDTO 객체 생성
 	    dbdto.setUserid(dto.getUserid());
 	    dbdto.setPassword(dto.getPassword());
 	    dbdto.setEmail(combinedEmail); // MemberDTO의 setEmail 메서드를 사용하여 email 설정
@@ -49,9 +50,22 @@ public class MemberController {
 		//System.out.println(dbdto);
 		int n = service.memberAdd(dbdto);
 	
-	      return "redirect:main";
-			
+		if (n > 0) {
+            return "redirect:main";
+        } else {
+            // 회원가입 실패 시 예외 던지기
+            throw new Exception("회원가입 실패");
+        }
+    } catch (Exception e) {
+        // 예외 처리: 실패한 경우 "joinfailed" 페이지로 리다이렉트
+        return "redirect:joinfailed";
     }
+  }
+
+	@RequestMapping("/joinfailed")
+	public String joinfailed() {
+		return "join/joinfailed";
+	}
 	
 	
 	

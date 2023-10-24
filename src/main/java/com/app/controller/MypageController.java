@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.dto.MemberDTO;
 import com.app.dto.ScheduleDTO;
@@ -95,7 +97,15 @@ public class MypageController {
 	}
 
 	@GetMapping("/myinfo")
-	public String myinfo() {
+	public String myinfo(HttpSession session,Model model) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO) session.getAttribute("login");
+		//로그인여부는 인터셉터 
+		String userid=user.getUserid();
+		user=memberService.mypage(userid);
+		session.setAttribute("login", user);//session에 유저정보 보내기
+		model.addAttribute("user",user);//model에 유저정보 보내기.
+		
 		return "mypage/myInfo";
 	}
 
@@ -123,5 +133,15 @@ public class MypageController {
 	public String pwchange() {
 		return "mypage/pwChange";
 	}
-
+	
+	@GetMapping(value="/updateIdCheck", produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String updateIdCheck(@RequestParam ("userid") String userid) {
+		MemberDTO dto=memberService.idCheck(userid);
+		String mesg="아이디 사용가능";
+		if(dto!=null) {
+			mesg="아이디 중복";
+		}
+		return mesg;
+	}
 }

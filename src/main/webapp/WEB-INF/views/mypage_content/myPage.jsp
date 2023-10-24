@@ -118,9 +118,12 @@
 	        var status = $(this).find('.type span').text();
 	        console.log(status);
 
-	        if (status === '경기예정') {
-	            initialSlideIndex = index; // 예정 슬라이드를 찾았을 때 인덱스 설정
-	            return false; 
+	        if(status==='오늘 경기'){
+	        	initialSlideIndex=index;
+	        	return false;
+	        }else if(status ==='경기예정'){
+	        	initialSlideIndex=index;
+	        	return false;
 	        }
 	    });
 		

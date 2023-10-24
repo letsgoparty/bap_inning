@@ -4,40 +4,55 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FindMapper">
 	<!-- res_name에 해당하는 RestaurantDTO 얻기 -->
-	<select id="find_res" parameterType="string" resultType="RestaurantDTO">
+	<select id="find_res" parameterType="string"
+		resultType="RestaurantDTO">
 		select *
 		from restaurant
 		where res_name = #{res_name}
 	</select>
 	<!-- lodging_name에 해당하는 LodgingDTO 얻기 -->
-	<select id="find_lod" parameterType="string" resultType="LodgingDTO">
+	<select id="find_lod" parameterType="string"
+		resultType="LodgingDTO">
 		select *
 		from lodging
 		where lodging_name = #{lodging_name}
 	</select>
-	<!--  음식점 전체 리스트 조회  -->
-	<select id="find_all_res" parameterType="int" resultType="RestaurantDTO">
+	<!-- 음식점 전체 리스트 조회 -->
+	<select id="find_all_res" parameterType="int"
+		resultType="RestaurantDTO">
 		select *
 		from restaurant
 		where team_code = #{team_code}
 	</select>
-	<!--  카테고리 별 음식점 리스트 조회  -->
-	<select id="find_res_by_category" parameterType="hashmap" resultType="RestaurantDTO">
+	<!-- 카테고리 별 음식점 리스트 조회 -->
+	<select id="find_res_by_category" parameterType="hashmap"
+		resultType="RestaurantDTO">
 		select *
 		from restaurant
-		where team_code = #{team_code} and category = #{category}
+		where team_code = #{team_code} and
+		category = #{category}
 	</select>
 	<!-- 숙소 전체 리스트 조회 -->
-	<select id="find_all_lod" parameterType="int" resultType="LodgingDTO">
+	<select id="find_all_lod" parameterType="int"
+		resultType="LodgingDTO">
 		select *
 		from lodging
 		where team_code = #{team_code}
-		order by 1
+		order by
+		1
 	</select>
-	<!--  카테고리 별 숙소 리스트 조회  -->
-	<select id="find_lod_by_category" parameterType="hashmap" resultType="LodgingDTO">
+	<!-- 카테고리 별 숙소 리스트 조회 -->
+	<select id="find_lod_by_category" parameterType="hashmap"
+		resultType="LodgingDTO">
 		select *
 		from lodging
-		where team_code = #{team_code} and category = #{category}
+		where team_code = #{team_code} and
+		category = #{category}
+	</select>
+	<select id="find_rating" parameterType="string"
+		resultType="string">
+    SELECT NVL(TO_CHAR(ROUND(AVG(rating), 1), '0.0'), '-')
+FROM restaurant_reviews NATURAL JOIN restaurant
+WHERE res_name = #{res_name}
 	</select>
 </mapper>

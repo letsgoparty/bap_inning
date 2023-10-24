@@ -69,5 +69,11 @@ public class FindController {
 		return list;
 	}
 	
+	@GetMapping("/find_rating")
+	public String find_rating(@RequestParam String res_name) {
+		String rating = service.find_rating(res_name);
+		return rating;
+	}
+	
 }
 

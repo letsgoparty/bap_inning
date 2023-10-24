@@ -45,4 +45,9 @@ public class FindServiceImpl implements FindService {
 	public List<LodgingDTO> find_lod_by_category(HashMap map) {
 		return dao.find_lod_by_category(map);
 	}
+
+	@Override
+	public String find_rating(String res_name) {
+		return dao.find_rating(res_name);
+	}
 }

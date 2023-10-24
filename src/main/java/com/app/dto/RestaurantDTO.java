@@ -7,11 +7,11 @@ public class RestaurantDTO {
 	String res_image;
 	String res_content;
 	String distance;
+//	String ranking;
 
 	public RestaurantDTO() {
 
 	}
-
 
 	public RestaurantDTO(String res_id, String res_name, String res_addr, String res_image, String res_content,
 			String distance) {

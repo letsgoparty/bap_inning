@@ -39,4 +39,8 @@ public class FindDAO {
 	public List<LodgingDTO> find_lod_by_category(HashMap map) {
 		return session.selectList("FindMapper.find_lod_by_category", map);
 	}
+	
+	public String find_rating(String res_name) {
+		return session.selectOne("FindMapper.find_rating", res_name);
+	}
 }

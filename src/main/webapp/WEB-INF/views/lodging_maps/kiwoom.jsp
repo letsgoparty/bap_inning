@@ -39,7 +39,7 @@
 			</div>
 		</form>
 	</div>
-		<!--  전체 리스트 사이드바  -->
+	<!--  전체 리스트 사이드바  -->
 	<div class="sidebar" id="allinfo_sidebar">
 		<div id="all_info"></div>
 	</div>
@@ -54,8 +54,10 @@
 	<div class="mt-3 mb-2" id="containerDiv">
 		<button class="btn btn-primary mb-2 category" id="find_all">숙소
 			전체보기</button>
-		<button class="btn btn-primary mb-2 category" id="find_Hotel">💒 호텔</button>
-		<button class="btn btn-primary mb-2 category" id="find_Motel">🏬 모텔</button>
+		<button class="btn btn-primary mb-2 category" id="find_Hotel">💒
+			호텔</button>
+		<button class="btn btn-primary mb-2 category" id="find_Motel">🏬
+			모텔</button>
 		<div id="googleMap" style="width: 100%; height: 700px;"></div>
 	</div>
 
@@ -267,15 +269,7 @@
 
                         // 마커를 클릭했을 때 정보 창을 표시
                         marker.addListener('click', function () {
-                            if ($('.sidebar:not(#sidebar)').is(':visible')) {
-                                // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
-                                var infoWindow = new google.maps.InfoWindow({
-                                    content: locations[i].place
-                                });
-
-                                infoWindow.open(map, marker);
-                            }
-                            else if (locations[i].place === "고척 스카이돔") {
+                             if (locations[i].place === "고척 스카이돔") {
                                 // 경기장인 경우에는 라벨 텍스트를 표시
                                 var infoWindow = new google.maps.InfoWindow({
                                     content: '고척 스카이돔'
@@ -283,6 +277,7 @@
 
                                 infoWindow.open(map, marker);
                             } else {
+                            	$('.sidebar:not(#sidebar)').hide();
                                 $('#sidebar').show();
                                 // 본문의 내용들 나타난 사이드바의 영역만큼 여백 추가
                                 $('.container').css("margin-left", 400);

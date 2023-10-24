@@ -7,9 +7,16 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link href="css/sidebar.css" rel="stylesheet" />
+            <link href="css/like.css" rel="stylesheet" />
             <title>SSG 랜더스필드 주변 맛집 지도</title>
         </head>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+
+
+            });
+        </script>
 
         <body>
             <!--  마커 클릭 시 사이드바 -->
@@ -30,11 +37,11 @@
                                 </span>
                             </div>
                             <p></p>
-                            <img src="images/icon/icon3.png" width="13" height="13"> <span>&nbsp;4.5</span>
+                            <img src="images/icon/icon3.png" width="13" height="13"> <span id="rating">&nbsp;</span>
                             <p class="card-text mt-3" id="res_content"></p>
                             <button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
                                 보러가기</button>
-                            <button id="cancel" class="btn btn-primary mx-3">닫기</button>
+                            <button id="cancel" class="btn btn-primary">닫기</button>
                         </div>
                     </div>
                 </form>
@@ -68,16 +75,24 @@
                 <div id="FF_info"></div>
             </div>
             <div class="mt-3 mb-2" id="containerDiv">
-                <button class="btn btn-primary mb-2 category" id="find_all">맛집 전체보기</button>
-                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘 한식</button>
-                <button class="btn btn-primary mb-2 category" id="find_USA">🍖 양식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟 중식</button>
-                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣 일식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️ 카페</button>
-                <button class="btn btn-primary mb-2 category" id="find_FF">🍔 패스트푸드</button>
+                <button class="btn btn-primary mb-2 category" id="find_all">맛집
+                    전체보기</button>
+                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘
+                    한식</button>
+                <button class="btn btn-primary mb-2 category" id="find_USA">🍖
+                    양식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟
+                    중식</button>
+                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣
+                    일식</button>
+                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️
+                    카페</button>
+                <button class="btn btn-primary mb-2 category" id="find_FF">🍔
+                    패스트푸드</button>
                 <div id="googleMap" style="width: 100%; height: 700px;"></div>
             </div>
             <script>
+
                 // '닫기' 버튼
                 $('#cancel').on('click', function () {
                     event.preventDefault();
@@ -282,7 +297,7 @@
                                 // 경기장은 다른 아이콘을 사용
                                 markerIcon = new google.maps.MarkerImage("images/icon/playground_icon.png", null, null, null, new google.maps.Size(50, 57));
                             }
-                            if (locations[i].place === "투썸플레이스 인천문학점" || locations[i].place === "스타벅스 SSG랜더스필드" || locations[i].place === "8퍼센트커피 관교점" || locations[i].place === "더앨리 ssg랜더스필드점" ) {
+                            if (locations[i].place === "투썸플레이스 인천문학점" || locations[i].place === "스타벅스 SSG랜더스필드" || locations[i].place === "8퍼센트커피 관교점" || locations[i].place === "더앨리 ssg랜더스필드점") {
                                 // 카페는 다른 아이콘을 사용
                                 markerIcon = new google.maps.MarkerImage("images/icon/cafe_icon.png", null, null, null, new google.maps.Size(50, 57));
                             }
@@ -301,15 +316,7 @@
 
                             // 마커를 클릭 시, 이벤트 처리 
                             marker.addListener('click', function () {
-                                if ($('.sidebar:not(#sidebar)').is(':visible')) {
-                                    // 전체 리스트 사이드바가 열려있다면 라벨 텍스트 표시
-                                    var infoWindow = new google.maps.InfoWindow({
-                                        content: locations[i].place
-                                    });
-
-                                    infoWindow.open(map, marker);
-                                }
-                                else if (locations[i].place === "인천 SSG 랜더스 필드") {
+                                 if (locations[i].place === "인천 SSG 랜더스 필드") {
                                     // 경기장인 경우에는 라벨 텍스트를 표시
                                     var infoWindow = new google.maps.InfoWindow({
                                         content: '인천 SSG 랜더스 필드'
@@ -317,6 +324,7 @@
 
                                     infoWindow.open(map, marker);
                                 } else {
+                                    $('.sidebar:not(#sidebar)').hide();
                                     // 해당 맛집 정보 사이드바 표시 
                                     $('#sidebar').show();
                                     $('.container').css("margin-left", 400);
@@ -330,8 +338,6 @@
                                         data: { res_name: res_name },
                                         success: function (data) {
                                             // 성공적으로 데이터를 받아왔을 때의 처리
-                                            console.log(data);
-                                            console.log(data.res_content);
                                             var imagePath = 'images/restaurant_images/' + data.res_image + '.png';
                                             var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
                                             $('#res_image').html(imgTag);
@@ -346,12 +352,27 @@
                                             // 오류 발생 시의 처리
                                             console.error('Error:', error);
                                         }
-                                    });
+                                    });    
+                                    $.ajax({
+                                        url: 'find_rating',
+                                        method: 'GET',
+                                        data: { res_name: res_name },
+                                        success: function (data) {
+                                            // 성공적으로 데이터를 받아왔을 때의 처리
+    											$('#rating').text(data);
+																
+                                        },
+                                        error: function (error) {
+                                            // 오류 발생 시의 처리
+                                            console.error('Error:', error);
+                                        }
+                                    });     
                                 }
                             });
                         })(i); // 즉시 실행 함수로 현재의 i 값을 전달
                     }
                 }
+
 
                 const locations = [
                     { place: "인천 SSG 랜더스 필드", lat: 37.436588889, lng: 126.693309996 },
@@ -375,9 +396,9 @@
                     { place: "빅브라더돈까스", lat: 37.435752, lng: 126.699119 },
                     { place: "브런치2017", lat: 37.442433, lng: 126.692603 },
                     { place: "카렌 롯데백화점 인천점", lat: 37.442174, lng: 126.701228 },
-                    { place: "차이홍", lat: 37.437490, lng: 126.686189},
+                    { place: "차이홍", lat: 37.437490, lng: 126.686189 },
                     { place: "천하원", lat: 37.438232, lng: 126.684928 },
-                    { place: "마화쿵부", lat: 37.437492, lng: 126.683157},
+                    { place: "마화쿵부", lat: 37.437492, lng: 126.683157 },
                     { place: "간도양꼬치본점", lat: 37.438245, lng: 126.681075 },
                     { place: "라마마라탕 관교점", lat: 37.441245, lng: 126.695329 },
                     { place: "라멘이찌방 롯데백화점 인천점", lat: 37.442772, lng: 126.701397 },
@@ -390,6 +411,7 @@
                 ];
 
                 window.initMap = initMap;
+
             </script>
             <script
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>

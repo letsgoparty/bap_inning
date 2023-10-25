@@ -14,7 +14,11 @@ public class MypageDAO {
 	@Autowired
 	SqlSessionTemplate session;
 
-	
+	//회원정보 수정
+	public int memberUpdate(MemberDTO memberDTO) {
+		int n=session.update("MemberMapper.memberUpdate",memberDTO);
+		return n;
+	}
 
 	
 }

@@ -8,18 +8,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.descriptor.web.FilterDef;
+import org.openqa.selenium.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.dao.MypageDAO;
+import com.app.dto.JspMemberDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.service.MemberService;
+import com.app.service.MypageService;
+import com.app.service.MypageServiceImpl;
 import com.app.service.ScrapingService;
 
 @Controller
@@ -33,7 +42,9 @@ public class MypageController {
 	private ScrapingService scrapService;
 	@Autowired
 	private MemberService memberService;
-
+	@Autowired
+	private MypageService mypageService;
+	
 	@RequestMapping("/mypage")
 	public String mypage(Model model, HttpSession session) {
 		// 사용자정보가져오기
@@ -96,6 +107,7 @@ public class MypageController {
 		return "mypage/myPage";
 	}
 
+	//회원정보 보여주기
 	@GetMapping("/myinfo")
 	public String myinfo(HttpSession session,Model model) {
 		//세션에서 로그인정보 가져오기
@@ -109,6 +121,27 @@ public class MypageController {
 		return "mypage/myInfo";
 	}
 
+	@PostMapping("/myinfo")
+	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("nickname") String nickname, @RequestParam("email1")String email1, @RequestParam("email2")String email2, @RequestParam("myTeam") int teamCode) {
+	    MemberDTO dto=new MemberDTO();
+	    String email = email1 + "@" + email2;
+	    
+	    dto.setUserid(userid);
+	    dto.setEmail(email);
+	    dto.setNickname(nickname);
+	    dto.setTeam_code(teamCode);
+	    
+	    int n=mypageService.memberUpdate(dto);
+	    if(n>0) {
+	    	return "redirect:/mypage";
+	    }else {
+	    	return "redirect:/myinfo";
+	    }
+	    
+
+	}
+
+	
 	@GetMapping("/mytext")
 	public String mytext() {
 		return "mypage/myText";

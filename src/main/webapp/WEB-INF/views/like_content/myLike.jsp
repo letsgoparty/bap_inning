@@ -183,7 +183,7 @@
 									<img src="images/icon/icon1.png" width="13" height="13"><span
 										class="card-text"> ${dto.lodging_addr}</span>
 									<p></p>
-									<img src="images/icon/icon2.png" width="13" height="13">
+									<img src="images/icon/icon4.png" width="13" height="13">
 									<c:choose>
 										<c:when test="${dto.team_code eq '1'}">
 											<span id="location">SSG 랜더스필드</span>

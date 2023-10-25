@@ -53,15 +53,19 @@ public class MainController {
 	public String like(Model m, HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		String userid = dto.getUserid();
-
+		List<RestaurantDTO> Rdto = null;
+		List<LodgingDTO> Ldto = null;
+		
 		List<Object> res_list = likeService.find_like_res(userid);
-		List<RestaurantDTO> Rdto = likeService.find_like_res_info(res_list);
+		if(res_list.size()>0) {
+		 Rdto = likeService.find_like_res_info(res_list);
+		} 
 
 		List<Object> lod_list = likeService.find_like_lod(userid);
-		System.out.println(lod_list);
-		List<LodgingDTO> Ldto = likeService.find_like_lod_info(lod_list);
-		
-		System.out.println(Ldto);
+		if(lod_list.size()>0) {
+			 Ldto = likeService.find_like_lod_info(lod_list);
+			} 
+
 		m.addAttribute("Rdto", Rdto);
 		m.addAttribute("Ldto", Ldto);
 		

@@ -10,6 +10,15 @@ public class PageDTO {
 	int totalCount;
 	String type;
 	String keyword;
+	int team;
+
+	public int getTeam() {
+		return team;
+	}
+
+	public void setTeam(int team) {
+		this.team = team;
+	}
 
 	public PageDTO() {
 	}
@@ -71,12 +80,15 @@ public class PageDTO {
 	}
 
 	public String[] getTypeArr() {
+		System.out.println("타입");
 	    return type == null? new String[] {}: type.split("");
 	  }
-	
+
 	@Override
 	public String toString() {
 		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
-				+ "]";
+				+ ", type=" + type + ", keyword=" + keyword + ", team=" + team + "]";
 	}
+
+	
 }

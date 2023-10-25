@@ -45,14 +45,83 @@
 
 </head>
 <body>
+	<jsp:include page="common/nav.jsp" flush="true" />
+	+
 	<div class="container">
 		<h2 class="text-center">밥이닝 게시판</h2>
 
-		<div class="badge bg-primary text-wrap" style="width: 6rem;">
-			<li><a href="selectTeam?team_code" =${team_code}> <img
-					src="images/logo/SSG.png" alt="Logo" width="30" height="30">
-			</a></li>
-		</div>
+		<form action="list">
+			<div class="container mt-2"
+				style="font-family: 'KBO-Dia-Gothic_bold';">
+				<ul class="nav list-unstyled d-flex" name="team_code">
+					<li class="nav-item pt-1"><a href="list" value="1"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="all"> <img src="images/icon/baseball_icon.png"
+							width="20" height="20"> 전체
+					</a></li>
+					<li class="nav-item mt-1"><a href="list" value="2"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="SSG"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_SK.png"
+							alt="SSG"> SSG
+					</a></li>
+					<li class="nav-item pt-1"><a href="#kiwoom"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="키움"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_WO.png"
+							alt="키움"> 키움
+					</a></li>
+					<li class="nav-item pt-1"><a href="#LG"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="LG"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_LG.png"
+							alt="LG"> LG
+					</a></li>
+					<li class="nav-item pt-1"><a href="#KT"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="KT"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_KT.png"
+							alt="kt"> KT
+					</a></li>
+					<li class="nav-item pt-1"><a href="#KIA"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="KIA"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_HT.png"
+							alt="KIA"> KIA
+					</a></li>
+					<li class="nav-item pt-1"><a href="#NC"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="NC"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_NC.png"
+							alt="NC"> NC
+					</a></li>
+					<li class="nav-item pt-1"><a href="#samsung"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="삼성"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_SS.png"
+							alt="삼성"> 삼성
+					</a></li>
+					<li class="nav-item pt-1"><a href="#lotte"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="롯데"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_LT.png"
+							alt="롯데"> 롯데
+					</a></li>
+					<li class="nav-item pt-1"><a href="#doosan"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="두산"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_OB.png"
+							alt="두산"> 두산
+					</a></li>
+					<li class="nav-item pt-1"><a href="#hanwha"
+						class="nav-link text-decoration-none text-dark table-link"
+						data-target="한화"> <img
+							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_HH.png"
+							alt="한화"> 한화
+					</a></li>
+				</ul>
+			</div>
+		</form>
 
 		<form action="list" id="searchForm">
 			<div class="fields">
@@ -66,7 +135,7 @@
 							<option value="TC">제목 또는 내용</option>
 							<option value="TW">제목 도는 작성자</option>
 							<option value="TCW">제목 또는 내용 또는 작성자</option>
-						</select> <input id="keyword" type="text" name="keyword">
+						</select> <input type="text" name="keyword">
 						<button class="btn btn-primary btn-sm">검색</button>
 					</div>
 				</div>
@@ -107,9 +176,8 @@
 			</c:if>
 			<tr>
 				<td colspan="6"><c:forEach var="i" begin="1" end="${totalNum}">
-						<c:if test="${curPage==i}">
-    	   ${i}
-    	</c:if>
+						<c:if test="${curPage==i}">${i}
+    				</c:if>
 						<c:if test="${curPage!=i}">
 							<a href="list?curPage=${i}">${i}</a>
 						</c:if>

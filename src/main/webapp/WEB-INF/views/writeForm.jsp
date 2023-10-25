@@ -39,14 +39,15 @@
 			</div>
 			<div class="row">
 				<div class="col-md-3 mb-3">
-					<label for="team_code">나의 팀</label> <select name="team_code"
-						class="form-select" id="team_code" style="width: 120%">
+					<label for="team_code">나의 팀</label> 
+					<select name="team_code"
+						class="form-select"  style="width: 120%">
 						<option value="0" selected>---해당없음---</option>
 						<option value="1">SSG 랜더스</option>
 						<option value="2">키움 히어로즈</option>
 						<option value="3">LG 트윈스</option>
 						<option value="4">KT wiz</option>
-						<option value="4">KIA 타이거즈</option>
+						<option value="5">KIA 타이거즈</option>
 						<option value="6">NC 다이노스</option>
 						<option value="7">삼성 라이온즈</option>
 						<option value="8">롯데 자이언츠</option>

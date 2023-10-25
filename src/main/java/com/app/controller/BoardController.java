@@ -40,6 +40,7 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ModelAttribute("pageDTO")
 	public PageDTO list(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage) {
+		
 		return service.selectList(curPage);
 	}
 

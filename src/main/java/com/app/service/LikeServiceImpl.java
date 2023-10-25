@@ -27,4 +27,34 @@ public class LikeServiceImpl implements LikeService {
 	public int like_lod(LikeDTO dto) {
 		return dao.like_lod(dto);
 	}
+
+	@Override
+	public List<Object> find_like_res(String userid) {
+		return dao.find_like_res(userid);
+	}
+
+	@Override
+	public List<RestaurantDTO> find_like_res_info(List<Object> list) {
+		return dao.find_like_res_info(list);
+	}
+
+	@Override
+	public List<Object> find_like_lod(String userid) {
+		return dao.find_like_lod(userid);
+	}
+
+	@Override
+	public List<LodgingDTO> find_like_lod_info(List<Object> list) {
+		return dao.find_like_lod_info(list);
+	}
+
+	@Override
+	public int delete_like_res(HashMap<String, Object> map) {
+		return dao.delete_like_res(map);
+	}
+
+	@Override
+	public int delete_like_lod(HashMap<String, Object> map) {
+		return dao.delete_like_lod(map);
+	}
 }

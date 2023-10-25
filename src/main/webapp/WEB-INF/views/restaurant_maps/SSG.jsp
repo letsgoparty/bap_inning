@@ -38,8 +38,9 @@
 					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
 						보러가기</button>
 					<button id="cancel" class="btn btn-primary mx-2">닫기</button>
-					<button id="like_btn" class="btn btn-primary mt-3 me-3" style="float:right;">
-						<img src="images/icon/dislike_icon.png" width=20 height=20></button>
+					<button id="like_btn" class="btn btn-primary mt-3 me-3" style="float: right;">
+						<img src="images/icon/dislike_icon.png" width=20 height=20>
+					</button>
 				</div>
 			</div>
 		</form>
@@ -97,19 +98,51 @@
                 var res_id = $(this).data('res-id');
                 
                 $.ajax({
-                	url: 'loginCheck/like_res',
+                	url: 'like_res',
                     method: 'GET',
                     data: { res_id: res_id },
                     success: function (data) {
                     	if(data === '로그인이 필요합니다.') {
-                    		alert(data);
-                    		window.location.href='/app/loginForm';
+                    	    Swal.fire({
+                    	        text: data,
+                    	        icon: 'warning',
+                    	        showCancelButton: true,
+                    	        confirmButtonColor: '#3085d6',
+                    	        cancelButtonColor: '#d33',
+                    	        confirmButtonText: 'OK',
+                    	        cancelButtonText: 'CANCLE',
+                    	        button: {
+                    	            text: '확인',
+                    	            closeModal: true 
+                    	        }
+     
+                    	    }).then((result) => {
+                    	    	 if (result.isConfirmed) {
+                    	        window.location.href = '/app/loginForm';
+                    	    	 } 
+                    	    });
                     	} else {
-                    		alert(data);
+                    	    Swal.fire({
+                    	        text: data,
+                    	        icon: 'success',
+                    	        confirmButtonColor: '#3085d6',
+                    	        button: {
+                    	            text: '확인',
+                    	            closeModal: true 
+                    	        }
+                    	    })
                     	}
                     },
                     error: function (error) {
-                        alert("이미 찜한 음식점입니다.");
+                        Swal.fire({
+                	        text: "이미 찜한 음식점입니다.",
+                	        icon: 'warning',
+                	        confirmButtonColor: '#3085d6',
+                	        button: {
+                	            text: '확인',
+                	            closeModal: true 
+                	        }
+                	    })
                     }
                 });
             });

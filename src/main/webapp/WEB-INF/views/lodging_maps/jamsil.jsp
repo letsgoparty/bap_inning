@@ -35,6 +35,9 @@
                     <button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
                         보러가기</button>
                     <button id="cancel" class="btn btn-primary mx-3">닫기</button>
+                    <button id="like_btn" class="btn btn-primary mt-3 me-3" style="float: right;">
+                            <img src="images/icon/dislike_icon.png" width=20 height=20>
+                        </button>
                 </div>
             </div>
         </form>
@@ -59,6 +62,60 @@
             <div id="googleMap" style="width: 100%; height: 700px;"></div>
         </div>
 	<script>
+	 // '찜하기' 버튼
+    $(document).on('click', '#like_btn', function () {
+        event.preventDefault();
+        var lodging_id = $(this).data('lod-id');
+
+        $.ajax({
+            url: 'like_lod',
+            method: 'GET',
+            data: { lodging_id: lodging_id },
+            success: function (data) {
+                if (data === '로그인이 필요합니다.') {
+                    Swal.fire({
+                        text: data,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK',
+                        cancelButtonText: 'CANCLE',
+                        button: {
+                            text: '확인',
+                            closeModal: true
+                        }
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/app/loginForm';
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        text: data,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        button: {
+                            text: '확인',
+                            closeModal: true
+                        }
+                    })
+                }
+            },
+            error: function (error) {
+                Swal.fire({
+                    text: "이미 찜한 숙소입니다.",
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    button: {
+                        text: '확인',
+                        closeModal: true
+                    }
+                })
+            }
+        });
+    });
     // '닫기' 버튼
     $('#cancel').on('click', function () {
         event.preventDefault();
@@ -114,6 +171,7 @@
                             '<div class="mx-2" id="lodging_url" ><a href="' + lodging_url + '" target="_blank">예약 하러가기</a></div>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_lod_btn" data-lod-name="' + lodging_name + '">위치 보러가기</button>' +
+                            '<button class="btn btn-primary mt-3 me-3" id="like_btn" data-lod-id="' + ele.lodging_id + '" style="float:right;"><img src="images/icon/dislike_icon.png" width=20 height=20></button>' +
                             '</div>' +
                             '</div>' +
                             '</form>';
@@ -184,6 +242,7 @@
                             '<div class="mx-2" id="lodging_url"><a href="' + lodging_url + '" target="_blank">예약 하러가기</a></div>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_lod_btn" data-lod-name="' + lodging_name + '">위치 보러가기</button>' +
+                            '<button class="btn btn-primary mt-3 me-3" id="like_btn" data-lod-id="' + ele.lodging_id + '" style="float:right;"><img src="images/icon/dislike_icon.png" width=20 height=20></button>' +
                             '</div>' +
                             '</div>' +
                             '</form>';
@@ -309,6 +368,7 @@
                                         $('#distance').text(data.distance);
                                         $('#lodging_content').text(data.lodging_content);
                                         $('#lodging_id').val(data.lodging_id);
+                                        $('#like_btn').data('lod-id', data.lodging_id);
                                         
                                     },
                                     error: function (error) {

@@ -77,14 +77,46 @@
             data: { lodging_id: lodging_id },
             success: function (data) {
             	if(data === '로그인이 필요합니다.') {
-            		alert(data);
-            		window.location.href='/app/loginForm';
+            	    Swal.fire({
+            	        text: data,
+            	        icon: 'warning',
+            	        showCancelButton: true,
+            	        confirmButtonColor: '#3085d6',
+            	        cancelButtonColor: '#d33',
+            	        confirmButtonText: 'OK',
+            	        cancelButtonText: 'CANCLE',
+            	        button: {
+            	            text: '확인',
+            	            closeModal: true 
+            	        }
+
+            	    }).then((result) => {
+            	    	 if (result.isConfirmed) {
+            	        window.location.href = '/app/loginForm';
+            	    	 } 
+            	    });
             	} else {
-            		alert(data);
+            	    Swal.fire({
+            	        text: data,
+            	        icon: 'success',
+            	        confirmButtonColor: '#3085d6',
+            	        button: {
+            	            text: '확인',
+            	            closeModal: true 
+            	        }
+            	    })
             	}
             },
             error: function (error) {
-                alert("이미 찜한 숙소입니다.");
+                Swal.fire({
+        	        text: "이미 찜한 숙소입니다.",
+        	        icon: 'warning',
+        	        confirmButtonColor: '#3085d6',
+        	        button: {
+        	            text: '확인',
+        	            closeModal: true 
+        	        }
+        	    })
             }
         });
     });

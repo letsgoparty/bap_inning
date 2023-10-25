@@ -1,98 +1,118 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <!DOCTYPE html>
-        <html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
 
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="css/sidebar.css" rel="stylesheet" />
-            <link href="css/like.css" rel="stylesheet" />
-            <title>SSG 랜더스필드 주변 맛집 지도</title>
-        </head>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function () {
-
-
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/sidebar.css" rel="stylesheet" />
+<link href="css/like.css" rel="stylesheet" />
+<title>SSG 랜더스필드 주변 맛집 지도</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+	<!--  마커 클릭 시 사이드바 -->
+	<div class="sidebar" id="sidebar">
+		<!-- 가게 정보 띄우기  -->
+		<form action="r_reviewList" method="get">
+			<input type="hidden" id="res_id" name="res_id">
+			<div class="card mt-5">
+				<div id="res_image"></div>
+				<div class="card-body">
+					<h1 class="card-title mt-3 mb-4" id="res_name"></h1>
+					<div>
+						<img src="images/icon/icon1.png" width="13" height="13"> <span
+							id="res_addr"></span>
+						<p></p>
+						<img src="images/icon/icon2.png" width="13" height="13"> <span
+							style="font-family: 'KBO-Dia-Gothic_light';"> <span
+							class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance"></span>분
+						</span>
+					</div>
+					<p></p>
+					<img src="images/icon/icon3.png" width="13" height="13"> <span
+						id="rating">&nbsp;</span>
+					<p class="card-text mt-3" id="res_content"></p>
+					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
+						보러가기</button>
+					<button id="cancel" class="btn btn-primary mx-2">닫기</button>
+					<button id="like_btn" class="btn btn-primary mt-3 me-3" style="float:right;">
+						<img src="images/icon/dislike_icon.png" width=20 height=20></button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--  전체 리스트 사이드바  -->
+	<div class="sidebar" id="allinfo_sidebar">
+		<div id="all_info"></div>
+	</div>
+	<!--  한식 리스트 사이드바  -->
+	<div class="sidebar" id="KORinfo_sidebar">
+		<div id="KOR_info"></div>
+	</div>
+	<!--  양식 리스트 사이드바  -->
+	<div class="sidebar" id="USAinfo_sidebar">
+		<div id="USA_info"></div>
+	</div>
+	<!--  중식 리스트 사이드바  -->
+	<div class="sidebar" id="CHNinfo_sidebar">
+		<div id="CHN_info"></div>
+	</div>
+	<!--  일식 리스트 사이드바  -->
+	<div class="sidebar" id="JPNinfo_sidebar">
+		<div id="JPN_info"></div>
+	</div>
+	<!--  카페 리스트 사이드바  -->
+	<div class="sidebar" id="CAFEinfo_sidebar">
+		<div id="CAFE_info"></div>
+	</div>
+	<!--  패스트푸드 리스트 사이드바  -->
+	<div class="sidebar" id="FFinfo_sidebar">
+		<div id="FF_info"></div>
+	</div>
+	<div class="mt-3 mb-2" id="containerDiv">
+		<button class="btn btn-primary mb-2 category" id="find_all">맛집
+			전체보기</button>
+		<button class="btn btn-primary mb-2 category" id="find_KOR">🥘
+			한식</button>
+		<button class="btn btn-primary mb-2 category" id="find_USA">🍖
+			양식</button>
+		<button class="btn btn-primary mb-2 category" id="find_CHN">🥟
+			중식</button>
+		<button class="btn btn-primary mb-2 category" id="find_JPN">🍣
+			일식</button>
+		<button class="btn btn-primary mb-2 category" id="find_CAFE">☕️
+			카페</button>
+		<button class="btn btn-primary mb-2 category" id="find_FF">🍔
+			패스트푸드</button>
+		<div id="googleMap" style="width: 100%; height: 700px;"></div>
+	</div>
+	<script>
+	
+            // '찜하기' 버튼
+            $(document).on('click', '#like_btn', function () {
+                event.preventDefault();
+                var res_id = $(this).data('res-id');
+                
+                $.ajax({
+                	url: 'loginCheck/like_res',
+                    method: 'GET',
+                    data: { res_id: res_id },
+                    success: function (data) {
+                    	if(data === '로그인이 필요합니다.') {
+                    		alert(data);
+                    		window.location.href='/app/loginForm';
+                    	} else {
+                    		alert(data);
+                    	}
+                    },
+                    error: function (error) {
+                        alert("이미 찜한 음식점입니다.");
+                    }
+                });
             });
-        </script>
-
-        <body>
-            <!--  마커 클릭 시 사이드바 -->
-            <div class="sidebar" id="sidebar">
-                <!-- 가게 정보 띄우기  -->
-                <form action="r_reviewList" method="get">
-                    <input type="hidden" id="res_id" name="res_id">
-                    <div class="card mt-5">
-                        <div id="res_image"></div>
-                        <div class="card-body">
-                            <h1 class="card-title mt-3 mb-4" id="res_name"></h1>
-                            <div>
-                                <img src="images/icon/icon1.png" width="13" height="13"> <span id="res_addr"></span>
-                                <p></p>
-                                <img src="images/icon/icon2.png" width="13" height="13"> <span
-                                    style="font-family: 'KBO-Dia-Gothic_light';"> <span class="location">SSG
-                                        랜더스필드</span>에서 걸어서 <span id="distance"></span>분
-                                </span>
-                            </div>
-                            <p></p>
-                            <img src="images/icon/icon3.png" width="13" height="13"> <span id="rating">&nbsp;</span>
-                            <p class="card-text mt-3" id="res_content"></p>
-                            <button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
-                                보러가기</button>
-                            <button id="cancel" class="btn btn-primary">닫기</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!--  전체 리스트 사이드바  -->
-            <div class="sidebar" id="allinfo_sidebar">
-                <div id="all_info"></div>
-            </div>
-            <!--  한식 리스트 사이드바  -->
-            <div class="sidebar" id="KORinfo_sidebar">
-                <div id="KOR_info"></div>
-            </div>
-            <!--  양식 리스트 사이드바  -->
-            <div class="sidebar" id="USAinfo_sidebar">
-                <div id="USA_info"></div>
-            </div>
-            <!--  중식 리스트 사이드바  -->
-            <div class="sidebar" id="CHNinfo_sidebar">
-                <div id="CHN_info"></div>
-            </div>
-            <!--  일식 리스트 사이드바  -->
-            <div class="sidebar" id="JPNinfo_sidebar">
-                <div id="JPN_info"></div>
-            </div>
-            <!--  카페 리스트 사이드바  -->
-            <div class="sidebar" id="CAFEinfo_sidebar">
-                <div id="CAFE_info"></div>
-            </div>
-            <!--  패스트푸드 리스트 사이드바  -->
-            <div class="sidebar" id="FFinfo_sidebar">
-                <div id="FF_info"></div>
-            </div>
-            <div class="mt-3 mb-2" id="containerDiv">
-                <button class="btn btn-primary mb-2 category" id="find_all">맛집
-                    전체보기</button>
-                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘
-                    한식</button>
-                <button class="btn btn-primary mb-2 category" id="find_USA">🍖
-                    양식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟
-                    중식</button>
-                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣
-                    일식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️
-                    카페</button>
-                <button class="btn btn-primary mb-2 category" id="find_FF">🍔
-                    패스트푸드</button>
-                <div id="googleMap" style="width: 100%; height: 700px;"></div>
-            </div>
-            <script>
-
                 // '닫기' 버튼
                 $('#cancel').on('click', function () {
                     event.preventDefault();
@@ -145,7 +165,8 @@
                                         '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
                                         '<p class="card-text mt-3" id="res_content"">' + ele.res_content + '</p>' +
                                         '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
-                                        '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
+                                        '<button class="btn btn-primary mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
+                                        '<button class="btn btn-primary mt-3 me-3" id="like_btn" data-res-id="'+ ele.res_id +'" style="float:right;"><img src="images/icon/dislike_icon.png" width=20 height=20></button>' +
                                         '</div>' +
                                         '</div>' +
                                         '</form>';
@@ -229,6 +250,7 @@
                                         '<p class="card-text mt-3" id="res_content"">' + ele.res_content + '</p>' +
                                         '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                                         '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
+                                        '<button class="btn btn-primary mt-3 me-3" id="like_btn" data-res-id="'+ ele.res_id +'" style="float:right;"><img src="images/icon/dislike_icon.png" width=20 height=20></button>' +
                                         '</div>' +
                                         '</div>' +
                                         '</form>';
@@ -316,7 +338,7 @@
 
                             // 마커를 클릭 시, 이벤트 처리 
                             marker.addListener('click', function () {
-                                 if (locations[i].place === "인천 SSG 랜더스 필드") {
+                                if (locations[i].place === "인천 SSG 랜더스 필드") {
                                     // 경기장인 경우에는 라벨 텍스트를 표시
                                     var infoWindow = new google.maps.InfoWindow({
                                         content: '인천 SSG 랜더스 필드'
@@ -346,27 +368,27 @@
                                             $('#distance').text(data.distance);
                                             $('#res_content').text(data.res_content);
                                             $('#res_id').val(data.res_id);
-
+                                            $('#like_btn').data('res-id', data.res_id);
                                         },
                                         error: function (error) {
                                             // 오류 발생 시의 처리
                                             console.error('Error:', error);
                                         }
-                                    });    
+                                    });
                                     $.ajax({
                                         url: 'find_rating',
                                         method: 'GET',
                                         data: { res_name: res_name },
                                         success: function (data) {
                                             // 성공적으로 데이터를 받아왔을 때의 처리
-    											$('#rating').text(data);
-																
+                                            $('#rating').text(data);
+
                                         },
                                         error: function (error) {
                                             // 오류 발생 시의 처리
                                             console.error('Error:', error);
                                         }
-                                    });     
+                                    });
                                 }
                             });
                         })(i); // 즉시 실행 함수로 현재의 i 값을 전달
@@ -413,8 +435,8 @@
                 window.initMap = initMap;
 
             </script>
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>
-        </body>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>
+</body>
 
-        </html>
+</html>

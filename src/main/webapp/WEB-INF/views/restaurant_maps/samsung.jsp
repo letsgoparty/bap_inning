@@ -30,7 +30,7 @@
 					</div>
 					<p></p>
 					<img src="images/icon/icon3.png" width="13" height="13">
-					<span>&nbsp;4.5</span>
+					<span id="rating">&nbsp;</span>
 					<p class="card-text mt-3" id="res_content"></p>
 					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>
 					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
@@ -334,6 +334,20 @@
                                 $('#distance').text(data.distance);
                                 $('#res_content').text(data.res_content);
                                 $('#res_id').val(data.res_id);
+
+                            },
+                            error: function (error) {
+                                // 오류 발생 시의 처리
+                                console.error('Error:', error);
+                            }
+                        });
+                        $.ajax({
+                            url: 'find_rating',
+                            method: 'GET',
+                            data: { res_name: res_name },
+                            success: function (data) {
+                                // 성공적으로 데이터를 받아왔을 때의 처리
+                                $('#rating').text(data);
 
                             },
                             error: function (error) {

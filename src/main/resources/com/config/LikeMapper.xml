@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LikeMapper">
+	<!-- 음식점 찜하기 -->
+	<insert id="like_res" parameterType="LikeDTO">
+		insert into likes(like_num, userid, res_id, lodging_id)
+		values(likes_seq.nextval, #{userid}, #{res_id}, null)
+	</insert>
+	<!-- 숙소 찜하기 -->
+	<insert id="like_lod" parameterType="LikeDTO">
+		insert into likes(like_num, userid, res_id, lodging_id)
+		values(likes_seq.nextval, #{userid}, null, #{lodging_id})
+	</insert>
+</mapper>

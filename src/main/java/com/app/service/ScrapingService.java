@@ -11,6 +11,8 @@ import org.jsoup.select.Elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.ScheduleDTO;
@@ -152,6 +154,7 @@ public class ScrapingService {
 	private Elements cachedPostData = null;
 	private List<TeamDTO> cachedRankData = null;
 
+	@Cacheable("scheduleData")
 	public List<ScheduleDTO> cacheScheduleData() {
 	    // 이미 데이터를 가져온 경우 다시 가져오지 않도록 체크
 	    if (cachedScheduleList == null) {
@@ -161,6 +164,7 @@ public class ScrapingService {
 	    return cachedScheduleList;
 	}
 	
+	@Cacheable("postData")
 	public Elements cachedPostData() {
 		if(cachedPostData == null) {
 			cachedPostData = scrapePost();
@@ -168,10 +172,12 @@ public class ScrapingService {
 		return cachedPostData;
 	}
 	
+	@Cacheable("rankData")
 	public List<TeamDTO> cachedRankData() {
 		if(cachedRankData == null) {
 			cachedRankData = scrapeRank();
 		}
 		return cachedRankData;
 	}
+	
 }

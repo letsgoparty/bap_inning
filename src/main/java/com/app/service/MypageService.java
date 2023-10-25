@@ -6,6 +6,8 @@ import com.app.dto.MemberDTO;
 
 public interface MypageService {
 
-	//마이페이지 관련
+	//마이페이지 기능 service
+	
+	public int memberUpdate(MemberDTO memberDTO);
 	
 }

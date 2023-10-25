@@ -7,6 +7,8 @@ public class RestaurantDTO {
 	String res_image;
 	String res_content;
 	String distance;
+	String category;
+	String team_code;
 //	String ranking;
 
 	public RestaurantDTO() {
@@ -14,16 +16,17 @@ public class RestaurantDTO {
 	}
 
 	public RestaurantDTO(String res_id, String res_name, String res_addr, String res_image, String res_content,
-			String distance) {
-		super();
-		this.res_id = res_id;
-		this.res_name = res_name;
-		this.res_addr = res_addr;
-		this.res_image = res_image;
-		this.res_content = res_content;
-		this.distance = distance;
-	}
-
+		String distance, String category, String team_code) {
+	super();
+	this.res_id = res_id;
+	this.res_name = res_name;
+	this.res_addr = res_addr;
+	this.res_image = res_image;
+	this.res_content = res_content;
+	this.distance = distance;
+	this.category = category;
+	this.team_code = team_code;
+}
 
 	public String getRes_id() {
 		return res_id;
@@ -73,6 +76,20 @@ public class RestaurantDTO {
 		this.distance = distance;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getTeam_code() {
+		return team_code;
+	}
+
+	public void setTeam_code(String team_code) {
+		this.team_code = team_code;
+	}
 
 	@Override
 	public String toString() {

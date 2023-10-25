@@ -15,6 +15,10 @@
 .buttons {
 	margin-left: 300px;
 }
+
+#location {
+	font-weight: bold;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -114,6 +118,37 @@
 										class="card-text"> ${dto.res_addr}</span>
 									<p></p>
 									<img src="images/icon/icon2.png" width="13" height="13">
+									<c:choose>
+										<c:when test="${dto.team_code eq '1'}">
+											<span id="location">SSG 랜더스필드</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '2'}">
+											<span id="location">고척스카이돔</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '3'}">
+											<span id="location">잠실종합운동장</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '4'}">
+											<span id="location">KT위즈파크</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '5'}">
+											<span id="location">KIA 챔피언스필드</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '6'}">
+											<span id="location">창원NC파크</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '7'}">
+											<span id="location">삼성 라이온즈파크</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '8'}">
+											<span id="location">사직야구장</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '10'}">
+											<span id="location">한화생명 이글스파크</span>
+										</c:when>
+									</c:choose>
+									에서 걸어서 <span style="font-weight: bold">
+										${dto.distance} </span>분
 									<p></p>
 									<img src="images/icon/icon3.png" width="13" height="13">
 									<span id="rating">&nbsp;</span>
@@ -149,6 +184,36 @@
 										class="card-text"> ${dto.lodging_addr}</span>
 									<p></p>
 									<img src="images/icon/icon2.png" width="13" height="13">
+									<c:choose>
+										<c:when test="${dto.team_code eq '1'}">
+											<span id="location">SSG 랜더스필드</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '2'}">
+											<span id="location">고척스카이돔</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '3'}">
+											<span id="location">잠실종합운동장</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '4'}">
+											<span id="location">KT위즈파크</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '5'}">
+											<span id="location">KIA 챔피언스필드</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '6'}">
+											<span id="location">창원NC파크</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '7'}">
+											<span id="location">삼성 라이온즈파크</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '8'}">
+											<span id="location">사직야구장</span>
+										</c:when>
+										<c:when test="${dto.team_code eq '10'}">
+											<span id="location">한화생명 이글스파크</span>
+										</c:when>
+									</c:choose> 에서 <span style="font-weight: bold">
+										${dto.distance} </span>
 									<p></p>
 									<img src="images/icon/icon3.png" width="13" height="13">
 									<p id="rating"></p>

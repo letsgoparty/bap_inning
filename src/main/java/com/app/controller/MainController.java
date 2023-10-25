@@ -34,12 +34,10 @@ public class MainController {
 	public String main(Model m) {
 
 		// KBO 리그 일정 가져오기
-		List<ScheduleDTO> ScheduleList = service.cacheScheduleData();
-		m.addAttribute("ScheduleList", ScheduleList);
+		m.addAttribute("ScheduleList", service.cacheScheduleData());
 
 		// KBO 리그 순위 가져오기
-		List<TeamDTO> teamDataList = service.cachedRankData();
-		m.addAttribute("teamDataList", teamDataList);
+		m.addAttribute("teamDataList", service.cachedRankData());
 
 		// 포스트 시즌 대진
 		m.addAttribute("postSeason", service.cachedPostData());

@@ -2,16 +2,16 @@ package com.app.dto;
 
 public class LikeDTO {
 	int like_num;
-	String user_id;
-	String like_type;
-	int id;
+	String userid;
+	String res_id;
+	String lodging_id;
 	public LikeDTO() {
 	}
-	public LikeDTO(int like_num, String user_id, String like_type, int id) {
+	public LikeDTO(int like_num, String userid, String res_id, String lodging_id) {
 		this.like_num = like_num;
-		this.user_id = user_id;
-		this.like_type = like_type;
-		this.id = id;
+		this.userid = userid;
+		this.res_id = res_id;
+		this.lodging_id = lodging_id;
 	}
 	public int getLike_num() {
 		return like_num;
@@ -19,29 +19,28 @@ public class LikeDTO {
 	public void setLike_num(int like_num) {
 		this.like_num = like_num;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getUserid() {
+		return userid;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public String getLike_type() {
-		return like_type;
+	public String getRes_id() {
+		return res_id;
 	}
-	public void setLike_type(String like_type) {
-		this.like_type = like_type;
+	public void setRes_id(String res_id) {
+		this.res_id = res_id;
 	}
-	public int getId() {
-		return id;
+	public String getLodging_id() {
+		return lodging_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setLodging_id(String lodging_id) {
+		this.lodging_id = lodging_id;
 	}
 	@Override
 	public String toString() {
-		return "LikeDTO [like_num=" + like_num + ", user_id=" + user_id + ", like_type=" + like_type + ", id=" + id
-				+ "]";
+		return "LikeDTO [like_num=" + like_num + ", userid=" + userid + ", res_id=" + res_id + ", lodging_id="
+				+ lodging_id + "]";
 	}
-	
 	
 }

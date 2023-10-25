@@ -18,12 +18,6 @@ public class ReviewController {
 	ReviewService service;
 	
 	//리뷰목록
-//	@GetMapping("/r_reviewList")
-//	@ModelAttribute("pageDTO")
-//	public ReviewPageDTO r_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage) {
-//		return service.r_reviewList(curPage);
-//	}
-	
 	@GetMapping("/r_reviewList")
 	public ModelAndView r_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage) {
 	    ReviewPageDTO pageDTO = service.r_reviewList(curPage);
@@ -56,7 +50,8 @@ public class ReviewController {
 	//리뷰 등록
 	@PostMapping("/reviewWrite")
 	public String review(ReviewDTO reviewDTO) {
-		int num = service.reviewWrite(reviewDTO);
+		System.out.println("register: " + reviewDTO);
+		service.reviewWrite(reviewDTO);
 		return "redirect:review/r_reviewList";
 	}
 
@@ -85,4 +80,5 @@ public class ReviewController {
 		return "redirect:r_reviewList";
 	}
 	
+
 }

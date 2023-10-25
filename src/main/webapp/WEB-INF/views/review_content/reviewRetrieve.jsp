@@ -80,7 +80,7 @@
 	    
 <div class="myform">
 		<div class="container">
-	 		<form name="rating" id="rating" method="post" action="./save">
+	 		<form name="rating" id="rating" method="post" value="${reviewRetrieve.rating}">
 		    <fieldset style="text-align: center">
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점을 선택해주세요</legend>
 		        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
@@ -103,8 +103,10 @@
 		<div>
 			<form action="upload" method="post" enctype="multipart/form-data">
 				리뷰사진을 올려주세요 <br>
-				<input type="file" name="theFile"><br>
-				<input type="submit" value="업로드">
+				<div class="uploadDiv">
+					<input type="file" name="theFile" multiple>
+				</div>				
+				<button id="uploadBtn">업로드</button>
 			</form>
 		</div>
 		<!-- 이미지 업로드 -->

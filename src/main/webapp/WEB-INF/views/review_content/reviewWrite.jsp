@@ -75,8 +75,8 @@
 <body>
 <div class="myform">
 	<form action="reviewWrite" method="post">
+	<input type="hidden" name="res_id" value="${param.res_id}">
  		<div class="container">
-	 		<form name="rating" id="rating" method="post">
 		    <fieldset style="text-align: center">
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점을 선택해주세요</legend>
 		        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
@@ -85,7 +85,6 @@
 		        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
 		        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
 		     </fieldset>
-	 		</form>
 		</div>
 
 		<div class="container">
@@ -95,40 +94,64 @@
 		</div>
 		
 		<!-- 이미지 업로드 -->
- 		추후 수정 예정
 		<div>
-			<form action="upload" method="post" enctype="multipart/form-data">
-				리뷰사진을 올려주세요 <br>
-				<input type="file" name="theFile"><br>
-				<input type="submit" value="업로드">
-			</form>
-		</div>
-		<!-- 이미지 업로드 -->
+		 	<div class='uploadDiv'>
+				<input type='file' name='uploadFile' multiple>
+			</div>
 		
-		<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">
-		  <button class="btn btn-primary" type="submit" id="registerBtn">등록</button>
-		  <button class="btn btn-primary" type="button" onclick="cancel()">취소</button>
+			<div class='uploadResult'>
+				<ul>
+					/이미지 미리보기/
+				</ul>
+			</div>
+			
+			<button id='uploadBtn'>업로드</button>
+			<!-- 이미지 업로드 -->
+			
+			<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">
+			  <button class="btn btn-primary" type="submit" id="registerBtn">등록</button>
+			  <button class="btn btn-primary" type="button" onclick="cancel()">취소</button>
+			</div>
 		</div>
 		
 	</form>	
 </div>
 
 
-<script type="text/javascript">
-	function cancel(){
-		var shouldCancel = confirm("작성 중인 리뷰가 있습니다. 저장하지 않고 나가시겠습니까?");
-		if (shouldCancel) {
-			location.href = "r_reviewList";
-		}
-	}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
+		crossorigin="anonymous"></script>
+		
+<script>
+$(document).ready(function(){
+	
+	 $("#uploadBtn").on("click", function(e){
 
-document.getElementById("registerBtn").addEventListener("click", function() {
-    var confirmation = confirm("등록하시겠습니까?");
-    if (confirmation) {
-      //저장 구현
-    	location.href = "r_reviewList";
-    }
+	 var formData = new FormData();
+	 var inputFile = $("input[name='uploadFile']");
+	 var files = inputFile[0].files;
+	
+	 console.log(files);
+
+	 //add filedate to formdata
+	 for(var i = 0; i < files.length; i++){
+	
+	 formData.append("uploadFile", files[i]);
+
+		 $.ajax({
+			 url: '/uploadAjaxAction',
+			 processData: false,
+			 contentType: false,
+			 data: formData,
+			 type: 'POST',
+			 success: function(result){
+				 alert("Uploaded");
+			 }
+		 }); //$.ajax
+	
+	 });  
 });
+
 </script>
 </body>
 </html>

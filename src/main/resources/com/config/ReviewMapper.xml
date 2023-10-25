@@ -38,7 +38,7 @@
 	 <!-- 리뷰 수정 -->
    <update id="reviewUpdate" parameterType="ReviewDTO">
    	 update restaurant_reviews
-   	 set review_content = #{review_content}
+   	 set review_content = #{review_content}, rating=#{rating}, modified_date = sysdate
    	 where review_id = #{review_id}
    </update>   
    <!-- 리뷰 상세보기 -->

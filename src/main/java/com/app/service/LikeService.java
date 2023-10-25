@@ -10,4 +10,10 @@ import com.app.dto.RestaurantDTO;
 public interface LikeService {
 	public int like_res(LikeDTO dto);
 	public int like_lod(LikeDTO dto);
+	public List<Object> find_like_res(String userid);
+	public List<RestaurantDTO> find_like_res_info(List<Object> list);
+	public List<Object> find_like_lod(String userid);
+	public List<LodgingDTO> find_like_lod_info(List<Object> list);
+	public int delete_like_res(HashMap<String, Object> map);
+	public int delete_like_lod(HashMap<String, Object> map);
 }

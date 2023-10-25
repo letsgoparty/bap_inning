@@ -20,6 +20,10 @@
 <link rel="icon" type="image/png" sizes="32x32"
 	href="images/icon/favicon-32x32.png">
 <link href="css/style.css" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -41,8 +45,8 @@
 					<div class="dropdown mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false"
-							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.4rem">
-							🍽️ 음식점 찾기 </a>
+							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.5rem">
+							<img src="images/icon/restaurant.png" width="40" height="40"> 음식점 찾기 </a>
 						<ul class="dropdown-menu"
 							style="font-family: 'KBO-Dia-Gothic_bold';">
 							<li><a class="dropdown-item" href="r_SSG">인천 SSG 랜더스 필드</a></li>
@@ -63,8 +67,8 @@
 					<div class="dropdown mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false"
-							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.4rem">
-							💒 숙소 찾기 </a>
+							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.5rem">
+							<img src="images/icon/hotel.png" width="40" height="40"> 숙소 찾기 </a>
 						<ul class="dropdown-menu"
 							style="font-family: 'KBO-Dia-Gothic_bold';">
 							<li><a class="dropdown-item" href="l_SSG">인천 SSG 랜더스 필드</a></li>
@@ -84,8 +88,8 @@
 					<!-- 자유게시판 드롭다운 -->
 					<div class="dropdown me-auto mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="list"
-							role="button" style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.4rem">
-							⚾️ 자유게시판 </a>
+							role="button" style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.5rem">
+							<img src="images/icon/baseball.png" width="40" height="40"> 자유게시판 </a>
 					</div>
 					&nbsp&nbsp&nbsp&nbsp&nbsp
 						<c:if test="${empty login}">
@@ -100,6 +104,8 @@
 								href="logout" role="button">로그아웃</a></li>
 							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
 								href="mypage" role="button">마이페이지</a></li>
+								<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
+								href="like" role="button"><img src="images/icon/like_icon.png" width=20, height=20></a></li>
 						</c:if>
 				</ul>
 			</div>

@@ -1,21 +1,18 @@
 package com.app.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.app.dto.ScheduleDTO;
-import com.app.dto.TeamDTO;
+import com.app.dto.LodgingDTO;
+import com.app.dto.MemberDTO;
+import com.app.dto.RestaurantDTO;
+import com.app.service.LikeService;
 import com.app.service.ScrapingService;
 
 /*******************************
@@ -29,6 +26,9 @@ public class MainController {
 
 	@Autowired
 	private ScrapingService service;
+	
+	@Autowired
+	private LikeService likeService;
 
 	@RequestMapping("/main")
 	public String main(Model m) {
@@ -47,5 +47,24 @@ public class MainController {
 		m.addAttribute("teams", teams);
 		
 		return "main";
+	}
+	
+	@RequestMapping("/like")
+	public String like(Model m, HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		String userid = dto.getUserid();
+
+		List<Object> res_list = likeService.find_like_res(userid);
+		List<RestaurantDTO> Rdto = likeService.find_like_res_info(res_list);
+
+		List<Object> lod_list = likeService.find_like_lod(userid);
+		System.out.println(lod_list);
+		List<LodgingDTO> Ldto = likeService.find_like_lod_info(lod_list);
+		
+		System.out.println(Ldto);
+		m.addAttribute("Rdto", Rdto);
+		m.addAttribute("Ldto", Ldto);
+		
+		return "like/myLike";
 	}
 }

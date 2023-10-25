@@ -6,77 +6,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/sidebar.css" rel="stylesheet" />
+<link href="css/sidebar.css" rel="stylesheet" />
 <title>잠실 종합 운동장 주변 맛집 지도</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <body>
-        <div class="sidebar" id="sidebar">
-            <!-- 가게 정보 띄우기  -->
-            <form action="r_reviewList" method="get">
-                <input type="hidden" id="res_id" name="res_id">
-                <div class="card mt-5">
-                    <div id="res_image"></div>
-                    <div class="card-body">
-                        <h1 class="card-title mt-3 mb-4" id="res_name"></h1>
-                        <div>
-                            <img src="images/icon/icon1.png" width="13" height="13"> <span id="res_addr"></span>
-                            <p></p>
-                            <img src="images/icon/icon2.png" width="13" height="13"> <span
-                                style="font-family: 'KBO-Dia-Gothic_light';"> <span class="location">잠실종합운동장</span>에서 걸어서
-                                <span id="distance"></span>분
-                            </span>
-                        </div>
-                        <p></p>
-                        <img src="images/icon/icon3.png" width="13" height="13"> <span>&nbsp;4.5
-                            <!--  별점 부분 수정 필요 -->
-                        </span>
-                        <p class="card-text mt-3" id="res_content"></p>
-                        <button type="submit" class="btn btn-primary mt-3 mb-3" id="review_btn">리뷰 보러가기</button>
-                        <button id="cancel" class="btn btn-primary mx-3">닫기</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-          <!--  전체 리스트 사이드바  -->
-            <div class="sidebar" id="allinfo_sidebar">
-                <div id="all_info"></div>
-            </div>
-            <!--  한식 리스트 사이드바  -->
-            <div class="sidebar" id="KORinfo_sidebar">
-                <div id="KOR_info"></div>
-            </div>
-            <!--  양식 리스트 사이드바  -->
-            <div class="sidebar" id="USAinfo_sidebar">
-                <div id="USA_info"></div>
-            </div>
-            <!--  중식 리스트 사이드바  -->
-            <div class="sidebar" id="CHNinfo_sidebar">
-                <div id="CHN_info"></div>
-            </div>
-            <!--  일식 리스트 사이드바  -->
-            <div class="sidebar" id="JPNinfo_sidebar">
-                <div id="JPN_info"></div>
-            </div>
-            <!--  카페 리스트 사이드바  -->
-            <div class="sidebar" id="CAFEinfo_sidebar">
-                <div id="CAFE_info"></div>
-            </div>
-            <!--  패스트푸드 리스트 사이드바  -->
-            <div class="sidebar" id="FFinfo_sidebar">
-                <div id="FF_info"></div>
-            </div>
-            <div class="mt-3 mb-2" id="containerDiv">
-                <button class="btn btn-primary mb-2 category" id="find_all">맛집 전체보기</button>
-                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘 한식</button>
-                <button class="btn btn-primary mb-2 category" id="find_USA">🍖 양식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟 중식</button>
-                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣 일식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️ 카페</button>
-                <button class="btn btn-primary mb-2 category" id="find_FF">🍔 패스트푸드</button>
-                <div id="googleMap" style="width: 100%; height: 700px;"></div>
-            </div>
+<body>
+	<div class="sidebar" id="sidebar">
+		<!-- 가게 정보 띄우기  -->
+		<form action="r_reviewList" method="get">
+			<input type="hidden" id="res_id" name="res_id">
+			<div class="card mt-5">
+				<div id="res_image"></div>
+				<div class="card-body">
+					<h1 class="card-title mt-3 mb-4" id="res_name"></h1>
+					<div>
+						<img src="images/icon/icon1.png" width="13" height="13"> <span
+							id="res_addr"></span>
+						<p></p>
+						<img src="images/icon/icon2.png" width="13" height="13"> <span
+							style="font-family: 'KBO-Dia-Gothic_light';"> <span
+							class="location">잠실종합운동장</span>에서 걸어서 <span id="distance"></span>분
+						</span>
+					</div>
+					<p></p>
+					<img src="images/icon/icon3.png" width="13" height="13"> <span>&nbsp;4.5
+						<!--  별점 부분 수정 필요 -->
+					</span>
+					<p class="card-text mt-3" id="res_content"></p>
+					<button type="submit" class="btn btn-primary mt-3 mb-3"
+						id="review_btn">리뷰 보러가기</button>
+					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
+					<button id="like_btn" class="btn btn-primary mt-3 me-3"
+						style="float: right;">
+						<img src="images/icon/dislike_icon.png" width=20 height=20>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--  전체 리스트 사이드바  -->
+	<div class="sidebar" id="allinfo_sidebar">
+		<div id="all_info"></div>
+	</div>
+	<!--  한식 리스트 사이드바  -->
+	<div class="sidebar" id="KORinfo_sidebar">
+		<div id="KOR_info"></div>
+	</div>
+	<!--  양식 리스트 사이드바  -->
+	<div class="sidebar" id="USAinfo_sidebar">
+		<div id="USA_info"></div>
+	</div>
+	<!--  중식 리스트 사이드바  -->
+	<div class="sidebar" id="CHNinfo_sidebar">
+		<div id="CHN_info"></div>
+	</div>
+	<!--  일식 리스트 사이드바  -->
+	<div class="sidebar" id="JPNinfo_sidebar">
+		<div id="JPN_info"></div>
+	</div>
+	<!--  카페 리스트 사이드바  -->
+	<div class="sidebar" id="CAFEinfo_sidebar">
+		<div id="CAFE_info"></div>
+	</div>
+	<!--  패스트푸드 리스트 사이드바  -->
+	<div class="sidebar" id="FFinfo_sidebar">
+		<div id="FF_info"></div>
+	</div>
+	<div class="mt-3 mb-2" id="containerDiv">
+		<button class="btn btn-primary mb-2 category" id="find_all">맛집
+			전체보기</button>
+		<button class="btn btn-primary mb-2 category" id="find_KOR">🥘
+			한식</button>
+		<button class="btn btn-primary mb-2 category" id="find_USA">🍖
+			양식</button>
+		<button class="btn btn-primary mb-2 category" id="find_CHN">🥟
+			중식</button>
+		<button class="btn btn-primary mb-2 category" id="find_JPN">🍣
+			일식</button>
+		<button class="btn btn-primary mb-2 category" id="find_CAFE">☕️
+			카페</button>
+		<button class="btn btn-primary mb-2 category" id="find_FF">🍔
+			패스트푸드</button>
+		<div id="googleMap" style="width: 100%; height: 700px;"></div>
+	</div>
 	<script>
+
+    // '찜하기' 버튼
+    $(document).on('click', '#like_btn', function () {
+        event.preventDefault();
+        var res_id = $(this).data('res-id');
+
+        $.ajax({
+            url: 'like_res',
+            method: 'GET',
+            data: { res_id: res_id },
+            success: function (data) {
+                if (data === '로그인이 필요합니다.') {
+                    Swal.fire({
+                        text: data,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK',
+                        cancelButtonText: 'CANCLE',
+                        button: {
+                            text: '확인',
+                            closeModal: true
+                        }
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/app/loginForm';
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        text: data,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        button: {
+                            text: '확인',
+                            closeModal: true
+                        }
+                    })
+                }
+            },
+            error: function (error) {
+                Swal.fire({
+                    text: "이미 찜한 음식점입니다.",
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    button: {
+                        text: '확인',
+                        closeModal: true
+                    }
+                })
+            }
+        });
+    });
 	// '닫기' 버튼
     $('#cancel').on('click', function () {
         event.preventDefault();
@@ -131,6 +199,7 @@
                             '<p class="card-text mt-3" id="res_content" style="font-family: \'KBO-Dia-Gothic_light\';">' + ele.res_content + '</p>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
+                            '<button class="btn btn-primary mt-3 me-3" id="like_btn" data-res-id="' + ele.res_id + '" style="float:right;"><img src="images/icon/dislike_icon.png" width=20 height=20></button>' +
                             '</div>' +
                             '</div>' +
                             '</form>';
@@ -208,13 +277,14 @@
                             '<div class="">' +
                             '<img src="images/icon/icon1.png" width="13" height="13"> <span id="res_addr">' + ele.res_addr + '</span>' +
                             '<p></p>' +
-                            '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">SSG 랜더스필드</span>에서 걸어서 <span id="distance">' + ele.distance + '</span> 분</span>' +
+                            '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">잠실종합운동장</span>에서 걸어서 <span id="distance">' + ele.distance + '</span> 분</span>' +
                             '</div>' +
                             '<p></p>' +
                             '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
                             '<p class="card-text mt-3" id="res_content"">' + ele.res_content + '</p>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
+                            '<button class="btn btn-primary mt-3 me-3" id="like_btn" data-res-id="' + ele.res_id + '" style="float:right;"><img src="images/icon/dislike_icon.png" width=20 height=20></button>' +
                             '</div>' +
                             '</div>' +
                             '</form>';
@@ -333,6 +403,7 @@
                                         $('#distance').text(data.distance);
                                         $('#res_content').text(data.res_content);
                                         $('#res_id').val(data.res_id);
+                                        $('#like_btn').data('res-id', data.res_id);
 
                                     },
                                     error: function (error) {

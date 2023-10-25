@@ -8,10 +8,16 @@
 <title>임시 음식점 리뷰 목록</title>
 
 <script type="text/javascript">
-	function writeui() {
-	    location.href = "reviewWrite";
-	}
-	/* 
+
+	document.getElementById("writeBtn").addEventListener("click", function() {
+	    // 선택한 res_id 가져오기
+	    const res_id = document.getElementById("res_id").value;
+
+	    // res_id를 사용하여 리뷰 작성 페이지로 이동
+	    window.location.href = "reviewWrite?res_id=${res_id}";
+	});
+	
+
 	function reviewDelete(){
 		var shouldDelete = confirm("리뷰를 삭제하시겠습니까?");
 		if (shouldDelete) {
@@ -31,11 +37,13 @@
 		      }
 		    });
 	}
- */
+
 </script>
 </head>
 <body>
 	<div class="container">
+		<form action="reviewWrite" method="get">
+    	<input type="hidden" name="res_id" value="${param.res_id}">
 		<h2 class="text-center">임시 음식점 리뷰 목록</h2>
 		<select>
 			<option>최신순
@@ -64,7 +72,15 @@
 					<td>${reviewDTO.review_content}</td>
 					<td>이미지추가</td>
 					<td>${reviewDTO.user_id}</td>
-					<td>${reviewDTO.rating}</td>
+		      <td>
+						<c:choose>
+							<c:when test="${reviewDTO.rating == 1}">⭐</c:when>
+							<c:when test="${reviewDTO.rating == 2}">⭐⭐</c:when>
+							<c:when test="${reviewDTO.rating == 3}">⭐⭐⭐</c:when>
+							<c:when test="${reviewDTO.rating == 4}">⭐⭐⭐⭐</c:when>
+							<c:when test="${reviewDTO.rating == 5}">⭐⭐⭐⭐⭐</c:when>
+						</c:choose>
+		    	</td>
 					<td>${reviewDTO.like_cnt}</td>
 					<td>${reviewDTO.modified_date}</td>
 					<td><a href="reviewRetrieve?review_id=${reviewDTO.review_id}">수정</a></td>
@@ -88,14 +104,14 @@
     	   ${i}
     	</c:if>
     	<c:if test="${curPage!=i}">
-    	  <a href="list?curPage=${i}">${i}</a>
+    	  <a href="r_reviewList?curPage=${i}">${i}</a>
     	</c:if>
     </c:forEach>
      </td>
   </tr>
   <!--  page 번호 출력 --> 
 		</table>
-		<button onclick="writeui()">리뷰작성</button>
+		<button type="submit" id="writeBtn">리뷰작성</button>
 	</div>
 
 </body>

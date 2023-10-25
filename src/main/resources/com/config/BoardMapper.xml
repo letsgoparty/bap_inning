@@ -3,6 +3,29 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardMapper">
+
+	<sql id="search">
+		<if test="type != null and keyword != null">
+			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+				<foreach item="type" collection="typeArr">
+					<trim prefix="OR">
+						<choose>
+							<when test="type =='T'.toString()">
+								TITLE LIKE '%'||#{keyword})||'%'
+							</when>
+							<when test="type =='C'.toString()">
+								TEXT LIKE '%'||#{keyword})||'%'
+							</when>
+							<when test="type =='W'.toString()">
+								USERID LIKE '%'||#{keyword})||'%'
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+
 	<delete id="boardDelete" parameterType="int">
 		delete from board
 		where
@@ -24,12 +47,21 @@
 
 
 	<select id="selectList" resultType="Board">
+		<![CDATA[
 		select board_num, title,
 		userid, text,
-		to_char(board_date, 'YYYY/MM/dd') as board_date,
+		to_char(board_date, 'YYYY/MM/dd')
+		as board_date,
 		count
 		from board
+		where 1=1
+		]]>
+		<if test="team_code != null">
+				AND team_code= #{team_code}
+		</if>
+		<![CDATA[
 		order by board_num desc
+		]]>
 	</select>
 
 	<select id="totalCount" resultType="int">
@@ -54,8 +86,7 @@
 		where board_num = #{board_num}
 	</select>
 
-	<select id="getListWithPaging"
-		resultType="Board">
+	<select id="getListWithPaging" resultType="Board">
 		<![CDATA[
 			select board_num, title,
 		userid, text,
@@ -64,31 +95,10 @@
 		from board
 		where
 		]]>
-
-		<include refid="search"></include>
+			<include refid="search"></include>
 	</select>
 
-	<sql id="search">
-		<if test="type != null and keyword != null">
-			<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-				<foreach item="type" collection="typeArr">
-					<trim prefix="OR">
-						<choose>
-							<when test="type =='T'.toString()">
-								(TITLE LIKE '%'||#{keyword})||'%')
-							</when>
-							<when test="type =='C'.toString()">
-								(TEXT LIKE '%'||#{keyword})||'%')
-							</when>
-							<when test="type =='W'.toString()">
-								(USERID LIKE '%'||#{keyword})||'%')
-							</when>
-						</choose>
-					</trim>
-				</foreach>
-			</trim>
-		</if>
-	</sql>
+
 
 </mapper>
 

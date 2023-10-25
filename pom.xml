@@ -67,6 +67,15 @@
 			<artifactId>selenium-java</artifactId>
 			<version>3.141.59</version> <!-- 최신 버전 확인 -->
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

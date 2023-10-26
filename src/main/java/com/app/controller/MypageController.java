@@ -4,32 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.descriptor.web.FilterDef;
-import org.openqa.selenium.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.app.dao.MypageDAO;
-import com.app.dto.JspMemberDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.ScheduleDTO;
+import com.app.dto.TeamDTO;
 import com.app.service.MemberService;
 import com.app.service.MypageService;
-import com.app.service.MypageServiceImpl;
 import com.app.service.ScrapingService;
 
 @Controller
@@ -54,9 +43,11 @@ public class MypageController {
 		String userid = dto.getUserid();
 		MemberDTO user = memberService.mypage(userid);
 		session.setAttribute("login", user); //session에 유저정보 보내기
-		model.addAttribute("user",user); //model에 유저정보 보내기 
-		// 전체일정 가져오기
+		model.addAttribute("user",user); //model에 유저정보 보내기
+		// 전체 일정 가져오기
 		List<ScheduleDTO> allScheduleList = scrapService.cacheScheduleData();
+		// 전체 순위 가져오기
+		List<TeamDTO> teamDataList = scrapService.cachedRankData();
 		// 나의 팀 가져오기
 		int my_teamCode = dto.getTeam_code();
 		String selectedTeam = ".."; // 나중에 수정하기
@@ -94,7 +85,6 @@ public class MypageController {
 		default:
 			break;
 		}
-
 		// 선택팀에 해당하는 일정만 필터링하기
 		List<ScheduleDTO> filterScheduleList = new ArrayList<ScheduleDTO>();
 		for (ScheduleDTO schedule : allScheduleList) {
@@ -103,8 +93,15 @@ public class MypageController {
 			}
 		}
 		model.addAttribute("filterScheduleList", filterScheduleList);
-		System.out.println(filterScheduleList);
-
+		
+		TeamDTO filterTeamData = new TeamDTO();
+		for(TeamDTO team : teamDataList) {
+			if(team.getTitle().equals(selectedTeam)) {
+				filterTeamData = team;
+			}
+		}
+		
+		model.addAttribute("filterTeamData", filterTeamData);
 		return "mypage/myPage";
 	}
 
@@ -123,26 +120,22 @@ public class MypageController {
 	}
 
 	@PostMapping("/myinfo")
-	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("nickname") String nickname, @RequestParam("email1")String email1, @RequestParam("email2")String email2, @RequestParam("myTeam") int teamCode) {
+	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("nickname") String nickname, @RequestParam("email1")String email1, @RequestParam("email2")String email2, @RequestParam("myTeam") int teamCode, HttpSession session) {
 	    MemberDTO dto=new MemberDTO();
 	    String email = email1 + "@" + email2;
-	    
+	   
 	    dto.setUserid(userid);
 	    dto.setEmail(email);
 	    dto.setNickname(nickname);
 	    dto.setTeam_code(teamCode);
-	    
+	   
 	    int n=mypageService.memberUpdate(dto);
-	    if(n>0) {
-	    	return "redirect:/mypage";
-	    }else {
-	    	//에러페이지 하나 만들어서 그쪽으로 보내는게 좋을것같긴함.
-	    	return "redirect:/myinfo";
-	    }
-	    
-
+	   
+	    MemberDTO updatedUser = memberService.mypage(userid);
+	    session.setAttribute("login", updatedUser);
+	    return "mypage_content/successInfo";
 	}
-
+	
 	@GetMapping("/pwchange")
 	public String pwchange(HttpSession session, Model m) {
 		//세션에서 로그인정보 가져오기
@@ -192,6 +185,20 @@ public class MypageController {
 	@GetMapping("/my_l_review")
 	public String myLodgingReview() {
 		return "mypage/myLodgingReview";
+	}
+	
+	@GetMapping("/user_delete")
+	public String userdelete(HttpSession session,Model m) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO) session.getAttribute("login");
+		//로그인여부는 인터셉터 
+		String userid=user.getUserid();
+		user=memberService.mypage(userid);
+		session.setAttribute("login", user);//session에 유저정보 보내기
+		m.addAttribute("user",user);//model에 유저정보 보내기.
+
+		
+		return "mypage/userDelete";
 	}
 
 	

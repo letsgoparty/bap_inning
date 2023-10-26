@@ -124,7 +124,7 @@ span {
 							<option value="">--직접입력--</option>
 							<option value="daum.net">daum.net</option>
 							<option value="naver.com">naver.com</option>
-							<option value="google.com">google.com</option>
+							<option value="gmail.com">gmail.com</option>
 						</select>
 					</div>
 
@@ -147,7 +147,7 @@ span {
 					</div>
 					<div style="display: flex; justify-content: space-between;"
 						class="mb-3">
-						<button class="btn btn-primary" type="button" onclick="">탈퇴하기</button>
+						<button class="btn btn-primary" type="button" id="deleteUserBtn" onclick="location.href='/app/user_delete'">탈퇴하기</button>
 						<div>
 						<button class="btn btn-primary" type="button" id="editBtn">수정하기</button>
 						<button class="btn btn-primary" type="submit" id="submitBtn" disabled>변경내용 확정</button>

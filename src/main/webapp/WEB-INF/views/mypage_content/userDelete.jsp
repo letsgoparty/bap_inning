@@ -22,21 +22,18 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
 
-});
 
 </script>
 
 </head>
 <body>
 
-
 	<div class="container">
 		<div class="input-form-background row">
 			<div class="input-form col-md-12 mx-auto">
 				<h3>탈퇴하기</h3>
-				<form action="delete_user" method="post" onsubmit="return deleteUser();">
+				<form action="user_delete" method="post">
 				
 					<span>탈퇴하려면 비밀번호를 입력하세요</span>
 					<div class="input-group my-3">

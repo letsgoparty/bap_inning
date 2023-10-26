@@ -26,4 +26,10 @@ public class MypageDAO {
 		return n;
 	}
 	
+	//회원 탈퇴
+	public int memberDelete(String userid) {
+		int n=session.delete("MemberMapper.memberDelete",userid);
+		return n;
+	}
+	
 }

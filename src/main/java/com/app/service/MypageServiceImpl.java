@@ -30,6 +30,12 @@ public class MypageServiceImpl implements MypageService  {
 	
 		return n;
 	}
+
+	@Override
+	public int memberDelete(String userid) {
+		int n=dao.memberDelete(userid);
+		return n;
+	}
 	
 	
 	

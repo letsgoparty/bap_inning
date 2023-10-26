@@ -46,4 +46,11 @@
 	where userid=#{userid}
 	</delete>
  	
+ 	<!-- 임시비밀번호로 저장 -->
+	<update id="updateTemporaryPW" parameterType="hashmap">
+	update member
+	set password = #{password}
+	where email = #{email}
+	</update>
+	
 </mapper>

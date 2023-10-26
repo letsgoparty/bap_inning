@@ -167,7 +167,7 @@ public class MypageController {
 	    if(n>0) {
 	    	return "redirect:/mypage";
 	    }else {
-	    	//에러페이지 하나 만들어서 그쪽으로 보내는게 좋을것같긴함. 
+	    	//에러페이지 하나 만들어서 그쪽으로 보내는게 좋을것같긴함..
 	    	return "redirect:/pwchange";
 	    }
 

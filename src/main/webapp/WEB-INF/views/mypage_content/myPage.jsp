@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>마이페이지</title>
 <style>
 .input-form {
@@ -28,6 +29,7 @@
 
 .swiper {
 	max-width: 800px;
+	height: 200px !important;
 	padding: 32px;
 	background: #fff;
 	-webkit-border-radius: 10px;
@@ -112,21 +114,21 @@
 <script>
 	$(document).ready(function() {
 		//swiper 처음 보여줄 슬라이드 지정하기
-		var totalSlide=$('.swiper-slide').length;
-		var initialSlideIndex = totalSlide-1; 
-	    $('.swiper-slide').each(function(index) {
-	        var status = $(this).find('.type span').text();
-	        console.log(status);
+		var totalSlide = $('.swiper-slide').length;
+		var initialSlideIndex = totalSlide - 1;
+		$('.swiper-slide').each(function(index) {
+			var status = $(this).find('.type span').text();
+			console.log(status);
 
-	        if(status==='오늘 경기'){
-	        	initialSlideIndex=index;
-	        	return false;
-	        }else if(status ==='경기예정'){
-	        	initialSlideIndex=index;
-	        	return false;
-	        }
-	    });
-		
+			if (status === '오늘 경기') {
+				initialSlideIndex = index;
+				return false;
+			} else if (status === '경기예정') {
+				initialSlideIndex = index;
+				return false;
+			}
+		});
+
 		// swiper초기화 
 		var swiper = new Swiper(".swiper-container", {
 			slidesPerView : 1,
@@ -140,9 +142,6 @@
 		});
 
 	});
-	
-	
-	
 </script>
 
 </head>
@@ -160,8 +159,9 @@
 				<div
 					style="display: flex; justify-content: space-between; align-items: flex-end;">
 					<div>
-						<img src="images/logo/SSG.png" width="50" height="50" class="img-thumbnail" id="myTeamLogo">
-						<span>환영합니다 "${user.nickname}" 님</span>
+						<img src="#" width="50" height="50"
+							class="img-thumbnail" id="myTeamLogo"> <span>환영합니다
+							${user.nickname} 님</span>
 					</div>
 					<span id="myTeamCode" hidden>${user.team_code}</span>
 					<div>
@@ -170,8 +170,63 @@
 							id="myTeamWeather">내 구장 날씨 확인</a>
 					</div>
 				</div>
+				<div class="mt-4 rounded"
+					style="text-align: center; border: 1px solid #ccc; border-bottom: none; max-width: 550px; margin-left: 95px !important;">
+					<div class="mx-5"
+						style="display: inline-block; vertical-align: top;">
+						<img src="images/ranking/rank${filterTeamData.rank}.PNG" alt="img"
+							width="150" height="200" />
+					</div>
+					<div style="display: inline-block;">
+						<h2 class="mt-3" style="font-family: 'KBO-Dia-Gothic_bold';">
+							<img src="images/logo/${filterTeamData.title}.png" width=60
+								height=40>&nbsp;
+							<c:choose>
+								<c:when test="${filterTeamData.title eq 'SSG'}">
+        							${filterTeamData.title} 랜더스
+    							</c:when>
+								<c:when test="${filterTeamData.title eq '키움'}">
+        							${filterTeamData.title} 히어로즈
+    							</c:when>
+								<c:when test="${filterTeamData.title eq 'LG'}">
+        							${filterTeamData.title} 트윈스
+    							</c:when>
+								<c:when test="${filterTeamData.title eq 'KT'}">
+        							${filterTeamData.title} wiz
+    							</c:when>
+								<c:when test="${filterTeamData.title eq 'KIA'}">
+        							${filterTeamData.title} 타이거즈
+    							</c:when>
+								<c:when test="${filterTeamData.title eq 'NC'}">
+        							${filterTeamData.title} 다이노스
+    							</c:when>
+								<c:when test="${filterTeamData.title eq '롯데'}">
+        							${filterTeamData.title} 자이언츠
+    							</c:when>
+								<c:when test="${filterTeamData.title eq '삼성'}">
+        							${filterTeamData.title} 라이온즈
+    							</c:when>
+								<c:when test="${filterTeamData.title eq '두산'}">
+        							${filterTeamData.title} 베어스
+    							</c:when>
+								<c:when test="${filterTeamData.title eq '한화'}">
+        							${filterTeamData.title} 이글스
+    							</c:when>
+							</c:choose>
+						</h2>
+						<p style="font-size: 1.8rem; font-weight: bold">${filterTeamData.victory}승
+							${filterTeamData.defeat}패 ${filterTeamData.draw}무</p>
+						<p style="font-size: 1.3rem">
+							연속 <span style="font-weight: bold">${filterTeamData.winning}</span>
+							&nbsp; 승률 <span style="font-weight: bold">${filterTeamData.rate}</span>
+						</p>
+						<p>
+							최근 10경기 <span style="font-weight: bold">${filterTeamData.recent}</span>
+						</p>
+					</div>
+				</div>
 				<!-- 나의팀 경기일정 등 출력 -->
-				<div class="swiper my-4">
+				<div class="swiper mb-3">
 					<div class="team-arg-box">
 						<button class="swiper-button-prev"></button>
 						<button class="swiper-button-next"></button>
@@ -199,8 +254,10 @@
 														<div class="loc">${schedule.location}</div>
 														<div class="type">
 															<!-- schedule.day가 10.19(목) 이런 모양의 string임 -->
-															<c:set var="trimmedDate" value="${fn:substring(schedule.day, 0, 5)}" />
-															<fmt:parseDate value="${trimmedDate}" pattern="MM.dd" var="scheduleDate" />
+															<c:set var="trimmedDate"
+																value="${fn:substring(schedule.day, 0, 5)}" />
+															<fmt:parseDate value="${trimmedDate}" pattern="MM.dd"
+																var="scheduleDate" />
 															<!-- 뒤에 요일 절삭하고 MM.dd 의 날짜형식으로 바꾼뒤 비교 -->
 															<c:choose>
 																<c:when test="${trimmedDate eq today}">
@@ -233,8 +290,22 @@
 														<c:set var="number1" value="${vsArray[0]}" />
 														<c:set var="number2" value="${vsArray[1]}" />
 
-														<div class="vs mx-3">${number1}&nbsp;vs&nbsp;${number2}</div>
-
+														<div class="vs mx-3">
+															<c:choose>
+																<c:when test="${number1 > number2}">
+																	<span style="color: #c93c3c;">${number1}</span> vs
+                                        <span style="color: gray;">${number2}</span>
+																</c:when>
+																<c:when test="${number1 < number2}">
+																	<span style="color: gray;">${number1}</span> vs
+                                        <span
+																		style="color: #c93c3c;">${number2}</span>
+																</c:when>
+																<c:otherwise>
+																	<span>${number1} vs ${number2}</span>
+																</c:otherwise>
+															</c:choose>
+														</div>
 														<div class="team" id="team2">
 															<div class="club-logo mx-5">
 																<img alt="${schedule.team2}"

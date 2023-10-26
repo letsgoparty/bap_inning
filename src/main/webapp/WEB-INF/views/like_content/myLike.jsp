@@ -101,6 +101,7 @@
 			<img src="images/icon/hotel2.png" width="30" height="30"> 숙소
 		</button>
 	</div>
+
 	<div class="container mt-2" id="resContainer">
 		<div class="row">
 			<c:forEach items="${Rdto}" var="dto" varStatus="loop">

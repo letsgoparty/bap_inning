@@ -52,7 +52,7 @@
 	<select id="find_rating" parameterType="string"
 		resultType="string">
     SELECT NVL(TO_CHAR(ROUND(AVG(rating), 1), '0.0'), '-')
-FROM restaurant_reviews NATURAL JOIN restaurant
-WHERE res_name = #{res_name}
+	FROM restaurant_reviews NATURAL JOIN restaurant
+	WHERE res_name = #{res_name}
 	</select>
 </mapper>

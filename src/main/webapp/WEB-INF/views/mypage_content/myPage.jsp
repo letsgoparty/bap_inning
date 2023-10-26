@@ -172,12 +172,12 @@
 				</div>
 				<div class="mt-4 rounded"
 					style="text-align: center; border: 1px solid #ccc; border-bottom: none; max-width: 550px; margin-left: 95px !important;">
-					<div class="mx-5"
+					<div class="mx-4"
 						style="display: inline-block; vertical-align: top;">
 						<img src="images/ranking/rank${filterTeamData.rank}.PNG" alt="img"
 							width="150" height="200" />
 					</div>
-					<div style="display: inline-block;">
+					<div class="me-4" style="display: inline-block;">
 						<h2 class="mt-3" style="font-family: 'KBO-Dia-Gothic_bold';">
 							<img src="images/logo/${filterTeamData.title}.png" width=60
 								height=40>&nbsp;

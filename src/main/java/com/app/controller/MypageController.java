@@ -131,10 +131,14 @@ public class MypageController {
 	    dto.setTeam_code(teamCode);
 	   
 	    int n=mypageService.memberUpdate(dto);
-	   
-	    MemberDTO updatedUser = memberService.mypage(userid);
-	    session.setAttribute("login", updatedUser);
-	    return "mypage_content/successInfo";
+	   if(n>0) {
+		   MemberDTO updatedUser = memberService.mypage(userid);
+		   session.setAttribute("login", updatedUser);
+		   return "mypage_content/successInfo";		   
+	   }else {
+		   return "mypage_content/failInfo";
+	   }
+	    
 	}
 	
 	@GetMapping("/pwchange")
@@ -151,19 +155,29 @@ public class MypageController {
 	}
 	
 	@PostMapping("/pwchange")
-	public String changePw(@RequestParam("userid") String userid, @RequestParam("newpw2") String password) {
-		HashMap<String, String> hashmap=new HashMap<String, String>();
-		hashmap.put("userid", userid);
-		hashmap.put("password", password);
-		
-		int n=mypageService.pwChange(hashmap);
-		
-	    if(n>0) {
-	    	return "redirect:/mypage";
-	    }else {
-	    	//에러페이지 하나 만들어서 그쪽으로 보내는게 좋을것같긴함..
-	    	return "redirect:/pwchange";
+	public String changePw(@RequestParam("currpw")String inputPw, @RequestParam("newpw2")String newpw, HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		//로그인여부는 인터셉터로
+		String userid=user.getUserid();
+		String dbPw=user.getPassword(); 
+	    //입력한 비번을 맞게썼는지 확인
+	    if(dbPw.equals(inputPw)) {
+	    	//비번이맞게쓴경우
+			HashMap<String, String> hashmap=new HashMap<String, String>();
+			hashmap.put("userid", userid);
+			hashmap.put("password", newpw);
+			
+			int n=mypageService.pwChange(hashmap);
+			
+		    if(n>0) {
+		    	return "mypage_content/successInfo";
+		    }else {
+		    	return "mypage_content/failInfo";
+		    }
 	    }
+	    //비번 불일치
+	    return "mypage_content/failInfo";
 
 	}
 	

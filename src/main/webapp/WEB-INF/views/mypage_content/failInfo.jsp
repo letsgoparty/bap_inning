@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원탈퇴 실패</title>
+    <title>회원정보 수정 실패</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 	$(document).ready(function() {
 		 Swal.fire({
- 	        text: "탈퇴에 실패하였습니다. 비밀번호를 확인해주세요.",
+ 	        text: "회원정보 수정에 실패하였습니다. 다시 확인해 주세요.",
  	        icon: 'error',
  	        confirmButtonColor: '#3085d6',
  	        button: {

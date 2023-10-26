@@ -54,20 +54,12 @@
 		
 	});
 	function submitCheck(){
-		//현재비번이 일치하는지 확인
-		var currPw=$("#currpw").val();
-		var userPw=$("#userpw").val();
-		if(currPw!=userPw){
-			alert("비밀번호가 일치하지 않습니다.");
-		return false;
-		}
-		//새 비번을 올바르게 썼는지 확인
+		//비번확인이 동일한경우에만 submit되게끔함. 
 		var pwCheck=$("#pwcheck").text();
 		if(pwCheck==="비밀번호가 다릅니다."){
 			alert("비밀번호가 일치하지 않습니다.");
 			return false;
 		}
-		alert("비밀번호가 변경되었습니다.");
 		return true;
 	};
 </script>
@@ -81,9 +73,6 @@
 			<div class="input-form col-md-12 mx-auto">
 				<h3>비밀번호 변경</h3>
 				<form action="pwchange" method="post" onsubmit="return submitCheck();">
-			
-					<input hidden id="userid" name="userid" value="${user.userid}">
-					<input hidden id="userpw" name="userpw" value="${user.password}">
 					<div class="input-group mb-3">
 						<span class="input-group-text col-4" >현재 비밀번호</span> 
 						<input

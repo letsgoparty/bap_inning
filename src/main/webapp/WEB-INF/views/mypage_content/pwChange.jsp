@@ -24,20 +24,19 @@
 <script>
 	$(document).ready(function() {
 		//새비번 에 유효성검사 주기. 
-		$("#newpw").on("keyup", function(){
-			var newpw=$(this).val();
+		$("#newpw2").on("click", function(){
+			var newpw=$("#newpw").val();
 			var numAlphabet=/[a-zA-Z].*\d|\d.*[a-zA-Z]/;
 			var specialChar=/[!@#$%^&*]/;
 			var isVaild = (newpw.length>=8) && numAlphabet.test(newpw) && specialChar.test(newpw);
 			
-			//비번조건 메세지 표시 와 버튼 활성화
-			if(isVaild){
-				$(".pwRequire").hide();
-			}else{
-				$(".pwRequire").show();		
+			//newpw가 조건에 맞지않은경우 newpw2에 못쓰게끔.
+			if(!isVaild){
+				alert("비밀번호는 영문 숫자 특수문자를 포함한 8자리 이상입니다.");
+				$("#newpw").focus();
 			}
-			
 		});
+
 		
 		
 		//새비번 확인 이 새비번 과 일치하게 썼는지.
@@ -50,8 +49,27 @@
 				mesg = "비밀번호가 일치합니다.";
 			}
 			$("#pwcheck").text(mesg);
-		})
-	})
+		});
+		
+		
+	});
+	function submitCheck(){
+		//현재비번이 일치하는지 확인
+		var currPw=$("#currpw").val();
+		var userPw=$("#userpw").val();
+		if(currPw!=userPw){
+			alert("비밀번호가 일치하지 않습니다.");
+		return false;
+		}
+		//새 비번을 올바르게 썼는지 확인
+		var pwCheck=$("#pwcheck").text();
+		if(pwCheck==="비밀번호가 다릅니다."){
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+		alert("비밀번호가 변경되었습니다.");
+		return true;
+	};
 </script>
 
 </head>
@@ -62,8 +80,10 @@
 		<div class="input-form-background row">
 			<div class="input-form col-md-12 mx-auto">
 				<h3>비밀번호 변경</h3>
-				<form action="">
-				
+				<form action="pwchange" method="post" onsubmit="return submitCheck();">
+			
+					<input hidden id="userid" name="userid" value="${user.userid}">
+					<input hidden id="userpw" name="userpw" value="${user.password}">
 					<div class="input-group mb-3">
 						<span class="input-group-text col-4" >현재 비밀번호</span> 
 						<input
@@ -71,7 +91,6 @@
 							name="currpw" aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-default">
 					</div>
-					<span class="pwRequire">비밀번호는 영문 숫자 특수문자를 포함한 8자리 이상 입니다</span>
 					<div class="input-group mb-3">
 						<span class="input-group-text col-4">새 비밀번호</span> 
 						<input
@@ -91,9 +110,10 @@
 							<strong><span class="" style="color:green" id="pwcheck"></span></strong>
 					</div><br><br>
             <div class="d-flex justify-content-center" >
-                <button type="submit" class="btn btn-primary" style="width:30%" >변경하기</button>
+                <button class="btn btn-primary" style="width:30%" id="change" >변경하기</button>
             </div>
-				</form>
+            </form>
+            
 			</div>
 		</div>
 	</div>

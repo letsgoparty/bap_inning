@@ -20,5 +20,10 @@ public class MypageDAO {
 		return n;
 	}
 
+	//비밀번호 변경
+	public int pwChange(HashMap<String, String> hashmap) {
+		int n=session.update("MemberMapper.pwChange",hashmap);
+		return n;
+	}
 	
 }

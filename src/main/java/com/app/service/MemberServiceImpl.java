@@ -40,7 +40,11 @@ public class MemberServiceImpl implements MemberService  {
 		MemberDTO dto = dao.getMypage(userid);
 		return dto;
 	}
-
+   
+	@Override
+	public int updateTemporaryPW(HashMap<String, String> map) {
+		return dao.updateTemporaryPW(map);
+	}
  
 }
 

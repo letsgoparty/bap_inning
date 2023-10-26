@@ -40,5 +40,9 @@ public class MemberDAO {
 			return dbdto;
 		}
 		
+		
+		public int updateTemporaryPW(HashMap<String, String> map) {
+			return session.update("MemberMapper.updateTemporaryPW", map);
+		}
 	
 }

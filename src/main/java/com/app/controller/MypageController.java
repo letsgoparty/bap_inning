@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -135,12 +136,43 @@ public class MypageController {
 	    if(n>0) {
 	    	return "redirect:/mypage";
 	    }else {
+	    	//에러페이지 하나 만들어서 그쪽으로 보내는게 좋을것같긴함.
 	    	return "redirect:/myinfo";
 	    }
 	    
 
 	}
 
+	@GetMapping("/pwchange")
+	public String pwchange(HttpSession session, Model m) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO) session.getAttribute("login");
+		//로그인여부는 인터셉터 
+		String userid=user.getUserid();
+		user=memberService.mypage(userid);
+		session.setAttribute("login", user);//session에 유저정보 보내기
+		m.addAttribute("user",user);//model에 유저정보 보내기.
+		
+		return "mypage/pwChange";
+	}
+	
+	@PostMapping("/pwchange")
+	public String changePw(@RequestParam("userid") String userid, @RequestParam("newpw2") String password) {
+		HashMap<String, String> hashmap=new HashMap<String, String>();
+		hashmap.put("userid", userid);
+		hashmap.put("password", password);
+		
+		int n=mypageService.pwChange(hashmap);
+		
+	    if(n>0) {
+	    	return "redirect:/mypage";
+	    }else {
+	    	//에러페이지 하나 만들어서 그쪽으로 보내는게 좋을것같긴함. 
+	    	return "redirect:/pwchange";
+	    }
+
+	}
+	
 	
 	@GetMapping("/mytext")
 	public String mytext() {
@@ -162,19 +194,7 @@ public class MypageController {
 		return "mypage/myLodgingReview";
 	}
 
-	@GetMapping("/pwchange")
-	public String pwchange() {
-		return "mypage/pwChange";
-	}
 	
-	@GetMapping(value="/updateIdCheck", produces="text/plain;charset=utf-8")
-	@ResponseBody
-	public String updateIdCheck(@RequestParam ("userid") String userid) {
-		MemberDTO dto=memberService.idCheck(userid);
-		String mesg="아이디 사용가능";
-		if(dto!=null) {
-			mesg="아이디 중복";
-		}
-		return mesg;
-	}
+	
+
 }

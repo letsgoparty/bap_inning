@@ -35,6 +35,12 @@
 	where userid=#{userid}
 	</update>
 	
+	<update id="pwChange" parameterType="hashmap">
+	update Member
+	set password=#{password}
+	where userid=#{userid}
+	</update>
+	
 	<delete id="memberDelete">
 	delete from Member
 	where userid=#{userid}

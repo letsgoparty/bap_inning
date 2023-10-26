@@ -9,5 +9,6 @@ public interface MypageService {
 	//마이페이지 기능 service
 	
 	public int memberUpdate(MemberDTO memberDTO);
+	public int pwChange(HashMap<String, String> hashmap);
 	
 }

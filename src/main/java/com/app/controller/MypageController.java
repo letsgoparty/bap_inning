@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.app.dto.MemberDTO;
 import com.app.dto.ScheduleDTO;
@@ -188,19 +189,42 @@ public class MypageController {
 	}
 	
 	@GetMapping("/user_delete")
-	public String userdelete(HttpSession session,Model m) {
+	public String userDeletePage(HttpSession session,Model m) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO) session.getAttribute("login");
 		//로그인여부는 인터셉터 
 		String userid=user.getUserid();
 		user=memberService.mypage(userid);
-		session.setAttribute("login", user);//session에 유저정보 보내기
 		m.addAttribute("user",user);//model에 유저정보 보내기.
 
 		
 		return "mypage/userDelete";
 	}
 
+	@PostMapping("/user_delete")
+	public String userDelete(@RequestParam("currpw")String inputPw, HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO) session.getAttribute("login");
+		String userid=user.getUserid();
+		String dbPw=user.getPassword();
+		
+		//사용자가 입력한 비번과 비교하기
+		if(inputPw.equals(dbPw)) {
+			//비번이 맞은경우 회원탈퇴
+			int n=mypageService.memberDelete(userid);
+			//탈퇴 성공시 메인으로 이동
+			if(n>0) {
+				session.invalidate();//세션 정보 초기화
+				return "mypage_content/successDelete";
+			}else {
+				//탈퇴 실패시 에러
+				return "mypage_content/failDelete";
+			}
+		}else {
+			//비번 틀렸으면 에서
+			return "mypage_content/failDelete";
+		}
+	}
 	
 	
 

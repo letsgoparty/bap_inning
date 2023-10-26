@@ -41,7 +41,7 @@
 	where userid=#{userid}
 	</update>
 	
-	<delete id="memberDelete">
+	<delete id="memberDelete" parameterType="string">
 	delete from Member
 	where userid=#{userid}
 	</delete>

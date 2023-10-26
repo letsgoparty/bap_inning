@@ -10,5 +10,5 @@ public interface MypageService {
 	
 	public int memberUpdate(MemberDTO memberDTO);
 	public int pwChange(HashMap<String, String> hashmap);
-	
+	public int memberDelete(String userid);
 }

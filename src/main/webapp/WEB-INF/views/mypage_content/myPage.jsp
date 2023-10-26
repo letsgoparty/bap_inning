@@ -97,7 +97,7 @@
 	padding: 3px;
 }
 
-.no-schedule {
+.no-schedule, .no-team {
 	font-size: 30px;
 	font-weight: bold;
 }
@@ -159,9 +159,8 @@
 				<div
 					style="display: flex; justify-content: space-between; align-items: flex-end;">
 					<div>
-						<img src="#" width="50" height="50"
-							class="img-thumbnail" id="myTeamLogo"> <span>환영합니다
-							${user.nickname} 님</span>
+						<img src="#" width="50" height="50" class="img-thumbnail"
+							id="myTeamLogo"> <span>환영합니다 ${user.nickname} 님</span>
 					</div>
 					<span id="myTeamCode" hidden>${user.team_code}</span>
 					<div>
@@ -172,58 +171,67 @@
 				</div>
 				<div class="mt-4 rounded"
 					style="text-align: center; border: 1px solid #ccc; border-bottom: none; max-width: 550px; margin-left: 95px !important;">
-					<div class="mx-4"
-						style="display: inline-block; vertical-align: top;">
-						<img src="images/ranking/rank${filterTeamData.rank}.PNG" alt="img"
-							width="150" height="200" />
-					</div>
-					<div class="me-4" style="display: inline-block;">
-						<h2 class="mt-3" style="font-family: 'KBO-Dia-Gothic_bold';">
-							<img src="images/logo/${filterTeamData.title}.png" width=60
-								height=40>&nbsp;
-							<c:choose>
-								<c:when test="${filterTeamData.title eq 'SSG'}">
+					<c:choose>
+						<c:when test="${filterTeamData.rank != null}">
+							<div class="mx-3"
+								style="display: inline-block; vertical-align: top;">
+								<img src="images/ranking/rank${filterTeamData.rank}.PNG"
+									alt="img" width="150" height="200" />
+							</div>
+
+							<div class="me-4" style="display: inline-block;">
+								<h2 class="mt-3" style="font-family: 'KBO-Dia-Gothic_bold';">
+									<img src="images/logo/${filterTeamData.title}.png" width=60
+										height=40>&nbsp;
+									<c:choose>
+										<c:when test="${filterTeamData.title eq 'SSG'}">
         							${filterTeamData.title} 랜더스
     							</c:when>
-								<c:when test="${filterTeamData.title eq '키움'}">
+										<c:when test="${filterTeamData.title eq '키움'}">
         							${filterTeamData.title} 히어로즈
     							</c:when>
-								<c:when test="${filterTeamData.title eq 'LG'}">
+										<c:when test="${filterTeamData.title eq 'LG'}">
         							${filterTeamData.title} 트윈스
     							</c:when>
-								<c:when test="${filterTeamData.title eq 'KT'}">
+										<c:when test="${filterTeamData.title eq 'KT'}">
         							${filterTeamData.title} wiz
     							</c:when>
-								<c:when test="${filterTeamData.title eq 'KIA'}">
+										<c:when test="${filterTeamData.title eq 'KIA'}">
         							${filterTeamData.title} 타이거즈
     							</c:when>
-								<c:when test="${filterTeamData.title eq 'NC'}">
+										<c:when test="${filterTeamData.title eq 'NC'}">
         							${filterTeamData.title} 다이노스
     							</c:when>
-								<c:when test="${filterTeamData.title eq '롯데'}">
+										<c:when test="${filterTeamData.title eq '롯데'}">
         							${filterTeamData.title} 자이언츠
     							</c:when>
-								<c:when test="${filterTeamData.title eq '삼성'}">
+										<c:when test="${filterTeamData.title eq '삼성'}">
         							${filterTeamData.title} 라이온즈
     							</c:when>
-								<c:when test="${filterTeamData.title eq '두산'}">
+										<c:when test="${filterTeamData.title eq '두산'}">
         							${filterTeamData.title} 베어스
     							</c:when>
-								<c:when test="${filterTeamData.title eq '한화'}">
+										<c:when test="${filterTeamData.title eq '한화'}">
         							${filterTeamData.title} 이글스
     							</c:when>
-							</c:choose>
-						</h2>
-						<p style="font-size: 1.8rem; font-weight: bold">${filterTeamData.victory}승
-							${filterTeamData.defeat}패 ${filterTeamData.draw}무</p>
-						<p style="font-size: 1.3rem">
-							연속 <span style="font-weight: bold">${filterTeamData.winning}</span>
-							&nbsp; 승률 <span style="font-weight: bold">${filterTeamData.rate}</span>
-						</p>
-						<p>
-							최근 10경기 <span style="font-weight: bold">${filterTeamData.recent}</span>
-						</p>
-					</div>
+									</c:choose>
+								</h2>
+								<p style="font-size: 1.8rem; font-weight: bold">${filterTeamData.victory}승
+									${filterTeamData.defeat}패 ${filterTeamData.draw}무</p>
+								<p style="font-size: 1.3rem">
+									연속 <span style="font-weight: bold">${filterTeamData.winning}</span>
+									&nbsp; 승률 <span style="font-weight: bold">${filterTeamData.rate}</span>
+								</p>
+								<p>
+									최근 10경기 <span style="font-weight: bold">${filterTeamData.recent}</span>
+								</p>
+							</div>
+						</c:when>
+						<c:when test="${filterTeamData.rank == null}">
+							<p class="no-team">응원팀이 없습니다.</p>
+							<a href="myinfo">응원팀 설정하러 가기</a>
+						</c:when>
+					</c:choose>
 				</div>
 				<!-- 나의팀 경기일정 등 출력 -->
 				<div class="swiper mb-3">
@@ -298,8 +306,7 @@
 																</c:when>
 																<c:when test="${number1 < number2}">
 																	<span style="color: gray;">${number1}</span> vs
-                                        <span
-																		style="color: #c93c3c;">${number2}</span>
+                                        <span style="color: #c93c3c;">${number2}</span>
 																</c:when>
 																<c:otherwise>
 																	<span>${number1} vs ${number2}</span>
@@ -352,6 +359,11 @@
 			var weatherElement = document.getElementById("myTeamWeather");
 
 			switch (selectedTeam) {
+			case "0":
+				logoElement.src = "images/logo/noTeam.png";
+				pageElement.href = "#";
+				weatherElement.href = "#";
+				break;
 			case "1":
 				logoElement.src = "images/logo/SSG.png";
 				pageElement.href = "https://www.ssglanders.com/main";

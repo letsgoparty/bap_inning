@@ -12,7 +12,7 @@
 <script>
 	$(document).ready(function() {
 		 Swal.fire({
- 	        text: "죄송합니다. 이미 사용 중인 이메일 주소이거나 닉네임 길이를 확인해주시기 바랍니다 (한글 20자 이상 입력 불가)",
+ 	        text: "회원가입이 성공적으로 완료되었습니다. 로그인을 해주세요",
  	        icon: 'success',
  	        confirmButtonColor: '#3085d6',
  	        button: {
@@ -20,7 +20,7 @@
  	            closeModal: true 
  	        }
 		 }).then(() => {
-			    window.location.href = 'memberForm'; 
+			    window.location.href = 'loginForm'; 
 		 });
 	});
 </script>

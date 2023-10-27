@@ -51,7 +51,7 @@ public class MemberController {
 		int n = service.memberAdd(dbdto);
 	
 		if (n > 0) {
-            return "redirect:main";
+            return "redirect:welcome";
         } else {
             // 회원가입 실패 시 예외 던지기
             throw new Exception("회원가입 실패");
@@ -67,6 +67,10 @@ public class MemberController {
 		return "join/joinfailed";
 	}
 	
+	@RequestMapping("/welcome")
+	public String welcome() {
+		return "join/welcome";
+	}
 	
 	
 	@GetMapping(value="/memberIdCheck",

@@ -23,5 +23,6 @@
 
 	<jsp:include page="../common/nav.jsp" flush="true" />
 	<jsp:include page="../review_content/reviewWrite.jsp" flush="true"/>
+	<jsp:include page="../review_content/uploadImage.jsp" flush="true"/>
 </body>
 </html>

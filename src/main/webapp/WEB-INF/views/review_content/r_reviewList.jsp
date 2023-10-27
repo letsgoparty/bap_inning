@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>임시 음식점 리뷰 목록</title>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
 
+		$(".deleteBtn").on("click", function() {
+		    var num = $(this).attr("data-num");
+		    location.href = "reviewDelete?num=" + review_id;
+		}); // end deleteBtn
+		
+		$(".deleteBtn").on("click", function() {
+			alert("delete");	
+		});
+		
+	};
+</script>
+<!-- 
 <script type="text/javascript">
 
 	document.getElementById("writeBtn").addEventListener("click", function() {
@@ -39,10 +49,10 @@
 	}
 
 </script>
-</head>
-<body>
-	<div class="container">
-		<form action="reviewWrite" method="get">
+ -->
+ 
+<div class="container">
+	<form action="reviewWrite" method="get">
     	<input type="hidden" name="res_id" value="${param.res_id}">
 		<h2 class="text-center">임시 음식점 리뷰 목록</h2>
 		<select>
@@ -85,11 +95,12 @@
 					<td>${reviewDTO.modified_date}</td>
 					<td><a href="reviewRetrieve?review_id=${reviewDTO.review_id}">수정</a></td>
 					<td><button onclick="reviewDelete()">삭제</button></td>
-										
+					<td><input type="button" value="삭제" class="deleteBtn" data-num="${reviewDTO.review_id}"/></td>
 				</tr>
 			</c:forEach>
 			</tbody>
-			 <!--  page 번호 출력 -->
+			
+	<!--  page 번호 출력 -->
   <c:set var="perPage" value="${pageDTO.perPage}" />
   <c:set var="curPage" value="${pageDTO.curPage}" />
   <c:set var="totalCount" value="${pageDTO.totalCount}" />
@@ -112,7 +123,5 @@
   <!--  page 번호 출력 --> 
 		</table>
 		<button type="submit" id="writeBtn">리뷰작성</button>
-	</div>
-
-</body>
-</html>
+	</form>
+</div>

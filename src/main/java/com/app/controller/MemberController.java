@@ -51,26 +51,19 @@ public class MemberController {
 		int n = service.memberAdd(dbdto);
 	
 		if (n > 0) {
-            return "redirect:welcome";
+			return "join/welcome";
         } else {
             // 회원가입 실패 시 예외 던지기
             throw new Exception("회원가입 실패");
         }
     } catch (Exception e) {
         // 예외 처리: 실패한 경우 "joinfailed" 페이지로 리다이렉트
-        return "redirect:joinfailed";
+    	return "join/joinfailed";
     }
   }
 
-	@RequestMapping("/joinfailed")
-	public String joinfailed() {
-		return "join/joinfailed";
-	}
 	
-	@RequestMapping("/welcome")
-	public String welcome() {
-		return "join/welcome";
-	}
+	
 	
 	
 	@GetMapping(value="/memberIdCheck",

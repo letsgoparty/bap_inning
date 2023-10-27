@@ -17,7 +17,7 @@
 	margin-left: 300px;
 }
 
-#location {
+#location, #rating {
 	font-weight: bold;
 }
 
@@ -26,12 +26,10 @@
 	font-weight: bold;
 	border: 1px solid #ccc;
 	text-align: center;
-	
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-            //jQuery를 사용하여 버튼 클릭 이벤트를 처리
             $(document).ready(function () {
 
                 $("#resContainer").show();
@@ -88,6 +86,7 @@
                                 }).then((result) => {
                                     if (result.isConfirmed) { // '확인' 버튼이 클릭되었을 때
                                         window.location.href = "/app/like";
+    
                                     }
                                 });
                             }
@@ -163,7 +162,7 @@
 										</span>분
 										<p></p>
 										<img src="images/icon/icon3.png" width="13" height="13">
-										<span id="rating">&nbsp;</span>
+										<span id="rating">&nbsp;${dto.rating}</span>
 										<button class="btn btn-primary mb-3 deleteBtn"
 											style="float: right;" data-id="${dto.res_id}"
 											data-type="restaurant">삭제</button>
@@ -185,16 +184,17 @@
 		</div>
 	</c:if>
 	</div>
+	<!--  lodContainer  -->
 	<div class="container mt-2" id="lodContainer">
-		<c:if test="${!empty Lto}">
+		<c:if test="${!empty Ldto}">
 			<div class="row">
 				<c:forEach items="${Ldto}" var="dto" varStatus="loop">
 					<div class="col-md-6">
-						<div class="card mb-3" style="max-width: 650px; max-hieght: 220px">
+						<div class="card mb-3" style="max-width: 650px;">
 							<div class="row g-0">
 								<div class="col-md-4">
 									<img src="images/lodging_images/${dto.lodging_image}.png"
-										class="rounded-start" width="205px" height="230px">
+										class="rounded-start" width="200px" height="200px">
 								</div>
 								<div class="col-md-8">
 									<div class="card-body">
@@ -232,11 +232,11 @@
 												<span id="location">한화생명 이글스파크</span>
 											</c:when>
 										</c:choose>
-										에서 <span style="font-weight: bold"> ${dto.distance} </span>
+										에서 걸어서 <span style="font-weight: bold"> ${dto.distance}
+										</span>분
 										<p></p>
 										<img src="images/icon/icon3.png" width="13" height="13">
-										<p id="rating"></p>
-										<a href="${dto.lodging_url}">예약 바로가기</a>
+										<span id="rating">&nbsp;${dto.rating}</span>
 										<button class="btn btn-primary mb-3 deleteBtn"
 											style="float: right;" data-id="${dto.lodging_id}"
 											data-type="lodging">삭제</button>
@@ -252,10 +252,15 @@
 		</c:forEach>
 	</div>
 	</c:if>
+	<c:if test="${empty Ldto}">
 		<div class="rounded no_like">
-			<p>찜한 숙소가 없습니다.</p>
+			<p>찜한 음식점이 없습니다.</p>
 		</div>
+	</c:if>
 	</div>
+	
+	
+
 </body>
 
 </html>

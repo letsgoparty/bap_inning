@@ -7,50 +7,78 @@
 	<insert id="like_res" parameterType="LikeDTO">
 		insert into likes(like_num,
 		userid, res_id, lodging_id)
-		values(likes_seq.nextval, #{userid}, #{res_id}, null)
+		values(likes_seq.nextval, #{userid},
+		#{res_id}, null)
 	</insert>
 	<!-- 숙소 찜하기 -->
 	<insert id="like_lod" parameterType="LikeDTO">
-		insert into likes(like_num, userid, res_id, lodging_id)
-		values(likes_seq.nextval, #{userid}, null, #{lodging_id})
+		insert into likes(like_num,
+		userid, res_id, lodging_id)
+		values(likes_seq.nextval, #{userid}, null,
+		#{lodging_id})
 	</insert>
 	<!-- 찜한 음식점 조회 -->
-	<select id="find_like_res" parameterType="string" resultType="int">
+	<select id="find_like_res" parameterType="string"
+		resultType="int">
 		select res_id from likes
-		where userid = #{userid} AND res_id IS NOT NULL
+		where userid = #{userid} AND res_id
+		IS NOT NULL
 	</select>
 	<!-- 찜한 음식점 정보 조회 -->
-	<select id="find_like_res_info" parameterType="list" resultType="RestaurantDTO">
+	<select id="find_like_res_info" parameterType="list"
+		resultType="RestaurantDTO">
 		select * from restaurant
 		<where>
-			<foreach item="item" collection="list" open="res_id IN (" separator="," close=")">
+			<foreach item="item" collection="list" open="res_id IN ("
+				separator="," close=")">
 				#{item}
 			</foreach>
 		</where>
 	</select>
 	<!-- 찜한 숙소 조회 -->
-	<select id="find_like_lod" parameterType="string" resultType="int">
+	<select id="find_like_lod" parameterType="string"
+		resultType="int">
 		select lodging_id from likes
-		where userid = #{userid} AND lodging_id IS NOT NULL
+		where userid = #{userid} AND
+		lodging_id IS NOT NULL
 	</select>
 	<!-- 찜한 숙소 정보 조회 -->
 	<select id="find_like_lod_info" parameterType="list"
 		resultType="LodgingDTO">
 		select * from lodging
 		<where>
-			<foreach item="item" collection="list" open="lodging_id IN (" separator="," close=")">
+			<foreach item="item" collection="list" open="lodging_id IN ("
+				separator="," close=")">
 				#{item}
 			</foreach>
 		</where>
 	</select>
-	<!-- 찜한 음식점 삭제  -->
+	<!-- 찜한 음식점 삭제 -->
 	<delete id="delete_like_res" parameterType="hashmap">
-	delete from likes
-	where res_id=#{id} and userid=#{userid}
+		delete from likes
+		where res_id=#{id} and userid=#{userid}
 	</delete>
 	<!-- 찜한 숙소 삭제 -->
 	<delete id="delete_like_lod" parameterType="hashmap">
-	delete from likes
-	where lodging_id=#{id} and userid=#{userid}
+		delete from likes
+		where lodging_id=#{id} and userid=#{userid}
 	</delete>
+	<!-- 찜한 음식점 평균 별점 조회 -->
+	<select id="find_res_rating" parameterType="string" resultType="RatingDTO">
+		select res_name as place_name,TO_CHAR(ROUND(AVG(rating), 1), '0.0') as rating from
+		likes natural join restaurant natural join restaurant_reviews
+		where
+		userid = #{userid}
+		group by
+		res_id, res_name
+	</select>
+		<!-- 찜한 숙소 평균 별점 조회 -->
+	<select id="find_lod_rating" parameterType="string" resultType="RatingDTO">
+		select lodging_name as place_name,TO_CHAR(ROUND(AVG(rating), 1), '0.0') as rating from
+		likes natural join lodging natural join lodging_reviews
+		where
+		userid = #{userid}
+		group by
+		lodging_id, lodging_name
+	</select>
 </mapper>

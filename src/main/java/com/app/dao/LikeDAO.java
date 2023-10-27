@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.dto.LikeDTO;
 import com.app.dto.LodgingDTO;
+import com.app.dto.RatingDTO;
 import com.app.dto.RestaurantDTO;
 
 @Repository
@@ -46,5 +47,13 @@ public class LikeDAO {
 	
 	public int delete_like_lod(HashMap<String, Object> map) {
 		return session.delete("LikeMapper.delete_like_lod", map);
+	}
+	
+	public List<RatingDTO> find_res_rating(String userid) {
+		return session.selectList("LikeMapper.find_res_rating", userid);
+	}
+	
+	public List<RatingDTO> find_lod_rating(String userid) {
+		return session.selectList("LikeMapper.find_lod_rating", userid);
 	}
 }

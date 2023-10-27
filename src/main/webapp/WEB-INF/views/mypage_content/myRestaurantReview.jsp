@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,11 +55,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" style="width: 40px;">식당이름</th>
+      <th scope="col" style="width: 40px;">리뷰번호</th>
       <th scope="col" style="width: 200px;">내용</th>
+      <th scope="col" style="width: 100px;">이미지</th>      
       <th scope="col" style="width: 100px;">작성자</th>
-      <th scope="col" style="width: 100px;">날짜</th>
-      <th scope="col" style="width: 100px;">좋아요</th>
+      <th scope="col" style="width: 100px;">별점</th>
+      <th scope="col" style="width: 100px;">추천</th>
+      <th scope="col" style="width: 100px;">수정</th>
       <th scope="col" style="width: 100px;">삭제</th>
     </tr>
   </thead>
@@ -71,22 +74,16 @@
       <td>0</td>
       <td><button type="button">삭제</button></td>
     </tr>
+    <c:forEach var="review" items="${pageDTO.list}">
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@fat</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
+      <th scope="row"></th>
       <td>Larry the Bird 는 트윗트윗짹쨱  어쩌구어쩌구어쩌구 블라블라 </td>
       <td>@twitter</td>
       <td>@twitter</td>
       <td>@twitter</td>
       <td>@twitter</td>
     </tr>
+    </c:forEach>
   </tbody>
 </table>
 </div>

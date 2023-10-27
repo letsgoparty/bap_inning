@@ -4,22 +4,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.print.DocFlavor.STRING;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.app.dto.Board;
 import com.app.dto.MemberDTO;
+import com.app.dto.PageDTO;
+import com.app.dto.ReviewPageDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.service.BoardService;
 import com.app.service.MemberService;
 import com.app.service.MypageService;
+import com.app.service.ReviewService;
 import com.app.service.ScrapingService;
 
 @Controller
@@ -35,6 +43,10 @@ public class MypageController {
 	private MemberService memberService;
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private BoardService boardService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping("/mypage")
 	public String mypage(Model model, HttpSession session) {
@@ -183,8 +195,18 @@ public class MypageController {
 	
 	
 	@GetMapping("/mytext")
-	public String mytext() {
-		return "mypage/myText";
+	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		PageDTO pageDTO=boardService.selectList(curPage);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myText");
+		mav.addObject("pageDTO",pageDTO);
+		
+		return mav;
 	}
 
 	@GetMapping("/myreply")
@@ -193,8 +215,17 @@ public class MypageController {
 	}
 
 	@GetMapping("/my_r_review")
-	public String myRestaurantReview() {
-		return "mypage/myRestaurantReview";
+	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage",required = false,defaultValue = "1")int curPage,HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		ReviewPageDTO pageDTO=reviewService.r_reviewList(curPage);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myRestaurantReview");
+		mav.addObject("pageDTO",pageDTO);		
+		
+		return mav;
 	}
 
 	@GetMapping("/my_l_review")
@@ -202,6 +233,7 @@ public class MypageController {
 		return "mypage/myLodgingReview";
 	}
 	
+	//회원탈퇴
 	@GetMapping("/user_delete")
 	public String userDeletePage(HttpSession session,Model m) {
 		//세션에서 로그인정보 가져오기
@@ -240,6 +272,12 @@ public class MypageController {
 		}
 	}
 	
+	//마이페이지에서 내글 삭제하기
+	@GetMapping("/delete_mytext")
+	public String delete(int no) {
+		int n=boardService.boardDelete(no);
+		return "redirect:mytext";
+	}
 	
 
 }

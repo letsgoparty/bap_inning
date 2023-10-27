@@ -10,6 +10,17 @@ public class LodgingDTO {
 	String lodging_url;
 	String category;
 	String team_code;
+	String rating;
+	
+	
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
 
 	public LodgingDTO() {
 

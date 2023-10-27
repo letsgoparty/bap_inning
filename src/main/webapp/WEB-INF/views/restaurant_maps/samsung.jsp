@@ -192,7 +192,7 @@
                     '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">라이온즈파크</span>에서 걸어서 <span id="distance">' + ele.distance + '</span> 분</span>' +
                     '</div>' +
                     '<p></p>' +
-                    '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                    '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + ele.rating + '</span>' +
                     '<p class="card-text mt-3" id="res_content">' + ele.res_content + '</p>' +
                     '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                     '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
@@ -277,7 +277,7 @@
                             '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">라이온즈파크</span>에서 걸어서 <span id="distance">' + ele.distance + '</span> 분</span>' +
                             '</div>' +
                             '<p></p>' +
-                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + ele.rating + '</span>' +
                             '<p class="card-text mt-3" id="res_content"">' + ele.res_content + '</p>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
@@ -410,7 +410,7 @@
                             }
                         });
                         $.ajax({
-                            url: 'find_rating',
+                            url: 'find_res_rating',
                             method: 'GET',
                             data: { res_name: res_name },
                             success: function (data) {

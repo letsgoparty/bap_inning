@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.FindDAO;
 import com.app.dto.LodgingDTO;
+import com.app.dto.RatingDTO;
 import com.app.dto.RestaurantDTO;
 
 @Service
@@ -47,7 +48,32 @@ public class FindServiceImpl implements FindService {
 	}
 
 	@Override
-	public String find_rating(String res_name) {
-		return dao.find_rating(res_name);
+	public String find_res_rating(String res_name) {
+		return dao.find_res_rating(res_name);
+	}
+
+	@Override
+	public List<RatingDTO> find_all_res_rating(int team_code) {
+		return dao.find_all_res_rating(team_code);
+	}
+
+	@Override
+	public List<RatingDTO> find_res_rating_by_category(HashMap map) {
+		return dao.find_res_rating_by_category(map);
+	}
+
+	@Override
+	public List<RatingDTO> find_all_lod_rating(int team_code) {
+		return dao.find_all_lod_rating(team_code);
+	}
+
+	@Override
+	public List<RatingDTO> find_lod_rating_by_category(HashMap map) {
+		return dao.find_lod_rating_by_category(map);
+	}
+
+	@Override
+	public String find_lod_rating(String lodging_name) {
+		return dao.find_lod_rating(lodging_name);
 	}
 }

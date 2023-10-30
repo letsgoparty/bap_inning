@@ -45,6 +45,10 @@ public class MemberServiceImpl implements MemberService  {
 	public int updateTemporaryPW(HashMap<String, String> map) {
 		return dao.updateTemporaryPW(map);
 	}
+	@Override
+	public String findEncodePW(HashMap<String, String> map) {
+		return dao.findEncodePW(map);
+	}
  
 }
 

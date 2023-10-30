@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.app.dto.MemberDTO;
+import com.app.dto.PageDTO;
+import com.app.dto.ReviewPageDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.service.BoardService;
+import com.app.service.EncodeService;
 import com.app.service.MemberService;
 import com.app.service.MypageService;
+import com.app.service.ReviewService;
 import com.app.service.ScrapingService;
 
 @Controller
@@ -35,6 +40,12 @@ public class MypageController {
 	private MemberService memberService;
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private BoardService boardService;
+	@Autowired
+	private ReviewService reviewService;
+	@Autowired
+	private EncodeService encodeService;
 	
 	@RequestMapping("/mypage")
 	public String mypage(Model model, HttpSession session) {
@@ -156,17 +167,20 @@ public class MypageController {
 	
 	@PostMapping("/pwchange")
 	public String changePw(@RequestParam("currpw")String inputPw, @RequestParam("newpw2")String newpw, HttpSession session) {
-		//세션에서 로그인정보 가져오기
-		MemberDTO user=(MemberDTO)session.getAttribute("login");
-		//로그인여부는 인터셉터로
-		String userid=user.getUserid();
-		String dbPw=user.getPassword(); 
+		
+		MemberDTO dto = (MemberDTO)session.getAttribute("login");
+		String userid = dto.getUserid();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("password", inputPw);
+		
 	    //입력한 비번을 맞게썼는지 확인
-	    if(dbPw.equals(inputPw)) {
+	    if(encodeService.checkPW(map)) {
 	    	//비번이맞게쓴경우
 			HashMap<String, String> hashmap=new HashMap<String, String>();
+			String encode_newPw = encodeService.modify(newpw); // 새로운 비밀번호 암호화 
 			hashmap.put("userid", userid);
-			hashmap.put("password", newpw);
+			hashmap.put("password", encode_newPw);
 			
 			int n=mypageService.pwChange(hashmap);
 			
@@ -182,26 +196,40 @@ public class MypageController {
 	}
 	
 	
-	@GetMapping("/mytext")
-	public String mytext() {
-		return "mypage/myText";
-	}
 
 	@GetMapping("/myreply")
 	public String myreply() {
 		return "mypage/myReply";
 	}
 
+	//식당리뷰
 	@GetMapping("/my_r_review")
-	public String myRestaurantReview() {
-		return "mypage/myRestaurantReview";
+	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage",required = false,defaultValue = "1")int curPage,HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		ReviewPageDTO pageDTO=reviewService.r_reviewList(curPage);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myRestaurantReview");
+		mav.addObject("pageDTO",pageDTO);		
+		
+		return mav;
 	}
+	//식당리뷰 삭제
+	@GetMapping("/delete_my_r_review")
+	public String delete_my_r_review(String no) {
+		int n=reviewService.reviewDelete(no);
+		return "redirect:my_r_review";
+	}
+
 
 	@GetMapping("/my_l_review")
 	public String myLodgingReview() {
 		return "mypage/myLodgingReview";
 	}
 	
+	//회원탈퇴
 	@GetMapping("/user_delete")
 	public String userDeletePage(HttpSession session,Model m) {
 		//세션에서 로그인정보 가져오기
@@ -240,6 +268,27 @@ public class MypageController {
 		}
 	}
 	
+	@GetMapping("/mytext")
+	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		PageDTO pageDTO=boardService.selectList(curPage);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myText");
+		mav.addObject("pageDTO",pageDTO);
+		
+		return mav;
+	}
+	
+	//마이페이지에서 내글 삭제하기
+	@GetMapping("/delete_mytext")
+	public String delete_myText(int no) {
+		int n=boardService.boardDelete(no);
+		return "redirect:mytext";
+	}
 	
 
 }

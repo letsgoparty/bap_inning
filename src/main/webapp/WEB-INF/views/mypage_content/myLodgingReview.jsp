@@ -56,9 +56,11 @@
     <tr>
       <th scope="col" style="width: 40px;">숙소이름</th>
       <th scope="col" style="width: 200px;">내용</th>
+      <th scope="col" style="width: 100px;">이미지</th>      
       <th scope="col" style="width: 100px;">작성자</th>
-      <th scope="col" style="width: 100px;">날짜</th>
-      <th scope="col" style="width: 100px;">좋아요</th>
+      <th scope="col" style="width: 100px;">별점</th>
+      <th scope="col" style="width: 100px;">추천</th>
+      <th scope="col" style="width: 100px;">수정</th>
       <th scope="col" style="width: 100px;">삭제</th>
     </tr>
   </thead>

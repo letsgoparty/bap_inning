@@ -101,6 +101,8 @@
 	font-size: 30px;
 	font-weight: bold;
 }
+
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -169,8 +171,8 @@
 							id="myTeamWeather">내 구장 날씨 확인</a>
 					</div>
 				</div>
-				<div class="mt-4 rounded"
-					style="text-align: center; border: 1px solid #ccc; border-bottom: none; max-width: 550px; margin-left: 95px !important;">
+				<div id="my_rank" class="mt-4 rounded"
+					style="text-align: center; border: 1px solid #ccc; border-bottom: none;">
 					<c:choose>
 						<c:when test="${filterTeamData.rank != null}">
 							<div class="mx-3"

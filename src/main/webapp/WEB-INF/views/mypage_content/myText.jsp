@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>내가쓴글_게시글</title>
-
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css">
   .table td, .table th {
     white-space: nowrap; /* 줄 바꿈 금지 */
@@ -58,37 +59,42 @@
       <th scope="col" style="width: 40px;">글번호</th>
       <th scope="col" style="width: 200px;">제목</th>
       <th scope="col" style="width: 100px;">작성자</th>
-      <th scope="col" style="width: 100px;">날짜</th>
+      <th scope="col" style="width: 100px;">작성일</th>
       <th scope="col" style="width: 100px;">조회수</th>
       <th scope="col" style="width: 100px;">삭제</th>
     </tr>
   </thead>
   <tbody>
+    <c:forEach var="board" items="${pageDTO.list}">
     <tr>
-      <th scope="row">1</th>
-      <td>안녕</td>
-      <td>박명수</td>
-      <td>23.10.12</td>
-      <td>0</td>
-      <td><button type="button">삭제</button></td>
+      <th scope="row">${board.board_num}</th>
+      <td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
+      <td>${board.userid}</td>
+      <td>${board.board_date}</td>
+      <td>${board.count}</td>
+      <td><a href="delete_mytext?no=${board.board_num}">삭제</a></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@fat</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry the Bird 는 트윗트윗짹쨱  어쩌구어쩌구어쩌구 블라블라 </td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-    </tr>
+    </c:forEach>
+
   </tbody>
+  <!-- 페이지 번호 -->
+  <c:set var="perPage" value="${pageDTO.perPage}"/>
+  <c:set var="curPage" value="${pageDTO.curPage}"/>
+  <c:set var="totalCount" value="${pageDTO.totalCount}"/>
+  <c:set var="totalNum" value="${totalCount/perPage}"/>
+  <c:if test="${totalCount%perPage!=0}">
+  	<c:set var="totalNum" value="${totalNum+1}"/>
+  </c:if>
+  <tr>
+  	<td colspan="6">
+  		<c:forEach var="i" begin="1" end="${totalNum}">
+  			<c:if test="${curPage==i}">${i}</c:if>
+  			<c:if test="${curPage!=i}"><a href="mytext?curPage=${i}">${i}</a></c:if>
+  		</c:forEach>
+  	</td>
+  </tr>
+  
+  
 </table>
 </div>
    </div>

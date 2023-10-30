@@ -28,9 +28,8 @@
                             </span>
                         </div>
                         <p></p>
-                        <img src="images/icon/icon3.png" width="13" height="13"> <span>&nbsp;4.5
-                            <!--  별점 부분 수정 필요 -->
-                        </span>
+                        <img src="images/icon/icon3.png" width="13" height="13">  <span
+						id="rating">&nbsp;</span>
                         <p class="card-text mt-3" id="res_content"></p>
                         <button type="submit" class="btn btn-primary mt-3 mb-3" id="review_btn">리뷰 보러가기</button>
                         <button id="cancel" class="btn btn-primary mx-3">닫기</button>
@@ -184,7 +183,7 @@
                             '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">한화생명 이글스파크</span>에서 걸어서 <span id="distance" style="font-family: \'KBO-Dia-Gothic_bold\'; color: rgb(194, 48, 48);">' + ele.distance + '</span> 분</span>' +
                             '</div>' +
                             '<p></p>' +
-                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + ele.rating + '</span>' +
                             '<p class="card-text mt-3" id="res_content" style="font-family: \'KBO-Dia-Gothic_light\';">' + ele.res_content + '</p>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
@@ -269,7 +268,7 @@
                             '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">한화생명 이글스파크</span>에서 걸어서 <span id="distance">' + ele.distance + '</span> 분</span>' +
                             '</div>' +
                             '<p></p>' +
-                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + ele.rating + '</span>' +
                             '<p class="card-text mt-3" id="res_content"">' + ele.res_content + '</p>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
                             '<button class="btn btn-primary mt-3 mb-3 mx-3 find_res_btn" data-res-name="' + res_name + '">위치 보러가기</button>' +
@@ -394,6 +393,20 @@
 
                                     },
                                     error: function (error) {
+                                        console.error('Error:', error);
+                                    }
+                                });
+                                $.ajax({
+                                    url: 'find_res_rating',
+                                    method: 'GET',
+                                    data: { res_name: res_name },
+                                    success: function (data) {
+                                        // 성공적으로 데이터를 받아왔을 때의 처리
+                                        $('#rating').text(data);
+
+                                    },
+                                    error: function (error) {
+                                        // 오류 발생 시의 처리
                                         console.error('Error:', error);
                                     }
                                 });

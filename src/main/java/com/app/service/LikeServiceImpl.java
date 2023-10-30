@@ -10,6 +10,7 @@ import com.app.dao.FindDAO;
 import com.app.dao.LikeDAO;
 import com.app.dto.LikeDTO;
 import com.app.dto.LodgingDTO;
+import com.app.dto.RatingDTO;
 import com.app.dto.RestaurantDTO;
 
 @Service
@@ -56,5 +57,25 @@ public class LikeServiceImpl implements LikeService {
 	@Override
 	public int delete_like_lod(HashMap<String, Object> map) {
 		return dao.delete_like_lod(map);
+	}
+
+	@Override
+	public List<RatingDTO> find_res_rating(String userid) {
+		return dao.find_res_rating(userid);
+	}
+
+	@Override
+	public List<RatingDTO> find_lod_rating(String userid) {
+		return dao.find_lod_rating(userid);
+	}
+
+	@Override
+	public int deleteAll_res_like(List<Integer> list) {
+		return dao.deleteAll_res_like(list);
+	}
+
+	@Override
+	public int deleteAll_lod_like(List<Integer> list) {
+		return dao.deleteAll_lod_like(list);
 	}
 }

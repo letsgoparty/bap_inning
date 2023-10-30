@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>리뷰 작성 화면</title>
-</head>
 <style>
 @font-face {
 	font-family: 'KBO-Dia-Gothic_bold';
@@ -94,19 +88,8 @@
 		</div>
 		
 		<!-- 이미지 업로드 -->
-		<div>
-		 	<div class='uploadDiv'>
-				<input type='file' name='uploadFile' multiple>
-			</div>
-		
-			<div class='uploadResult'>
-				<ul>
-					/이미지 미리보기/
-				</ul>
-			</div>
-			
-			<button id='uploadBtn'>업로드</button>
-			<!-- 이미지 업로드 -->
+
+		<!-- 이미지 업로드 -->
 			
 			<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">
 			  <button class="btn btn-primary" type="submit" id="registerBtn">등록</button>

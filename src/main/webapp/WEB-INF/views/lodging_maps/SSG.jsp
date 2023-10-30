@@ -29,13 +29,15 @@
 						</span>
 					</div>
 					<p></p>
-					<img src="images/icon/icon3.png" width="13" height="13"> <span>&nbsp;4.5</span>
+					<img src="images/icon/icon3.png" width="13" height="13"> <span
+						id="rating">&nbsp;</span>
 					<p class="card-text mt-3" id="lodging_content"></p>
 					<div id="lodging_url"></div>
 					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
 						보러가기</button>
 					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
-					<button id="like_btn" class="btn btn-primary mt-3 me-3" style="float: right;">
+					<button id="like_btn" class="btn btn-primary mt-3 me-3"
+						style="float: right;">
 						<img src="images/icon/dislike_icon.png" width=20 height=20>
 					</button>
 				</div>
@@ -170,7 +172,7 @@
                     '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">SSG 랜더스필드</span>에서 <span id="distance">' + ele.distance + '</span></span>' +
                     '</div>' +
                     '<p></p>' +
-                    '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                    '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + ele.rating + '</span>' +
                     '<p class="card-text mt-3" id="lodging_content"">' + ele.lodging_content + '</p>' +
                     '<div id="lodging_url"><a href="' + lodging_url + '" target="_blank">예약 하러가기</a></div>' +
                     '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
@@ -240,7 +242,7 @@
                             '<img src="images/icon/icon2.png" width="13" height="13"><span style="font-family: \'KBO-Dia-Gothic_light\';">&nbsp;<span class="location">SSG 랜더스필드</span>에서 <span id="distance">' + ele.distance + '</span></span>' +
                             '</div>' +
                             '<p></p>' +
-                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + 4.5 + '</span>' +
+                            '<img src="images/icon/icon3.png" width="13" height="13"><span>&nbsp;' + ele.rating + '</span>' +
                             '<p class="card-text mt-3" id="res_content"">' + ele.lodging_content + '</p>' +
                             '<div id="lodging_url"><a href="' + lodging_url + '" target="_blank">예약 하러가기</a></div>' +
                             '<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰 보러가기</button>' +
@@ -376,6 +378,19 @@
                                         $('#lodging_id').val(data.lodging_id);
                                         $('#like_btn').data('lod-id', data.lodging_id);
                                         
+                                    },
+                                    error: function (error) {
+                                        // 오류 발생 시의 처리
+                                        console.error('Error:', error);
+                                    }
+                                });
+                                $.ajax({
+                                    url: 'find_lod_rating',
+                                    method: 'GET',
+                                    data: { lodging_name: lodging_name },
+                                    success: function (data) {
+                                        $('#rating').text(data);
+
                                     },
                                     error: function (error) {
                                         // 오류 발생 시의 처리

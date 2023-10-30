@@ -9,7 +9,15 @@ public class RestaurantDTO {
 	String distance;
 	String category;
 	String team_code;
-//	String ranking;
+	String rating;
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
 
 	public RestaurantDTO() {
 

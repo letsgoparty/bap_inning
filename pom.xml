@@ -55,7 +55,7 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.1.0</version>
 		</dependency>
-			<!-- jsoup HTML parser library @ https://jsoup.org/ -->
+		<!-- jsoup HTML parser library @ https://jsoup.org/ -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
@@ -67,7 +67,6 @@
 			<artifactId>selenium-java</artifactId>
 			<version>3.141.59</version> <!-- 최신 버전 확인 -->
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -75,11 +74,15 @@
 			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
-      <dependency>
-       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-mail</artifactId>
-     </dependency>
-     
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.238</version>
+		</dependency>
 	</dependencies>
 
 	<build>

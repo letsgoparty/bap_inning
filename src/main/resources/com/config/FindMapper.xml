@@ -49,10 +49,73 @@
 		where team_code = #{team_code} and
 		category = #{category}
 	</select>
-	<select id="find_rating" parameterType="string"
+	<!-- 특정 음식점의 평균 별점 조회 -->
+	<select id="find_res_rating" parameterType="string"
 		resultType="string">
-    SELECT NVL(TO_CHAR(ROUND(AVG(rating), 1), '0.0'), '-')
-	FROM restaurant_reviews NATURAL JOIN restaurant
-	WHERE res_name = #{res_name}
+		SELECT NVL(TO_CHAR(ROUND(AVG(rating), 1), '0.0'), '-')
+		FROM
+		restaurant_reviews NATURAL JOIN restaurant
+		WHERE res_name = #{res_name}
+	</select>
+		<!-- 특정 숙소의 평균 별점 조회 -->
+	<select id="find_lod_rating" parameterType="string"
+		resultType="string">
+		SELECT NVL(TO_CHAR(ROUND(AVG(rating), 1), '0.0'), '-')
+		FROM
+		lodging_reviews NATURAL JOIN lodging
+		WHERE lodging_name = #{lodging_name}
+	</select>
+	<!-- 전체 음식점 평균 별점 조회 -->
+	<select id="find_all_res_rating" parameterType="int"
+		resultType="RatingDTO">
+		SELECT res_name as place_name,
+		TO_CHAR(ROUND(AVG(rating),
+		1), '0.0') AS rating
+		FROM restaurant_reviews
+		NATURAL JOIN restaurant
+		WHERE team_code = #{team_code}
+		GROUP BY res_id, res_name, res_addr,
+		res_image, res_content, distance
+	</select>
+	<!-- 카테고리별 음식점 평균 별점 조회 -->
+	<select id="find_res_rating_by_category" parameterType="hashmap"
+		resultType="RatingDTO">
+		SELECT res_name as place_name,
+		TO_CHAR(ROUND(AVG(rating),
+		1), '0.0') AS
+		rating
+		FROM restaurant_reviews
+		NATURAL JOIN restaurant
+		WHERE team_code = #{team_code}
+		and category = #{category}
+		GROUP BY
+		res_id, res_name, res_addr, res_image,
+		res_content, distance
+	</select>
+	<!-- 전체 숙소 평균 별점 조회 -->
+	<select id="find_all_lod_rating" parameterType="int"
+		resultType="RatingDTO">
+		SELECT lodging_name as place_name,
+		TO_CHAR(ROUND(AVG(rating),
+		1), '0.0') AS rating
+		FROM lodging_reviews
+		NATURAL JOIN lodging
+		WHERE team_code = #{team_code}
+		GROUP BY lodging_id, lodging_name, lodging_addr,
+		lodging_image, lodging_content, distance
+	</select>
+	<!-- 카테고리별 숙소 평균 별점 조회 -->
+	<select id="find_lod_rating_by_category" parameterType="hashmap"
+		resultType="RatingDTO">
+		SELECT lodging_name as place_name,
+		TO_CHAR(ROUND(AVG(rating),
+		1), '0.0') AS
+		rating
+		FROM lodging_reviews
+		NATURAL JOIN lodging
+		WHERE team_code = #{team_code}
+		and category = #{category}
+		GROUP BY lodging_id, lodging_name, lodging_addr,
+		lodging_image, lodging_content, distance
 	</select>
 </mapper>

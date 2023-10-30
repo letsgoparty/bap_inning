@@ -44,5 +44,9 @@ public class MemberDAO {
 		public int updateTemporaryPW(HashMap<String, String> map) {
 			return session.update("MemberMapper.updateTemporaryPW", map);
 		}
+		
+		public String findEncodePW(HashMap<String, String> map) {
+			return session.selectOne("MemberMapper.findEncodePW", map);
+		}
 	
 }

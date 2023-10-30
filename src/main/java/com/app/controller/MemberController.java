@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.app.dto.JspMemberDTO;
 import com.app.dto.MemberDTO;
 import com.app.service.MemberService;
+import com.app.service.EncodeService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	MemberService service;
+	
+	@Autowired 
+	EncodeService Eservice;
 	
 	
 	@RequestMapping("/memberForm")	
@@ -48,7 +52,8 @@ public class MemberController {
 	    dbdto.setTeam_code(dto.getTeam_code());
 		//System.out.println(dto);
 		//System.out.println(dbdto);
-		int n = service.memberAdd(dbdto);
+	    MemberDTO Mdto = Eservice.register(dbdto);
+		int n = service.memberAdd(Mdto);
 	
 		if (n > 0) {
 			return "join/welcome";

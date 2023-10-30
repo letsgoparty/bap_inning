@@ -53,4 +53,10 @@
 	where email = #{email}
 	</update>
 	
+	<!-- 암호화된 비밀번호 가져오기 -->
+	<select id="findEncodePW" parameterType="string" resultType="string">
+		select password from member 
+		where userid =#{userid}
+	</select>
+	
 </mapper>

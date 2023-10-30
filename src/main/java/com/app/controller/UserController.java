@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.MemberDTO;
 import com.app.service.EmailService;
+import com.app.service.EncodeService;
 import com.app.service.MemberService;
 
 @Controller
@@ -22,6 +23,9 @@ public class UserController {
 	
 	@Autowired
 	MemberService Mservice;
+	
+	@Autowired
+	EncodeService Eservice;
 	
 		// 비밀번호 찾기 누르면 ForgotPW.jsp로 이동
     @RequestMapping("/forgotpassword")
@@ -37,9 +41,14 @@ public class UserController {
    
     	String temporaryPW = service.sendEmail(email);
     	
+    	String encode_temporaryPW = Eservice.modify(temporaryPW);
+    	
     	HashMap<String, String> map = new HashMap<String, String>();
     	map.put("email", email);
-    	map.put("password", temporaryPW);
+    	map.put("password", encode_temporaryPW);
+    	
+    	// 임시비밀번호를 암호화 하여 DB에 저장
+    	
     	int n = Mservice.updateTemporaryPW(map);
    
     	return "login/successSendMail";

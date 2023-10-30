@@ -66,25 +66,44 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>안녕</td>
-      <td>박명수</td>
-      <td>23.10.12</td>
-      <td>0</td>
-      <td><button type="button">삭제</button></td>
-    </tr>
     <c:forEach var="review" items="${pageDTO.list}">
     <tr>
-      <th scope="row"></th>
-      <td>Larry the Bird 는 트윗트윗짹쨱  어쩌구어쩌구어쩌구 블라블라 </td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
+      <th scope="row">${review.review_id}</th>
+      <td>${review.review_content}</td>
+      <td>이미지</td>
+      <td>${review.user_id}</td>
+      <td>
+      	<c:choose>
+      		<c:when test="${review.rating == 1}">⭐</c:when>
+      		<c:when test="${review.rating == 2}">⭐⭐</c:when>
+      		<c:when test="${review.rating == 3}">⭐⭐⭐</c:when>
+      		<c:when test="${review.rating == 4}">⭐⭐⭐⭐</c:when>
+      		<c:when test="${review.rating == 5}">⭐⭐⭐⭐⭐</c:when>
+      	</c:choose>
+      </td>
+      <td>${review.like_cnt}</td>
+      <td><a href="reviewRetrieve?review_id=${review.review_id}">수정</a></td>
+      <td><a href="delete_my_r_review?num=${review.user_id}">삭제</a></td>
     </tr>
     </c:forEach>
   </tbody>
+  <!-- 페이지 번호 -->
+  <c:set var="perPage" value="${pageDTO.perPage}"></c:set>
+  <c:set var="curPage" value="${pageDTO.curPage}"></c:set>
+  <c:set var="totalCount" value="${pageDTO.totalCount}"></c:set>
+  <c:set var="totalNum" value="${totalCount/perPage}"></c:set>
+  <c:if test="${totalCount%perPage !=0}">
+  	<c:set var="totalNum" value="${totalNum+1}"></c:set>
+  </c:if>
+  <tr>
+  	<td colspan="6">
+  		<c:forEach var="i" begin="1" end="${totalNum}">
+  			<c:if test="${curPage==i}">${i}</c:if>
+  			<c:if test="${curPage!=i}"><a href="my_r_review?curPage=${i}">${i}</a></c:if>
+  		</c:forEach>
+  	</td>
+  </tr>
+ 
 </table>
 </div>
    </div>

@@ -68,4 +68,14 @@ public class LikeServiceImpl implements LikeService {
 	public List<RatingDTO> find_lod_rating(String userid) {
 		return dao.find_lod_rating(userid);
 	}
+
+	@Override
+	public int deleteAll_res_like(List<Integer> list) {
+		return dao.deleteAll_res_like(list);
+	}
+
+	@Override
+	public int deleteAll_lod_like(List<Integer> list) {
+		return dao.deleteAll_lod_like(list);
+	}
 }

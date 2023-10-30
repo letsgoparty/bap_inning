@@ -81,4 +81,24 @@
 		group by
 		lodging_id, lodging_name
 	</select>
+	<!-- 음식점 전체 삭제하기 -->
+	<delete id="deleteAll_res_like" parameterType="list">
+		delete from likes
+		<where>
+			<foreach item="item" collection="list" open="res_id IN ("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
+	<!-- 숙소 전체 삭제하기 -->
+	<delete id="deleteAll_lod_like" parameterType="list">
+		delete from likes
+		<where>
+			<foreach item="item" collection="list" open="lodging_id IN ("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
 </mapper>

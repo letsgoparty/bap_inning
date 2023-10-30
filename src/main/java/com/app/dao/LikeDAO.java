@@ -56,4 +56,12 @@ public class LikeDAO {
 	public List<RatingDTO> find_lod_rating(String userid) {
 		return session.selectList("LikeMapper.find_lod_rating", userid);
 	}
+	
+	public int deleteAll_res_like(List<Integer> list) {
+		return session.delete("LikeMapper.deleteAll_res_like", list);
+	}
+	
+	public int deleteAll_lod_like(List<Integer> list) {
+		return session.delete("LikeMapper.deleteAll_lod_like", list);
+	}
 }

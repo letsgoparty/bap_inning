@@ -91,7 +91,7 @@ span {
 				<h3>내 정보</h3>
 <span id="user_team_code" hidden>${user.team_code}</span>
 				<br>
-				<form action="myinfo" method="post">
+				<form action="myinfo" method="post" onsubmit="return validateEmail()">
 				<input type="hidden" name="userid" value="${user.userid}">
 					<div>
 					<span style="color: red" id="result"></span>
@@ -162,9 +162,28 @@ span {
 		</div>
 	</div>
 
-
-
-
+<script>
+//이메일을 올바른 형식으로 썼는지 확인
+function validateEmail(){
+	var email1=document.getElementById("email1").value;
+	var email2=document.getElementById("email2").value;
+	//이메일1 영어필수 숫자선택 특수문자선택 임. 
+	var email1Vaild=/^[a-zA-Z0-9._%+]+$/;
+	if (!email1Vaild.test(email1)){
+		alert("이메일 형식이 올바르지 않습니다.");
+		return false;
+	}
+	//이메일2 영어필수 온점필수
+	var email2Vaild=/^[a-zA-Z0-9-]+[.]+[a-zA-Z0-9-]+$/;
+	if(!email2Vaild.test(email2)){
+		alert("이메일 형식이 올바르지 않습니다.");
+		return false;
+	}
+	
+	//올바르게 썼을시 폼 제출
+	return true;
+}
+</script>
 
 
 </body>

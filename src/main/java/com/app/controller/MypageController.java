@@ -248,10 +248,14 @@ public class MypageController {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO) session.getAttribute("login");
 		String userid=user.getUserid();
-		String dbPw=user.getPassword();
+		
+		HashMap<String, String> map=new HashMap<String, String>();
+		map.put("userid", userid);
+		map.put("password", inputPw);
+		
 		
 		//사용자가 입력한 비번과 비교하기
-		if(inputPw.equals(dbPw)) {
+		if(encodeService.checkPW(map)) {
 			//비번이 맞은경우 회원탈퇴
 			int n=mypageService.memberDelete(userid);
 			//탈퇴 성공시 메인으로 이동

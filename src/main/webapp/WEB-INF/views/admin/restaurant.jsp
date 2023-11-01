@@ -29,14 +29,13 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <style>
-th:first-child, th:nth-child(4),th:nth-child(5) {
+th:first-child, th:nth-child(4), th:nth-child(5) {
 	max-width: 70px;
 }
 
 th:nth-child(2), th:nth-child(3) {
 	max-width: 250px;
 }
-
 </style>
 
 </head>
@@ -93,8 +92,8 @@ th:nth-child(2), th:nth-child(3) {
 				</div></li>
 
 			<!--  Place -->
-			<li class="nav-item active"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapsePages"
+			<li class="nav-item active"><a class="nav-link collapsed"
+				href="#" data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
 					class="fas fa-fw fa-folder"></i> <span>Place</span>
 			</a>
@@ -102,8 +101,8 @@ th:nth-child(2), th:nth-child(3) {
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">음식점/숙소 관리</h6>
-						<a class="collapse-item active" href="../admin/res">Restaurant</a> <a
-							class="collapse-item" href="../admin/lod">Lodging</a>
+						<a class="collapse-item active" href="../admin/res">Restaurant</a>
+						<a class="collapse-item" href="../admin/lod">Lodging</a>
 					</div>
 				</div></li>
 
@@ -147,11 +146,16 @@ th:nth-child(2), th:nth-child(3) {
 				<!-- 테이블 -->
 				<div class="container-fluid" style="font-family: 'SUITE-Regular';">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800 mb-4 mx-2">음식점</h1>
+					<div style="display: flex; justify-content: space-between; align-items: center;">
+						<h1 class="h3 mb-2 text-gray-800 mb-4 mx-2">음식점</h1>
+						<button class="btn btn-primary mb-2">등록</button>
+					</div>
+
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">RESTAURANT TABLE</h6>
+							<h6 class="m-0 font-weight-bold text-primary">RESTAURANT
+								TABLE</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -189,7 +193,11 @@ th:nth-child(2), th:nth-child(3) {
 												<td>${dto.category}</td>
 												<td>${dto.team_code}</td>
 												<td>${dto.rating}</td>
-												<td><button class="btn btn-primary deleteBtn" data-res-name="${dto.res_name}" style="background-color:rgb(181,181,181); border-color:rgb(181,181,181);"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button></td>
+												<td><button class="btn btn-primary deleteBtn"
+														data-res-name="${dto.res_name}"
+														style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">
+														<i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+													</button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -238,44 +246,43 @@ th:nth-child(2), th:nth-child(3) {
 				<div class="modal-body">
 					<div role="content">
 						<div class="widget-body">
-					
+
 							<p id="res_imageTag"></p>
-						가게명 <input class="form-control mb-2" id="res_name">
-						주 소 <input class="form-control mb-2" id="res_addr">
-						거 리 (분)<input class="form-control mb-2" id="distance">
-						카테고리  <select class="form-control mb-2" id="category">
-  								<option value="한식">한식</option>
-  								<option value="중식">중식</option>
-  								<option value="일식">일식</option>
-  								<option value="양식">양식</option>
-  								<option value="카페">카페</option>
-  								<option value="패스트푸드">패스트푸드</option>
-								</select>
+							가게명 <input class="form-control mb-2" id="res_name"> 주 소 <input
+								class="form-control mb-2" id="res_addr"> 거 리 (분)<input
+								class="form-control mb-2" id="distance"> 카테고리 <select
+								class="form-control mb-2" id="category">
+								<option value="한식">한식</option>
+								<option value="중식">중식</option>
+								<option value="일식">일식</option>
+								<option value="양식">양식</option>
+								<option value="카페">카페</option>
+								<option value="패스트푸드">패스트푸드</option>
+							</select> 주변 구장 <select class="form-control mb-2" id="team">
+								<option value="1">SSG 랜더스필드</option>
+								<option value="2">고척 스카이돔</option>
+								<option value="3">잠실종합운동장</option>
+								<option value="4">KT위즈파크</option>
+								<option value="5">KIA챔피언스필드</option>
+								<option value="6">NC파크</option>
+								<option value="7">삼성라이온즈파크</option>
+								<option value="8">사직야구장</option>
+								<option value="10">한화생명 이글스파크</option>
 
-						주변 구장 <select class="form-control mb-2" id="team">
-  								<option value="1">SSG 랜더스필드</option>
-  								<option value="2">고척 스카이돔</option>
-  								<option value="3">잠실종합운동장</option>
-  								<option value="4">KT위즈파크</option>
-  								<option value="5">KIA챔피언스필드</option>
-  								<option value="6">NC파크</option>
-  								<option value="7">삼성라이온즈파크</option>
-  								<option value="8">사직야구장</option>
-  								<option value="10">한화생명 이글스파크</option>
+							</select> 별점 <input class="form-control mb-2" id="rating" disabled>
+							상세 설명
+							<textarea class="form-control mb-2" rows="3" id="res_content"></textarea>
 
-								</select>
-							별점 <input class="form-control mb-2" id="rating" disabled>
-							상세 설명 <textarea class="form-control mb-2" rows="3" id="res_content"></textarea>
-							
-							<input type="hidden" id="res_id">
-							<input type="hidden" id="res_image">
+							<input type="hidden" id="res_id"> <input type="hidden"
+								id="res_image">
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="updateRes">수정</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color:rgb(181,181,181); border-color:rgb(181,181,181);">닫기</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">닫기</button>
 				</div>
 			</div>
 		</div>

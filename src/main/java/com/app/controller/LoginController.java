@@ -52,7 +52,7 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		 session.invalidate(); //로그아웃
-		return "redirect:main";
+		return "/login/successLogout";
 	}
 	
 }

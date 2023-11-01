@@ -9,13 +9,14 @@ public class MemberDTO {
     String email;
     String nickname;
     int team_code;
-
+    int board_count;
+    int comment_count;
+    int res_review_count;
+    int lod_review_count;
 
     public MemberDTO() {
     }
 
-    
-    
     public MemberDTO(String userid, String password, String email, String nickname, int team_code) {
 
 		this.userid = userid;
@@ -24,8 +25,6 @@ public class MemberDTO {
 		this.nickname = nickname;
 		this.team_code = team_code;
 	}
-
-
 
 	public String getUserid() {
 		return userid;
@@ -86,6 +85,38 @@ public class MemberDTO {
 	}
 
 
+
+	public int getBoard_count() {
+		return board_count;
+	}
+
+	public void setBoard_count(int board_count) {
+		this.board_count = board_count;
+	}
+
+	public int getComment_count() {
+		return comment_count;
+	}
+
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
+	}
+
+	public int getRes_review_count() {
+		return res_review_count;
+	}
+
+	public void setRes_review_count(int res_review_count) {
+		this.res_review_count = res_review_count;
+	}
+
+	public int getLod_review_count() {
+		return lod_review_count;
+	}
+
+	public void setLod_review_count(int lod_review_count) {
+		this.lod_review_count = lod_review_count;
+	}
 
 	@Override
 	public String toString() {

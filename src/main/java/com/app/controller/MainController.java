@@ -13,6 +13,7 @@ import com.app.dto.LodgingDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.RatingDTO;
 import com.app.dto.RestaurantDTO;
+import com.app.service.AdminService;
 import com.app.service.LikeService;
 import com.app.service.ScrapingService;
 
@@ -29,6 +30,9 @@ public class MainController {
 
 	@Autowired
 	private LikeService likeService;
+	
+	@Autowired
+	private AdminService adminService;
 
 	@RequestMapping("/main")
 	public String main(Model m) {
@@ -45,6 +49,12 @@ public class MainController {
 		// 팀 별 일정
 		String[] teams = { "all", "SSG", "키움", "LG", "KT", "KIA", "NC", "삼성", "롯데", "두산", "한화" };
 		m.addAttribute("teams", teams);
+		
+		if(adminService.todayVisitCheck() == null) {
+			int n = adminService.todayFirstVisit();
+		} else {
+			int n = adminService.todayAddVisit();
+		}
 
 		return "main";
 	}

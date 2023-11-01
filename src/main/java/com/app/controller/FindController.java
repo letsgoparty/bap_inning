@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.LodgingDTO;
 import com.app.dto.RatingDTO;
 import com.app.dto.RestaurantDTO;
+import com.app.service.AdminService;
 import com.app.service.FindService;
 
 /****************************************
@@ -24,6 +25,9 @@ public class FindController {
 
 	@Autowired
 	FindService service;
+	
+	@Autowired
+	AdminService Aservice;
 	
 	@GetMapping("/find_res") 
 	public RestaurantDTO find_res(@RequestParam String res_name) {

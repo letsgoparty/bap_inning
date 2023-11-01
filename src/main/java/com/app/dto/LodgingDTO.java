@@ -117,8 +117,11 @@ public class LodgingDTO {
 	public String toString() {
 		return "LodgingDTO [lodging_id=" + lodging_id + ", lodging_name=" + lodging_name + ", lodging_addr="
 				+ lodging_addr + ", lodging_image=" + lodging_image + ", lodging_content=" + lodging_content
-				+ ", distance=" + distance + ", lodging_url=" + lodging_url + "]";
+				+ ", distance=" + distance + ", lodging_url=" + lodging_url + ", category=" + category + ", team_code="
+				+ team_code + ", rating=" + rating + "]";
 	}
+
+
 
 
 

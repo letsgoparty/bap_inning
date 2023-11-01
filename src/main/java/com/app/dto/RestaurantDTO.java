@@ -102,8 +102,11 @@ public class RestaurantDTO {
 	@Override
 	public String toString() {
 		return "RestaurantDTO [res_id=" + res_id + ", res_name=" + res_name + ", res_addr=" + res_addr + ", res_image="
-				+ res_image + ", res_content=" + res_content + ", distance=" + distance + "]";
+				+ res_image + ", res_content=" + res_content + ", distance=" + distance + ", category=" + category
+				+ ", team_code=" + team_code + ", rating=" + rating + "]";
 	}
+
+
 	
 
 }

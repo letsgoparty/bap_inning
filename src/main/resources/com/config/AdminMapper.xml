@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminMapper">
+	<select id="find_Board" resultType="Board">
+		select * from Board
+	</select>
+	<select id="find_Board_by_num" parameterType="int"
+		resultType="Board">
+		select * from Board
+		where board_num = #{board_num}
+	</select>
+	<select id="find_user" resultType="MemberDTO">
+		select * from member
+	</select>
+	<select id="find_user_board" parameterType="string"
+		resultType="int">
+		select count(board_num) as board_count from board
+		where
+		userid=#{userid}
+	</select>
+	<select id="find_user_commet" parameterType="string"
+		resultType="int">
+		select count(reviews_num) as comment_count
+		from
+		board_reviews
+		where userid=#{userid}
+	</select>
+	<select id="find_user_res_review" parameterType="string"
+		resultType="int">
+		select count(review_id) as res_review_count
+		from
+		restaurant_reviews
+		where user_id=#{userid}
+	</select>
+	<select id="find_user_lod_review" parameterType="string"
+		resultType="int">
+		select count(review_id) as lod_review_count
+		from
+		lodging_reviews
+		where user_id=#{userid}
+	</select>
+	<select id="find_res_review" resultType="ResReviewDTO">
+		SELECT res_id,
+		review_id, user_id, rating,
+		CASE
+		WHEN LENGTH(review_content) > 10 THEN
+		SUBSTR(review_content, 1, 10) ||
+		'...'
+		ELSE review_content
+		END as
+		review_content,
+		like_cnt, created_date, modified_date, res_name
+		FROM
+		restaurant_reviews
+		NATURAL JOIN restaurant
+	</select>
+	<select id="find_lod_review" resultType="LodReviewDTO">
+		SELECT lodging_id,
+		review_id, user_id, rating,
+		CASE
+		WHEN LENGTH(review_content) > 10 THEN
+		SUBSTR(review_content, 1, 10) ||
+		'...'
+		ELSE review_content
+		END as
+		review_content,
+		like_cnt, created_date, modified_date, lodging_name
+		FROM lodging_reviews
+		NATURAL JOIN lodging
+	</select>
+	<select id="find_res" resultType="RestaurantDTO">
+		select * from restaurant
+	</select>
+	<select id="find_res_rating" resultType="RatingDTO">
+		SELECT res_name as
+		place_name, NVL(TO_CHAR(ROUND(AVG(rating), 1), '0.0'), '-') as rating
+		FROM
+		restaurant_reviews
+		NATURAL JOIN restaurant
+		GROUP BY res_id, res_name
+	</select>
+	<update id="update_res" parameterType="RestaurantDTO">
+		update restaurant
+		set
+		res_name=#{res_name}, res_addr=#{res_addr},
+		res_content=#{res_content}, distance=#{distance},
+		category=#{category}, team_code=#{team_code}
+		where res_id=#{res_id}
+	</update>
+	<delete id="delete_res" parameterType="string">
+		delete from restaurant
+		where res_name = #{res_name}
+	</delete>
+	<select id="find_lod" resultType="LodgingDTO">
+		select * from lodging
+	</select>
+	<select id="find_lod_rating" resultType="RatingDTO">
+		SELECT lodging_name as
+		place_name, NVL(TO_CHAR(ROUND(AVG(rating), 1), '0.0'),'-') as rating
+		FROM
+		lodging_reviews
+		NATURAL JOIN lodging
+		GROUP BY
+		lodging_id,
+		lodging_name
+	</select>
+	<update id="update_lod" parameterType="LodgingDTO">
+		update lodging
+		set
+		lodging_name=#{lodging_name}, lodging_addr=#{lodging_addr},
+		lodging_content=#{lodging_content}, distance=#{distance},
+		category=#{category}, team_code=#{team_code},
+		lodging_url=#{lodging_url}
+		where lodging_id=#{lodging_id}
+	</update>
+	<delete id="delete_lod" parameterType="string">
+		delete from lodging
+		where
+		lodging_name = #{lodging_name}
+	</delete>
+	<delete id="delete_user" parameterType="string">
+		delete from member
+		where
+		userid=#{userid}
+	</delete>
+	<select id="find_resInfo" parameterType="string"
+		resultType="ResReviewDTO">
+		SELECT res_id,
+		review_id, user_id, rating,
+		CASE
+		WHEN
+		LENGTH(review_content) >
+		10 THEN
+		SUBSTR(review_content, 1, 10) ||
+		'...'
+		ELSE review_content
+		END as
+		review_content,
+		like_cnt, created_date,
+		modified_date, res_name
+		FROM
+		restaurant_reviews
+		NATURAL JOIN restaurant
+		where user_id=#{userid}
+	</select>
+	<select id="find_lodInfo" parameterType="string"
+		resultType="LodReviewDTO">
+		SELECT lodging_id,
+		review_id, user_id, rating,
+		CASE
+		WHEN
+		LENGTH(review_content)
+		> 10 THEN
+		SUBSTR(review_content, 1, 10) ||
+		'...'
+		ELSE review_content
+		END
+		as
+		review_content,
+		like_cnt, created_date,
+		modified_date, lodging_name
+		FROM lodging_reviews
+		NATURAL JOIN lodging
+		where user_id=#{userid}
+	</select>
+	<select id="find_boardInfo" parameterType="string"
+		resultType="Board">
+		select * from board
+		where userid=#{userid}
+	</select>
+	<delete id="delete_board" parameterType="int">
+		delete from board
+		where board_num = #{board_num}
+	</delete>
+	<delete id="delete_res_review" parameterType="int">
+		delete from restaurant_reviews
+		where review_id=#{review_id}
+	</delete>
+	<delete id="delete_lod_review" parameterType="int">
+		delete from lodging_reviews
+		where review_id=#{review_id}
+	</delete>
+<select id="todayVisitCheck" resultType="VisitDTO">
+    select TO_CHAR(visit_date, 'YYYY/MM/DD') as visit_date, visit_num from visit
+    where TO_CHAR(visit_date, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')    
+</select>
+
+<insert id="todayFirstVisit">
+    insert into visit(visit_date, visit_num)
+    values (TO_CHAR(SYSDATE, 'YYYYMMDD'), 1)
+</insert>
+
+<update id="todayAddVisit">
+    update visit set visit_num = visit_num + 1
+    where TO_CHAR(visit_date, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')
+</update>
+<select id="CountMember" resultType="int">
+select count(*) from member
+</select>
+<select id="CountBoard" resultType="int">
+select count(*) from board
+</select>
+<select id="CountReview" resultType="int">
+SELECT (SELECT COUNT(*) FROM restaurant_reviews) + (SELECT COUNT(*) FROM lodging_reviews) AS total_reviews_count from dual
+</select>
+<select id="findUser" parameterType="string" resultType="UserDTO">
+select userid, password, role from member
+where userid=#{userid}
+</select>
+</mapper>

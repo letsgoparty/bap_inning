@@ -21,17 +21,15 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
       HttpSession session = request.getSession();
       MemberDTO getmypage = (MemberDTO) session.getAttribute("login");
       System.out.println("getmypage: " + getmypage);
-      if(getmypage==null){
+      if(getmypage==null ||  !"admin".equals(getmypage.getUserid())){
           response.sendRedirect("/app/loginForm"); // 리다이렉트. 리다이렉트 페이지 수정할 수도 있음
           return false; // 요청 중단
         
       }
 	   return true;
     
-      //System.out.println("Session ID: " + session.getId());
-      //System.out.println("Creation Time: " + session.getCreationTime());
-      //System.out.println("getmypage: " + getmypage);
-
 	}
+	
+	
 	
 }

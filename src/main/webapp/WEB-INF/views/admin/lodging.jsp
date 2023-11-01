@@ -145,7 +145,10 @@ th:nth-child(2) {
 				<!-- 테이블 -->
 				<div class="container-fluid" style="font-family: 'SUITE-Regular';">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800 mb-4 mx-2">숙소</h1>
+					<div style="display: flex; justify-content: space-between; align-items: center;">
+						<h1 class="h3 mb-2 text-gray-800 mb-4 mx-2">음식점</h1>
+						<button class="btn btn-primary mb-2">등록</button>
+					</div>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">

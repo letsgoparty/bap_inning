@@ -193,6 +193,23 @@
             });
         }, false);
     </script>
+    
+    <script>
+    const useridInput = document.getElementById('userid');
+
+    useridInput.addEventListener('input', function() {
+        const useridValue = useridInput.value;
+
+        // 정규 표현식을 사용하여 한글이 포함된 경우 입력을 제한
+        if (/[\u3130-\u318F\uAC00-\uD7A3]+/.test(useridValue)) {
+            alert('한글은 아이디로 사용할 수 없습니다.');
+            useridInput.value = ''; 
+        }
+    });
+   </script>
+    
+    
+    
      <script>
      var passwordInput = document.getElementById('passwd');
      var password2Input = document.getElementById('passwd2');
@@ -218,6 +235,9 @@
       });
 
      function validateForm() {
+        if (!validateEmail()) {
+ 		return false;
+ 	    }
         if (!passwordValid) {
             alert("비밀번호는 8자리 이상의 숫자, 영문자, 특수문자를 포함해야 합니다.");
             passwordInput.focus(); // 비밀번호 필드로 포커스
@@ -234,6 +254,30 @@
         return true;
      }
    </script>
+   <script>
+    function validateEmail() {
+	  var email1 = document.getElementById("email1").value;
+	  var email2 = document.getElementById("email2").value;
+			  
+	  var email1Valid = /^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\-]+$/;
+	  var email2Valid = /^[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$/;
+			
+		if (!email1Valid.test(email1)) {
+			alert("이메일 주소를 다시 한 번 확인해주세요");
+			 return false;
+			}
+			
+	    if (!email2Valid.test(email2)) {
+			 alert("이메일 주소를 다시 한 번 확인해주세요");
+			 return false;
+			}
+			
+	    return true;
+	  }
+   </script>
+   
+   
+   
 </body>
 
 </html>

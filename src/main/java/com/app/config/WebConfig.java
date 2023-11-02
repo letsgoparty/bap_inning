@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.app.interceptor.AdminInterceptor;
 import com.app.interceptor.MyHandlerInterceptor;
 
 @Configuration 
@@ -13,10 +14,16 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	MyHandlerInterceptor interceptor;
 	
+	@Autowired
+	AdminInterceptor adminInterceptor;
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor)
 		        .addPathPatterns("/mypage", "/write", "/reviewWrite", "/admin/**");
+		
+	    registry.addInterceptor(adminInterceptor)
+        .addPathPatterns("/admin/**");
 	}
 
 	

@@ -6,8 +6,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.MemberDTO;
@@ -17,40 +19,51 @@ import com.app.service.MemberService;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	EmailService service;
-	
+
 	@Autowired
 	MemberService Mservice;
-	
+
 	@Autowired
 	EncodeService Eservice;
+
+	@RequestMapping("/forgotpassword")
+	public String forgotpassword() {
+		return "login/ForgotPW";
+	}
+
+	@RequestMapping("/sendEmail")
+	public String sendPasswordEmail(@RequestParam String email) {
+		String temporaryPW = null;
+		if (email.endsWith("naver.com")) {
+			temporaryPW = service.sendEmailNaver(email);
+		} else {
+			temporaryPW = service.sendEmailGoogle(email);
+		}
+
+		String encode_temporaryPW = Eservice.modify(temporaryPW);
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("password", encode_temporaryPW);
+
+		int n = Mservice.updateTemporaryPW(map);
+
+		return "login/successSendMail";
+	}
+
+	@GetMapping("/sendMailCode")
+	@ResponseBody
+	public String sendMailCode(String email) throws Exception {
+		String authCode = null;
+		if (email.endsWith("naver.com")) {
+			authCode = service.sendCodeNaver(email);
+		} else {	
+			authCode = service.sendCodeGoogle(email);			
+		}
 	
-		// 비밀번호 찾기 누르면 ForgotPW.jsp로 이동
-    @RequestMapping("/forgotpassword")
-    public String forgotpassword() {
-    	return "login/ForgotPW";
-    }
-    
-		// 입력받은 이메일을 파라미터로 받아 임시이메일로 전송하고 (sendEmail 메서드)
-		// Member 테이블에 해당 임시비밀번호로 update 해야함 (updateTemporaryPW 메서드)
-		// 이메일 전송 시, successSendMail.jsp 로 이동
-    @RequestMapping("/sendEmail")
-    public String sendPasswordEmail(@RequestParam String email) {
-   
-    	String temporaryPW = service.sendEmail(email);
-    	
-    	String encode_temporaryPW = Eservice.modify(temporaryPW);
-    	
-    	HashMap<String, String> map = new HashMap<String, String>();
-    	map.put("email", email);
-    	map.put("password", encode_temporaryPW);
-    	
-    	// 임시비밀번호를 암호화 하여 DB에 저장
-    	
-    	int n = Mservice.updateTemporaryPW(map);
-   
-    	return "login/successSendMail";
-    }
+		return authCode;
+	}
 }

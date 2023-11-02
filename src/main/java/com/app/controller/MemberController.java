@@ -1,7 +1,5 @@
 package com.app.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.dto.JspMemberDTO;
 import com.app.dto.MemberDTO;
-import com.app.service.MemberService;
+import com.app.service.EmailService;
 import com.app.service.EncodeService;
+import com.app.service.MemberService;
 
 @Controller
 public class MemberController {
@@ -24,21 +23,19 @@ public class MemberController {
 	@Autowired 
 	EncodeService Eservice;
 	
+	@Autowired
+	EmailService emailService;
+	
 	
 	@RequestMapping("/memberForm")	
 	public String memberForm() {
 		return "memberForm";
 	}
 	
-
-	
-	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
 		return "loginForm";
 	}
-	
-	
 	
 	@PostMapping("/memberAdd")
 	public String memberAdd(JspMemberDTO dto) {
@@ -67,10 +64,6 @@ public class MemberController {
     }
   }
 
-	
-	
-	
-	
 	@GetMapping(value="/memberIdCheck",
 			  produces = "text/plain;charset=utf-8")
 	@ResponseBody

@@ -205,8 +205,13 @@ select count(*) from board
 <select id="CountReview" resultType="int">
 SELECT (SELECT COUNT(*) FROM restaurant_reviews) + (SELECT COUNT(*) FROM lodging_reviews) AS total_reviews_count from dual
 </select>
-<select id="findUser" parameterType="string" resultType="UserDTO">
-select userid, password, role from member
+<select id="findUser" parameterType="string" resultType="MemberDTO">
+select * from member
 where userid=#{userid}
 </select>
+<update id="updateUser" parameterType="MemberDTO">
+update member
+set userid=#{userid}, email=#{email}, nickname=#{nickname} , team_code=#{team_code}
+where password=#{password}
+</update>
 </mapper>

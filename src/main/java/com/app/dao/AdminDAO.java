@@ -115,8 +115,11 @@ public class AdminDAO {
 	public int CountReview() {
 		return session.selectOne("AdminMapper.CountReview");
 	}
-	public UserDTO findUser(String userid) {
+	public MemberDTO findUser(String userid) {
 		return session.selectOne("AdminMapper.findUser", userid);
+	}
+	public int updateUser(MemberDTO dto) {
+		return session.update("AdminMapper.updateUser", dto);
 	}
 	
 }

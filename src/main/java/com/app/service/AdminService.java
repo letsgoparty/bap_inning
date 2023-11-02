@@ -43,5 +43,6 @@ public interface AdminService {
 	public int CountMember();
 	public int CountBoard();
 	public int CountReview();
-	public UserDTO findUser(String userid);
+	public MemberDTO findUser(String userid);
+	public int updateUser(MemberDTO dto);
 }

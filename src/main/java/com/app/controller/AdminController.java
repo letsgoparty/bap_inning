@@ -143,6 +143,13 @@ public class AdminController {
 		return "/admin/lodging";
 	}
 	
+	@PostMapping("/admin/find_user")
+	@ResponseBody
+	public MemberDTO find_user(@RequestParam String userid) {
+		MemberDTO dto = service.findUser(userid);
+		return dto;
+	}
+	
 	@PostMapping("/admin/find_res")
 	@ResponseBody
 	public RestaurantDTO find_res(@RequestParam String res_name) {
@@ -184,6 +191,19 @@ public class AdminController {
 			return "수정을 실패하였습니다.";
 		}
 
+	}
+	
+	@PostMapping("/admin/updateUser")
+	@ResponseBody
+	public String updateUser(MemberDTO dto) {
+		int n = service.updateUser(dto);
+		
+		if(n>0) {
+			return "회원 정보를 수정하였습니다.";
+		} else {
+			return "수정을 실패하였습니다.";
+		}
+		
 	}
 	
 	@PostMapping("/admin/deleteRes")

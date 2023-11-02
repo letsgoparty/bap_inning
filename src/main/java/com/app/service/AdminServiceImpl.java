@@ -175,7 +175,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public UserDTO findUser(String userid) {
+	public MemberDTO findUser(String userid) {
 		return dao.findUser(userid);
+	}
+
+	@Override
+	public int updateUser(MemberDTO dto) {
+		return dao.updateUser(dto);
 	}
 }

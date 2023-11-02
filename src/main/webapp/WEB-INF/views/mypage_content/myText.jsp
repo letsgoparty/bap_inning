@@ -85,14 +85,34 @@
   <c:if test="${totalCount%perPage!=0}">
   	<c:set var="totalNum" value="${totalNum+1}"/>
   </c:if>
+  
   <tr>
   	<td colspan="6">
-  		<c:forEach var="i" begin="1" end="${totalNum}">
-  			<c:if test="${curPage==i}">${i}</c:if>
-  			<c:if test="${curPage!=i}"><a href="mytext?curPage=${i}">${i}</a></c:if>
-  		</c:forEach>
+      <div class="pagination">
+        <ul class="pagination">
+          <li class="page-item first disabled">
+            <a class="page-link" href="#">&laquo;</a>
+          </li>
+          <li class="page-item previous disabled">
+            <a class="page-link" href="#">&lsaquo;</a>
+          </li>
+          <c:forEach var="i" begin="1" end="${totalNum}">
+            <li class="page-item ${i == curPage ? 'active' : ''}">
+              <a class="page-link" href="mytext?curPage=${i}">${i}</a>
+            </li>
+          </c:forEach>
+          <li class="page-item next">
+            <a class="page-link" href="mytext?curPage=${curPage + 1}">&rsaquo;</a>
+          </li>
+          <li class="page-item last">
+            <a class="page-link" href="#">&raquo;</a>
+          </li>
+
+        </ul>
+      </div>
   	</td>
   </tr>
+
   
   
 </table>

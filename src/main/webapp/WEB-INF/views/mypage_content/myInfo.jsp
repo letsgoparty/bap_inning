@@ -32,12 +32,11 @@ span {
 		//select요소에 해당하는거 선택
 		$("#myTeam").val(userTeamCode);
 		 
-		//이메일도메인 변경시 자동입력
+/* 		//이메일도메인 변경시 자동입력
 		$("#emailDomain").change(function() {
 			var selectedDomain = $("#emailDomain").val();
 			$("#email2").val(selectedDomain);
-		});
-		
+		}); */	
 		
 		//인풋활성화 와 정보수정하기
 		$('#editBtn').click(function(){
@@ -61,6 +60,8 @@ span {
 			editableSelect[i].disabled = false;
 		}
 		document.getElementById("userid").disabled="true";
+		document.getElementById("email1").disabled="true";
+		document.getElementById("email2").disabled="true";
 		
 	};
 	function disableEdit() {
@@ -113,19 +114,20 @@ span {
 					</div>
 					<div class="input-group mb-3">
 						<span class="input-group-text" id="emailLabel">이메일</span> 
-						<input type="text" class="form-control" disabled required id="email1"
+						<input type="text" class="form-control" readonly  disabled required id="email1"
 							name="email1" value="${user.email.split('@')[0]}"  autocomplete="off" aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-default"> <span
 							class="input-group-text" id="emailDomainLabel">@</span> <input
-							type="text" class="form-control" disabled required id="email2"
+							type="text" class="form-control" readonly disabled required id="email2"
 							name="email2" value="${user.email.split('@')[1]}"  autocomplete="off" aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-default"> <select
+							aria-describedby="inputGroup-sizing-default"> 
+<!-- 						<select
 							class="form-select" id="emailDomain" disabled>
 							<option value="">--직접입력--</option>
 							<option value="daum.net">daum.net</option>
 							<option value="naver.com">naver.com</option>
 							<option value="gmail.com">gmail.com</option>
-						</select>
+						</select> -->
 					</div>
 
 
@@ -163,7 +165,8 @@ span {
 	</div>
 
 <script>
-//이메일을 올바른 형식으로 썼는지 확인
+
+/* //이메일을 올바른 형식으로 썼는지 확인
 function validateEmail(){
 	var email1=document.getElementById("email1").value;
 	var email2=document.getElementById("email2").value;
@@ -182,8 +185,8 @@ function validateEmail(){
 	
 	//올바르게 썼을시 폼 제출
 	return true;
-}
-</script>
+} */
+</script> 
 
 
 </body>

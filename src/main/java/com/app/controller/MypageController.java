@@ -132,9 +132,10 @@ public class MypageController {
 	}
 
 	@PostMapping("/myinfo")
-	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("nickname") String nickname, @RequestParam("email1")String email1, @RequestParam("email2")String email2, @RequestParam("myTeam") int teamCode, HttpSession session) {
+	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("nickname") String nickname, @RequestParam("myTeam") int teamCode, HttpSession session) {
 	    MemberDTO dto=new MemberDTO();
-	    String email = email1 + "@" + email2;
+	    MemberDTO user=(MemberDTO) session.getAttribute("login");
+	    String email=user.getEmail();
 	   
 	    dto.setUserid(userid);
 	    dto.setEmail(email);

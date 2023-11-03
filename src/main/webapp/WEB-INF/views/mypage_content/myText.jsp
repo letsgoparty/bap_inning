@@ -84,38 +84,62 @@
   <c:set var="totalNum" value="${totalCount/perPage}"/>
   <c:if test="${totalCount%perPage!=0}">
   	<c:set var="totalNum" value="${totalNum+1}"/>
+
   </c:if>
   
-  <tr>
-  	<td colspan="6">
+<tr>
+    <td colspan="6">
       <div class="pagination">
         <ul class="pagination">
-          <li class="page-item first disabled">
-            <a class="page-link" href="#">&laquo;</a>
+          <li class="page-item first ${curPage == 1 ? 'disabled' : ''}">
+            <c:choose>
+              <c:when test="${curPage == 1}">
+                <span class="page-link">&laquo;</span>
+              </c:when>
+              <c:otherwise>
+                <a class="page-link" href="mytext?curPage=1">&laquo;</a>
+              </c:otherwise>
+            </c:choose>
           </li>
-          <li class="page-item previous disabled">
-            <a class="page-link" href="#">&lsaquo;</a>
+          <li class="page-item previous ${curPage == 1 ? 'disabled' : ''}">
+            <c:choose>
+              <c:when test="${curPage == 1}">
+                <span class="page-link">&lsaquo;</span>
+              </c:when>
+              <c:otherwise>
+                <a class="page-link" href="mytext?curPage=${curPage - 1}">&lsaquo;</a>
+              </c:otherwise>
+            </c:choose>
           </li>
           <c:forEach var="i" begin="1" end="${totalNum}">
             <li class="page-item ${i == curPage ? 'active' : ''}">
               <a class="page-link" href="mytext?curPage=${i}">${i}</a>
             </li>
           </c:forEach>
-          <li class="page-item next">
-            <a class="page-link" href="mytext?curPage=${curPage + 1}">&rsaquo;</a>
-          </li>
-          <li class="page-item last">
-            <a class="page-link" href="#">&raquo;</a>
-          </li>
-
+        <li class="page-item next ${curPage >= totalNum ? 'disabled' : ''}">
+          <c:choose>
+            <c:when test="${curPage >= totalNum}">
+              <span class="page-link">&rsaquo;</span>
+              </c:when>
+              <c:otherwise>
+                <a class="page-link" href="mytext?curPage=${curPage + 1}">&rsaquo;</a>
+              </c:otherwise>
+            </c:choose>
+        </li>
+        <li class="page-item last ${curPage >= totalNum ? 'disabled' : ''}">
+          <c:choose>
+            <c:when test="${curPage >= totalNum}">
+              <span class="page-link">&raquo;</span>
+              </c:when>
+              <c:otherwise>
+                <a class="page-link" href="mytext?curPage=${totalNum}">&raquo;</a>
+              </c:otherwise>
+            </c:choose>
+        </li>
         </ul>
       </div>
-  	</td>
-  </tr>
-
-  
-  
-</table>
+    </td>
+  </tr></table>
 </div>
    </div>
   </div>
@@ -136,6 +160,8 @@ for (let i=0;i<radioButton.length;i++){
 		}
 	});
 }
+
+
 </script>
 
 

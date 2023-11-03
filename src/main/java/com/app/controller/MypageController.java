@@ -274,12 +274,17 @@ public class MypageController {
 	}
 	
 	@GetMapping("/mytext")
-	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, HttpSession session) {
+	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
+			@RequestParam(value = "type", required = false, defaultValue = "null") String type,
+			@RequestParam(value = "keyword", required = false, defaultValue = "null") String keyword,
+			HttpSession session) {
+		
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
+
 		
-		PageDTO pageDTO=boardService.selectList(curPage);
+		PageDTO pageDTO=boardService.selectList(curPage,type,keyword);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myText");

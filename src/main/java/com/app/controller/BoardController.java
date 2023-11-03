@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.dto.Board;
 import com.app.dto.PageDTO;
+import com.app.dto.Reply;
 import com.app.service.BoardService;
+import com.app.service.ReplyService;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	BoardService service;
+	@Autowired
+	ReplyService replyService;
 
 	// 1. 글쓰기 화면 보기
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
@@ -29,6 +33,7 @@ public class BoardController {
 	// 2. 글쓰기
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(Board board) {
+		// user sesstion넣기
 		
 		// userid member dto에서 가져올예정
 		board.setUserid("xxx");
@@ -39,16 +44,26 @@ public class BoardController {
 	// 3.목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ModelAttribute("pageDTO")
-	public PageDTO list(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage) {
+	public PageDTO list(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
+			@RequestParam(value = "type", required = false, defaultValue = "null") String type,
+			@RequestParam(value = "keyword", required = false, defaultValue = "null") String keyword) {
 		
-		return service.selectList(curPage);
+		//String[] team_code = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+		PageDTO xx=service.selectList(curPage,type,keyword);
+		System.out.println(xx);
+		return xx;
 	}
 
 	// 4. 글자세히 보기
 	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
 	@ModelAttribute("retrieve")
-	public Board retrieve(int no) {
+	public Board retrieve(int no) { // Board => void
 		Board board = service.selectByNo(no);
+		
+		// 댓글 조회
+		List<Reply> reply = replyService.replyList(no);
+		System.out.println(board);
+		System.out.println(reply);
 		return board;
 	}
 

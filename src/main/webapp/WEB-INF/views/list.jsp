@@ -7,38 +7,23 @@
 <meta charset="UTF-8">
 <title>공지사항 글쓰기 화면</title>
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script>
+<!-- <script>
 	$(document).ready(function() {
-		$("#searchForm button").on("click", function(e) {
-			if (!$("#searchForm").find("option:selected").val()) {
-				alert("검색 종류를 선택하세요");
-				return false;
-			}
-			if (!$("#searchForm").find("input[name='keyword']").val()) {
-				alert("키워드를 입력하세요");
-				return false;
-			}
-
-			e.preventDefault();
-			searchForm.submit();
-		});
+		
 	});
-</script>
+</script> -->
 <script type="text/javascript">
 	function writeui() {
 		location.href = "write";
+	}
+	function gudan(v) {
+		alert("dd");
+		//event.preventDefault();
+		document.querySelector("#team").value = v;
+	}
+	function clear(){
+		location.href = "list";
 	}
 </script>
 
@@ -50,26 +35,44 @@
 	<div class="container">
 		<h2 class="text-center">밥이닝 게시판</h2>
 
-		<form action="list">
+		<form action="list" method="get">
+			<select name="team_code" class="form-select" style="width: 120%">
+				<option value="0" selected>---해당없음---</option>
+				<option value="1">SSG 랜더스</option>
+				<option value="2">키움 히어로즈</option>
+				<option value="3">LG 트윈스</option>
+				<option value="4">KT wiz</option>
+				<option value="5">KIA 타이거즈</option>
+				<option value="6">NC 다이노스</option>
+				<option value="7">삼성 라이온즈</option>
+				<option value="8">롯데 자이언츠</option>
+				<option value="9">두산 베어스</option>
+				<option value="10">한화 이글스</option>
+			</select>
+			<button type="submit" class="btn btn-default">저장</button>
+		</form>
+
+		<form action="list" method="post">
+			<input type="text" name="team" id="team" value="dd">
 			<div class="container mt-2"
 				style="font-family: 'KBO-Dia-Gothic_bold';">
-				<ul class="nav list-unstyled d-flex" name="team_code">
-					<li class="nav-item pt-1"><a href="list" value="1"
+				<ul class="nav list-unstyled d-flex" name="team">
+					<li class="nav-item pt-1"><a href="list"
 						class="nav-link text-decoration-none text-dark table-link"
 						data-target="all"> <img src="images/icon/baseball_icon.png"
-							width="20" height="20"> 전체
+							width="20" height="20" onclick="gudan('0')"> 전체
 					</a></li>
-					<li class="nav-item mt-1"><a href="list" value="2"
+					<li class="nav-item mt-1"><a href=""
 						class="nav-link text-decoration-none text-dark table-link"
 						data-target="SSG"> <img
 							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_SK.png"
-							alt="SSG"> SSG
+							alt="SSG" onclick="gudan('1')"> SSG
 					</a></li>
 					<li class="nav-item pt-1"><a href="#kiwoom"
 						class="nav-link text-decoration-none text-dark table-link"
 						data-target="키움"> <img
 							src="//lgcxydabfbch3774324.cdn.ntruss.com/KBO_IMAGE/emblem/regular/2023/initial_WO.png"
-							alt="키움"> 키움
+							alt="키움" onclick="gudan('ku')"> 키움
 					</a></li>
 					<li class="nav-item pt-1"><a href="#LG"
 						class="nav-link text-decoration-none text-dark table-link"
@@ -123,23 +126,17 @@
 			</div>
 		</form>
 
-		<form action="list" id="searchForm">
-			<div class="fields">
-				<div class="field">
-					<div id="searchWarp">
-						<select name="type">
-							<option value="">검색 기준</option>
-							<option value="T">제목</option>
-							<option value="C">내용</option>
-							<option value="W">작성자</option>
-							<option value="TC">제목 또는 내용</option>
-							<option value="TW">제목 도는 작성자</option>
-							<option value="TCW">제목 또는 내용 또는 작성자</option>
-						</select> <input type="text" name="keyword">
-						<button class="btn btn-primary btn-sm">검색</button>
-					</div>
-				</div>
-			</div>
+		<form action="list" id="searchForm" method="get">
+			<select name="type">
+				<option value="">검색 기준</option>
+				<option value="T">제목</option>
+				<option value="C">내용</option>
+				<option value="W">작성자</option>
+			</select> 
+				<input type="text" name="keyword" value="" /> 
+				<%-- <input type="hidden" name="curPage" value="${pageDTO.curPage}"> --%>
+			<button class="btn btn-primary btn-sm">검색</button>
+			<button class="btn btn-primary btn-sm" onclick="clear()">초기화</button>
 		</form>
 
 		<table class="table table-striped">
@@ -150,6 +147,7 @@
 					<th>작성자명</th>
 					<th>작성일</th>
 					<th>조회수</th>
+					<th>팀</th>
 					<th>삭제</th>
 				</tr>
 			</thead>
@@ -162,6 +160,7 @@
 						<td>${board.userid}</td>
 						<td>${board.board_date}</td>
 						<td>${board.count}</td>
+						<td>${board.team_code}</td>
 						<td><a href="delete?no=${board.board_num}">삭제</a></td>
 					</tr>
 				</c:forEach>
@@ -171,17 +170,43 @@
 			<c:set var="curPage" value="${pageDTO.curPage}" />
 			<c:set var="totalCount" value="${pageDTO.totalCount}" />
 			<c:set var="totalNum" value="${totalCount / perPage}" />
+			<c:set var="startNum" value="${curPage-(curPage-1)%5}" />
+			<c:set var="page" value="${(curPage == null)?1:curPage}" />
+			<c:set var="type" value="${pageDTO.type}" />
+			<c:set var="keyword" value="${pageDTO.keyword}" />
+
 			<c:if test="${totalCount%perPage != 0}">
 				<c:set var="totalNum" value="${totalNum+1}" />
 			</c:if>
 			<tr>
-				<td colspan="6"><c:forEach var="i" begin="1" end="${totalNum}">
-						<c:if test="${curPage==i}">${i}
-    				</c:if>
-						<c:if test="${curPage!=i}">
-							<a href="list?curPage=${i}">${i}</a>
+				<td colspan="7">
+				<span>${type}</span>
+				<span>${keyword}</span>
+					<c:if test="${startNum>1}">
+						<a href="list?curPage=${startNum-1}" class="btn btn-next">prev</a>
+					</c:if> 
+					<c:if test="${startNum<=1}">
+						<span class="btn btn-prev" onclick="alert('no page');">prev</span>
+					</c:if> 
+					
+					<c:forEach var="l" begin="0" end="4">
+						<c:if test="${startNum+l<=totalNum}">
+							<c:if test="${curPage == startNum+l}">
+								${startNum+l}
+							</c:if>
+							<c:if test="${curPage != startNum+l}">
+								<a href="list?curPage=${startNum+l}&type=${type}&keyword=${keyword}">${startNum+l}</a>
+							</c:if>
 						</c:if>
-					</c:forEach></td>
+						
+					</c:forEach> 
+						<c:if test="${startNum+5<totalNum}">
+							<a href="list?curPage=${startNum+5}" class="btn btn-next">next</a>
+						</c:if> 
+						<c:if test="${startNum+5>=totalNum}">
+							<span class="btn btn-next" onclick="alert('no page');">next</span>
+						</c:if>
+				</td>
 			</tr>
 			<!--  page 번호 출력 -->
 		</table>

@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReplyMapper">
+
+	<insert id="replyInsert" parameterType="Reply">
+		insert into board_reviews
+		(reviews_num, board_num,
+		text, userid)
+		values (reply_seq.nextval,
+		#{board_num}, #{text},
+		#{userid})
+	</insert>
+
+	<select id="replyList" parameterType="int" resultType="Reply">
+		select *
+		from board_reviews
+		where board_num = #{board_num}
+	</select>
+
+	<delete id="replyDelet" parameterType="Reply">
+		delete from board_reviews
+		where reviews_num = #{reviews_num}
+	</delete>
+
+	<update id="replyUpdate" parameterType="Reply">
+		update board_reviews set
+		text = #{text},updateDate =
+		sysdate
+		where reviews_num = #{reviews_num}
+	</update>
+</mapper>

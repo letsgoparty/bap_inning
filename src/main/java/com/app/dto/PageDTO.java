@@ -5,30 +5,25 @@ import java.util.List;
 public class PageDTO {
 
 	List<Board> list;
-	int curPage;
-	int perPage = 5;
-	int totalCount;
+	int curPage; // 현재 페이지
+	int perPage = 3; // 한페이지에 보여질 데이터 개수
+	int totalCount; // 데이터 개수
+
 	String type;
 	String keyword;
-	int team;
 
-	public int getTeam() {
-		return team;
-	}
-
-	public void setTeam(int team) {
-		this.team = team;
-	}
 
 	public PageDTO() {
 	}
 
-	public PageDTO(List<Board> list, int curPage, int perPage, int totalCount) {
+	public PageDTO(List<Board> list, int curPage, int perPage, int totalCount, String type, String keyword) {
 		super();
 		this.list = list;
 		this.curPage = curPage;
 		this.perPage = perPage;
 		this.totalCount = totalCount;
+		this.type = type;
+		this.keyword = keyword;
 	}
 
 	public List<Board> getList() {
@@ -87,7 +82,7 @@ public class PageDTO {
 	@Override
 	public String toString() {
 		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
-				+ ", type=" + type + ", keyword=" + keyword + ", team=" + team + "]";
+				+ ",  type=" + type + ", keyword=" + keyword + "]";
 	}
 
 	

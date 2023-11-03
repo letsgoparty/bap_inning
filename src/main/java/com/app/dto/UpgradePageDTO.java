@@ -4,31 +4,42 @@ import java.util.List;
 
 public class UpgradePageDTO {
 
-	List<Board> list;
-	int curPage;
-	int perPage = 5;
-	int totalCount;
-	String type;
-	String keyword;
-	int team;
+	List<Board> list;//내용물
 
-	public int getTeam() {
-		return team;
-	}
+	int startPage;//현재페이징에서 시작번호
+	int endPage;//현재페이징에서 마지막번호
 
-	public void setTeam(int team) {
-		this.team = team;
-	}
-
+	boolean prev, next; //
+	
+	int amount;//페이지에서 보여줄 데이터 갯수
+	int curPage; //현재 페이지 번호
+	int total;//전체 데이터 수 
+	int realEnd;//전체페이지중 제일 마지막페이지
+	
 	public UpgradePageDTO() {
+
 	}
 
-	public UpgradePageDTO(List<Board> list, int curPage, int perPage, int totalCount) {
-		super();
+	public UpgradePageDTO(List<Board> list, int startPage, int endPage, boolean prev, boolean next, int amount,
+			int curPage, int total) {
 		this.list = list;
+		this.startPage = startPage;
+		this.endPage = endPage;
+		this.prev = prev;
+		this.next = next;
+		this.amount = amount;
 		this.curPage = curPage;
-		this.perPage = perPage;
-		this.totalCount = totalCount;
+		this.total = total;
+	}
+
+
+
+	public int getRealEnd() {
+		return realEnd;
+	}
+
+	public void setRealEnd(int realEnd) {
+		this.realEnd = realEnd;
 	}
 
 	public List<Board> getList() {
@@ -39,6 +50,46 @@ public class UpgradePageDTO {
 		this.list = list;
 	}
 
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+
+	public boolean isPrev() {
+		return prev;
+	}
+
+	public void setPrev(boolean prev) {
+		this.prev = prev;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
 	public int getCurPage() {
 		return curPage;
 	}
@@ -47,48 +98,23 @@ public class UpgradePageDTO {
 		this.curPage = curPage;
 	}
 
-	public int getPerPage() {
-		return perPage;
+	public int getTotal() {
+		return total;
 	}
 
-	public void setPerPage(int perPage) {
-		this.perPage = perPage;
+	public void setTotal(int total) {
+		this.total = total;
 	}
-
-	public int getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
-	public String[] getTypeArr() {
-		System.out.println("타입");
-	    return type == null? new String[] {}: type.split("");
-	  }
 
 	@Override
 	public String toString() {
-		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
-				+ ", type=" + type + ", keyword=" + keyword + ", team=" + team + "]";
+		return "UpgradePageDTO [list=" + list + ", startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev
+				+ ", next=" + next + ", amount=" + amount + ", curPage=" + curPage + ", total=" + total + "]";
 	}
-
+	
+	
+	
+	
+	
 	
 }

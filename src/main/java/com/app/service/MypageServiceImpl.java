@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.MypageDAO;
 import com.app.dto.MemberDTO;
+import com.app.dto.UpgradePageDTO;
 
 @Service
 public class MypageServiceImpl implements MypageService  {
@@ -35,6 +36,18 @@ public class MypageServiceImpl implements MypageService  {
 	public int memberDelete(String userid) {
 		int n=dao.memberDelete(userid);
 		return n;
+	}
+	
+	////////////////////////
+	//페이징처리
+	@Override
+	public UpgradePageDTO selectText(int curPage) {
+		return dao.selectText(curPage);
+	}
+
+	@Override
+	public int totalCount() {
+		return dao.totalCount();
 	}
 	
 	

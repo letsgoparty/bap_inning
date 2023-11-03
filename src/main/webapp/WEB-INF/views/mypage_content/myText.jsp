@@ -78,64 +78,47 @@
 
   </tbody>
   <!-- 페이지 번호 -->
-  <c:set var="perPage" value="${pageDTO.perPage}"/>
-  <c:set var="curPage" value="${pageDTO.curPage}"/>
-  <c:set var="totalCount" value="${pageDTO.totalCount}"/>
-  <c:set var="totalNum" value="${totalCount/perPage}"/>
-  <c:if test="${totalCount%perPage!=0}">
-  	<c:set var="totalNum" value="${totalNum+1}"/>
 
-  </c:if>
+  
   
 <tr>
     <td colspan="6">
       <div class="pagination">
         <ul class="pagination">
-          <li class="page-item first ${curPage == 1 ? 'disabled' : ''}">
-            <c:choose>
-              <c:when test="${curPage == 1}">
-                <span class="page-link">&laquo;</span>
-              </c:when>
-              <c:otherwise>
-                <a class="page-link" href="mytext?curPage=1">&laquo;</a>
-              </c:otherwise>
-            </c:choose>
-          </li>
-          <li class="page-item previous ${curPage == 1 ? 'disabled' : ''}">
-            <c:choose>
-              <c:when test="${curPage == 1}">
-                <span class="page-link">&lsaquo;</span>
-              </c:when>
-              <c:otherwise>
-                <a class="page-link" href="mytext?curPage=${curPage - 1}">&lsaquo;</a>
-              </c:otherwise>
-            </c:choose>
-          </li>
-          <c:forEach var="i" begin="1" end="${totalNum}">
-            <li class="page-item ${i == curPage ? 'active' : ''}">
-              <a class="page-link" href="mytext?curPage=${i}">${i}</a>
-            </li>
-          </c:forEach>
-        <li class="page-item next ${curPage >= totalNum ? 'disabled' : ''}">
-          <c:choose>
-            <c:when test="${curPage >= totalNum}">
-              <span class="page-link">&rsaquo;</span>
-              </c:when>
-              <c:otherwise>
-                <a class="page-link" href="mytext?curPage=${curPage + 1}">&rsaquo;</a>
-              </c:otherwise>
-            </c:choose>
-        </li>
-        <li class="page-item last ${curPage >= totalNum ? 'disabled' : ''}">
-          <c:choose>
-            <c:when test="${curPage >= totalNum}">
-              <span class="page-link">&raquo;</span>
-              </c:when>
-              <c:otherwise>
-                <a class="page-link" href="mytext?curPage=${totalNum}">&raquo;</a>
-              </c:otherwise>
-            </c:choose>
-        </li>
+        
+        <!-- 페이지네이션 -->
+			
+			<li class="page-item ${pageDTO.curPage == 1 ? 'disabled' : ''}">
+				<a class="page-link" href="mytext?curPage=1">&laquo;</a>
+			</li>
+			
+			<li class="page-item ${pageDTO.prev ? '' : 'disabled'}">
+				<a class="page-link" href="mytext?curPage=${pageDTO.startPage-1}">&lsaquo;</a>
+			</li>
+			
+			
+ 			<c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+				<li class="page-item ${num == pageDTO.curPage ? 'active' : ''}">
+					<a class="page-link" href="mytext?curPage=${num}">${num}</a>
+				</li>
+			</c:forEach>
+
+			
+			<li class="page-item ${pageDTO.next ? '' : 'disabled'}">
+				<a class="page-link" href="mytext?curPage=${pageDTO.endPage+1}">&rsaquo;</a>
+			</li>
+			
+			
+			<li class="page-item ${pageDTO.curPage == pageDTO.realEnd ? 'disabled' : ''}">
+				<a class="page-link" href="mytext?curPage=${pageDTO.realEnd}">&raquo;</a>
+			</li>
+			
+			
+			
+
+        <!-- 페이지네이션 -->
+
+
         </ul>
       </div>
     </td>

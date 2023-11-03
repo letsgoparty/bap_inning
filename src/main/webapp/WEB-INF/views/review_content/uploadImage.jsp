@@ -36,7 +36,7 @@ input[type=file] {
 <script type="text/javascript" src="./js/jquery-3.1.0.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 
-// 이미지 정보들을 담을 배열
+//이미지 정보들을 담을 배열
 var sel_files = [];
 
 $(document).ready(function() {
@@ -111,7 +111,7 @@ function submitAction() {
     }           
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST","./study01_af.php");
+    xhr.open("POST","./upload.php"); //서버 측 파일 업로드 스크립트의 URL
     xhr.onload = function(e) {
         if(this.status == 200) {
             console.log("Result : "+e.currentTarget.responseText);
@@ -126,7 +126,8 @@ function submitAction() {
 
 <div class="myform">
 	<div>
-	    <p>///임시페이지/// 리뷰 사진을 등록해주세요</p>
+	    ///임시페이지///
+	    <p>리뷰 사진을 등록해주세요</p>
 	    <div class="input_wrap">
 	      <a href="javascript:" onclick="fileUploadAction()" class="my_button">사진 선택</a>
 	    	<input type="file" id="input_imgs" multiple/>

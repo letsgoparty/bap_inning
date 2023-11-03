@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -10,13 +10,10 @@
 		    location.href = "reviewDelete?num=" + review_id;
 		}); // end deleteBtn
 		
-		$(".deleteBtn").on("click", function() {
-			alert("delete");	
-		});
-		
 	};
+
 </script>
-<!-- 
+
 <script type="text/javascript">
 
 	document.getElementById("writeBtn").addEventListener("click", function() {
@@ -31,15 +28,15 @@
 	function reviewDelete(){
 		var shouldDelete = confirm("리뷰를 삭제하시겠습니까?");
 		if (shouldDelete) {
-		    // AJAX 요청을 사용하여 서버에 리뷰 삭제를 요청합니다.
+		    // AJAX 요청을 사용하여 서버에 리뷰 삭제 요청
 		    $.ajax({
-		      url: "reviewDelete", // 삭제 요청을 처리할 URL을 설정
-		      method: "GET", // 또는 "GET" 등 요청 메소드 설정
-		      data: { num: review_id }, // 서버에 전달할 데이터
+		      url: "reviewDelete",
+		      method: "GET",
+		      data: { num: review_id },
 		      success: function(data) {
 		        // 삭제 요청이 성공시
-		        alert("리뷰가 삭제되었습니다.");
 		        location.href="reviewDelete?num="+num;
+		        alert("리뷰가 삭제되었습니다.");
 		      },
 		      error: function(xhr, status, error) {
 		        // 삭제 요청이 실패시
@@ -49,17 +46,35 @@
 	}
 
 </script>
- -->
- 
+
 <div class="container">
 	<form action="reviewWrite" method="get">
-    	<input type="hidden" name="res_id" value="${param.res_id}">
+   	<input type="hidden" name="res_id" value="${param.res_id}">
 		<h2 class="text-center">임시 음식점 리뷰 목록</h2>
-		<select>
-			<option>최신순
-			<option>별점 높은 순			
-			<option>별점 낮은 순			
+		
+		<select id="orderby" onchange="sortOptions(this)">		
+			<option value="recent">최신순</option>
+			<option value="ratingDesc">별점 높은 순	</option>
+			<option value="ratingAsc">별점 낮은 순	</option>
 		</select>
+		
+		    <script>
+        function sortOptions(selectElement) {
+            var options = Array.from(selectElement.options);
+
+            options.sort(function (a, b) {
+                // 정렬 로직 추가
+                
+                return a.text.localeCompare(b.text);
+            });
+
+            // 정렬된 옵션을 <select> 요소에 추가
+            options.forEach(function (option) {
+                selectElement.appendChild(option);
+            });
+        }
+    </script>
+    
 		<input type="checkbox">사진리뷰만 보기
 		
 		<table class="table table-striped">

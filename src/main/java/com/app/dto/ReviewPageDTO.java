@@ -6,7 +6,7 @@ public class ReviewPageDTO {
 
 	List<ReviewDTO> list;
 	int curPage;
-	int perPage = 3;
+	int perPage = 5;
 	int totalCount;
 	
 	public ReviewPageDTO() {}

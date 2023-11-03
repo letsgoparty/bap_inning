@@ -225,7 +225,6 @@
                 </div>
             </div>
 
-            <!-- Scroll to Top Button-->
             <a class="scroll-to-top rounded" href="#page-top"> <i class="fas fa-angle-up"></i>
             </a>
 
@@ -409,7 +408,7 @@
                             <div role="content">
                                 <div class="widget-body">
                                     <p id="res_imageTag"></p>
-                                    아이디 <input class="form-control mb-2" id="userid">
+                                    아이디 <input class="form-control mb-2" id="userid" readonly>
                                     비밀번호 <input class="form-control" type="password" id="password" readonly>
                                     이메일 <input class="form-control mb-2" id="email"> 닉네임<input class="form-control mb-2"
                                         id="nickname"> 응원팀 <select class="form-control mb-2" id="team">

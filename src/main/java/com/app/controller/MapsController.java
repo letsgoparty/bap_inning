@@ -20,7 +20,6 @@ public class MapsController {
 	// SSG 경기장 주변 맛집 찾기 페이지 이동 
 	@GetMapping("/r_SSG")
 	public String r_SSG(Model m) {
-		System.out.println(googleMapsApiKey);
 		m.addAttribute("googleMapsApiKey", googleMapsApiKey);
 		return "restaurant/SSG";
 	}

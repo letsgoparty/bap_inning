@@ -465,8 +465,7 @@
             window.initMap = initMap;
 	
         </script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap"></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 <link href="css/sidebar.css" rel="stylesheet" />
 <title>고척 스카이돔 주변 숙소 지도</title>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script></script>
 <body>
 	<div class="sidebar" id="sidebar">
 		<!-- 숙박 정보 띄우기  -->
@@ -420,8 +420,7 @@
             window.initMap = initMap;
 	
         </script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArPT6pq4J0dihJO0wiErSQPMUaWI6MCtU&callback=initMap"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap"></script>
 </body>
 
 </html>

@@ -5,9 +5,10 @@ import com.app.dto.PageDTO;
 
 public interface BoardService {
 
-	public abstract PageDTO selectList(int curPage);
+	public abstract PageDTO selectList(int curPage, String type, String keyword);
 	public abstract Board selectByNo(int no);
 	public abstract int boardWrite(Board board);
 	public abstract int boardUpdate(Board board);
 	public abstract int boardDelete(int no);
+	public abstract int totalCount(String type, String keyword);
 }

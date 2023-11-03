@@ -1,5 +1,6 @@
 package com.app.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -18,21 +19,30 @@ public class BoardDAO {
 	@Autowired
 	SqlSessionTemplate session;
 	
-	public int totalCount() {
-		return session.selectOne("BoardMapper.totalCount");
+	public int totalCount(String type, String keyword) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", type);
+		map.put("keyword", keyword);
+		return session.selectOne("BoardMapper.totalCount", map);
 	}
 	
-	public PageDTO selectList(int curPage) {
+	public PageDTO selectList(int curPage, String type, String keyword) {
 		PageDTO pageDTO = new PageDTO();
 		int offset = (curPage-1)*pageDTO.getPerPage();
 		int limit = pageDTO.getPerPage();
-		List<Board> list =  session.selectList("BoardMapper.selectList", null, new RowBounds(offset, limit));
 		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", type);
+		map.put("keyword", keyword);
+		System.out.println("map>>>>>>>>>" + map);
+		List<Board> list =  session.selectList("BoardMapper.selectList", map, new RowBounds(offset, limit));
 		
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
-		pageDTO.setTotalCount(totalCount());
-		
+		pageDTO.setTotalCount(totalCount(type, keyword));
+		pageDTO.setType(type);
+		pageDTO.setKeyword(keyword);
+		System.out.println(list);
 		return pageDTO;
 	}
 

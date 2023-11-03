@@ -17,8 +17,8 @@ public class BoardServiceImpl implements BoardService {
 
 	
 	@Override
-	public PageDTO selectList(int curPage) {
-		return dao.selectList(curPage);
+	public PageDTO selectList(int curPage, String type, String keyword) {
+		return dao.selectList(curPage,type,keyword);
 	}
 
 	@Override
@@ -39,6 +39,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int boardDelete(int no) {
 		return dao.boardDelete(no);
+	}
+
+	@Override
+	public int totalCount(String type, String keyword) {
+		return dao.totalCount(type, keyword);
 	}
 
 }

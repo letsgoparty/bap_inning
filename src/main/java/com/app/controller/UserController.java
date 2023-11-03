@@ -37,11 +37,8 @@ public class UserController {
 	@RequestMapping("/sendEmail")
 	public String sendPasswordEmail(@RequestParam String email) {
 		String temporaryPW = null;
-		if (email.endsWith("naver.com")) {
+
 			temporaryPW = service.sendEmailNaver(email);
-		} else {
-			temporaryPW = service.sendEmailGoogle(email);
-		}
 
 		String encode_temporaryPW = Eservice.modify(temporaryPW);
 
@@ -58,11 +55,8 @@ public class UserController {
 	@ResponseBody
 	public String sendMailCode(String email) throws Exception {
 		String authCode = null;
-		if (email.endsWith("naver.com")) {
 			authCode = service.sendCodeNaver(email);
-		} else {	
-			authCode = service.sendCodeGoogle(email);			
-		}
+
 	
 		return authCode;
 	}

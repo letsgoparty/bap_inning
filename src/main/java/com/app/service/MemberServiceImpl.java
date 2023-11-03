@@ -21,6 +21,14 @@ public class MemberServiceImpl implements MemberService  {
 		MemberDTO dto = dao.idCheck(userid);
 		return dto;
 	}
+	
+	@Override
+	public MemberDTO nicknameCheck(String nickname) {
+		MemberDTO dto = dao.nicknameCheck(nickname);
+		return dto;
+	}
+	
+	
 	@Override
 	public int memberAdd(MemberDTO dbdto) {
 		//System.out.println(dbdto);

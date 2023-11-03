@@ -54,13 +54,41 @@
                     dataType: 'text',
                     success: function (data, status, xhr) {
                         console.log(data);
-                        $("#result").text(data);
+                        $("#idResult").text(data);
                     },
                     error: function (xhr, status, error) {
                         console.log("error 발생");
                     }
                 });
             });
+            
+            
+         // 닉네임 중복체크
+           $("#nicknameCheck").on("click", function () {
+
+              event.preventDefault();
+
+               $.ajax({
+                  type: "get",
+                  url: "nicknameCheck",
+                  data: {
+                   nickname: $("#nickname").val()
+                  },
+                  dataType: 'text',
+                  success: function (data, status, xhr) {
+                     console.log(data);
+                     $("#nicknameResult").text(data);
+                    },
+                  error: function (xhr, status, error) {
+                        console.log("error 발생");
+                  }
+              });
+          });
+            
+            
+            
+            
+            
 
             $("#emailDomain").change(function () {
                 var selectedDomain = $(this).val();
@@ -136,7 +164,7 @@
 					novalidate onsubmit="return validateForm()">
 
 					<label for="userid">아이디</label> <span style="color: red"
-						id="result"></span>
+						id="idResult"></span>
 					<div class="row">
 						<div class="col-md-9 mb-3">
 							<input type="text" class="form-control" name="userid" id="userid"
@@ -169,36 +197,41 @@
 
 
 
-					<div class="mb-3">
-						<label for="nickname">닉네임</label> <input type="text"
-							class="form-control" id="nickname" name="nickname" required
-							autocomplete="off">
-						<div class="invalid-feedback">닉네임을 입력해주세요.</div>
+					<label for="nickname">닉네임</label> <span style="color: red"
+						id="nicknameResult"></span>
+					<div class="row">
+						<div class="col-md-9 mb-3">
+							<input type="text" class="form-control" name="nickname" id="nickname"
+								required autocomplete="off">
+							<div class="invalid-feedback">닉네임을 입력해주세요.</div>
+						</div>
+						<div class="col-md-3">
+							<button type="button" id="nicknameCheck" class="btn btn-primary"
+								style="height: 2.3rem;">중복확인</button>
+							<br>
+						</div>
 					</div>
 
 
 					<div class="row">
-						<div class="col-md-4">
-							<label for="email">이메일</label> <input type="text"
-								class="form-control" id="email1" name="email1"
-								autocomplete="off" required>
-							<div class="invalid-feedback">이메일을 입력해주세요.</div>
-						</div>
-						<div class="col-md-4">
-							<label for="email"></label> <input type="text"
-								class="form-control" id="email2" name="email2"
-								placeholder="직접입력" required>
-							<div class="invalid-feedback"></div>
-						</div>
-						<div class="col-md-4">
-							<label for="email"></label> <select id="emailDomain"
-								class="form-select">
-								<option value="">--직접입력--</option>
-								<option value="daum.net">daum.net</option>
-								<option value="naver.com">naver.com</option>
-								<option value="google.com">google.com</option>
-							</select>
-						</div>
+						<div class="col-md-6 mb-4">
+							<label for="email">이메일</label> 
+								<div class="d-flex align-items-center">
+					            <input type="text" class="form-control" id="email1" name="email1" autocomplete="off" required>
+					            <span class="mx-2">@</span>
+					            <input type="text" class="form-control" id="email2" name="email2" placeholder="직접입력" required>
+					           </div>
+					        <div class="invalid-feedback">이메일을 입력해주세요.</div>
+					    </div>
+						<div class="col-md-6 mb-4">
+							  <label for="email"></label>
+					        <select id="emailDomain" class="form-select">
+					            <option value="">--직접입력--</option>
+					            <option value="daum.net">daum.net</option>
+					            <option value="naver.com">naver.com</option>
+					            <option value="gmail.com">gmail.com</option>
+					        </select>
+					    </div>
 					</div>
 
 					<div class="row">

@@ -20,6 +20,13 @@ public class MemberDAO {
 			MemberDTO dto = session.selectOne("MemberMapper.idCheck", userid);
 			return dto;
 		}
+		
+		//닉네임 중복체크
+		public MemberDTO nicknameCheck(String nickname) {
+		    MemberDTO dto = session.selectOne("MemberMapper.nicknameCheck", nickname);
+			return dto;
+		}
+		
 		// 회원가입
 		public int memberAdd(MemberDTO dbdto) {
 			int n = session.insert("MemberMapper.memberAdd", dbdto);

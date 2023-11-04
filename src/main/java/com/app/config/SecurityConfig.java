@@ -24,18 +24,19 @@ public class SecurityConfig {
 	  @Bean
 	  @Order(0)
 	  public SecurityFilterChain resources(HttpSecurity http) throws Exception {
-	    return http
-	        .authorizeRequests(authorize -> authorize
-	            .anyRequest().permitAll())
-	        .requestCache(RequestCacheConfigurer::disable)
-	        .securityContext(AbstractHttpConfigurer::disable)
-	        .sessionManagement(AbstractHttpConfigurer::disable)
-	        .build();
+		    return http.requestMatchers(matchers -> matchers
+		            .antMatchers("/resources/**"))
+		        .authorizeRequests(authorize -> authorize
+		            .anyRequest().permitAll())
+		        .requestCache(RequestCacheConfigurer::disable)
+		        .build();
 	  }
-
+	  
 	  @Bean
 	  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    return http.csrf(AbstractHttpConfigurer::disable)
+	        .headers(headers -> headers
+	            .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
 	        .logout(logout -> logout
 	            .logoutUrl("/app/logout"))
 	        .formLogin()

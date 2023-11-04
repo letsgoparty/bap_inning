@@ -139,9 +139,9 @@ public class MypageController {
 	   if(n>0) {
 		   MemberDTO updatedUser = memberService.mypage(userid);
 		   session.setAttribute("login", updatedUser);
-		   return "mypage_content/successInfo";		  
+		   return "mypage/successInfo";		  
 	   }else {
-		   return "mypage_content/failInfo";
+		   return "mypage/failInfo";
 	   }
 	   
 	}
@@ -179,13 +179,13 @@ public class MypageController {
 			int n=mypageService.pwChange(hashmap);
 			
 		    if(n>0) {
-		    	return "mypage_content/successInfo";
+		    	return "mypage/successInfo";
 		    }else {
-		    	return "mypage_content/failInfo";
+		    	return "mypage/failInfo";
 		    }
 	    }
 	    //비번 불일치
-	    return "mypage_content/failInfo";
+	    return "mypage/failInfo";
 	}
 	
 	
@@ -248,14 +248,14 @@ public class MypageController {
 			//탈퇴 성공시 메인으로 이동
 			if(n>0) {
 				session.invalidate();//세션 정보 초기화
-				return "mypage_content/successDelete";
+				return "mypage/successDelete";
 			}else {
 				//탈퇴 실패시 에러
-				return "mypage_content/failDelete";
+				return "mypage/failDelete";
 			}
 		}else {
 			//비번 틀렸으면 에서
-			return "mypage_content/failDelete";
+			return "mypage/failDelete";
 		}
 	}
 	

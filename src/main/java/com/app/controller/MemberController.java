@@ -77,6 +77,18 @@ public class MemberController {
 		return mesg;
 	}
 	
-
+	
+	@GetMapping(value="/nicknameCheck",
+			  produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String nicknameCheck(@RequestParam ("nickname") 
+	                           String nickname) {
+		MemberDTO dto = service.nicknameCheck(nickname);
+		String mesg = "닉네임 사용 가능";
+		if(dto!=null) {
+			mesg = "닉네임 중복";
+		}
+		return mesg;
+	}
 	
 }

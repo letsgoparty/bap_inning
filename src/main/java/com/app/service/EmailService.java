@@ -17,18 +17,12 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
 	@Autowired
-	@Qualifier("gmailMailSender")
-	private JavaMailSender gmailMailSender;
+	private JavaMailSender mailSender;
 
-	@Autowired
-	@Qualifier("naverMailSender")
-	private JavaMailSender naverMailSender;
-
-	// naver로 임시 비밀번호 전송
 	public String sendEmailNaver(String to) {
 
 		String temporaryPW = null;
-		MimeMessage mimeMessage = naverMailSender.createMimeMessage();
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 
 		try {
@@ -36,34 +30,10 @@ public class EmailService {
 
 			helper.setTo(to);
 			helper.setSubject("비밀번호 재설정 요청");
-			helper.setText("임시 비밀번호: " + temporaryPW, true);
+			helper.setText(temporaryPW, true);
 			helper.setFrom("bapinning_@naver.com");
 
-			naverMailSender.send(mimeMessage);
-		} catch (MessagingException e) {
-			// 오류 처리
-			e.printStackTrace();
-		}
-
-		return temporaryPW;
-	}
-
-	// google로 임시 비밀번호 전송
-	public String sendEmailGoogle(String to) {
-
-		String temporaryPW = null;
-		MimeMessage mimeMessage = gmailMailSender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-
-		try {
-			temporaryPW = getTempPassword();
-
-			helper.setTo(to);
-			helper.setSubject("비밀번호 재설정 요청");
-			helper.setText("임시 비밀번호: " + temporaryPW, true);
-			helper.setFrom("bapinning.project@gmail.com");
-
-			naverMailSender.send(mimeMessage);
+			mailSender.send(mimeMessage);
 		} catch (MessagingException e) {
 			// 오류 처리
 			e.printStackTrace();
@@ -88,10 +58,9 @@ public class EmailService {
 		return str;
 	}
 
-	// naver로 이메일 인증코드 보내기
 	public String sendCodeNaver(String to) throws Exception {
 		String auth_code = null; // 인증코드
-		MimeMessage mimeMessage = naverMailSender.createMimeMessage();
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 		try {
 			auth_code = getTempPassword();
@@ -116,7 +85,7 @@ public class EmailService {
 			helper.setFrom("bapinning_@naver.com");
 			mimeMessage.setText(msgg, "utf-8", "html");
 
-			naverMailSender.send(mimeMessage);
+			mailSender.send(mimeMessage);
 		} catch (MessagingException e) {
 			// 오류 처리
 			e.printStackTrace();
@@ -124,39 +93,4 @@ public class EmailService {
 		return auth_code;
 	}
 
-	// google로 이메일 인증코드 보내기
-	public String sendCodeGoogle(String to) throws Exception {
-		String auth_code = null; // 인증코드
-		MimeMessage mimeMessage = gmailMailSender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-		try {
-			auth_code = getTempPassword();
-
-			String msgg = "";
-			msgg += "<div style='margin:100px;'>";
-			msgg += "<h1> 안녕하세요 밥이닝입니다. </h1>";
-			msgg += "<br>";
-			msgg += "<p>아래 코드를 회원가입 창으로 돌아가 입력해주세요<p>";
-			msgg += "<br>";
-			msgg += "<p>감사합니다!<p>";
-			msgg += "<br>";
-			msgg += "<div align='center' style='border:1px solid black;>";
-			msgg += "<h3>회원가입 인증 코드입니다.</h3>";
-			msgg += "<div style='font-size:130%'>";
-			msgg += "<strong>";
-			msgg += auth_code + "</strong><div><br/> ";
-			msgg += "</div>";
-
-			helper.setTo(to);
-			helper.setSubject("밥이닝 회원가입 이메일 인증 ");
-			helper.setFrom("bapinning.project@gmail.com");
-			mimeMessage.setText(msgg, "utf-8", "html");
-
-			naverMailSender.send(mimeMessage);
-		} catch (MessagingException e) {
-			// 오류 처리
-			e.printStackTrace();
-		}
-		return auth_code;
-	}
 }

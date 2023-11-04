@@ -51,6 +51,17 @@
   <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
   <label class="btn btn-outline-primary" for="btnradio4">숙소리뷰</label>
 </div>
+
+<div>
+        <select name="amount" id="amount">
+          <option value="10">--페이지 선택--</option>
+          <option value="10">10개 보기</option>
+          <option value="2">2개 보기</option>
+          <option value="5">5개 보기</option>
+          <option value="100">100개 보기</option>
+        </select>
+</div>
+
 <br>
 <div class="table-responsive">
 <table class="table">
@@ -78,44 +89,51 @@
 
   </tbody>
   <!-- 페이지 번호 -->
-  <c:set var="perPage" value="${pageDTO.perPage}"/>
-  <c:set var="curPage" value="${pageDTO.curPage}"/>
-  <c:set var="totalCount" value="${pageDTO.totalCount}"/>
-  <c:set var="totalNum" value="${totalCount/perPage}"/>
-  <c:if test="${totalCount%perPage!=0}">
-  	<c:set var="totalNum" value="${totalNum+1}"/>
-  </c:if>
+
   
-  <tr>
-  	<td colspan="6">
+  
+<tr>
+    <td colspan="6">
       <div class="pagination">
         <ul class="pagination">
-          <li class="page-item first disabled">
-            <a class="page-link" href="#">&laquo;</a>
-          </li>
-          <li class="page-item previous disabled">
-            <a class="page-link" href="#">&lsaquo;</a>
-          </li>
-          <c:forEach var="i" begin="1" end="${totalNum}">
-            <li class="page-item ${i == curPage ? 'active' : ''}">
-              <a class="page-link" href="mytext?curPage=${i}">${i}</a>
-            </li>
-          </c:forEach>
-          <li class="page-item next">
-            <a class="page-link" href="mytext?curPage=${curPage + 1}">&rsaquo;</a>
-          </li>
-          <li class="page-item last">
-            <a class="page-link" href="#">&raquo;</a>
-          </li>
+        
+        <!-- 페이지네이션 -->
+			
+			<li class="page-item ${pageDTO.curPage == 1 ? 'disabled' : ''}">
+				<a class="page-link" href="mytext?curPage=1&amount=${pageDTO.amount}">&laquo;</a>
+			</li>
+			
+			<li class="page-item ${pageDTO.prev ? '' : 'disabled'}">
+				<a class="page-link" href="mytext?curPage=${pageDTO.startPage-1}&amount=${pageDTO.amount}">&lsaquo;</a>
+			</li>
+			
+			
+ 			<c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+				<li class="page-item ${num == pageDTO.curPage ? 'active' : ''}">
+					<a class="page-link" href="mytext?curPage=${num}&amount=${pageDTO.amount}">${num}</a>
+				</li>
+			</c:forEach>
+
+			
+			<li class="page-item ${pageDTO.next ? '' : 'disabled'}">
+				<a class="page-link" href="mytext?curPage=${pageDTO.endPage+1}&amount=${pageDTO.amount}">&rsaquo;</a>
+			</li>
+			
+			
+			<li class="page-item ${pageDTO.curPage == pageDTO.realEnd ? 'disabled' : ''}">
+				<a class="page-link" href="mytext?curPage=${pageDTO.realEnd}&amount=${pageDTO.amount}">&raquo;</a>
+			</li>
+			
+			
+			
+
+        <!-- 페이지네이션 -->
+
 
         </ul>
       </div>
-  	</td>
-  </tr>
-
-  
-  
-</table>
+    </td>
+  </tr></table>
 </div>
    </div>
   </div>
@@ -136,8 +154,35 @@ for (let i=0;i<radioButton.length;i++){
 		}
 	});
 }
-</script>
 
+</script>
+<script>
+//페이징에서 게시글amount 드롭다운변경이벤트
+  $(document).ready(function() {
+    $("#amount").on("change", function() {
+      var selectedAmount = $(this).val();
+      var currentUrl = window.location.href;
+      var newUrl = updateUrlParameter(currentUrl, "amount", selectedAmount);
+      window.location.href = newUrl;
+    });
+
+    
+    function updateUrlParameter(url, param, paramValue) {
+    //지금 준열에서 특정 매개변수 찾기
+      var re = new RegExp("([?&])" + param + "=.*?(&|$)", "i");
+    //다른매개변수 있는지확인하고 그거에따라서 &? 뭘줄지 선택
+      var separator = url.indexOf("?") !== -1 ? "&" : "?";
+    //매개변수가 있다면
+      if (url.match(re)) {
+    	  //url업데이트
+        return url.replace(re, "$1" + param + "=" + paramValue + "$2");
+      } else {
+    	  //매개변수없다면 새로 추가하고 반환
+        return url + separator + param + "=" + paramValue;
+      }
+    }
+  });
+</script>
 
 </body>
 </html>

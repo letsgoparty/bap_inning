@@ -1,11 +1,8 @@
 package com.app.controller;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,26 +11,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.app.dto.MemberDTO;
 import com.app.dto.PageDTO;
 import com.app.dto.ReviewPageDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.dto.UpgradePageDTO;
 import com.app.service.BoardService;
 import com.app.service.EncodeService;
 import com.app.service.MemberService;
 import com.app.service.MypageService;
 import com.app.service.ReviewService;
 import com.app.service.ScrapingService;
-
 @Controller
 public class MypageController {
-//임시페이지입니다 나중에 huh가 수정함. 
-//임시페이지입니다 나중에 huh가 수정함. 
-//임시페이지입니다 나중에 huh가 수정함. 
-//http://localhost:8090/app/mypage 
-
+//임시페이지입니다 나중에 huh가 수정함.
+//임시페이지입니다 나중에 huh가 수정함.
+//임시페이지입니다 나중에 huh가 수정함.
+//http://localhost:8090/app/mypage
 	@Autowired
 	private ScrapingService scrapService;
 	@Autowired
@@ -116,13 +111,12 @@ public class MypageController {
 		model.addAttribute("filterTeamData", filterTeamData);
 		return "mypage/myPage";
 	}
-
 	//회원정보 보여주기
 	@GetMapping("/myinfo")
 	public String myinfo(HttpSession session,Model model) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO) session.getAttribute("login");
-		//로그인여부는 인터셉터 
+		//로그인여부는 인터셉터
 		String userid=user.getUserid();
 		user=memberService.mypage(userid);
 		session.setAttribute("login", user);//session에 유저정보 보내기
@@ -130,34 +124,33 @@ public class MypageController {
 		
 		return "mypage/myInfo";
 	}
-
 	@PostMapping("/myinfo")
 	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("nickname") String nickname, @RequestParam("myTeam") int teamCode, HttpSession session) {
 	    MemberDTO dto=new MemberDTO();
 	    MemberDTO user=(MemberDTO) session.getAttribute("login");
 	    String email=user.getEmail();
-	   
+	  
 	    dto.setUserid(userid);
 	    dto.setEmail(email);
 	    dto.setNickname(nickname);
 	    dto.setTeam_code(teamCode);
-	   
+	  
 	    int n=mypageService.memberUpdate(dto);
 	   if(n>0) {
 		   MemberDTO updatedUser = memberService.mypage(userid);
 		   session.setAttribute("login", updatedUser);
-		   return "mypage_content/successInfo";		   
+		   return "mypage_content/successInfo";		  
 	   }else {
 		   return "mypage_content/failInfo";
 	   }
-	    
+	   
 	}
 	
 	@GetMapping("/pwchange")
 	public String pwchange(HttpSession session, Model m) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO) session.getAttribute("login");
-		//로그인여부는 인터셉터 
+		//로그인여부는 인터셉터
 		String userid=user.getUserid();
 		user=memberService.mypage(userid);
 		session.setAttribute("login", user);//session에 유저정보 보내기
@@ -179,7 +172,7 @@ public class MypageController {
 	    if(encodeService.checkPW(map)) {
 	    	//비번이맞게쓴경우
 			HashMap<String, String> hashmap=new HashMap<String, String>();
-			String encode_newPw = encodeService.modify(newpw); // 새로운 비밀번호 암호화 
+			String encode_newPw = encodeService.modify(newpw); // 새로운 비밀번호 암호화
 			hashmap.put("userid", userid);
 			hashmap.put("password", encode_newPw);
 			
@@ -193,16 +186,13 @@ public class MypageController {
 	    }
 	    //비번 불일치
 	    return "mypage_content/failInfo";
-
 	}
 	
 	
-
 	@GetMapping("/myreply")
 	public String myreply() {
 		return "mypage/myReply";
 	}
-
 	//식당리뷰
 	@GetMapping("/my_r_review")
 	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage",required = false,defaultValue = "1")int curPage,HttpSession session) {
@@ -223,8 +213,6 @@ public class MypageController {
 		int n=reviewService.reviewDelete(no);
 		return "redirect:my_r_review";
 	}
-
-
 	@GetMapping("/my_l_review")
 	public String myLodgingReview() {
 		return "mypage/myLodgingReview";
@@ -235,15 +223,13 @@ public class MypageController {
 	public String userDeletePage(HttpSession session,Model m) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO) session.getAttribute("login");
-		//로그인여부는 인터셉터 
+		//로그인여부는 인터셉터
 		String userid=user.getUserid();
 		user=memberService.mypage(userid);
 		m.addAttribute("user",user);//model에 유저정보 보내기.
-
 		
 		return "mypage/userDelete";
 	}
-
 	@PostMapping("/user_delete")
 	public String userDelete(@RequestParam("currpw")String inputPw, HttpSession session) {
 		//세션에서 로그인정보 가져오기
@@ -274,12 +260,14 @@ public class MypageController {
 	}
 	
 	@GetMapping("/mytext")
-	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, HttpSession session) {
+	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
+			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
+			HttpSession session) {
+		
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
-		
-		PageDTO pageDTO=boardService.selectList(curPage);
+		UpgradePageDTO pageDTO=mypageService.selectText(curPage,amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myText");
@@ -295,5 +283,4 @@ public class MypageController {
 		return "redirect:mytext";
 	}
 	
-
 }

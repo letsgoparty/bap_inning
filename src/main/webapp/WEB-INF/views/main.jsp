@@ -192,20 +192,20 @@ nav {
 														<c:set var="number1" value="" />
 														<c:set var="number2" value="" />
 													</c:otherwise>
-												</c:choose> ${schedule.team1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	<c:choose>
-																<c:when test="${number1 > number2}">
-																	<span style="color: #c93c3c; font-size:1.1rem;">${number1}</span> vs
+												</c:choose> ${schedule.team1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <c:choose>
+													<c:when test="${number1 > number2}">
+														<span style="color: #c93c3c; font-size: 1.1rem;">${number1}</span> vs
                                         <span style="color: gray;">${number2}</span>
-																</c:when>
-																<c:when test="${number1 < number2}">
-																	<span style="color: gray;">${number1}</span> vs
+													</c:when>
+													<c:when test="${number1 < number2}">
+														<span style="color: gray;">${number1}</span> vs
                                         <span
-																		style="color: #c93c3c; font-size:1.1rem;">${number2}</span>
-																</c:when>
-																<c:otherwise>
-																	<span>${number1} vs ${number2}</span>
-																</c:otherwise>
-															</c:choose> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${schedule.team2}</td>
+															style="color: #c93c3c; font-size: 1.1rem;">${number2}</span>
+													</c:when>
+													<c:otherwise>
+														<span>${number1} vs ${number2}</span>
+													</c:otherwise>
+												</c:choose> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${schedule.team2}</td>
 											<td style="font-weight: bold"><c:choose>
 													<c:when test="${schedule.location eq '문학'}">인천</c:when>
 													<c:otherwise>${schedule.location}</c:otherwise>
@@ -303,7 +303,10 @@ nav {
 					</thead>
 					<tbody>
 						<c:forEach var="team" items="${teamDataList}">
-							<tr>
+							<tr
+								<c:if test="${myTeam eq team.title}">
+								style="background-color: rgb(245, 248, 75) !important;"
+        						</c:if>>
 								<th scope="row" style="font-family: 'KBO-Dia-Gothic_bold';">${team.rank}</th>
 								<td style="font-family: 'KBO-Dia-Gothic_bold';"><img
 									src="images/logo/${team.image}.png" width="25" height="25">

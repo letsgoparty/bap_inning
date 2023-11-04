@@ -35,7 +35,7 @@ public class MainController {
 	private AdminService adminService;
 
 	@RequestMapping("/main")
-	public String main(Model m) {
+	public String main(Model m, HttpSession session) {
 
 		// KBO 리그 일정 가져오기
 		m.addAttribute("ScheduleList", service.cacheScheduleData());
@@ -54,6 +54,32 @@ public class MainController {
 			int n = adminService.todayFirstVisit();
 		} else {
 			int n = adminService.todayAddVisit();
+		}
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		if (dto != null) {
+		    int teamCode = dto.getTeam_code();
+		    if (teamCode == 1) {
+		        m.addAttribute("myTeam", "SSG");
+		    } else if (teamCode == 2) {
+		        m.addAttribute("myTeam", "키움");
+		    }else if (teamCode == 3) {
+		        m.addAttribute("myTeam", "LG");
+		    }else if (teamCode == 4) {
+		        m.addAttribute("myTeam", "KT");
+		    }else if (teamCode == 5) {
+		        m.addAttribute("myTeam", "KIA");
+		    }else if (teamCode == 6) {
+		        m.addAttribute("myTeam", "NC");
+		    }else if (teamCode == 7) {
+		        m.addAttribute("myTeam", "삼성");
+		    }else if (teamCode == 8) {
+		        m.addAttribute("myTeam", "롯데");
+		    }else if (teamCode == 9) {
+		        m.addAttribute("myTeam", "두산");
+		    }else if (teamCode == 10) {
+		        m.addAttribute("myTeam", "한화");
+		    }
 		}
 
 		return "main";

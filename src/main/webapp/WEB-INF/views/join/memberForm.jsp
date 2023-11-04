@@ -244,9 +244,9 @@
 							<div class="invalid-feedback"></div>
 						</div>
 						<div class="col-md-4 mb-3">
-							<button class="btn btn-primary mt-4" id="authBtn">인증코드
+							<button class="btn btn-primary mt-1" id="authBtn">인증코드
 								전송</button>
-							<button class="btn btn-primary mt-4" id="authCheck"
+							<button class="btn btn-primary mt-1" id="authCheck"
 								style="display: none">인증코드 확인</button>
 						</div>
 					</div>

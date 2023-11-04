@@ -12,7 +12,7 @@
 <script>
 	$(document).ready(function() {
 		 Swal.fire({
- 	        text: "죄송합니다. 이미 사용 중인 이메일 주소이거나 닉네임 길이를 확인해주시기 바랍니다 (한글 20자 이상 입력 불가)",
+ 	        text: "죄송합니다. 이미 사용 중인 이메일 주소이거나 아이디 혹은 닉네임 중복 여부를 확인하시거나 닉네임 길이를 다시 확인해주시기 바랍니다 (닉네임 한글 20자 이상 입력 불가)",
  	        icon: 'error',
  	        confirmButtonColor: '#3085d6',
  	        button: {

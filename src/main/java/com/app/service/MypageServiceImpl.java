@@ -41,8 +41,8 @@ public class MypageServiceImpl implements MypageService  {
 	////////////////////////
 	//페이징처리
 	@Override
-	public UpgradePageDTO selectText(int curPage) {
-		return dao.selectText(curPage);
+	public UpgradePageDTO selectText(int curPage, int amount) {
+		return dao.selectText(curPage,amount);
 	}
 
 	@Override

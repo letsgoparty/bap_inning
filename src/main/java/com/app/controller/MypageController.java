@@ -276,6 +276,7 @@ public class MypageController {
 	
 	@GetMapping("/mytext")
 	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
+			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
 			HttpSession session) {
 		
 		//세션에서 로그인정보 가져오기
@@ -283,13 +284,11 @@ public class MypageController {
 		String userid=user.getUserid();
 
 
-		UpgradePageDTO pageDTO=mypageService.selectText(curPage);
+		UpgradePageDTO pageDTO=mypageService.selectText(curPage,amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myText");
 		mav.addObject("pageDTO",pageDTO);
-		System.out.println(pageDTO.getStartPage());
-		System.out.println(pageDTO.getEndPage());
 
 		
 		return mav;

@@ -14,6 +14,6 @@ public interface MypageService {
 	public int memberDelete(String userid);
 	
 	//페이징처리
-	public UpgradePageDTO selectText(int curPage);
+	public UpgradePageDTO selectText(int curPage,int amount);
 	public int totalCount();
 }

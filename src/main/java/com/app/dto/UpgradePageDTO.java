@@ -2,9 +2,9 @@ package com.app.dto;
 
 import java.util.List;
 
-public class UpgradePageDTO {
+public class UpgradePageDTO<T> {
 
-	List<Board> list;//내용물
+	List<T> list;//내용물
 
 	int startPage;//현재페이징에서 시작번호
 	int endPage;//현재페이징에서 마지막번호
@@ -20,7 +20,7 @@ public class UpgradePageDTO {
 
 	}
 
-	public UpgradePageDTO(List<Board> list, int startPage, int endPage, boolean prev, boolean next, int amount,
+	public UpgradePageDTO(List<T> list, int startPage, int endPage, boolean prev, boolean next, int amount,
 			int curPage, int total) {
 		this.list = list;
 		this.startPage = startPage;
@@ -42,11 +42,11 @@ public class UpgradePageDTO {
 		this.realEnd = realEnd;
 	}
 
-	public List<Board> getList() {
+	public List<T> getList() {
 		return list;
 	}
 
-	public void setList(List<Board> list) {
+	public void setList(List<T> list) {
 		this.list = list;
 	}
 

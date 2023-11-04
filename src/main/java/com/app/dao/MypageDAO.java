@@ -44,9 +44,9 @@ public class MypageDAO {
 		return session.selectOne("MypageMapper.textTotalCount");
 	}
 	
-	public UpgradePageDTO selectText(int curPage) {
+	public UpgradePageDTO selectText(int curPage, int amount) {
 		UpgradePageDTO pageDTO=new UpgradePageDTO();
-		pageDTO.setAmount(2);
+		pageDTO.setAmount(amount);
 		pageDTO.setCurPage(curPage);
 		
 		int offset=(curPage-1)*pageDTO.getAmount();

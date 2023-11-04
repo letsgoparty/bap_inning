@@ -3,6 +3,7 @@ package com.app.service;
 import java.util.HashMap;
 
 import com.app.dto.MemberDTO;
+import com.app.dto.UpgradePageDTO;
 
 public interface MypageService {
 
@@ -11,4 +12,8 @@ public interface MypageService {
 	public int memberUpdate(MemberDTO memberDTO);
 	public int pwChange(HashMap<String, String> hashmap);
 	public int memberDelete(String userid);
+	
+	//페이징처리
+	public UpgradePageDTO selectText(int curPage,int amount);
+	public int totalCount();
 }

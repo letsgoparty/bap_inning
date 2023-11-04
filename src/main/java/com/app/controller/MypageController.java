@@ -20,6 +20,7 @@ import com.app.dto.PageDTO;
 import com.app.dto.ReviewPageDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.dto.UpgradePageDTO;
 import com.app.service.BoardService;
 import com.app.service.EncodeService;
 import com.app.service.MemberService;
@@ -275,20 +276,20 @@ public class MypageController {
 	
 	@GetMapping("/mytext")
 	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
-			@RequestParam(value = "type", required = false, defaultValue = "null") String type,
-			@RequestParam(value = "keyword", required = false, defaultValue = "null") String keyword,
+			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
 			HttpSession session) {
 		
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
 
-		
-		PageDTO pageDTO=boardService.selectList(curPage,type,keyword);
+
+		UpgradePageDTO pageDTO=mypageService.selectText(curPage,amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myText");
 		mav.addObject("pageDTO",pageDTO);
+
 		
 		return mav;
 	}

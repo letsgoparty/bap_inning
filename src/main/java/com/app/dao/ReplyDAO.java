@@ -35,10 +35,8 @@ public class ReplyDAO {
 		}
 		// 목록
 		public List<Reply> replyList(int no){
-			List<Board> list =  session.selectList("ReplyMapper.replyList",no);
-			System.out.println("bb"+list);
 			
-			return session.selectOne("ReplyMapper.replyList", no);
+			return session.selectList("ReplyMapper.replyList", no);
 		}
 
 }

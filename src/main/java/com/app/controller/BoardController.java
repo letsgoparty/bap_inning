@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.dto.Board;
+import com.app.dto.MemberDTO;
 import com.app.dto.PageDTO;
 import com.app.dto.Reply;
 import com.app.service.BoardService;
+import com.app.service.MemberService;
 import com.app.service.ReplyService;
 
 @Controller
@@ -23,6 +25,8 @@ public class BoardController {
 	BoardService service;
 	@Autowired
 	ReplyService replyService;
+	
+	
 
 	// 1. 글쓰기 화면 보기
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
@@ -34,10 +38,9 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(Board board) {
 		// user sesstion넣기
-		
-		// userid member dto에서 가져올예정
 		board.setUserid("xxx");
 		int num = service.boardWrite(board);
+		System.out.println(num);
 		return "redirect:list";
 	}
 
@@ -59,11 +62,10 @@ public class BoardController {
 	@ModelAttribute("retrieve")
 	public Board retrieve(int no) { // Board => void
 		Board board = service.selectByNo(no);
-		System.out.println(board);
 		
 		// 댓글 조회
 		List<Reply> reply = replyService.replyList(no);
-		System.out.println(reply);
+		board.setReplyList(reply);
 		return board;
 	}
 

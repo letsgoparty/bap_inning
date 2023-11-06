@@ -178,6 +178,7 @@
 			</c:if>
 			<tr>
 				<td colspan="7">
+				
 				<c:if test="${startNum>1}">
 						<a href="list?curPage=${startNum-1}" class="btn btn-next">prev</a>
 					</c:if> 

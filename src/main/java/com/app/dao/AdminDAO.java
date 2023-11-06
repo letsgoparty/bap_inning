@@ -121,5 +121,11 @@ public class AdminDAO {
 	public int updateUser(MemberDTO dto) {
 		return session.update("AdminMapper.updateUser", dto);
 	}
+	public int find_seq() {
+		return session.selectOne("AdminMapper.find_seq");
+	}
+	public int enroll_res(RestaurantDTO dto) {
+		return session.insert("AdminMapper.enroll_res", dto);
+	}
 	
 }

@@ -45,4 +45,6 @@ public interface AdminService {
 	public int CountReview();
 	public MemberDTO findUser(String userid);
 	public int updateUser(MemberDTO dto);
+	public int find_seq();
+	public int enroll_res(RestaurantDTO dto);
 }

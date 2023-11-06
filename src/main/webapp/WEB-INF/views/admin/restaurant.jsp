@@ -28,6 +28,10 @@
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <style>
 th:first-child, th:nth-child(4), th:nth-child(5) {
 	max-width: 70px;
@@ -36,44 +40,47 @@ th:first-child, th:nth-child(4), th:nth-child(5) {
 th:nth-child(2), th:nth-child(3) {
 	max-width: 250px;
 }
+
 input[type=file] {
-    display: none;
+	display: none;
 }
 
 .imgs_wrap {
-    border: 1px solid #d4d4d4;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin: 3% auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-
+	border: 1px solid #d4d4d4;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin: 3% auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
 }
+
 .imgs_wrap img {
-    max-width: 150px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-.myform{
-	   width: 70%;
-	   margin: 3% auto; /* 수평 가운데 정렬을 위한 마진 설정 */
-	   height: auto;
-	   padding: 50px;
-	   box-sizing: border-box;
-	   border: solid 1.5px #D3D3D3;
-	   border-radius: 5px;
-	   background-color: rgba(255, 255, 255, 0.5);
-	   resize: none;
-}
-.container {
-  display: flex;
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
+	max-width: 150px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
+.myform {
+	width: 70%;
+	margin: 3% auto; /* 수평 가운데 정렬을 위한 마진 설정 */
+	height: auto;
+	padding: 50px;
+	box-sizing: border-box;
+	border: solid 1.5px #D3D3D3;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.5);
+	resize: none;
+}
+
+.container {
+	display: flex;
+	justify-content: center; /* 수평 가운데 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
 
 //이미지 정보들을 담을 배열
@@ -100,20 +107,31 @@ fileInput.change(function() {
 });
 
     // 업로드 버튼 클릭 시
-    uploadButton.click(function() {
-        // 이미지가 저장된 formData를 사용하여 AJAX 요청
+    $("#uploadButton").on("click",function(e) {
+		e.preventDefault();
         const formData = window.uploadFormData;
 
         if (formData) {
             $.ajax({
-                url: "ResuploadAction",
+                url: "../admin/ResUploadAction",
                 type: "POST",
                 data: formData,
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    // 업로드가 성공한 경우, review_id를 등록 form에 넘어갈 데이터로 지정 
-										$("#review_id").val(response);
+                  	var res_image = "res"+response;
+					$("#upload_res_id").val(response);
+					$("#upload_res_image").val(res_image);
+					
+					 Swal.fire({
+				 	        text: "이미지를 업로드 하였습니다. 가게 등록을 완료해주세요",
+				 	        icon: 'success',
+				 	        confirmButtonColor: '#3085d6',
+				 	        button: {
+				 	            text: '확인',
+				 	        }
+						 });
+
                 },
                 error: function() {
                     // 업로드가 실패한 경우
@@ -423,71 +441,79 @@ function deleteImageAction(index) {
 	</div>
 
 	<!-- 음식점 등록 Modal -->
-	<div class="modal" id="enrollModal" role="dialog"
-		aria-labelledby="remoteModalLabel" aria-hidden="true">
-		<div class="modal-dialog" style="width: 850px;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1>음식점 등록하기</h1>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-				</div>
-				<div class="modal-body">
-					<div role="content">
-						<div class="widget-body">
+	<form action="../admin/enrollRes" method="post">
+		<input type="hidden" id="upload_res_id" name="res_id"> <input
+			type="hidden" id="upload_res_image" name="res_image">
+		<div class="modal" id="enrollModal" role="dialog"
+			aria-labelledby="remoteModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="width: 850px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1>음식점 등록하기</h1>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+					</div>
+					<div class="modal-body">
+						<div role="content">
+							<div class="widget-body">
 
-							<p id="res_imageTag"></p>
-							가게명 <input class="form-control mb-2" id="res_name"> 주 소 <input
-								class="form-control mb-2" id="res_addr"> 거 리 (분)<input
-								class="form-control mb-2" id="distance"> 카테고리 <select
-								class="form-control mb-2" id="category">
-								<option value="한식">한식</option>
-								<option value="중식">중식</option>
-								<option value="일식">일식</option>
-								<option value="양식">양식</option>
-								<option value="카페">카페</option>
-								<option value="패스트푸드">패스트푸드</option>
-							</select> 주변 구장 <select class="form-control mb-2" id="team">
-								<option value="1">SSG 랜더스필드</option>
-								<option value="2">고척 스카이돔</option>
-								<option value="3">잠실종합운동장</option>
-								<option value="4">KT위즈파크</option>
-								<option value="5">KIA챔피언스필드</option>
-								<option value="6">NC파크</option>
-								<option value="7">삼성라이온즈파크</option>
-								<option value="8">사직야구장</option>
-								<option value="10">한화생명 이글스파크</option>
-							</select> 상세 설명
-							<textarea class="form-control mb-2" rows="3" id="res_content"></textarea>
+								가게명 <input class="form-control mb-2" id="res_name"
+									name="res_name" autocomplete="off"> 주 소 <input
+									class="form-control mb-2" id="res_addr" name="res_addr"
+									autocomplete="off"> 거 리 (분)<input
+									class="form-control mb-2" id="distance" name="distance"
+									autocomplete="off"> 카테고리 <select
+									class="form-control mb-2" id="category" name="category">
+									<option value="한식">한식</option>
+									<option value="중식">중식</option>
+									<option value="일식">일식</option>
+									<option value="양식">양식</option>
+									<option value="카페">카페</option>
+									<option value="패스트푸드">패스트푸드</option>
+								</select> 주변 구장 <select class="form-control mb-2" id="team"
+									name="team_code">
+									<option value="1">SSG 랜더스필드</option>
+									<option value="2">고척 스카이돔</option>
+									<option value="3">잠실종합운동장</option>
+									<option value="4">KT위즈파크</option>
+									<option value="5">KIA챔피언스필드</option>
+									<option value="6">NC파크</option>
+									<option value="7">삼성라이온즈파크</option>
+									<option value="8">사직야구장</option>
+									<option value="10">한화생명 이글스파크</option>
+								</select> 상세 설명
+								<textarea class="form-control mb-2" rows="3" id="res_content"
+									name="res_content"></textarea>
 
-							<div>
-								<p>사진을 등록해주세요(최대 한 장만 가능)</p>
-								<div class="input_wrap">
-									<a href="javascript:" onclick="fileUploadAction()"
-										class="btn btn-primary">사진 선택</a> <input type="file" id="input_imgs"
-										name="file" multiple />
+								<div>
+									<p>사진을 등록해주세요(최대 한 장만 가능)</p>
+									<div class="input_wrap">
+										<a href="javascript:" onclick="fileUploadAction()"
+											class="btn btn-primary">사진 선택</a> <input type="file"
+											id="input_imgs" name="file" multiple />
+									</div>
 								</div>
-							</div>
 
-							<div>
-								<div class="imgs_wrap">
-									<img id="img" />
+								<div>
+									<div class="imgs_wrap">
+										<img id="img" />
+									</div>
 								</div>
-							</div>
 
-							<button class="btn btn-primary" id="uploadButton">업로드</button>
+								<button class="btn btn-primary" id="uploadButton">업로드</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="updateRes">수정</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal"
-						style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">닫기</button>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">등록</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal"
+							style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">취소</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 
 
 	<script>
@@ -503,7 +529,7 @@ function deleteImageAction(index) {
 						res_name : res_name
 					},
 					success : function(data) {
-                        var imagePath = '../images/restaurant_images/' + data.res_image + '.png';
+						var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/restaurant_images/' + data.res_image + '.png';
                         var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">';
                         
 						$("#modal").modal("show");

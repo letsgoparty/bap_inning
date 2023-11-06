@@ -235,18 +235,18 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-8 mb-3">
-							<label for="email"></label> <input type="text"
+						<div class="col-md-8">
+							<input type="text"
 								class="form-control" id="authCodeInput" required
 								style="display: none;"> <input type="hidden"
 								id="authCode">
 							<p id="auth_result" style="color: red;"></p>
 							<div class="invalid-feedback"></div>
 						</div>
-						<div class="col-md-4 mb-3">
-							<button class="btn btn-primary mt-1" id="authBtn">인증코드
+						<div class="col-md-4">
+							<button class="btn btn-primary" id="authBtn">인증코드
 								전송</button>
-							<button class="btn btn-primary mt-1" id="authCheck"
+							<button class="btn btn-primary" id="authCheck"
 								style="display: none">인증코드 확인</button>
 						</div>
 					</div>

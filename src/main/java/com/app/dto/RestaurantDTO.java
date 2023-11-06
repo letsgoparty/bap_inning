@@ -1,7 +1,7 @@
 package com.app.dto;
 
 public class RestaurantDTO {
-	String res_id;
+	int res_id;
 	String res_name;
 	String res_addr;
 	String res_image;
@@ -23,25 +23,27 @@ public class RestaurantDTO {
 
 	}
 
-	public RestaurantDTO(String res_id, String res_name, String res_addr, String res_image, String res_content,
-		String distance, String category, String team_code) {
-	super();
-	this.res_id = res_id;
-	this.res_name = res_name;
-	this.res_addr = res_addr;
-	this.res_image = res_image;
-	this.res_content = res_content;
-	this.distance = distance;
-	this.category = category;
-	this.team_code = team_code;
-}
 
-	public String getRes_id() {
+	public int getRes_id() {
 		return res_id;
 	}
 
-	public void setRes_id(String res_id) {
+	public void setRes_id(int res_id) {
 		this.res_id = res_id;
+	}
+
+	public RestaurantDTO(int res_id, String res_name, String res_addr, String res_image, String res_content,
+			String distance, String category, String team_code, String rating) {
+		super();
+		this.res_id = res_id;
+		this.res_name = res_name;
+		this.res_addr = res_addr;
+		this.res_image = res_image;
+		this.res_content = res_content;
+		this.distance = distance;
+		this.category = category;
+		this.team_code = team_code;
+		this.rating = rating;
 	}
 
 	public String getRes_name() {

@@ -183,4 +183,14 @@ public class AdminServiceImpl implements AdminService {
 	public int updateUser(MemberDTO dto) {
 		return dao.updateUser(dto);
 	}
+
+	@Override
+	public int find_seq() {
+		return dao.find_seq();
+	}
+
+	@Override
+	public int enroll_res(RestaurantDTO dto) {
+		return dao.enroll_res(dto);
+	}
 }

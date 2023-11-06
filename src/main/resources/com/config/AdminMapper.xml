@@ -13,7 +13,8 @@
 	</select>
 	<select id="find_user" resultType="MemberDTO">
 		SELECT * FROM member
-		WHERE role != 'ADMIN'
+		WHERE role
+		!= 'ADMIN'
 
 	</select>
 	<select id="find_user_board" parameterType="string"
@@ -228,4 +229,12 @@
 		team_code=#{team_code}
 		where password=#{password}
 	</update>
+	<select id="find_seq" resultType="int">
+		select res_seq.nextval from dual
+	</select>
+	<insert id="enroll_res" parameterType="RestaurantDTO">
+	insert into restaurant(res_id, res_name, res_addr, res_image, res_content, distance, category, team_code)
+values(#{res_id}, #{res_name}, #{res_addr}, #{res_image}, #{res_content}, #{distance}, #{category}, #{team_code})
+
+	</insert>
 </mapper>

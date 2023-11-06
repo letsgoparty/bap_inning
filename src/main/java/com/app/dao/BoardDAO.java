@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.dto.Board;
 import com.app.dto.PageDTO;
+import com.app.dto.Reply;
 
 
 @Repository
@@ -19,14 +20,15 @@ public class BoardDAO {
 	@Autowired
 	SqlSessionTemplate session;
 	
-	public int totalCount(String type, String keyword) {
+	public int totalCount(String type, String keyword, String team) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", type);
 		map.put("keyword", keyword);
+		map.put("team", team);
 		return session.selectOne("BoardMapper.totalCount", map);
 	}
 	
-	public PageDTO selectList(int curPage, String type, String keyword) {
+	public PageDTO selectList(int curPage, String type, String keyword, String team) {
 		PageDTO pageDTO = new PageDTO();
 		int offset = (curPage-1)*pageDTO.getPerPage();
 		int limit = pageDTO.getPerPage();
@@ -34,15 +36,16 @@ public class BoardDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", type);
 		map.put("keyword", keyword);
+		map.put("team", team);
 		System.out.println("map>>>>>>>>>" + map);
 		List<Board> list =  session.selectList("BoardMapper.selectList", map, new RowBounds(offset, limit));
-		
+		System.out.println("aa"+list);
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
-		pageDTO.setTotalCount(totalCount(type, keyword));
+		pageDTO.setTotalCount(totalCount(type, keyword, team));
 		pageDTO.setType(type);
 		pageDTO.setKeyword(keyword);
-		System.out.println(list);
+		pageDTO.setTeam(team);
 		return pageDTO;
 	}
 
@@ -53,6 +56,8 @@ public class BoardDAO {
 	public Board selectByNo(int no) {
 		//조회수 증가 메서드 호출
 		int num = readCnt(no);
+		List<Reply> replyList = session.selectList("ReplyMapper.replyList", no);
+		System.out.println("reply"+replyList);
 		return session.selectOne("BoardMapper.selectByNo", no);
 	}
 

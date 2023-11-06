@@ -11,12 +11,13 @@ public class PageDTO {
 
 	String type;
 	String keyword;
+	String team;
 
 
 	public PageDTO() {
 	}
 
-	public PageDTO(List<Board> list, int curPage, int perPage, int totalCount, String type, String keyword) {
+	public PageDTO(List<Board> list, int curPage, int perPage, int totalCount, String type, String keyword, String team) {
 		super();
 		this.list = list;
 		this.curPage = curPage;
@@ -24,6 +25,7 @@ public class PageDTO {
 		this.totalCount = totalCount;
 		this.type = type;
 		this.keyword = keyword;
+		this.team = team;
 	}
 
 	public List<Board> getList() {
@@ -74,15 +76,18 @@ public class PageDTO {
 		this.keyword = keyword;
 	}
 
-	public String[] getTypeArr() {
-		System.out.println("타입");
-	    return type == null? new String[] {}: type.split("");
-	  }
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
 
 	@Override
 	public String toString() {
 		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
-				+ ",  type=" + type + ", keyword=" + keyword + "]";
+				+ ",  type=" + type + ", keyword=" + keyword + ", team=" + team + "]";
 	}
 
 	

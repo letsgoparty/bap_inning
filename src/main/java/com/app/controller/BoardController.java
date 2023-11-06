@@ -3,6 +3,8 @@ package com.app.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,9 +38,10 @@ public class BoardController {
 
 	// 2. 글쓰기
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(Board board) {
+	public String write(Board board, HttpSession session) {
 		// user sesstion넣기
-		board.setUserid("xxx");
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		board.setUserid(dto.getUserid());
 		int num = service.boardWrite(board);
 		System.out.println(num);
 		return "redirect:list";

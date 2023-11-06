@@ -27,7 +27,6 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="title"
 						placeholder="title">
-						<input type="text" name="userid" value="${MemberDTO.userid}"> 
 				</div>
 			</div>
 			<div class="row">
@@ -47,6 +46,7 @@
 						<option value="9">두산 베어스</option>
 						<option value="10">한화 이글스</option>
 					</select>
+					
 				</div>
 			</div>
 

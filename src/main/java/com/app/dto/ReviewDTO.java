@@ -5,8 +5,8 @@ import org.apache.ibatis.type.Alias;
 @Alias("ReviewDTO")
 public class ReviewDTO {
 
-	String review_id;
-	String res_id;
+	Integer review_id;
+	Integer res_id;
 	String user_id;
 	String rating;
 	String review_content;
@@ -17,7 +17,7 @@ public class ReviewDTO {
 	public ReviewDTO() {
 	}
 
-	public ReviewDTO(String review_id, String res_id, String user_id, String rating, String review_content, String like_cnt,
+	public ReviewDTO(Integer review_id, Integer res_id, String user_id, String rating, String review_content, String like_cnt,
 			String created_date, String modified_date) {
 		super();
 		this.review_id = review_id;
@@ -31,22 +31,22 @@ public class ReviewDTO {
 	}
 
 
-	public String getReview_id() {
+	public Integer getReview_id() {
 		return review_id;
 	}
 
 
-	public void setReview_id(String review_id) {
+	public void setReview_id(Integer review_id) {
 		this.review_id = review_id;
 	}
 
 
-	public String getRes_id() {
+	public Integer getRes_id() {
 		return res_id;
 	}
 
 
-	public void setRes_id(String res_id) {
+	public void setRes_id(Integer res_id) {
 		this.res_id = res_id;
 	}
 

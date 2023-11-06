@@ -15,17 +15,18 @@
 	function go_list() {
 		location.href = "list";
 	}
+	function reply_delete() {
+		alert(${list.reivews_num});
+		
+	}
 </script>
 </head>
 <body>
 	<jsp:include page="common/nav.jsp" flush="true" />
 	<div class="container mt-4 board">
 		<form class="form-horizontal" action="updateForm" method="post">
-		<input type="text" name="title" value="${retrieve.title}">
-		<input type="text" name="team_code" value="${retrieve.team_code}">
-		<input type="text" name="text" value="${retrieve.text}">
-		<input type="text" name="text" value="${retrieve.text}">dd
-		<input type="text" name="text" value="${retrieve.text}">dd2
+			<input type="hidden" name="title" value="${retrieve.title}"> 
+			<input type="hidden" name="team_code" value="${retrieve.team_code}">
 			<div class="form-group">
 				<div>
 					<p>
@@ -103,23 +104,57 @@
 					</c:choose>
 					<span> ${retrieve.userid}</span> &nbsp; <span class="gray-font">2023.10.25</span>
 					&nbsp; <span class="gray-font">조회수: ${retrieve.count}</span>
+					<button type="submit" class="btn btn-primary mx-3">수정</button>
+					<button type="button" class="btn btn-primary" onclick="go_list()">목록</button>
 					<hr>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="mb-4">
 					<textarea class="form-control" rows="10"
-						style="border: none; background-color: rgba(248, 249, 250, 0.5);" name="text">${retrieve.text}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div>
-					<button type="submit" class="btn btn-primary">글수정</button>
-					<input type="button" value="목록" class="btn btn-primary"
-						onclick="go_list()">
+						style="border: none; background-color: rgba(248, 249, 250, 0.5);"
+						name="text" disabled>${retrieve.text}</textarea>
 				</div>
 			</div>
 		</form>
+		<hr>
+		<div class="form-group">
+			<div class="mb-4">
+				<form action="replyInsert" method="get">
+					<div class="row">
+						<div class="col-md-10 mb-3">
+							<input type="hidden" name="board_num" value="${retrieve.board_num}">
+							<input type="text" class="form-control" name="text" id="text"
+								required autocomplete="off">
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-primary">등록</button>
+							<br>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="mb-4">
+					<c:forEach var="list" items="${retrieve.replyList}">
+					<div class="row">
+						
+						<div >
+							글번호 : ${list.reviews_num} 작성자 : ${retrieve.userid}
+						</div>
+						<div class="col-md-10 mb-3">
+							${list.text} 
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-primary">수정</button>
+							<button type="button" class="btn btn-primary"><a href="replydelete?no=${list.reviews_num}">삭제</a></button>
+							<br>
+						</div>
+					</div>
+						</c:forEach>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

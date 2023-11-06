@@ -27,6 +27,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="title"
 						placeholder="title">
+						<input type="text" name="userid" value="${MemberDTO.userid}"> 
 				</div>
 			</div>
 			<div class="row">

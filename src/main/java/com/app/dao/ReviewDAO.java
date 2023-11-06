@@ -1,5 +1,6 @@
 package com.app.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -22,11 +23,11 @@ public class ReviewDAO {
 		return session.selectOne("ReviewMapper.r_totalCount");
 	}
 	
-	public ReviewPageDTO r_reviewList(int curPage) {
+	public ReviewPageDTO r_reviewList(int curPage, int res_id) {
 		ReviewPageDTO pageDTO = new ReviewPageDTO();
 		int offset = (curPage-1)*pageDTO.getPerPage();
 		int limit = pageDTO.getPerPage();
-		List<ReviewDTO> list =  session.selectList("ReviewMapper.r_reviewList", null, new RowBounds(offset, limit));
+		List<ReviewDTO> list =  session.selectList("ReviewMapper.r_reviewList", res_id, new RowBounds(offset, limit));
 		
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
@@ -40,11 +41,11 @@ public class ReviewDAO {
 		return session.selectOne("ReviewMapper.r_totalCount");
 	}
 	
-	public ReviewPageDTO l_reviewList(int curPage) {
+	public ReviewPageDTO l_reviewList(int curPage, int res_id) {
 		ReviewPageDTO pageDTO = new ReviewPageDTO();
 		int offset = (curPage-1)*pageDTO.getPerPage();
 		int limit = pageDTO.getPerPage();
-		List<ReviewDTO> list =  session.selectList("ReviewMapper.l_reviewList", null, new RowBounds(offset, limit));
+		List<ReviewDTO> list =  session.selectList("ReviewMapper.l_reviewList", res_id, new RowBounds(offset, limit));
 		
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
@@ -63,6 +64,7 @@ public class ReviewDAO {
 	public int reviewUpdate(ReviewDTO reviewDTO) {
 		return session.update("ReviewMapper.reviewUpdate", reviewDTO);
 	}
+	
 	//리뷰 상세 보기 (수정용)
 	public ReviewDTO reviewRetrieve(String review_id) {
 		ReviewDTO dto = session.selectOne("ReviewMapper.reviewRetrieve", review_id);
@@ -70,8 +72,17 @@ public class ReviewDAO {
 	}
 
 	//음식점 리뷰 삭제
-	public int reviewDelete(String review_id) {
+	public int reviewDelete(int review_id) {
 		return session.delete("ReviewMapper.reviewDelete", review_id);
 	}
 	
+	//
+	public int find_seq() {
+		return session.selectOne("ReviewMapper.find_seq");
+	}
+	
+	//
+	public int save_url(HashMap<String, Object> map) {
+		return session.delete("ReviewMapper.save_url", map);
+	}
 }

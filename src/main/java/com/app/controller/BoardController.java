@@ -46,11 +46,11 @@ public class BoardController {
 	@ModelAttribute("pageDTO")
 	public PageDTO list(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
 			@RequestParam(value = "type", required = false, defaultValue = "null") String type,
-			@RequestParam(value = "keyword", required = false, defaultValue = "null") String keyword) {
+			@RequestParam(value = "keyword", required = false, defaultValue = "null") String keyword,
+			@RequestParam(value = "team", required = false, defaultValue = "null") String team) {
 		
 		//String[] team_code = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-		PageDTO xx=service.selectList(curPage,type,keyword);
-		System.out.println(xx);
+		PageDTO xx=service.selectList(curPage,type,keyword,team);
 		return xx;
 	}
 
@@ -59,10 +59,10 @@ public class BoardController {
 	@ModelAttribute("retrieve")
 	public Board retrieve(int no) { // Board => void
 		Board board = service.selectByNo(no);
+		System.out.println(board);
 		
 		// 댓글 조회
 		List<Reply> reply = replyService.replyList(no);
-		System.out.println(board);
 		System.out.println(reply);
 		return board;
 	}

@@ -21,9 +21,11 @@
 	<jsp:include page="common/nav.jsp" flush="true" />
 	<div class="container mt-4 board">
 		<form class="form-horizontal" action="updateForm" method="post">
-		<input type="hidden" name="title" value="${retrieve.title}">
-		<input type="hidden" name="team_code" value="${retrieve.team_code}">
-		<input type="hidden" name="text" value="${retrieve.text}">
+		<input type="text" name="title" value="${retrieve.title}">
+		<input type="text" name="team_code" value="${retrieve.team_code}">
+		<input type="text" name="text" value="${retrieve.text}">
+		<input type="text" name="text" value="${retrieve.text}">dd
+		<input type="text" name="text" value="${retrieve.text}">dd2
 			<div class="form-group">
 				<div>
 					<p>
@@ -118,7 +120,6 @@
 				</div>
 			</div>
 		</form>
-
 	</div>
 </body>
 </html>

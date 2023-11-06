@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.app.dto.Board;
 import com.app.dto.Reply;
 
 
@@ -34,7 +35,10 @@ public class ReplyDAO {
 		}
 		// 목록
 		public List<Reply> replyList(int no){
-			return session.selectList("ReplyMapper.replyList", no);
+			List<Board> list =  session.selectList("ReplyMapper.replyList",no);
+			System.out.println("bb"+list);
+			
+			return session.selectOne("ReplyMapper.replyList", no);
 		}
 
 }

@@ -1,5 +1,7 @@
 package com.app.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("Board")
@@ -14,7 +16,7 @@ public class Board {
 	 * 조회수 count
 	 * 구단번호 team_code
 	 */
-	
+	List<Reply> replyList;
 	int board_num;
 	String title;
 	String text;
@@ -26,8 +28,9 @@ public class Board {
 	public Board() {
 	}
 
-	public Board(int board_num, String title, String text, String userid, String board_date, int count, int team_code) {
+	public Board(List<Reply> replyList, int board_num, String title, String text, String userid, String board_date, int count, int team_code) {
 		super();
+		this.replyList= replyList;
 		this.board_num = board_num;
 		this.title = title;
 		this.text = text;
@@ -35,6 +38,15 @@ public class Board {
 		this.board_date = board_date;
 		this.count = count;
 		this.team_code = team_code;
+	}
+	
+
+	public List<Reply> getReplyList() {
+		return replyList;
+	}
+
+	public void setReplyList(List<Reply> replyList) {
+		this.replyList = replyList;
 	}
 
 	public int getBoard_num() {
@@ -95,7 +107,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "BoardDTO [board_num=" + board_num + ", title=" + title + ", text=" + text + ", userid=" + userid
+		return "BoardDTO [replyList=" + replyList + ", board_num=" + board_num + ", title=" + title + ", text=" + text + ", userid=" + userid
 				+ ", board_date=" + board_date + ", count=" + count + ", team_code=" + team_code + "]";
 	}
 	

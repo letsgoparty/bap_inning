@@ -14,7 +14,7 @@ public class Reply {
 	 replyDate
 	 updateDate
 	 */
-	  
+	
 	int reviews_num;
 	int board_num;
 	String text;

@@ -13,7 +13,7 @@
 		#{userid})
 	</insert>
 
-	<select id="replyList" parameterType="int" resultType="Reply">
+	<select id="replyList" resultType="Reply">
 		select *
 		from board_reviews
 		where board_num = #{board_num}

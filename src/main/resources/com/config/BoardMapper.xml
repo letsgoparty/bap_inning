@@ -3,24 +3,24 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardMapper">
-
 	<sql id="search">
-		<if test="type != null and keyword != null">
-			<where>
+		<where>
+			<if test="type != null and keyword != null">
 				<choose>
 					<when test="type =='T'.toString()">
-						 TITLE LIKE '%'||#{keyword}||'%'
+						TITLE LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='C'.toString()">
-						 TEXT LIKE '%'||#{keyword}||'%'
+						TEXT LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='W'.toString()">
-						 USERID LIKE '%'||#{keyword}||'%'
+						USERID LIKE '%'||#{keyword}||'%'
 					</when>
 				</choose>
-			</where>
-		</if>
+			</if>
+		</where>
 	</sql>
+
 
 	<delete id="boardDelete" parameterType="int">
 		delete from board
@@ -42,7 +42,8 @@
 	</insert>
 
 
-	<select id="selectList" resultType="Board" parameterType="hashmap">
+	<select id="selectList" resultType="Board"
+		parameterType="hashmap">
 		<![CDATA[
 		select board_num, title,
 		userid, text, team_code,
@@ -51,9 +52,24 @@
 		count
 		from board
 		]]>
-		<include refid="search"></include>
-		<if test="team_code != null">
-			and team_code = #{tema_code}
+		<if test="team != 'null' and team != 0">
+			where team_code=#{team}
+			<if test="type != null and keyword != null">
+				<choose>
+					<when test="type =='T'.toString()">
+						AND TITLE LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='C'.toString()">
+						AND TEXT LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='W'.toString()">
+						AND USERID LIKE '%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</if>
+		</if>
+		<if test="team == 'null'">
+			<include refid="search"></include>
 		</if>
 		<![CDATA[
 		order by board_num desc
@@ -65,7 +81,25 @@
 		select count(*)
 		from board
 		]]>
-		<include refid="search"></include>
+		<if test="team != 'null' and team != 0">
+			where team_code=#{team}
+			<if test="type != null and keyword != null">
+				<choose>
+					<when test="type =='T'.toString()">
+						AND TITLE LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='C'.toString()">
+						AND TEXT LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='W'.toString()">
+						AND USERID LIKE '%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</if>
+		</if>
+		<if test="team == 'null'">
+			<include refid="search"></include>
+		</if>
 	</select>
 
 
@@ -79,7 +113,7 @@
 		select
 		board_num, title, userid, text,
 		to_char(board_date, 'YYYY/MM/dd') as
-		board_date,
+		board_date, team_code,
 		count
 		from board
 		where board_num = #{board_num}

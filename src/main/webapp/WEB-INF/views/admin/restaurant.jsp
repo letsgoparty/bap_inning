@@ -36,8 +36,141 @@ th:first-child, th:nth-child(4), th:nth-child(5) {
 th:nth-child(2), th:nth-child(3) {
 	max-width: 250px;
 }
-</style>
+input[type=file] {
+    display: none;
+}
 
+.imgs_wrap {
+    border: 1px solid #d4d4d4;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin: 3% auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+
+}
+.imgs_wrap img {
+    max-width: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.myform{
+	   width: 70%;
+	   margin: 3% auto; /* 수평 가운데 정렬을 위한 마진 설정 */
+	   height: auto;
+	   padding: 50px;
+	   box-sizing: border-box;
+	   border: solid 1.5px #D3D3D3;
+	   border-radius: 5px;
+	   background-color: rgba(255, 255, 255, 0.5);
+	   resize: none;
+}
+.container {
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+//이미지 정보들을 담을 배열
+var sel_files = [];
+
+$(document).ready(function() {
+    $("#input_imgs").on("change", handleImgFileSelect);
+    
+    const fileInput = $("#input_imgs");
+
+    const uploadButton = $("#uploadButton");
+
+fileInput.change(function() {
+    // 선택한 파일을 FormData 객체에 추가
+    const selectedFiles = fileInput[0].files;
+    if (selectedFiles.length > 0) {
+        const formData = new FormData();
+        for (let i = 0; i < selectedFiles.length; i++) {
+            formData.append("file", selectedFiles[i]);
+        }
+        // formData를 전역 변수로 설정
+        window.uploadFormData = formData;
+    }
+});
+
+    // 업로드 버튼 클릭 시
+    uploadButton.click(function() {
+        // 이미지가 저장된 formData를 사용하여 AJAX 요청
+        const formData = window.uploadFormData;
+
+        if (formData) {
+            $.ajax({
+                url: "ResuploadAction",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    // 업로드가 성공한 경우, review_id를 등록 form에 넘어갈 데이터로 지정 
+										$("#review_id").val(response);
+                },
+                error: function() {
+                    // 업로드가 실패한 경우
+                    console.error("파일 업로드 실패");
+                }
+            });
+        } else {
+            // 파일을 선택하지 않은 경우 경고 메시지 표시
+            alert("파일을 선택해주세요.");
+        }
+    });
+}); 
+
+function fileUploadAction() {
+    console.log("fileUploadAction");
+    $("#input_imgs").trigger('click');
+}
+
+function handleImgFileSelect(e) {
+    // 이미지 정보들을 초기화
+    sel_files = [];
+    $(".imgs_wrap").empty();
+
+    var files = e.target.files;
+    var filesArr = Array.prototype.slice.call(files);
+
+    var index = 0;
+    filesArr.forEach(function(f) {
+        if(!f.type.match("image.*")) {
+            alert("이미지 파일만 선택 가능합니다.");
+            return;
+        }
+
+        sel_files.push(f);
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+            $(".imgs_wrap").append(html);
+            index++;
+
+        }
+        reader.readAsDataURL(f);
+        
+    });
+}
+
+function deleteImageAction(index) {
+    console.log("index : "+index);
+    console.log("sel length : "+sel_files.length);
+
+    sel_files.splice(index, 1);
+
+    var img_id = "#img_id_"+index;
+    $(img_id).remove(); 
+}
+</script>
 </head>
 
 <body id="page-top">
@@ -146,9 +279,10 @@ th:nth-child(2), th:nth-child(3) {
 				<!-- 테이블 -->
 				<div class="container-fluid" style="font-family: 'SUITE-Regular';">
 					<!-- Page Heading -->
-					<div style="display: flex; justify-content: space-between; align-items: center;">
+					<div
+						style="display: flex; justify-content: space-between; align-items: center;">
 						<h1 class="h3 mb-2 text-gray-800 mb-4 mx-2">음식점</h1>
-						<button class="btn btn-primary mb-2">등록</button>
+						<button class="btn btn-primary mb-2" id="enrollBtn">등록</button>
 					</div>
 
 					<!-- DataTales Example -->
@@ -287,7 +421,74 @@ th:nth-child(2), th:nth-child(3) {
 			</div>
 		</div>
 	</div>
+
+	<!-- 음식점 등록 Modal -->
+	<div class="modal" id="enrollModal" role="dialog"
+		aria-labelledby="remoteModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 850px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1>음식점 등록하기</h1>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body">
+					<div role="content">
+						<div class="widget-body">
+
+							<p id="res_imageTag"></p>
+							가게명 <input class="form-control mb-2" id="res_name"> 주 소 <input
+								class="form-control mb-2" id="res_addr"> 거 리 (분)<input
+								class="form-control mb-2" id="distance"> 카테고리 <select
+								class="form-control mb-2" id="category">
+								<option value="한식">한식</option>
+								<option value="중식">중식</option>
+								<option value="일식">일식</option>
+								<option value="양식">양식</option>
+								<option value="카페">카페</option>
+								<option value="패스트푸드">패스트푸드</option>
+							</select> 주변 구장 <select class="form-control mb-2" id="team">
+								<option value="1">SSG 랜더스필드</option>
+								<option value="2">고척 스카이돔</option>
+								<option value="3">잠실종합운동장</option>
+								<option value="4">KT위즈파크</option>
+								<option value="5">KIA챔피언스필드</option>
+								<option value="6">NC파크</option>
+								<option value="7">삼성라이온즈파크</option>
+								<option value="8">사직야구장</option>
+								<option value="10">한화생명 이글스파크</option>
+							</select> 상세 설명
+							<textarea class="form-control mb-2" rows="3" id="res_content"></textarea>
+
+							<div>
+								<p>사진을 등록해주세요(최대 한 장만 가능)</p>
+								<div class="input_wrap">
+									<a href="javascript:" onclick="fileUploadAction()"
+										class="btn btn-primary">사진 선택</a> <input type="file" id="input_imgs"
+										name="file" multiple />
+								</div>
+							</div>
+
+							<div>
+								<div class="imgs_wrap">
+									<img id="img" />
+								</div>
+							</div>
+
+							<button class="btn btn-primary" id="uploadButton">업로드</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="updateRes">수정</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">닫기</button>
+				</div>
+			</div>
+		</div>
 	</div>
+
 
 	<script>
 		$(document).ready(function() {
@@ -409,6 +610,10 @@ th:nth-child(2), th:nth-child(3) {
 		                }
 					});
 		        });
+			
+			$("#enrollBtn").on("click", function(){
+				$("#enrollModal").modal("show");
+			});
 		});
 	</script>
 	<script src="../js/admin/admin.js"></script>

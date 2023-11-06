@@ -106,6 +106,7 @@
 					&nbsp; <span class="gray-font">조회수: ${retrieve.count}</span>
 					<button type="submit" class="btn btn-primary mx-3">수정</button>
 					<button type="button" class="btn btn-primary" onclick="go_list()">목록</button>
+					<button type="submit" class="btn btn-primary"><a href="delete?no=${retrieve.board_num}">삭제</a></button>
 					<hr>
 				</div>
 			</div>
@@ -147,7 +148,6 @@
 							${list.text} 
 						</div>
 						<div class="col-md-2">
-							<button type="button" class="btn btn-primary">수정</button>
 							<button type="button" class="btn btn-primary"><a href="replydelete?no=${list.reviews_num}">삭제</a></button>
 							<br>
 						</div>

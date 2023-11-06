@@ -142,10 +142,9 @@
 					<th>글번호</th>
 					<th>제목</th>
 					<th>작성자명</th>
-					<th>작성일</th>
-					<th>조회수</th>
 					<th>팀</th>
-					<th>삭제</th>
+					<th>조회수</th>
+					<th>작성일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -155,10 +154,9 @@
 						<td>${board.board_num}</td>
 						<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
 						<td>${board.userid}</td>
-						<td>${board.board_date}</td>
-						<td>${board.count}</td>
 						<td>${board.team_code}</td>
-						<td><a href="delete?no=${board.board_num}">삭제</a></td>
+						<td>${board.count}</td>
+						<td>${board.board_date}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

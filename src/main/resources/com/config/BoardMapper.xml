@@ -47,7 +47,7 @@
 		<![CDATA[
 		select board_num, title,
 		userid, text, team_code,
-		to_char(board_date, 'YYYY/MM/dd')
+		to_char(board_date, 'YYYY/MM/DD.HH24:MI')
 		as board_date,
 		count
 		from board

@@ -25,10 +25,6 @@ public class ReplyDAO {
 		public int replyInsert(Reply reply) {
 			return session.insert("ReplyMapper.replyInsert", reply);
 		}
-		// 수정
-		public int replyUpdate(Reply reply) {
-			return session.update("ReplyMapper.replyUpdate", reply);
-		}
 		// 삭제
 		public int replyDelet(int no) {
 			return session.delete("ReplyMapper.replyDelet", no);

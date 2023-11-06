@@ -24,10 +24,4 @@
 		where reviews_num = #{reviews_num}
 	</delete>
 
-	<update id="replyUpdate" parameterType="Reply">
-		update board_reviews set
-		text = #{text},updateDate =
-		sysdate
-		where reviews_num = #{reviews_num}
-	</update>
 </mapper>

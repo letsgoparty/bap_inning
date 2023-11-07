@@ -24,6 +24,8 @@
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://kit.fontawesome.com/75a1d79131.js"
+	crossorigin="anonymous"></script>
 </head>
 
 <body id="page-top">
@@ -106,15 +108,68 @@
 							href="memberForm" role="button">회원가입</a></li>
 					</c:if>
 					<c:if test="${!empty login}">
-
 						<c:if test="${login.userid ne 'admin'}">
-							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
-								href="logout" role="button">로그아웃</a></li>
-							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
-								href="mypage" role="button">마이페이지</a></li>
-							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
-								href="like" role="button"><img
-									src="images/icon/like_icon.png" width=20, height=20></a></li>
+							<div class="dropdown mb-2 mb-lg-0 mx-5 mt-2">
+								<a class="btn btn-secondary dropdown-toggle" href="#"
+									role="button" data-bs-toggle="dropdown" aria-expanded="false"
+									style=" color:rgb(0,0,0,0.8)">
+									<c:choose>
+										<c:when test="${login.team_code eq 1}">
+											<img src="images/logo/SSG.png" width="40" height="35">
+										</c:when>
+										<c:when test="${login.team_code == 2}">
+											<img src="images/logo/키움.png" width="45" height="35">
+										</c:when>
+										<c:when test="${login.team_code == 3}">
+											<img src="images/logo/LG.png" width="40" height="33">
+										</c:when>
+										<c:when test="${login.team_code == 4}">
+											<img src="images/logo/KT.png" width="40" height="40">
+										</c:when>
+										<c:when test="${login.team_code == 5}">
+											<img src="images/logo/KIA.png" width="43" height="30">
+										</c:when>
+										<c:when test="${login.team_code == 6}">
+											<img src="images/logo/NC.png" width="52" height="35">
+										</c:when>
+										<c:when test="${login.team_code == 7}">
+											<img src="images/logo/삼성.png" width="45" height="35">
+										</c:when>
+										<c:when test="${login.team_code == 8}">
+											<img src="images/logo/롯데.png" width="48" height="40">
+										</c:when>
+										<c:when test="${login.team_code == 9}">
+											<img src="images/logo/두산.png" width="45" height="37">
+										</c:when>
+										<c:when test="${login.team_code == 10}">
+											<img src="images/logo/한화.png" width="52" height="35">
+										</c:when>
+									</c:choose>&nbsp;${login.userid} <i class="fas fa-caret-down mx-2"></i>
+								</a>
+								<ul class="dropdown-menu" style="text-align: center;">
+									<table class="mx-auto">
+										<tr>
+											<li>
+											<td><i
+												class="fas fa-sign-out-alt fa-sm fa-fw text-gray-400"></i></td>
+											<td><a class="dropdown-item" href="logout">로그아웃</a></td>
+											</li>
+										</tr>
+										<tr>
+											<li>
+											<td><i class="fa-solid fa-face-smile text-gray-400"></i></td>
+											<td><a class="dropdown-item" href="mypage">마이페이지</a></td>
+											</li>
+										</tr>
+										<tr>
+											<li>
+											<td><i class="fa-solid fa-star"text-gray-400"></i></td>
+											<td><a class="dropdown-item" href="like">찜</a></td>
+											</li>
+										</tr>
+									</table>
+								</ul>
+							</div>
 						</c:if>
 						<c:if test="${login.userid eq 'admin'}">
 							<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"

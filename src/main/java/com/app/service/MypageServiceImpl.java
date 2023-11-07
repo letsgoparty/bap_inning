@@ -40,14 +40,22 @@ public class MypageServiceImpl implements MypageService  {
 	
 	////////////////////////
 	//페이징처리
+	
+	//게시판
 	@Override
 	public UpgradePageDTO selectText(int curPage, int amount) {
 		return dao.selectText(curPage,amount);
 	}
-
+	//게시판 총개수
 	@Override
-	public int totalCount() {
-		return dao.totalCount();
+	public int totalCount_text() {
+		return dao.totalCount_text();
+	}
+
+	//식당리뷰
+	@Override
+	public UpgradePageDTO select_r_review(int curPage, int amount) {
+		return dao.select_r_review(curPage, amount);
 	}
 	
 	

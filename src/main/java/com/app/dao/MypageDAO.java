@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.dto.Board;
 import com.app.dto.MemberDTO;
+import com.app.dto.ReviewDTO;
 import com.app.dto.UpgradePageDTO;
 
 @Repository
@@ -40,7 +41,7 @@ public class MypageDAO {
 	///////////////////////////////////
 	//페이징 처리
 	//게시판
-	public int totalCount() {
+	public int totalCount_text() {
 		return session.selectOne("MypageMapper.textTotalCount");
 	}
 	
@@ -52,7 +53,7 @@ public class MypageDAO {
 		int offset=(curPage-1)*pageDTO.getAmount();
 		int limit=pageDTO.getAmount();				
 		
-		int total = totalCount();
+		int total = totalCount_text();
 		pageDTO.setEndPage((int) Math.ceil(curPage / 10.0) * 10);
         pageDTO.setStartPage(pageDTO.getEndPage() - 9);
         
@@ -75,4 +76,40 @@ public class MypageDAO {
 		return pageDTO;
 		
 	}
+	//식당리뷰
+	public int totalCount_r_review() {
+		return session.selectOne("ReviewMapper.r_totalCount");
+	}
+	
+	public UpgradePageDTO select_r_review(int curPage,int amount) {
+		UpgradePageDTO pageDTO=new UpgradePageDTO();
+		pageDTO.setAmount(amount);
+		pageDTO.setCurPage(curPage);
+		
+		int offset=(curPage-1)*pageDTO.getAmount();
+		int limit=pageDTO.getAmount();				
+		
+		int total = totalCount_r_review();
+		pageDTO.setEndPage((int) Math.ceil(curPage / 10.0) * 10);
+        pageDTO.setStartPage(pageDTO.getEndPage() - 9);
+        
+        pageDTO.setRealEnd((int) Math.ceil((total * 1.0) / pageDTO.getAmount()));
+        if (pageDTO.getRealEnd() < pageDTO.getEndPage()) {
+            pageDTO.setEndPage(pageDTO.getRealEnd());
+        }
+
+        pageDTO.setPrev(pageDTO.getStartPage() > 1);
+        pageDTO.setNext(pageDTO.getEndPage() < pageDTO.getRealEnd());
+		
+		List<ReviewDTO> list=session.selectList("MypageMapper.select_r_review",null,new RowBounds(offset, limit));
+		pageDTO.setList(list);
+		pageDTO.setCurPage(curPage);
+		pageDTO.setTotal(total);
+
+		
+		
+		return pageDTO;
+		
+	}
+	
 }

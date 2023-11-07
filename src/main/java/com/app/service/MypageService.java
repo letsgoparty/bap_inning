@@ -13,7 +13,12 @@ public interface MypageService {
 	public int pwChange(HashMap<String, String> hashmap);
 	public int memberDelete(String userid);
 	
-	//페이징처리
+	//페이징처리_게시판보기
 	public UpgradePageDTO selectText(int curPage,int amount);
-	public int totalCount();
+	public int totalCount_text();
+	
+	//페이징처리_식당리뷰
+	public UpgradePageDTO select_r_review(int curPage,int amount);
+	
+	
 }

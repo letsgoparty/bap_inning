@@ -29,7 +29,7 @@
 }
 
 .swiper {
-	max-width: 800px;
+	/* max-width: 800px; */
 	height: 200px !important;
 	padding: 32px;
 	background: #fff;
@@ -156,7 +156,7 @@
 
 	<div class="container">
 		<div class="input-form-background row">
-			<div class="input-form col-md-7 mx-auto">
+			<div class="input-form col-md-8 mx-auto">
 				
 				<h3 class="mb-3">마이페이지</h3>
 				<div

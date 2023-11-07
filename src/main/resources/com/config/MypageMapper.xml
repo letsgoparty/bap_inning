@@ -3,6 +3,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MypageMapper">
+
+<!-- 게시판 관련 매퍼 -->
 	<select id="selectText" resultType="Board">
 		select board_num, title,
 		userid, text, team_code,
@@ -15,5 +17,14 @@
 	select count(*)
 	from board
 	</select>
+	
+<!-- 식당 매퍼 -->
+<select id="select_r_review" resultType="ReviewDTO">
+	  select review_id, res_id, user_id, rating, review_content, like_cnt, created_date, modified_date
+	  from restaurant_reviews
+	  order by review_id desc
+</select>
+
+
 
 </mapper>

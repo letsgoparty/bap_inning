@@ -2,7 +2,10 @@ package com.app.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.app.dto.MemberDTO;
-import com.app.dto.PageDTO;
 import com.app.dto.ReviewPageDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
@@ -195,12 +199,15 @@ public class MypageController {
 	}
 	//식당리뷰
 	@GetMapping("/my_r_review")
-	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage",required = false,defaultValue = "1")int curPage,HttpSession session) {
+	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
+			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
+			HttpSession session) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
 		
-		ReviewPageDTO pageDTO=reviewService.r_reviewList(curPage);
+		UpgradePageDTO pageDTO=mypageService.select_r_review(curPage, amount);
+		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myRestaurantReview");
 		mav.addObject("pageDTO",pageDTO);		
@@ -209,10 +216,19 @@ public class MypageController {
 	}
 	//식당리뷰 삭제
 	@GetMapping("/delete_my_r_review")
-	public String delete_my_r_review(String no) {
-		int n=reviewService.reviewDelete(no);
+	public String delete_my_r_review(int num,RedirectAttributes attribute, HttpServletRequest request) {
+		int n=reviewService.reviewDelete(num);
+		//현재 페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
+		String curPage=request.getParameter("curPage");
+		String amount=request.getParameter("amount");
+		attribute.addAttribute("curPage",curPage);
+		attribute.addAttribute("amount",amount);
+		
 		return "redirect:my_r_review";
 	}
+		
+	
+	//숙소리뷰
 	@GetMapping("/my_l_review")
 	public String myLodgingReview() {
 		return "mypage/myLodgingReview";
@@ -259,6 +275,7 @@ public class MypageController {
 		}
 	}
 	
+	//게시판 조회
 	@GetMapping("/mytext")
 	public ModelAndView mytext(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
 			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
@@ -276,10 +293,16 @@ public class MypageController {
 		return mav;
 	}
 	
-	//마이페이지에서 내글 삭제하기
+	//마이페이지에서 게시판 삭제하기
 	@GetMapping("/delete_mytext")
-	public String delete_myText(int no) {
+	public String delete_myText(int no,RedirectAttributes attribute, HttpServletRequest request) {
 		int n=boardService.boardDelete(no);
+		//현재 페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
+		String curPage=request.getParameter("curPage");
+		String amount=request.getParameter("amount");
+		attribute.addAttribute("curPage",curPage);
+		attribute.addAttribute("amount",amount);
+		
 		return "redirect:mytext";
 	}
 	

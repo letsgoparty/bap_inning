@@ -230,7 +230,7 @@ public class MypageController {
 	//식당리뷰
 	@GetMapping("/my_r_review")
 	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
-			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
+			@RequestParam(value="amount",required=false, defaultValue="10")int amount,
 			HttpSession session) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
@@ -240,9 +240,10 @@ public class MypageController {
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myRestaurantReview");
-		mav.addObject("pageDTO",pageDTO);		
+		mav.addObject("pageDTO",pageDTO);
+		System.out.println(pageDTO);
 		
-		return mav;
+		return mav; 
 	}
 	//식당리뷰 삭제
 	@GetMapping("/delete_my_r_review")

@@ -56,4 +56,16 @@ public class MemberDAO {
 			return session.selectOne("MemberMapper.findEncodePW", map);
 		}
 	
+		
+		// 비밀번호 현황 판단
+	    public MemberDTO getPasswdStatus(HashMap<String, String> map) {
+	    	MemberDTO dto = session.selectOne("MemberMapper.getPasswdStatus", map);
+			return dto;
+		}
+	
+	    // 임시비밀번호 재설정
+	    public int resetPassword(HashMap<String, String> hashmap) {
+			int n=session.update("MemberMapper.resetPassword",hashmap);
+			return n;
+		}
 }

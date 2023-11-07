@@ -58,6 +58,18 @@ public class MemberServiceImpl implements MemberService  {
 		return dao.findEncodePW(map);
 	}
  
+	@Override
+	public MemberDTO getPasswdStatus(HashMap<String, String> map) {
+		MemberDTO dto = dao.getPasswdStatus(map);
+		return dto;
+	}
+ 
+	@Override
+	public int resetPassword(HashMap<String, String> hashmap) {
+		int n=dao.resetPassword(hashmap);
+	
+		return n;
+	}
 }
 
 

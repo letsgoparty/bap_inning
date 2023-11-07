@@ -13,5 +13,7 @@ public interface MemberService {
 	public int updateTemporaryPW(HashMap<String, String> map);
 	public MemberDTO mypage(String userid);
 	public String findEncodePW(HashMap<String, String> map);
+	public MemberDTO getPasswdStatus(HashMap<String, String> map);
+	public int resetPassword(HashMap<String, String> hashmap);
 	
 }

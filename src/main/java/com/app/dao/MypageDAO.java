@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.dto.Board;
 import com.app.dto.MemberDTO;
+import com.app.dto.Reply;
 import com.app.dto.ReviewDTO;
 import com.app.dto.UpgradePageDTO;
 
@@ -111,5 +112,39 @@ public class MypageDAO {
 		return pageDTO;
 		
 	}
+	
+	//댓글 보기
+	public int totalCount_reply() {
+		return session.selectOne("MypageMapper.replyTotalCount");
+	}
+	public UpgradePageDTO selectReply(int curPage, int amount) {
+		UpgradePageDTO pageDTO=new UpgradePageDTO();
+		pageDTO.setAmount(amount);
+		pageDTO.setCurPage(curPage);
+		
+		int offset=(curPage-1)*pageDTO.getAmount();
+		int limit=pageDTO.getAmount();
+		
+		int total=totalCount_reply();
+		pageDTO.setEndPage((int)Math.ceil(curPage/10.0)*10);
+		pageDTO.setStartPage(pageDTO.getEndPage()-9);
+		
+        pageDTO.setRealEnd((int) Math.ceil((total * 1.0) / pageDTO.getAmount()));
+        if (pageDTO.getRealEnd() < pageDTO.getEndPage()) {
+            pageDTO.setEndPage(pageDTO.getRealEnd());
+        }
+        
+        pageDTO.setPrev(pageDTO.getStartPage()>1);
+        pageDTO.setNext(pageDTO.getEndPage() < pageDTO.getRealEnd());
+        
+        List<Reply> list=session.selectList("MypageMapper.selectReply",null,new RowBounds(offset, limit));
+        
+        pageDTO.setList(list);
+        pageDTO.setCurPage(curPage);
+        pageDTO.setTotal(total);
+		return pageDTO;
+	}
+	
+	
 	
 }

@@ -40,7 +40,7 @@
 			<div class="input-form col-md-8 mx-auto">
 
 
-				<h1>마이페이지_내가 쓴 글_게시글</h1>
+				<h3>내 활동_게시글</h3>
 				<div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 					<div class="btn-group" role="group"
 						aria-label="Basic radio toggle button group">

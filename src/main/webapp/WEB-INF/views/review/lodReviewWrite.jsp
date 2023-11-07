@@ -13,7 +13,7 @@
 
 <body style="background-color:rgba(248, 249, 250) !important;">
 	<jsp:include page="../common/nav.jsp" flush="true" />
-	<jsp:include page="../review_content/reviewWrite.jsp" flush="true" />
+	<jsp:include page="../review_content/lodReviewWrite.jsp" flush="true" />
 			
 </body>
 </html>

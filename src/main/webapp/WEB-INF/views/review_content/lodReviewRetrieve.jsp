@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 <link href="css/review.css" rel="stylesheet" />
 
-<form id="myform" name="reviewUpdate" method="get" action="#">
-	    <input type="hidden" name="review_id" value="${reviewRetrieve.review_id}"> 
-	    <input type="hidden" name="rating" value="${reviewRetrieve.rating}"> 
-	    <input type="hidden" name="review_content" value="${reviewRetrieve.review_content}"> 
+<form id="myform" name="lodReviewUpdate" method="get" action="#">
+	    <input type="hidden" name="review_id" value="${lodReviewRetrieve.review_id}"> 
+	    <input type="hidden" name="rating" value="${lodReviewRetrieve.rating}"> 
+	    <input type="hidden" name="review_content" value="${lodReviewRetrieve.review_content}"> 
 	    
 <div class="myform">
 		<div class="container">
- 	 		<form name="rating" id="rating" method="post" value="${reviewRetrieve.rating}">
+	 		<form name="rating" id="rating" method="post" value="${lodReviewRetrieve.rating}">
 		    <fieldset style="text-align: center">
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점</legend>
 		        <input type="radio" name="rating" value="1" id="rate1" disabled><label for="rate1">⭐</label>
@@ -18,17 +18,17 @@
 		        <input type="radio" name="rating" value="4" id="rate4" disabled><label for="rate4">⭐</label>
 		        <input type="radio" name="rating" value="5" id="rate5" disabled><label for="rate5">⭐</label>
 		     </fieldset>
- 	 		</form>
+	 		</form>
 		</div>
 		<div style="float: right">
-			<span>${reviewRetrieve.user_id}</span> &nbsp;
-			<span>${reviewRetrieve.created_date}</span>	&nbsp;
-			<span>추천수: ${reviewRetrieve.like_cnt}</span>
+			<span>${lodReviewRetrieve.user_id}</span> &nbsp;
+			<span>${lodReviewRetrieve.created_date}</span>	&nbsp;
+			<span>추천수: ${lodReviewRetrieve.like_cnt}</span>
 		</div>
 		<div class="container">
 			<textarea class="col-auto form-control" type="text" id="review_content" name="review_content"
 					  style="font-family: 'KBO-Dia-Gothic_light'" 
-					  placeholder="${reviewRetrieve.review_content}" readonly></textarea>
+					  placeholder="${lodReviewRetrieve.review_content}" readonly></textarea>
 		</div>
 		<!-- 이미지 업로드 -->
 		<div class="myform">

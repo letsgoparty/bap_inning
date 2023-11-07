@@ -3,9 +3,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMapper">
 	<!-- 음식점 리뷰 목록 -->
-	<select id="r_totalCount" resultType="int">
+	<select id="r_totalCount" resultType="int" parameterType="int">
 		select count(*)
 	  from restaurant_reviews
+	  where res_id =#{res_id}
 	</select>
 	<select id="r_reviewList"  resultType="ReviewDTO" parameterType="int">
 	  select review_id, res_id, user_id, rating, review_content, like_cnt, created_date, modified_date
@@ -14,9 +15,10 @@
 	  order by review_id desc
 	</select>
 	<!-- 숙소 리뷰 목록 -->
-	<select id="l_totalCount" resultType="int">
+	<select id="l_totalCount" resultType="int" parameterType="int">
 	  select count(*)
 	  from lodging_reviews
+	  where lodging_id =#{lodging_id}
 	</select>
 	<select id="l_reviewList"  resultType="LodReviewDTO" parameterType="int">
 	  select review_id, lodging_id, user_id, rating, review_content, like_cnt, created_date, modified_date

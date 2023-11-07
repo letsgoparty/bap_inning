@@ -19,8 +19,8 @@ public class ReviewDAO {
 	SqlSessionTemplate session;
 
 	//음식점 전체 리뷰
-	public int r_totalCount() {
-		return session.selectOne("ReviewMapper.r_totalCount");
+	public int r_totalCount(int res_id) {
+		return session.selectOne("ReviewMapper.r_totalCount", res_id);
 	}
 	
 	public ReviewPageDTO r_reviewList(int curPage, int res_id) {
@@ -31,25 +31,25 @@ public class ReviewDAO {
 		
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
-		pageDTO.setTotalCount(r_totalCount());
+		pageDTO.setTotalCount(r_totalCount(res_id));
 		
 		return pageDTO;
 	}
 	
 	//숙소 전체 리뷰
-	public int l_totalCount() {
-		return session.selectOne("ReviewMapper.l_totalCount");
+	public int l_totalCount(int lodging_id) {
+		return session.selectOne("ReviewMapper.l_totalCount", lodging_id);
 	}
 	
 	public ReviewPageDTO l_reviewList(int curPage, int lodging_id) {
 		ReviewPageDTO pageDTO = new ReviewPageDTO();
 		int offset = (curPage-1)*pageDTO.getPerPage();
 		int limit = pageDTO.getPerPage();
-		List<ReviewDTO> list =  session.selectList("ReviewMapper.l_reviewList", lodging_id, new RowBounds(offset, limit));
+		List<LodReviewDTO> lodList =  session.selectList("ReviewMapper.l_reviewList", lodging_id, new RowBounds(offset, limit));
 		
-		pageDTO.setList(list);
+		pageDTO.setLodList(lodList);
 		pageDTO.setCurPage(curPage);
-		pageDTO.setTotalCount(l_totalCount());
+		pageDTO.setTotalCount(l_totalCount(lodging_id));
 		
 		return pageDTO;
 	}

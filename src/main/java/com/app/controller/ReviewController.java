@@ -59,11 +59,11 @@ public class ReviewController {
 		return "review/reviewWrite";
 	}
 
-	@GetMapping("/lod/reviewWrite")
+	@GetMapping("/lodReviewWrite")
 	public String lodReviewWrite(@RequestParam int lodging_id, Model m) {
 		System.out.println(lodging_id);
 		m.addAttribute("lodging_id", lodging_id);
-		return "review/reviewWrite";
+		return "review/lodReviewWrite";
 	}
 
 	//리뷰 등록
@@ -81,7 +81,7 @@ public class ReviewController {
 		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
 	}
 
-	@PostMapping("/lod/reviewWrite")
+	@PostMapping("/lodReviewWrite")
 	public String lodReview(LodReviewDTO dto, HttpSession session) {
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		dto.setUser_id(mdto.getUserid());
@@ -107,11 +107,11 @@ public class ReviewController {
         return mav;
     }
 
-    @GetMapping("/lod/reviewRetrieve")
+    @GetMapping("/lodReviewRetrieve")
     public ModelAndView lodRetrieve(@RequestParam("review_id") String review_id, ModelAndView mav) {
     	LodReviewDTO dto = service.lodReviewRetrieve(review_id);
     	
-    	mav.setViewName("review/reviewRetrieve");
+    	mav.setViewName("review/lodReviewRetrieve");
     	mav.addObject("lodReviewRetrieve", dto);
     	
     	return mav;

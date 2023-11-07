@@ -26,8 +26,8 @@ public class ReviewImageService {
 
 	final String endPoint = "https://kr.object.ncloudstorage.com";
 	final String regionName = "kr-standard";
-	final String accessKey = "";
-	final String secretKey = "";
+	final String accessKey = "4709021E30889EA71430";
+	final String secretKey = "502BB99B1FF4B5B0385E8214586B9BDF25FBB23C";
 	String bucketName = "team2-bucket";
 	
 	////////accessKey, secretKey 테스트 중/////////

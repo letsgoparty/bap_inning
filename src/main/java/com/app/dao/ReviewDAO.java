@@ -8,13 +8,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.app.dto.LodReviewDTO;
 import com.app.dto.ReviewDTO;
 import com.app.dto.ReviewPageDTO;
 
 @Repository
 public class ReviewDAO {
 
-	
 	@Autowired
 	SqlSessionTemplate session;
 
@@ -38,14 +38,14 @@ public class ReviewDAO {
 	
 	//숙소 전체 리뷰
 	public int l_totalCount() {
-		return session.selectOne("ReviewMapper.r_totalCount");
+		return session.selectOne("ReviewMapper.l_totalCount");
 	}
 	
-	public ReviewPageDTO l_reviewList(int curPage, int res_id) {
+	public ReviewPageDTO l_reviewList(int curPage, int lodging_id) {
 		ReviewPageDTO pageDTO = new ReviewPageDTO();
 		int offset = (curPage-1)*pageDTO.getPerPage();
 		int limit = pageDTO.getPerPage();
-		List<ReviewDTO> list =  session.selectList("ReviewMapper.l_reviewList", res_id, new RowBounds(offset, limit));
+		List<ReviewDTO> list =  session.selectList("ReviewMapper.l_reviewList", lodging_id, new RowBounds(offset, limit));
 		
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
@@ -55,34 +55,51 @@ public class ReviewDAO {
 	}
 	
 	
-	//음식점 리뷰 등록
+	//리뷰 등록
 	public int reviewWrite(ReviewDTO reviewDTO) {
 		return session.insert("ReviewMapper.reviewWrite", reviewDTO);
 	}
+	public int lodReviewWrite(LodReviewDTO dto) {
+		return session.insert("ReviewMapper.lodReviewWrite", dto);
+	}
 	
-	//음식점 리뷰 수정
+	//리뷰 상세 보기
+	public ReviewDTO reviewRetrieve(String review_id) {
+		return session.selectOne("ReviewMapper.reviewRetrieve", review_id);
+	}
+	public LodReviewDTO lodReviewRetrieve(String review_id) {
+		return session.selectOne("ReviewMapper.lodReviewRetrieve", review_id);
+	}
+	
+	//리뷰 수정
 	public int reviewUpdate(ReviewDTO reviewDTO) {
 		return session.update("ReviewMapper.reviewUpdate", reviewDTO);
 	}
-	
-	//리뷰 상세 보기 (수정용)
-	public ReviewDTO reviewRetrieve(String review_id) {
-		ReviewDTO dto = session.selectOne("ReviewMapper.reviewRetrieve", review_id);
-		return dto;
+	public int lodReviewUpdate(LodReviewDTO dto) {
+		return session.update("ReviewMapper.lodReviewUpdate", dto);
 	}
 
-	//음식점 리뷰 삭제
+	//리뷰 삭제
 	public int reviewDelete(int review_id) {
 		return session.delete("ReviewMapper.reviewDelete", review_id);
 	}
+	public int lodReviewDelete(int review_id) {
+		return session.delete("ReviewMapper.lodReviewDelete", review_id);
+	}
 	
-	//
+	
+	//리뷰 이미지 업로드용
 	public int find_seq() {
 		return session.selectOne("ReviewMapper.find_seq");
 	}
+	public int lod_find_seq() {
+		return session.selectOne("ReviewMapper.lod_find_seq");
+	}
 	
-	//
 	public int save_url(HashMap<String, Object> map) {
 		return session.delete("ReviewMapper.save_url", map);
+	}
+	public int lod_save_url(HashMap<String, Object> map) {
+		return session.delete("ReviewMapper.lod_save_url", map);
 	}
 }

@@ -118,5 +118,4 @@ public class ReviewDTO {
 				+ created_date + ", modified_date=" + modified_date + "]";
 	}
 	
-	
 }

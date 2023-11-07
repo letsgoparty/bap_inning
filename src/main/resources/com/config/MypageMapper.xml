@@ -25,6 +25,16 @@
 	  order by review_id desc
 </select>
 
+<!-- 댓글 매퍼 -->
+<select id="selectReply" resultType="Reply">
+	select reviews_num, board_num, text, userid, replydate, updatedate, team_code
+	from board_reviews
+	order by reviews_num
+</select>
+<select id="replyTotalCount" resultType="int">
+	select count(*)
+	from board_reviews
+</select>
 
 
 </mapper>

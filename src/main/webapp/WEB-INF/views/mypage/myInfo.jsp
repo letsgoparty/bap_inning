@@ -108,14 +108,7 @@ span {
 					</div>
 					</div>
 
-	
 					<div class="input-group mb-3 mt-3">
-						<span class="input-group-text" id="nicknameLabel">닉네임</span> <input
-							type="text" class="form-control" disabled required id="nickname"
-							name="nickname" value="${user.nickname}"  autocomplete="off" aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-default">
-					</div>
-					<div class="input-group mb-3">
 						<span class="input-group-text" id="emailLabel">이메일</span> 
 						<input type="text" class="form-control" readonly  disabled required id="email1"
 							name="email1" value="${user.email.split('@')[0]}"  autocomplete="off" aria-label="Sizing example input"
@@ -131,6 +124,13 @@ span {
 							<option value="naver.com">naver.com</option>
 							<option value="gmail.com">gmail.com</option>
 						</select> -->
+					</div>
+	
+					<div class="input-group mb-3 mt-3">
+						<span class="input-group-text" id="nicknameLabel">닉네임</span> <input
+							type="text" class="form-control" disabled required id="nickname"
+							name="nickname" value="${user.nickname}"  autocomplete="off" aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-default">
 					</div>
 
 

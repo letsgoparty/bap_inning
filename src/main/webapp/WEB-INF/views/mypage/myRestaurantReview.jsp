@@ -41,7 +41,7 @@
    <div class="input-form col-md-8 mx-auto">
 
 
-	<h1>마이페이지_내가 쓴 글_식당리뷰</h1>
+	<h3>내 활동_식당리뷰</h3>
 <div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -181,7 +181,7 @@ for (let i=0;i<radioButton.length;i++){
 	<script>
 	//삭제 눌렀을때 팝업으로 확인하기
 	function confirmDelete(review_id,curPage,amount){
-		var confirmation=confirm("게시글을 삭제하시겠습니까?");
+		var confirmation=confirm("리뷰를 삭제하시겠습니까?");
 		if(confirmation){
 			//확인 눌렀을때 진짜 삭제하기
 			window.location.href="delete_my_r_review?num="+review_id+ "&curPage=" + curPage + "&amount=" + amount;

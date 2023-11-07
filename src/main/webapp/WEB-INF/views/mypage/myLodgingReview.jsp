@@ -38,7 +38,7 @@
   <div class="input-form-background row">
    <div class="input-form col-md-8 mx-auto">
 
-	<h1>마이페이지_내가 쓴 글_숙소리뷰</h1>
+	<h3>내 활동_숙소리뷰</h3>
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
   <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">

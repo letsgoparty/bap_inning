@@ -57,6 +57,18 @@ public class MypageServiceImpl implements MypageService  {
 	public UpgradePageDTO select_r_review(int curPage, int amount) {
 		return dao.select_r_review(curPage, amount);
 	}
+
+	//댓글 총개수
+	@Override
+	public int totalCount_reply() {
+		return dao.totalCount_reply();
+	}
+
+	//댓글
+	@Override
+	public UpgradePageDTO selectReply(int curPage, int amount) {
+		return dao.selectReply(curPage, amount);
+	}
 	
 	
 	

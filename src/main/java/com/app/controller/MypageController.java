@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -25,6 +27,7 @@ import com.app.service.BoardService;
 import com.app.service.EncodeService;
 import com.app.service.MemberService;
 import com.app.service.MypageService;
+import com.app.service.ReplyService;
 import com.app.service.ReviewService;
 import com.app.service.ScrapingService;
 @Controller
@@ -45,6 +48,8 @@ public class MypageController {
 	private ReviewService reviewService;
 	@Autowired
 	private EncodeService encodeService;
+	@Autowired
+	private ReplyService replyService;
 	
 	@RequestMapping("/mypage")
 	public String mypage(Model model, HttpSession session) {
@@ -192,11 +197,36 @@ public class MypageController {
 	    return "mypage/failInfo";
 	}
 	
-	
+	//댓글
 	@GetMapping("/myreply")
-	public String myreply() {
-		return "mypage/myReply";
+	public ModelAndView myreply(@RequestParam(value="curPage",required = false,defaultValue = "1")int curPage,
+			@RequestParam(value = "amount",required = false, defaultValue = "10")int amount, HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		UpgradePageDTO pageDTO=mypageService.selectReply(curPage, amount);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myReply");
+		mav.addObject("pageDTO",pageDTO);
+		
+		return mav;
 	}
+	//댓글 삭제
+	@GetMapping("/delete_myreply")
+	public String delete_myreply(int no,RedirectAttributes attribute,HttpServletRequest request) {
+		int n=replyService.replyDelet(no);
+		//현재페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
+		String curPage=request.getParameter("curPage");
+		String amount=request.getParameter("amount");
+		attribute.addAttribute("curPage",curPage);
+		attribute.addAttribute("amount",amount);
+		
+		return "redirect:myreply";
+	}
+
+	
 	//식당리뷰
 	@GetMapping("/my_r_review")
 	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,

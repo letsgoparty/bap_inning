@@ -1,0 +1,88 @@
+.btn.btn-primary {
+    font-family: 'KBO-Dia-Gothic_bold';
+}
+
+/* 테이블 레이아웃 */
+
+
+/* 리뷰 작성 화면 */
+.myform{
+	   width: 70%;
+	   margin: 3% auto; /* 수평 가운데 정렬을 위한 마진 설정 */
+	   height: auto;
+	   padding: 50px;
+	   box-sizing: border-box;
+	   border: solid 1.5px #D3D3D3;
+	   border-radius: 5px;
+	   background-color: rgba(255, 255, 255, 0.5);
+	   resize: none;
+}
+.container {
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  padding: 10px 0;
+}
+#rating fieldset{
+    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+    border: 1px; /* 필드셋 테두리 제거 */
+    direction: rtl; /* 이모지 순서 반전 */    
+}
+#rating input[type=radio]{
+    display: none; /* 라디오박스 감춤 */
+}
+#rating input[type=radio]:checked ~ label{
+    color: activeborder; /* 마우스 클릭 체크 */
+}
+#rating label{
+    font-size: 3em; /* 이모지 크기 */
+    color: transparent; /* 기존 이모지 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+}
+#rating label:hover,
+#rating label:hover ~ label{ /* 마우스 호버 뒤에오는 이모지들 */
+    color: activeborder;
+}
+#review_content {
+	   width: 80%;
+	   margin: 0 auto; /* 수평 가운데 정렬을 위한 마진 설정 */
+	   height: 150px;
+	   padding: 10px;
+	   box-sizing: border-box;
+	   border: solid 1.5px #D3D3D3;
+	   border-radius: 5px;
+	   font-size: 16px;
+	   resize: none;
+}
+
+/* 이미지 업로드 화면 */
+input[type=file] {
+		display: none;
+}
+
+/* .my_button {
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    background-color: #006BCC;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+ */
+.imgs_wrap {
+	  border: solid 1.5px #D3D3D3;
+	  border-radius: 5px;
+		margin-top: 30px;
+    margin-bottom: 30px;
+    margin: 3% auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+.imgs_wrap img {
+    max-width: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

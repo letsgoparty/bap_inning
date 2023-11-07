@@ -40,7 +40,7 @@
 	
 	      if (formData) {
 	          $.ajax({
-	              url: "uploadAction",
+	              url: "lod/uploadAction",
 	              type: "POST",
 	              data: formData,
 	              processData: false,
@@ -109,12 +109,12 @@
 </script>
 
 <div class="myform">
-	<form action="reviewWrite" method="post">
+	<form action="lodReviewWrite" method="post">
 	<input type="hidden" id="review_id" name="review_id">
-	<input type="hidden" id="res_id" name="res_id" value="${res_id}">
+	<input type="hidden" id="lodging_id" name="lodging_id" value="${lodging_id}">
  		<div class="container">
 		    <fieldset style="text-align: center">
-				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">${param.res_id}(가게이름)의</legend>
+				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">${param.lodging_id}(가게이름)의</legend>
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점을 선택해주세요</legend>
 		        <input type="radio" name="rating" value="1" id="rate1" required><label for="rate1">⭐</label>
 		        <input type="radio" name="rating" value="2" id="rate2" required><label for="rate2">⭐</label>

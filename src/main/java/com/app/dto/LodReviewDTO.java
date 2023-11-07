@@ -1,13 +1,12 @@
 package com.app.dto;
 
-/*
- * 임시 
- */
+import org.apache.ibatis.type.Alias;
 
+@Alias("LodReviewDTO")
 public class LodReviewDTO {
 
-	String review_id;
-	String lodging_id;
+	Integer review_id;
+	Integer lodging_id;
 	String user_id;
 	String rating;
 	String review_content;
@@ -15,16 +14,35 @@ public class LodReviewDTO {
 	String created_date;
 	String modified_date;
 	String lodging_name;
-	public String getReview_id() {
+	
+	
+	public LodReviewDTO() {
+	}
+
+	public LodReviewDTO(Integer review_id, Integer lodging_id, String user_id, String rating, String review_content,
+			String like_cnt, String created_date, String modified_date, String lodging_name) {
+		super();
+		this.review_id = review_id;
+		this.lodging_id = lodging_id;
+		this.user_id = user_id;
+		this.rating = rating;
+		this.review_content = review_content;
+		this.like_cnt = like_cnt;
+		this.created_date = created_date;
+		this.modified_date = modified_date;
+		this.lodging_name = lodging_name;
+	}
+
+	public Integer getReview_id() {
 		return review_id;
 	}
-	public void setReview_id(String review_id) {
+	public void setReview_id(Integer review_id) {
 		this.review_id = review_id;
 	}
-	public String getLodging_id() {
+	public Integer getLodging_id() {
 		return lodging_id;
 	}
-	public void setLodging_id(String lodging_id) {
+	public void setLodging_id(Integer lodging_id) {
 		this.lodging_id = lodging_id;
 	}
 	public String getUser_id() {

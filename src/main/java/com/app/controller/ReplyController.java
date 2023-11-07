@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +24,8 @@ public class ReplyController {
 	public String replyInsert(Reply reply, HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		reply.setUserid(dto.getUserid());
+		reply.setTeam_code(dto.getTeam_code());
+
 		int a = reply.getBoard_num();
 		int num = replyService.replyInsert(reply);
 		return "redirect:retrieve?no=" + a;

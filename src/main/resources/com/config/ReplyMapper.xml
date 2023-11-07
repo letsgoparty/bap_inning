@@ -7,10 +7,10 @@
 	<insert id="replyInsert" parameterType="Reply">
 		insert into board_reviews
 		(reviews_num, board_num,
-		text, userid)
+		text, userid, team_code)
 		values (reply_seq.nextval,
 		#{board_num}, #{text},
-		#{userid})
+		#{userid}, #{team_code})
 	</insert>
 
 	<select id="replyList" resultType="Reply" parameterType="int">

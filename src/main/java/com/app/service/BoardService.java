@@ -11,4 +11,5 @@ public interface BoardService {
 	public abstract int boardUpdate(Board board);
 	public abstract int boardDelete(int no);
 	public abstract int totalCount(String type, String keyword, String team);
+	public int find_team(String userid);
 }

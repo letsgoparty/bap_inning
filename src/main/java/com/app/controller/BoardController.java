@@ -1,12 +1,12 @@
 package com.app.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +17,6 @@ import com.app.dto.MemberDTO;
 import com.app.dto.PageDTO;
 import com.app.dto.Reply;
 import com.app.service.BoardService;
-import com.app.service.MemberService;
 import com.app.service.ReplyService;
 
 @Controller
@@ -63,9 +62,10 @@ public class BoardController {
 	// 4. 글자세히 보기
 	@RequestMapping(value = "/retrieve", method = RequestMethod.GET)
 	@ModelAttribute("retrieve")
-	public Board retrieve(int no) { // Board => void
+	public Board retrieve(int no, Model m) { // Board => void
 		Board board = service.selectByNo(no);
-		
+		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
+		m.addAttribute("team", team_code);
 		// 댓글 조회
 		List<Reply> reply = replyService.replyList(no);
 		board.setReplyList(reply);

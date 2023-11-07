@@ -142,7 +142,7 @@ span {
 							<option value="2">키움 히어로즈</option>
 							<option value="3">LG 트윈스</option>
 							<option value="4">KT wiz</option>
-							<option value="4">KIA 타이거즈</option>
+							<option value="5">KIA 타이거즈</option>
 							<option value="6">NC 다이노스</option>
 							<option value="7">삼성 라이온즈</option>
 							<option value="8">롯데 자이언츠</option>

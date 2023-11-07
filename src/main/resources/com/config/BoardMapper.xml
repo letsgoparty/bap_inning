@@ -119,6 +119,10 @@
 		where board_num = #{board_num}
 	</select>
 
+	<select id="find_team" resultType="int" parameterType="string">
+	select team_code from member
+	where userid=#{userid}
+	</select>
 
 
 </mapper>

@@ -46,4 +46,9 @@ public class BoardServiceImpl implements BoardService {
 		return dao.totalCount(type, keyword, team);
 	}
 
+	@Override
+	public int find_team(String userid) {
+		return dao.find_team(userid);
+	}
+
 }

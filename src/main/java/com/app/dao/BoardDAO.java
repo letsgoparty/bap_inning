@@ -72,5 +72,9 @@ public class BoardDAO {
 	public int boardDelete(int no) {
 		return session.delete("BoardMapper.boardDelete", no);
 	}
+	
+	public int find_team(String userid) {
+		return session.selectOne("BoardMapper.find_team", userid);
+	}
 
 }

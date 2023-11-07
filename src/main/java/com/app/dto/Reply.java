@@ -19,6 +19,7 @@ public class Reply {
 	int board_num;
 	String text;
 	String userid;
+	int team_code;
 	String replyDate;
 	String updateDate;
 	
@@ -70,6 +71,15 @@ public class Reply {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public int getTeam_code() {
+		return team_code;
+	}
+
+	public void setTeam_code(int team_code) {
+		this.team_code = team_code;
+	}
+
 	@Override
 	public String toString() {
 		return "ReplyDTO [reviews_num=" + reviews_num + ", board_num=" + board_num + ", text=" + text + ", userid="

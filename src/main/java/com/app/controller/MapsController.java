@@ -124,7 +124,6 @@ public class MapsController {
 	@GetMapping("/l_hanwha")
 	public String l_hanwha(Model m) {
 		m.addAttribute("googleMapsApiKey", googleMapsApiKey);
-		m.addAttribute("googleMapsApiKey", googleMapsApiKey);
 		return "lodging/hanwha";
 	}
 }

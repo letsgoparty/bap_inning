@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Database - 게시판 테이블</title>
+<title>대시보드</title>
 
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -138,7 +138,6 @@
 
 				</nav>
 				<!-- End of Topbar -->
-
 			</div>
 		</div>
 	</div>

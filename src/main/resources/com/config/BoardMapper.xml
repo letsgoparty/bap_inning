@@ -68,7 +68,7 @@
 				</choose>
 			</if>
 		</if>
-		<if test="team == 'null'">
+		<if test="team == 'null' or team == 0">
 			<include refid="search"></include>
 		</if>
 		<![CDATA[

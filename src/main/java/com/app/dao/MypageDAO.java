@@ -79,7 +79,7 @@ public class MypageDAO {
 	}
 	//식당리뷰
 	public int totalCount_r_review() {
-		return session.selectOne("ReviewMapper.r_totalCount");
+		return session.selectOne("MypageMapper.r_reviewTotalCount");
 	}
 	
 	public UpgradePageDTO select_r_review(int curPage,int amount) {
@@ -104,10 +104,8 @@ public class MypageDAO {
 		
 		List<ReviewDTO> list=session.selectList("MypageMapper.select_r_review",null,new RowBounds(offset, limit));
 		pageDTO.setList(list);
-		pageDTO.setCurPage(curPage);
+		/* pageDTO.setCurPage(curPage); */
 		pageDTO.setTotal(total);
-
-		
 		
 		return pageDTO;
 		

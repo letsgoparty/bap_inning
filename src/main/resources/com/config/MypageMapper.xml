@@ -24,6 +24,11 @@
 	  from restaurant_reviews
 	  order by review_id desc
 </select>
+<select id="r_reviewTotalCount" resultType="int">
+	select count(*)
+	from restaurant_reviews
+</select>
+
 
 <!-- 댓글 매퍼 -->
 <select id="selectReply" resultType="Reply">

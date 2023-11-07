@@ -13,7 +13,7 @@
 <title>마이페이지</title>
 <link rel="icon" type="image/png" sizes="32x32"
 	href="images/icon/favicon-32x32.png">
-	
+	 
 	<style>
 .input-form {
 	max-width: 800px; 
@@ -26,7 +26,10 @@
 	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-}
+}	
+	</style> 
+	 
+<!-- 	<style>
 
 .swiper {
 	/* max-width: 800px; */
@@ -104,16 +107,21 @@
 }
 
 
-</style>
+</style>  -->
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	
+
 <!-- swiper 에 필요한것 -->
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <script
-	src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script> -->
 <!-- swiper 에 필요한것 -->
 
+
+<!-- 
 <script>
 	$(document).ready(function() {
 		//swiper 처음 보여줄 슬라이드 지정하기
@@ -146,19 +154,28 @@
 
 	});
 </script>
+
+ -->
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
+	
+<%-- 	
+	
 	<!-- 경기 type정하기 위해 오늘날짜 가져옴 -->
 	<jsp:useBean id="now" class="java.util.Date" />
 	<fmt:formatDate value="${now}" pattern="MM.dd" var="today" />
 	<!-- 경기 type정하기 위해 오늘날짜 가져옴 -->
+
+ --%>
 
 	<div class="container">
 		<div class="input-form-background row">
 			<div class="input-form col-md-8 mx-auto">
 				
 				<h3 class="mb-3">마이페이지</h3>
+				
+<%-- 				
 				<div
 					style="display: flex; justify-content: space-between; align-items: flex-end;">
 					<div>
@@ -172,6 +189,9 @@
 							id="myTeamWeather">내 구장 날씨 확인</a>
 					</div>
 				</div>
+				
+ --%>				
+<%-- 				
 				<div id="my_rank" class="mt-4 rounded"
 					style="text-align: center; border: 1px solid #ccc; border-bottom: none;">
 					<c:choose>
@@ -184,7 +204,7 @@
 
 							<div class="me-4" style="display: inline-block;">
 								<h2 class="mt-3" style="font-family: 'KBO-Dia-Gothic_bold';">
-									<img src="images/logo/${filterTeamData.title}.png" width=60
+									<img src="images/logo/${filterTeamData.title}.png" width=auto
 										height=40>&nbsp;
 									<c:choose>
 										<c:when test="${filterTeamData.title eq 'SSG'}">
@@ -339,7 +359,9 @@
 				</div>
 				<!-- 나의팀 경기일정 등 출력 -->
 
-				<div class="list-group">
+ --%>
+ 
+ 				<div class="list-group">
 					<a href="myinfo" class="list-group-item list-group-item-action">내
 						정보 보기</a> <a href="mytext"
 						class="list-group-item list-group-item-action">내가 쓴 글</a>
@@ -348,7 +370,7 @@
 		</div>
 	</div>
 
-
+<!-- 
 	<script type="text/javascript">
 		window.onload = function() {
 			updateTeamElement();
@@ -426,6 +448,6 @@
 		}
 	</script>
 
-		
+ -->		
 </body>
 </html>

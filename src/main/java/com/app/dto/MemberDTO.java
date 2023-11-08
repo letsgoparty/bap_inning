@@ -9,6 +9,7 @@ public class MemberDTO {
     String email;
     String nickname;
     int team_code;
+    String temp_passwd;
     int board_count;
     int comment_count;
     int res_review_count;
@@ -17,13 +18,14 @@ public class MemberDTO {
     public MemberDTO() {
     }
 
-    public MemberDTO(String userid, String password, String email, String nickname, int team_code) {
+    public MemberDTO(String userid, String password, String email, String nickname, int team_code, String temp_passwd) {
 
 		this.userid = userid;
 		this.password = password;
 		this.email = email;
 		this.nickname = nickname;
 		this.team_code = team_code;
+		this.temp_passwd = temp_passwd;
 	}
 
 	public String getUserid() {
@@ -84,6 +86,13 @@ public class MemberDTO {
 		this.team_code = team_code;
 	}
 
+	public String getTemp_passwd() {
+		return temp_passwd;
+	}
+
+	public void setTemp_passwd(String temp_passwd) {
+		this.temp_passwd = temp_passwd;
+	}
 
 
 	public int getBoard_count() {

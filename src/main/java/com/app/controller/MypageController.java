@@ -205,7 +205,7 @@ public class MypageController {
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
 		
-		UpgradePageDTO pageDTO=mypageService.selectReply(curPage, amount);
+		UpgradePageDTO pageDTO=mypageService.selectReply(userid, curPage, amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myReply");
@@ -230,19 +230,20 @@ public class MypageController {
 	//식당리뷰
 	@GetMapping("/my_r_review")
 	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
-			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
+			@RequestParam(value="amount",required=false, defaultValue="10")int amount,
 			HttpSession session) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
 		
-		UpgradePageDTO pageDTO=mypageService.select_r_review(curPage, amount);
+		UpgradePageDTO pageDTO=mypageService.select_r_review(userid, curPage, amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myRestaurantReview");
-		mav.addObject("pageDTO",pageDTO);		
+		mav.addObject("pageDTO",pageDTO);
+		System.out.println(pageDTO);
 		
-		return mav;
+		return mav; 
 	}
 	//식당리뷰 삭제
 	@GetMapping("/delete_my_r_review")
@@ -260,8 +261,33 @@ public class MypageController {
 	
 	//숙소리뷰
 	@GetMapping("/my_l_review")
-	public String myLodgingReview() {
-		return "mypage/myLodgingReview";
+	public ModelAndView myLodgingReview(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
+			@RequestParam(value="amount",required=false, defaultValue="10")int amount,
+			HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		UpgradePageDTO pageDTO=mypageService.select_l_review(userid,curPage, amount);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myLodgingReview");
+		mav.addObject("pageDTO",pageDTO);
+		System.out.println(pageDTO);
+		
+		return mav;
+	}
+	//숙소리뷰 삭제
+	@GetMapping("/delete_my_l_review")
+	public String delete_my_l_review(int num,RedirectAttributes attribute, HttpServletRequest request) {
+		int n=reviewService.lodReviewDelete(num);
+		//현재 페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
+		String curPage=request.getParameter("curPage");
+		String amount=request.getParameter("amount");
+		attribute.addAttribute("curPage",curPage);
+		attribute.addAttribute("amount",amount);
+		
+		return "redirect:my_l_review";
 	}
 	
 	//회원탈퇴
@@ -314,7 +340,7 @@ public class MypageController {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
-		UpgradePageDTO pageDTO=mypageService.selectText(curPage,amount);
+		UpgradePageDTO pageDTO=mypageService.selectText(userid,curPage,amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myText");
@@ -322,6 +348,7 @@ public class MypageController {
 		
 		return mav;
 	}
+
 	
 	//마이페이지에서 게시판 삭제하기
 	@GetMapping("/delete_mytext")

@@ -147,16 +147,16 @@ a {
 						<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
 						<td>${board.userid}</td>
 						<td><c:choose>
-								<c:when test="${board.team_code == 1}"><img src="images/logo/SSG.png" width="40" height="30"></c:when>
-								<c:when test="${board.team_code == 2}"><img src="images/logo/키움.png" width="40" height="30"></c:when>
-								<c:when test="${board.team_code == 3}"><img src="images/logo/LG.png" width="35" height="30"></c:when>
-								<c:when test="${board.team_code == 4}"><img src="images/logo/KT.png" width="35" height="30"></c:when>
-								<c:when test="${board.team_code == 5}"><img src="images/logo/KIA.png" width="43" height="30"></c:when>
-								<c:when test="${board.team_code == 6}"><img src="images/logo/NC.png" width="43" height="30"></c:when>
-								<c:when test="${board.team_code == 7}"><img src="images/logo/삼성.png" width="38" height="30"></c:when>
-								<c:when test="${board.team_code == 8}"><img src="images/logo/롯데.png" width="40" height="30"></c:when>
-								<c:when test="${board.team_code == 9}"><img src="images/logo/두산.png" width="40" height="30"></c:when>
-								<c:when test="${board.team_code == 10}"><img src="images/logo/한화.png" width="50" height="30"></c:when>
+								<c:when test="${board.team_code == 1}"><img src="images/logo/SSG.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 2}"><img src="images/logo/키움.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 3}"><img src="images/logo/LG.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 4}"><img src="images/logo/KT.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 5}"><img src="images/logo/KIA.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 6}"><img src="images/logo/NC.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 7}"><img src="images/logo/삼성.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 8}"><img src="images/logo/롯데.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 9}"><img src="images/logo/두산.png" width=auto height="30"></c:when>
+								<c:when test="${board.team_code == 10}"><img src="images/logo/한화.png" width=auto height="30"></c:when>
 								<c:otherwise>
 	
 								</c:otherwise>

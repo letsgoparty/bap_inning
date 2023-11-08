@@ -45,11 +45,11 @@
 <div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+<!--   <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
   <label class="btn btn-outline-primary" for="btnradio1">게시글</label>
 
   <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-  <label class="btn btn-outline-primary" for="btnradio2">댓글</label>
+  <label class="btn btn-outline-primary" for="btnradio2">댓글</label> -->
 
   <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
   <label class="btn btn-outline-primary" for="btnradio3">식당리뷰</label>
@@ -61,8 +61,8 @@
 						<select name="amount" id="amount">
 							<option value="10">--페이지 선택--</option>
 							<option value="10">10개 보기</option>
-							<option value="2">2개 보기</option>
-							<option value="5">5개 보기</option>
+							<option value="20">20개 보기</option>
+							<option value="50">50개 보기</option>
 							<option value="100">100개 보기</option>
 						</select>
 
@@ -164,8 +164,8 @@
 <script type="text/javascript">
 const radioButton=document.querySelectorAll(".btn-check");
 const link=[
-	"mytext",//게시글
-	"myreply",//댓글
+/* 	"mytext",//게시글
+	"myreply",//댓글 */
 	"my_r_review",//식당리뷰
 	"my_l_review"//숙소리뷰
 ];

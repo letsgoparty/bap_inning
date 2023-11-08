@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내정보보기</title>
+<title>마이페이지</title>
 <link rel="icon" type="image/png" sizes="32x32"
 	href="images/icon/favicon-32x32.png">
-	
+	 
 <style>
 .input-form {
-	max-width: 680px;
+	max-width: 800px; 
+	min-width: 500px; 
 	margin-top: 80px;
 	padding: 32px;
 	background: #fff;
@@ -21,108 +25,122 @@
 	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}	
+.myinfo{
+padding:30px;
+border-radius:10px;
+border:1px solid #DDDDDD;
+padding-bottom:40px;
 }
 span {
     display: block;
     text-align: right;
 }
-</style>
+</style> 
+	 
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 <script>
-	//나의 팀 드롭다운이 선택되어있게끔
-	$(document).ready(function(){
-		var userTeamCode=document.getElementById("user_team_code").textContent;
-		//select요소에 해당하는거 선택
-		$("#myTeam").val(userTeamCode);
-		 
+//나의 팀 드롭다운이 선택되어있게끔
+$(document).ready(function(){
+	var userTeamCode=document.getElementById("user_team_code").textContent;
+	//select요소에 해당하는거 선택
+	$("#myTeam").val(userTeamCode);
+	 
 /* 		//이메일도메인 변경시 자동입력
-		$("#emailDomain").change(function() {
-			var selectedDomain = $("#emailDomain").val();
-			$("#email2").val(selectedDomain);
-		}); */	
-		
-		//인풋활성화 와 정보수정하기
-		$('#editBtn').click(function(){
-			//버튼 이름따라 js로 함수줄거임.
-				enableEdit(); //인풋박스활성화
-				document.getElementById("submitBtn").disabled=false;
-				document.getElementById("editBtn").disabled=true;
-				
-		});
-		
-		// 닉네임 중복검사
-		$("#nicknameCheck").on("click", function () {
-		  event.preventDefault();
-
-		  var newNickname = $("#nickname").val();
-		  var currNickname = $("#user_currNickname").val();
-
-		  $.ajax({
-		    type: "get",
-		    url: "mypageNicknameCheck",
-		    data: {
-		      nickname: newNickname,
-		      currNickname: currNickname
-		    },
-		    dataType: "text",
-		    success: function (data, status, xhr) {
-		      console.log(data);
-		      $("#nicknameResult").text(data);
-		    },
-		    error: function (xhr, status, error) {
-		      console.log("error 발생");
-		    }
-		  });
-		});
-			
-		 
-	});
-	function enableEdit() {
-		// 인풋박스 활성화
-		var editableInput = document.querySelectorAll(".form-control");
-		for (var i = 0; i < editableInput.length; i++) {
-			editableInput[i].disabled = false;
-		}
-		var editableSelect = document.querySelectorAll(".form-select");
-		for (var i = 0; i < editableSelect.length; i++) {
-			editableSelect[i].disabled = false;
-		}
-		document.getElementById("nicknameCheck").disabled=false;
-		document.getElementById("userid").disabled="true";
-		document.getElementById("email1").disabled="true";
-		document.getElementById("email2").disabled="true";
-		
-		
-	};
-	function disableEdit() {
-		//인풋박스 비활성화
-		var editableInput = document.querySelectorAll(".form-control");
-		for (var i = 0; i < editableInput.length; i++) {
-			editableInput[i].disabled = true;
-		}
-		var editableSelect = document.querySelectorAll(".form-select");
-		for (var i = 0; i < editableSelect.length; i++) {
-			editableSelect[i].disabled = true;
-		}
-		document.getElementById("userid").disabled="true";
-		
-	};
+	$("#emailDomain").change(function() {
+		var selectedDomain = $("#emailDomain").val();
+		$("#email2").val(selectedDomain);
+	}); */	
 	
+	//인풋활성화 와 정보수정하기
+	$('#editBtn').click(function(){
+		//버튼 이름따라 js로 함수줄거임.
+			enableEdit(); //인풋박스활성화
+			document.getElementById("submitBtn").disabled=false;
+			document.getElementById("editBtn").disabled=true;
+			
+	});
+	
+	// 닉네임 중복검사
+	$("#nicknameCheck").on("click", function () {
+	  event.preventDefault();
+
+	  var newNickname = $("#nickname").val();
+	  var currNickname = $("#user_currNickname").val();
+
+	  $.ajax({
+	    type: "get",
+	    url: "mypageNicknameCheck",
+	    data: {
+	      nickname: newNickname,
+	      currNickname: currNickname
+	    },
+	    dataType: "text",
+	    success: function (data, status, xhr) {
+	      console.log(data);
+	      $("#nicknameResult").text(data);
+	    },
+	    error: function (xhr, status, error) {
+	      console.log("error 발생");
+	    }
+	  });
+	});
+		
+	 
+});
+function enableEdit() {
+	// 인풋박스 활성화
+	var editableInput = document.querySelectorAll(".form-control");
+	for (var i = 0; i < editableInput.length; i++) {
+		editableInput[i].disabled = false;
+	}
+	var editableSelect = document.querySelectorAll(".form-select");
+	for (var i = 0; i < editableSelect.length; i++) {
+		editableSelect[i].disabled = false;
+	}
+	document.getElementById("nicknameCheck").disabled=false;
+	document.getElementById("userid").disabled="true";
+	document.getElementById("email1").disabled="true";
+	document.getElementById("email2").disabled="true";
+	
+	
+};
+/* function disableEdit() {
+	//인풋박스 비활성화
+	var editableInput = document.querySelectorAll(".form-control");
+	for (var i = 0; i < editableInput.length; i++) {
+		editableInput[i].disabled = true;
+	}
+	var editableSelect = document.querySelectorAll(".form-select");
+	for (var i = 0; i < editableSelect.length; i++) {
+		editableSelect[i].disabled = true;
+	}
+	document.getElementById("userid").disabled="true";
+	
+}; */
 
 
 </script>
-	
+
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
-		<div class="container">
+	
+
+	<div class="container">
 		<div class="input-form-background row">
-			<div class="input-form col-md-7 mx-auto">
-				<h3>내 정보</h3>
+			<div class="input-form col-md-6 mx-auto">
+				
+				<h3 class="mb-3">new마이페이지</h3>
 <span id="user_team_code" hidden>${user.team_code}</span>
 <input id="user_currNickname" hidden value="${user.nickname}" disabled="disabled"/>
-				<br>
+				
+				<div class="myinfo">
+				<h5 class="mb-3">내 정보</h5>
 				<form action="myinfo" method="post" onsubmit="return validateSubmit();"> <!-- onsubmit="return validateEmail()" -->
 				<input type="hidden" name="userid" value="${user.userid}">
 					<div>
@@ -197,11 +215,19 @@ span {
 						<a href="pwchange">비밀번호 변경 ></a>
 					</div>
 				</form>
+				
+				</div>
 
+ 				<br>
+ 				<div class="list-group">
+					<a href="like" class="list-group-item list-group-item-action">내 찜 보기</a>
+					<a href="mytext" class="list-group-item list-group-item-action">내가 쓴 글</a>
+						
+					<a href="my_r_review" class="list-group-item list-group-item-action">나의 리뷰</a>
+				</div>
 			</div>
 		</div>
 	</div>
-
 
 <script>
 //닉네임 중복검사 추가
@@ -224,29 +250,5 @@ function validateSubmit(){
 
 </script>
 
-<script>
-
-/* //이메일을 올바른 형식으로 썼는지 확인
-function validateEmail(){
-	var email1=document.getElementById("email1").value;
-	var email2=document.getElementById("email2").value;
-	//이메일1 영어필수 숫자선택 특수문자선택 임. 
-	var email1Vaild=/^[a-zA-Z0-9._%+]+$/;
-	if (!email1Vaild.test(email1)){
-		alert("이메일 형식이 올바르지 않습니다.");
-		return false;
-	}
-	//이메일2 영어필수 온점필수
-	var email2Vaild=/^[a-zA-Z0-9-]+[.]+[a-zA-Z0-9-]+$/;
-	if(!email2Vaild.test(email2)){
-		alert("이메일 형식이 올바르지 않습니다.");
-		return false;
-	}
-	
-	//올바르게 썼을시 폼 제출
-	return true;
-} */
-</script> 
- 
 </body>
 </html>

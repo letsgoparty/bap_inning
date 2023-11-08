@@ -73,10 +73,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" style="width: 40px;">리뷰번호</th>
+      <th scope="col" style="width: 40px;">식당이름</th>
       <th scope="col" style="width: 200px;">내용</th>
       <th scope="col" style="width: 100px;">이미지</th>      
-      <th scope="col" style="width: 100px;">작성자</th>
+<!--       <th scope="col" style="width: 100px;">작성자</th> -->
       <th scope="col" style="width: 100px;">별점</th>
       <th scope="col" style="width: 100px;">추천</th>
       <th scope="col" style="width: 100px;">수정</th>
@@ -86,10 +86,10 @@
   <tbody>
     <c:forEach var="review" items="${pageDTO.list}">
     <tr>
-      <th scope="row">${review.review_id}</th>
+      <th scope="row">${review.res_name}</th>
       <td>${review.review_content}</td>
       <td>이미지</td>
-      <td>${review.user_id}</td>
+<%--       <td>${review.user_id}</td> --%>
       <td>
       	<c:choose>
       		<c:when test="${review.rating == 1}">⭐</c:when>

@@ -76,7 +76,7 @@
 							<tr>
 								<th scope="col" style="width: 40px;">글번호</th>
 								<th scope="col" style="width: 200px;">제목</th>
-								<th scope="col" style="width: 100px;">작성자</th>
+					<!-- 			<th scope="col" style="width: 100px;">작성자</th> -->
 								<th scope="col" style="width: 100px;">작성일</th>
 								<th scope="col" style="width: 100px;">조회수</th>
 								<th scope="col" style="width: 100px;">삭제</th>
@@ -87,7 +87,7 @@
 								<tr>
 									<th scope="row">${board.board_num}</th>
 									<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
-									<td>${board.userid}</td>
+					<%-- 				<td>${board.userid}</td> --%>
 									<td>${board.board_date}</td>
 									<td>${board.count}</td>
 									<td><a href="javascript:void(0);" onclick="confirmDelete(${board.board_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>

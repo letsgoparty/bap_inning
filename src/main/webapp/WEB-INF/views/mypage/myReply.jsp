@@ -76,7 +76,7 @@
     <tr>
       <th scope="col" style="width: 40px;">글번호</th>
       <th scope="col" style="width: 200px;">내용</th>
-      <th scope="col" style="width: 100px;">작성자</th>
+    <!--   <th scope="col" style="width: 100px;">작성자</th> -->
       <th scope="col" style="width: 100px;">작성일</th>
       <th scope="col" style="width: 100px;">삭제</th>
     </tr>
@@ -88,7 +88,7 @@
     <tr>
       <th scope="row"><a href="retrieve?no=${reply.board_num}">${reply.board_num}</a></th>
       <td>${reply.text}</td>
-      <td>${reply.userid}</td>
+<%--       <td>${reply.userid}</td> --%>
       <td>${reply.replyDate}</td>
       <td><a href="javascript:void(0);" onclick="confirmDelete(${reply.reviews_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
 

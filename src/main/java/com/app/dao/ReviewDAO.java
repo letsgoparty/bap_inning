@@ -32,7 +32,7 @@ public class ReviewDAO {
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
 		pageDTO.setTotalCount(r_totalCount(res_id));
-		
+
 		return pageDTO;
 	}
 	
@@ -101,5 +101,12 @@ public class ReviewDAO {
 	}
 	public int lod_save_url(HashMap<String, Object> map) {
 		return session.delete("ReviewMapper.lod_save_url", map);
+	}
+	
+	public List<String> res_find_img(int review_id) {
+		return session.selectList("ReviewMapper.res_find_img", review_id);
+	}
+	public List<String> lod_find_img(int review_id) {
+		return session.selectList("ReviewMapper.lod_find_img", review_id);
 	}
 }

@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,6 +87,16 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int lod_save_url(HashMap<String, Object> map) {
 		return dao.lod_save_url(map);
+	}
+
+	@Override
+	public List<String> res_find_img(int review_id) {
+		return dao.res_find_img(review_id);
+	}
+
+	@Override
+	public List<String> lod_find_img(int review_id) {
+		return dao.lod_find_img(review_id);
 	}
 	
 }

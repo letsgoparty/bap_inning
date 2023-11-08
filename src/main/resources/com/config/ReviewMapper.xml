@@ -91,4 +91,12 @@
 		values (#{review_id},#{url})
 	</insert>
 
+	<select id="res_find_img" parameterType="int" resultType="string">
+		select url from res_review_image
+		where review_id=#{review_id}
+	</select>
+	<select id="lod_find_img" parameterType="int" resultType="string">
+		select url from lod_review_image
+		where review_id=#{review_id}
+	</select>
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="css/review.css" rel="stylesheet" />
 
 <form id="myform" name="lodReviewUpdate" method="get" action="#">
@@ -30,16 +31,20 @@
 					  style="font-family: 'KBO-Dia-Gothic_light'" 
 					  placeholder="${lodReviewRetrieve.review_content}" readonly></textarea>
 		</div>
-		<!-- 이미지 업로드 -->
-		<div class="myform">
-		이미지 미리보기
-				<div>
-					<div class="imgs_wrap">
-						<img id="img" />
-					</div>
-				</div>
-		</div>
-		<!-- 이미지 업로드 -->
+
+		<c:choose>
+		    <c:when test="${not empty urls}">
+				    <div class="imgs_wrap">
+		        <c:forEach var="url" items="${urls}">
+		            <div style="text-align:center; display: inline-block;">
+		            	 <a href="#" onclick="showImage('${url}')">
+		                <img id="img" class="mb-2" src="${url}"alt="이미지">
+		               </a>
+		            </div>
+		        </c:forEach>
+						</div>
+		    </c:when>
+		</c:choose>
 		
 			***추후 수정 - 수정, 삭제버튼: 로그인 후 내 글일 경우에만 보이기 
 			<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">

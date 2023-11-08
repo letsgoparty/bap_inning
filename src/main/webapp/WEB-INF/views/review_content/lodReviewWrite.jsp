@@ -49,6 +49,12 @@
 	                  // 업로드가 성공한 경우, review_id를 등록 form에 넘어갈 데이터로 지정 
 										$("#review_id").val(response);
 	                  console.error("파일 업로드 성공");
+								    Swal.fire({
+								        title: '파일 업로드 성공',
+								        text: '사진이 등록되었습니다. 리뷰 작성을 완료해주세요.',
+								        icon: 'success',
+								        confirmButtonText: '확인'
+								      });	                  
 	              },
 	              error: function() {
 	                  // 업로드가 실패한 경우

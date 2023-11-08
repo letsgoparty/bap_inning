@@ -5,40 +5,63 @@
 <mapper namespace="MypageMapper">
 
 <!-- 게시판 관련 매퍼 -->
-	<select id="selectText" resultType="Board">
+	<select id="selectText" resultType="Board" parameterType="string">
 		select board_num, title,
 		userid, text, team_code,
 		to_char(board_date, 'YYYY/MM/dd')as board_date,
 		count
 		from board
+		where userid=#{userid}
 		order by board_num desc
 	</select>
-	<select id="textTotalCount" resultType="int">
+	<select id="textTotalCount" resultType="int" parameterType="string">
 	select count(*)
 	from board
+	where userid=#{userid}
 	</select>
 	
 <!-- 식당 매퍼 -->
-<select id="select_r_review" resultType="ReviewDTO">
-	  select review_id, res_id, user_id, rating, review_content, like_cnt, created_date, modified_date
+<select id="select_r_review" resultType="ResReviewDTO" parameterType="string">
+	  select review_id, res_id, user_id, rating, review_content,
+	   like_cnt, created_date, modified_date, res_name
 	  from restaurant_reviews
+	  natural join restaurant
+	  where user_id=#{user_id}
 	  order by review_id desc
 </select>
-<select id="r_reviewTotalCount" resultType="int">
+<select id="r_reviewTotalCount" resultType="int" parameterType="string">
 	select count(*)
 	from restaurant_reviews
+	where user_id=#{user_id}
 </select>
 
 
 <!-- 댓글 매퍼 -->
-<select id="selectReply" resultType="Reply">
+<select id="selectReply" resultType="Reply" parameterType="string">
 	select reviews_num, board_num, text, userid, replydate, updatedate, team_code
 	from board_reviews
-	order by reviews_num
+	where userid=#{userid}
+	order by reviews_num desc
 </select>
-<select id="replyTotalCount" resultType="int">
+<select id="replyTotalCount" resultType="int" parameterType="string">
 	select count(*)
 	from board_reviews
+	where userid=#{userid}
+</select>
+
+<!-- 숙소 매퍼 -->
+<select id="select_l_review" resultType="LodReviewDTO" parameterType="string">
+	select lodging_id, review_id, user_id, rating, review_content,
+			like_cnt, created_date, modified_date, lodging_name
+			from lodging_reviews
+			natural join lodging
+			where user_id=#{user_id}
+		order by review_id desc
+</select>
+<select id="l_reviewTotalCount" resultType="int" parameterType="string">
+	select count(*)
+	from lodging_reviews
+	where user_id=#{user_id}
 </select>
 
 

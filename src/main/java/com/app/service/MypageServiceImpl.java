@@ -43,33 +43,29 @@ public class MypageServiceImpl implements MypageService  {
 	
 	//게시판
 	@Override
-	public UpgradePageDTO selectText(int curPage, int amount) {
-		return dao.selectText(curPage,amount);
-	}
-	//게시판 총개수
-	@Override
-	public int totalCount_text() {
-		return dao.totalCount_text();
+	public UpgradePageDTO selectText(String userid,int curPage, int amount) {
+		return dao.selectText(userid,curPage,amount);
 	}
 
 	//식당리뷰
 	@Override
-	public UpgradePageDTO select_r_review(int curPage, int amount) {
-		return dao.select_r_review(curPage, amount);
-	}
-
-	//댓글 총개수
-	@Override
-	public int totalCount_reply() {
-		return dao.totalCount_reply();
+	public UpgradePageDTO select_r_review(String userid,int curPage, int amount) {
+		return dao.select_r_review(userid, curPage, amount);
 	}
 
 	//댓글
 	@Override
-	public UpgradePageDTO selectReply(int curPage, int amount) {
-		return dao.selectReply(curPage, amount);
+	public UpgradePageDTO selectReply(String userid,int curPage, int amount) {
+		return dao.selectReply(userid,curPage, amount);
 	}
-	
+
+	//숙소 리뷰
+	@Override
+	public UpgradePageDTO select_l_review(String userid,int curPage, int amount) {
+		return dao.select_l_review(userid,curPage, amount);
+	}
+
+
 	
 	
 

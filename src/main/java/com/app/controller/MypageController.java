@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,6 +52,24 @@ public class MypageController {
 	@Autowired
 	private ReplyService replyService;
 	
+	//새로 제작중인 마이페이지
+	@RequestMapping("/mypage")
+	public String new_mypage(Model model,HttpSession session) {
+		//사용자 정보 가져오기
+		
+		 MemberDTO dto=(MemberDTO)session.getAttribute("login");
+		 String userid=dto.getUserid(); 
+		 MemberDTO user=memberService.mypage(userid);
+		 session.setAttribute("login", user); 
+		 model.addAttribute("user",user);
+		 
+		 System.out.println(user);
+		
+		return "mypage/newMyPage";
+	}
+	
+	/*
+	 * 
 	@RequestMapping("/mypage")
 	public String mypage(Model model, HttpSession session) {
 		// 사용자정보가져오기
@@ -120,6 +139,8 @@ public class MypageController {
 		model.addAttribute("filterTeamData", filterTeamData);
 		return "mypage/myPage";
 	}
+	*/
+	
 	//회원정보 보여주기
 	@GetMapping("/myinfo")
 	public String myinfo(HttpSession session,Model model) {
@@ -361,6 +382,27 @@ public class MypageController {
 		attribute.addAttribute("amount",amount);
 		
 		return "redirect:mytext";
+	}
+	
+	//닉네임 변경 중복확인.
+	@GetMapping(value="/mypageNicknameCheck", produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String mypageNicknameCheck(@RequestParam("nickname")String nickname, @RequestParam("currNickname")String currNickname) {
+		
+		System.out.println("currnickname: "+currNickname);
+		System.out.println("nickname: "+nickname);
+		
+		if(nickname.equals(currNickname)) {
+			return "나의 팀만 변경합니다.";
+		}
+		
+		MemberDTO dto=memberService.nicknameCheck(nickname);
+		String mesg="닉네임 사용 가능";
+		if(dto!=null) {
+			mesg="닉네임 중복";
+		}
+		return mesg;
+		
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.app.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -99,20 +100,26 @@ public class ReviewController {
 	//리뷰 상세 보기
     @GetMapping("/reviewRetrieve")
     public ModelAndView retrieve(@RequestParam("review_id") String review_id, ModelAndView mav) {
-        ReviewDTO dto = service.reviewRetrieve(review_id);
-
+    	ReviewDTO dto = service.reviewRetrieve(review_id);
+    	List<String> urls = service.res_find_img(Integer.valueOf(review_id));
+        
         mav.setViewName("review/reviewRetrieve");
         mav.addObject("reviewRetrieve", dto);
-
+        mav.addObject("urls", urls);
+        System.out.println(urls);
+        
         return mav;
     }
 
     @GetMapping("/lodReviewRetrieve")
     public ModelAndView lodRetrieve(@RequestParam("review_id") String review_id, ModelAndView mav) {
     	LodReviewDTO dto = service.lodReviewRetrieve(review_id);
+    	List<String> urls = service.lod_find_img(Integer.valueOf(review_id));
     	
     	mav.setViewName("review/lodReviewRetrieve");
     	mav.addObject("lodReviewRetrieve", dto);
+    	mav.addObject("urls", urls);
+    	System.out.println(urls);
     	
     	return mav;
     }

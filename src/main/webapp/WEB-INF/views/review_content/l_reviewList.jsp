@@ -7,6 +7,9 @@
    	<input type="hidden" name="lodging_id" value="${param.lodging_id}">
 		<h2 class="text-center">(숙소 이름 ${param.lodging_id})의 리뷰 목록</h2>
 
+<c:choose>
+	<c:when test="${not empty pageDTO.list}">
+
 		<select name="" class="form-select" aria-label="Default select example" style="float: right; width: 140px">
 		  <option selected>-- 정렬 --</option>
 					<option value="recent">최신순</option>
@@ -82,6 +85,16 @@
 		  </tr>
 		  <!--  page 번호 출력 --> 
 		</table>
+		
+	</c:when>
+	<c:otherwise>
+		<div class="container" style="text-align:center; font-size:20px; font-family: 'KBO-Dia-Gothic_light'">
+			<br><br>🥲<br>
+			아직 등록된 리뷰가 없어요.<br>
+			${param.res_id}의 첫번째 리뷰를 작성해 보세요!<br><br><br>
+		</div>
+	</c:otherwise>
+</c:choose>		
 		<button type="submit" class="btn btn-primary">리뷰작성</button>
 	</form>
 </div>

@@ -49,6 +49,15 @@ nav {
 	left: 0 !important;
 	z-index: 1030 !important;
 }
+
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
 </style>
 <body id="page-top">
 	<jsp:include page="common/nav.jsp" flush="true" />
@@ -62,8 +71,14 @@ nav {
 					style="font-size: 1.3rem; font-family: 'KBO-Dia-Gothic_light';">
 					경기장 주변 음식점과 숙소를 한눈에👀 볼 수 있는 밥이닝</p>
 				<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll"
-					style="font-size: 1.5rem; font-family: 'KBO-Dia-Gothic_bold';">경기일정
-					및 순위 보러가기</a>
+					style="font-size: 1.5rem; font-family: 'SUITE-Regular'; width: 500px !important;">KBO
+					경기일정 및 순위 보러가기</a><br>
+				<c:if test="${!empty login}">
+					<a class="btn btn-primary btn-xl rounded-pill mt-4" href="schedule"
+						style="font-size: 1.5rem; width: 500px !important; font-family: 'SUITE-Regular';"><img
+						src="images/logo/${myTeam}.png" width=auto height=37> 우리팀
+						경기일정 및 순위 보러가기</a>
+				</c:if>
 			</div>
 		</div>
 	</header>
@@ -277,7 +292,7 @@ nav {
 			</div>
 			<!--  KBO 경기 일정 끝 -->
 
-			<!--  KBO 리그 순위 -->
+			<!--  포스트시즌 대진 -->
 			<div class="col-md-3 offset-md-1 pt-5"
 				style="margin-left: 2px !important">
 				<div style="font-family: 'KBO-Dia-Gothic_bold';">
@@ -285,6 +300,7 @@ nav {
 					<div>${postSeason}</div>
 				</div>
 
+				<!--  KBO 리그 순위 -->
 				<h4 style="font-family: 'KBO-Dia-Gothic_bold';">KBO 정규리그 순위</h4>
 				<table class="table table-striped"
 					style="font-family: 'KBO-Dia-Gothic_light'; font-size: 0.9rem; border-top: 1px solid #929292; margin-bottom: 50px">

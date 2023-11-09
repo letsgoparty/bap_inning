@@ -32,7 +32,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
 		<div class="container px-5">
-			<a class="navbar-brand" href="main"> <img
+			<a class="navbar-brand me-5" href="main"> <img
 				src="images/mainlogo.PNG" width="170" height="70"></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
@@ -40,15 +40,15 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-
+			&nbsp;
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ms-auto">
 					<!-- 맛집 찾기 드롭다운 -->
 					<div class="dropdown mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false"
-							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.5rem">
-							<img src="images/icon/restaurant.png" width="40" height="40">
+							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.2rem">
+							<img src="images/icon/restaurant.png" width=auto height="35">
 							음식점 찾기
 						</a>
 						<ul class="dropdown-menu"
@@ -71,8 +71,8 @@
 					<div class="dropdown mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="#"
 							role="button" data-bs-toggle="dropdown" aria-expanded="false"
-							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.5rem">
-							<img src="images/icon/hotel.png" width="40" height="40"> 숙소
+							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.2rem">
+							<img src="images/icon/hotel.png" width=auto height="35"> 숙소
 							찾기
 						</a>
 						<ul class="dropdown-menu"
@@ -95,12 +95,53 @@
 					<div class="dropdown me-auto mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="list"
 							role="button"
-							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.5rem">
-							<img src="images/icon/baseball.png" width="40" height="40">
+							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.2rem">
+							<img src="images/icon/baseball.png" width=auto height="35">
 							자유게시판
 						</a>
 					</div>
-					&nbsp&nbsp&nbsp&nbsp&nbsp
+					
+					<div class="dropdown me-auto mb-2 mb-lg-0 mx-2 mt-2">
+						<a class="btn btn-secondary dropdown-toggle" href="schedule"
+							role="button"
+							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.2rem">
+														<c:choose>
+										<c:when test="${login.team_code eq 1}">
+											<img src="images/logo/SSG.png" width=auto height="35"> SSG랜더스
+										</c:when>
+										<c:when test="${login.team_code == 2}">
+											<img src="images/logo/키움.png" width=auto height="35"> 키움 히어로즈
+										</c:when>
+										<c:when test="${login.team_code == 3}">
+											<img class="rounded-border" src="images/logo/LG.png"
+												width=auto height="35"> LG 트윈스
+										</c:when>
+										<c:when test="${login.team_code == 4}">
+											<img src="images/logo/KT.png" width=auto height="35"> KTwiz
+										</c:when>
+										<c:when test="${login.team_code == 5}">
+											<img src="images/logo/KIA.png" width=auto height="35"> KIA타이거즈
+										</c:when>
+										<c:when test="${login.team_code == 6}">
+											<img src="images/logo/NC.png" width=auto height="35"> NC다이노스
+										</c:when>
+										<c:when test="${login.team_code == 7}">
+											<img src="images/logo/삼성.png" width=auto height="35"> 삼성 라이온즈
+										</c:when>
+										<c:when test="${login.team_code == 8}">
+											<img src="images/logo/롯데.png" width=auto height="35"> 롯데 자이언츠
+										</c:when>
+										<c:when test="${login.team_code == 9}">
+											<img src="images/logo/두산.png" width=auto height="35"> 두산 베어스
+										</c:when>
+										<c:when test="${login.team_code == 10}">
+											<img src="images/logo/한화.png" width=auto " height="35"> 한화 이글스
+										</c:when>
+									</c:choose>
+						</a>
+					</div>
+					
+					
 					<c:if test="${empty login}">
 						<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
 							href="loginForm" role="button">로그인</a></li>
@@ -112,49 +153,10 @@
 							<div class="dropdown mb-2 mb-lg-0 mx-5 mt-2">
 								<a class="btn btn-secondary dropdown-toggle" href="#"
 									role="button" data-bs-toggle="dropdown" aria-expanded="false"
-									style=" color:rgb(0,0,0,0.8)">
-									<c:choose>
-										<c:when test="${login.team_code eq 1}">
-											<img src="images/logo/SSG.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 2}">
-											<img src="images/logo/키움.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 3}">
-											<img src="images/logo/LG.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 4}">
-											<img src="images/logo/KT.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 5}">
-											<img src="images/logo/KIA.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 6}">
-											<img src="images/logo/NC.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 7}">
-											<img src="images/logo/삼성.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 8}">
-											<img src="images/logo/롯데.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 9}">
-											<img src="images/logo/두산.png" width=auto height="35">
-										</c:when>
-										<c:when test="${login.team_code == 10}">
-											<img src="images/logo/한화.png" width=auto" height="35">
-										</c:when>
-									</c:choose>&nbsp;${login.userid} <i class="fas fa-caret-down mx-2"></i>
+									style="color: rgb(0, 0, 0, 0.8)"> &nbsp;${login.userid} <i class="fas fa-caret-down mx-2"></i>
 								</a>
 								<ul class="dropdown-menu" style="text-align: center;">
 									<table class="mx-auto">
-										<tr>
-											<li>
-											<td><i
-												class="fas fa-sign-out-alt fa-sm fa-fw text-gray-400"></i></td>
-											<td><a class="dropdown-item" href="logout">로그아웃</a></td>
-											</li>
-										</tr>
 										<tr>
 											<li>
 											<td><i class="fa-solid fa-face-smile text-gray-400"></i></td>
@@ -163,8 +165,9 @@
 										</tr>
 										<tr>
 											<li>
-											<td><i class="fa-solid fa-star"text-gray-400"></i></td>
-											<td><a class="dropdown-item" href="like">찜</a></td>
+											<td><i
+												class="fas fa-sign-out-alt fa-sm fa-fw text-gray-400"></i></td>
+											<td><a class="dropdown-item" href="logout">로그아웃</a></td>
 											</li>
 										</tr>
 									</table>

@@ -36,6 +36,7 @@
 </select>
 
 
+
 <!-- 댓글 매퍼 -->
 <select id="selectReply" resultType="Reply" parameterType="string">
 	select reviews_num, board_num, text, userid, replydate, updatedate, team_code

@@ -31,6 +31,11 @@
             -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
+        
+ .pagination{
+   display:flex;
+   justify-content:center;
+  }   
 </style>
 </head>
 <body>

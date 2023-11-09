@@ -20,7 +20,7 @@
   }
   
           .input-form {
-            max-width: 800px;
+            min-width:800px;
             margin-top: 80px;
             padding: 32px;
             background: #fff;
@@ -31,12 +31,18 @@
             -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
+      .pagination{
+   display:flex;
+   justify-content:center;
+  }     
+         
+        
 </style>
 	
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
-<body>
+
  <div class="container">
   <div class="input-form-background row">
    <div class="input-form col-md-8 mx-auto">
@@ -64,7 +70,6 @@
 			<option value="10">10개 보기</option>
 			<option value="20">20개 보기</option>
 			<option value="50">50개 보기</option>
-			<option value="100">100개 보기</option>
 		</select>
 
 	</div>

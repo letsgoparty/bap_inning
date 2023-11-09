@@ -103,4 +103,16 @@
 		select url from lod_review_image
 		where review_id=#{review_id}
 	</select>
+	
+	<!-- 리뷰 추천 -->
+	<update id="res_like_cnt" parameterType="int">
+		update restaurant_reviews
+		set like_cnt = like_cnt + 1
+		where review_id = #{review_id}
+	</update>
+	<update id="lod_like_cnt" parameterType="int">
+		update lodging_reviews
+		set like_cnt = like_cnt + 1
+		where review_id = #{review_id}
+	</update>
 </mapper>

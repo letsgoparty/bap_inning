@@ -52,7 +52,14 @@ public class UserController {
 
 		// 메시지 모델에 메시지를 추가
 	   // model.addAttribute("successMessage", "이메일이 성공적으로 전송되었습니다.");
-		    
+		  
+	    // 디버깅 
+	    System.out.println("디버깅");
+	    System.out.println("Email: " + code.getEmail());
+	    System.out.println("Authcode: " + code.getAuthcode());
+	    System.out.println("Cretime: " + code.getCretime());
+	    // 디버깅 
+	    
 	    // 세션에 이메일 저장
 	    session.setAttribute("email", email);
 	    
@@ -71,9 +78,9 @@ public class UserController {
 		System.out.println("이메일 확인: " + iemail);
 		
 		
+		MemberDTO email = new MemberDTO();
+		email.setEmail(iemail);
 		
-		MemberDTO email = null;
-		// 서비스 클래스의 메서드를 호출하여 DTO를 받아온다.
 	    MemberDTO dto = Mservice.authcodeconfirm(email);
 
 	    // 필요한 정보를 꺼내오고
@@ -88,10 +95,10 @@ public class UserController {
 	    // 생성된 시간과 현재 시간 간의 차이를 계산
 	    long elapsedTime = currentTimeMillis - cretime.getTime(); // Timestamp에서 getTime()을 사용하여 long 값으로 변환
 
-	    // 인증코드와 입력한 코드가 일치하고, 생성된 시간이 2분 이내라면 인증 성공
-	    if (verificationCode.equals(authCode) && elapsedTime <= 120000) {
+	    // 인증코드와 입력한 코드가 일치하고, 생성된 시간이 2분 이내라면 인증 성공.테스트중이라 1분으로 설정해놈
+	    if (verificationCode.equals(authCode) && elapsedTime <= 60000) {
 	        // 비밀번호 재설정 페이지로 리다이렉트
-	        return "login/restpw";
+	        return "login/resetpw";
 	    } else {
 	        // 인증 실패 시 거부 페이지로 리다이렉트 또는 에러 메시지 반환
 	        return "redirect:/denied";

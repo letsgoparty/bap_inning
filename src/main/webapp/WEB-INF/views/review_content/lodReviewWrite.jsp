@@ -119,15 +119,17 @@
 	<input type="hidden" id="review_id" name="review_id">
 	<input type="hidden" id="lodging_id" name="lodging_id" value="${lodging_id}">
  		<div class="container">
+ 			<div name="rating" id="rating">
 		    <fieldset style="text-align: center">
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">${param.lodging_id}(가게이름)의</legend>
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점을 선택해주세요</legend>
-		        <input type="radio" name="rating" value="1" id="rate1" required><label for="rate1">⭐</label>
-		        <input type="radio" name="rating" value="2" id="rate2" required><label for="rate2">⭐</label>
-		        <input type="radio" name="rating" value="3" id="rate3" required><label for="rate3">⭐</label>
-		        <input type="radio" name="rating" value="4" id="rate4" required><label for="rate4">⭐</label>
 		        <input type="radio" name="rating" value="5" id="rate5" required><label for="rate5">⭐</label>
+		        <input type="radio" name="rating" value="4" id="rate4" required><label for="rate4">⭐</label>
+		        <input type="radio" name="rating" value="3" id="rate3" required><label for="rate3">⭐</label>
+		        <input type="radio" name="rating" value="2" id="rate2" required><label for="rate2">⭐</label>
+		        <input type="radio" name="rating" value="1" id="rate1" required><label for="rate1">⭐</label>
 		     </fieldset>
+ 			</div>
 		</div>
 
 		<div class="container">

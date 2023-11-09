@@ -32,9 +32,22 @@ public class ReviewDAO {
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
 		pageDTO.setTotalCount(r_totalCount(res_id));
-
+		
 		return pageDTO;
 	}
+//	public ReviewPageDTO r_reviewList(int curPage, int res_id, int review_id) {
+//		ReviewPageDTO pageDTO = new ReviewPageDTO();
+//		int offset = (curPage-1)*pageDTO.getPerPage();
+//		int limit = pageDTO.getPerPage();
+//		List<ReviewDTO> list =  session.selectList("ReviewMapper.r_reviewList", res_id, new RowBounds(offset, limit));
+//		List<String> urls = session.selectList("ReviewMapper.res_find_img", review_id);
+//		
+//		pageDTO.setList(list);
+//		pageDTO.setCurPage(curPage);
+//		pageDTO.setTotalCount(r_totalCount(res_id));
+//
+//		return pageDTO;
+//	}
 	
 	//숙소 전체 리뷰
 	public int l_totalCount(int lodging_id) {

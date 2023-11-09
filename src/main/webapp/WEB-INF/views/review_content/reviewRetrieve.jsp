@@ -3,26 +3,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="css/review.css" rel="stylesheet" />
 
-<form id="myform" name="reviewUpdate" method="get" action="#">
-	    <input type="hidden" name="review_id" value="${reviewRetrieve.review_id}"> 
-	    <input type="hidden" name="rating" value="${reviewRetrieve.rating}"> 
+<form id="myform" action="reviewUpdate" method="get">
+<!--   	<input type="hidden" name="res_id" value="${param.res_id}"> --> 
+ 	    <input type="hidden" name="review_id" value="${reviewRetrieve.review_id}"> 
+<%--	    <input type="hidden" name="rating" value="${reviewRetrieve.rating}"> 
 	    <input type="hidden" name="review_content" value="${reviewRetrieve.review_content}"> 
-	    
+	     --%>
 <div class="myform">
 		<div class="container">
- 	 		<form name="rating" id="rating" method="post" value="${reviewRetrieve.rating}">
+ 	 		<div name="rating" id="rating" value="${reviewRetrieve.rating}">
 		    <fieldset style="text-align: center">
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점</legend>
-		        <input type="radio" name="rating" value="1" id="rate1" disabled><label for="rate1">⭐</label>
-		        <input type="radio" name="rating" value="2" id="rate2" disabled><label for="rate2">⭐</label>
-		        <input type="radio" name="rating" value="3" id="rate3" disabled><label for="rate3">⭐</label>
-		        <input type="radio" name="rating" value="4" id="rate4" disabled><label for="rate4">⭐</label>
 		        <input type="radio" name="rating" value="5" id="rate5" disabled><label for="rate5">⭐</label>
+		        <input type="radio" name="rating" value="4" id="rate4" disabled><label for="rate4">⭐</label>
+		        <input type="radio" name="rating" value="3" id="rate3" disabled><label for="rate3">⭐</label>
+		        <input type="radio" name="rating" value="2" id="rate2" disabled><label for="rate2">⭐</label>
+		        <input type="radio" name="rating" value="1" id="rate1" disabled><label for="rate1">⭐</label>
 		     </fieldset>
- 	 		</form>
+ 	 		</div>
 		</div>
 		<div style="float: right">
-			<span>${reviewRetrieve.user_id}</span> &nbsp;
+			<span style="font-weight: bold;">${reviewRetrieve.user_id}</span> &nbsp;
 			<span>${reviewRetrieve.created_date}</span>	&nbsp;
 			<span>추천수: ${reviewRetrieve.like_cnt}</span>
 		</div>
@@ -33,38 +34,69 @@
 		</div>
 
 		<c:choose>
-		    <c:when test="${not empty urls}">
-				    <div class="imgs_wrap">
+		    <c:when test="${!empty urls}">
+				  <div class="imgs_wrap">
 		        <c:forEach var="url" items="${urls}">
 		            <div style="text-align:center; display: inline-block;">
-		            	 <a href="#" onclick="showImage('${url}')">
-		                <img id="img" class="mb-2" src="${url}"alt="이미지">
+		            	 <a href="#" onclick="openModal('${url}')">
+		                <img id="img" class="mb-2" src="${url}" alt="이미지">
 		               </a>
 		            </div>
 		        </c:forEach>
+						<div id="myModal" class="modal">
+						    <span class="close" onclick="closeModal()">&times;</span>
+						    <img id="modalImg" src="" alt="모달 이미지">
 						</div>
+					</div>
 		    </c:when>
 		</c:choose>
 		
-			***추후 수정 - 수정, 삭제버튼: 로그인 후 내 글일 경우에만 보이기 
 			<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">
-			  <button class="btn btn-primary" type="submit">수정</button>
-			  <button class="btn btn-primary" type="button" onclick="del()">삭제</button>
-			  <button class="btn btn-primary" type="button" onclick="cancel()">목록보기</button>
+			  <button class="btn btn-primary" type="submit" id="editBtn">수정</button>
+				<button class="btn btn-primary" type="button" id="deleteBtn" onclick="del('${reviewRetrieve.review_id}')">삭제</button>			
+			  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${param.res_id}')">목록보기</button>
 			</div>
 		
 	</div>
-</form>	
+</form>
 
-
+<script src="js/review.js"></script>
 <script type="text/javascript">
-	function del(){
-		var shouldDel = confirm("리뷰를 삭제하시겠습니까?");
-		if (shouldDel) {
-			//삭제
-		}
-	}
-	function cancel(){
-			window.location.href = "r_reviewList?res_id=" + res_id;
-	}
+//별점 출력
+var ratingValue = ${reviewRetrieve.rating};
+
+var radioButtons = document.getElementsByName("rating");
+for (var i = 0; i < radioButtons.length; i++) {
+  if (parseInt(radioButtons[i].value) === ratingValue) {
+    radioButtons[i].checked = true;
+  }
+}
+
+//버튼
+function del(review_id) {
+    var shouldDelete = confirm("리뷰를 삭제하시겠습니까?");
+    if (shouldDelete) {
+        window.location.href = "reviewDelete?review_id=" + review_id;
+    }
+}
+
+function cancel(res_id){
+	window.location.href = "r_reviewList?res_id=" + res_id;
+}
+
+
+var currentUserID = "${login.userid}";
+var authorID = "${reviewRetrieve.user_id}";
+
+var editBtn = document.getElementById("editBtn");
+var deleteBtn = document.getElementById("deleteBtn");
+
+// 현재 사용자와 작성자의 아이디를 비교하여 버튼 표시 여부 결정
+if (currentUserID === authorID) {
+	editBtn.style.display = "block";
+	deleteBtn.style.display = "block";
+} else {
+	editBtn.style.display = "none";
+	deleteBtn.style.display = "none";
+}
 </script>

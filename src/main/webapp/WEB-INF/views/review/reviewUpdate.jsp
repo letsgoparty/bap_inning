@@ -14,23 +14,23 @@
 <body style="background-color:rgba(248, 249, 250) !important;">
 	<jsp:include page="../common/nav.jsp" flush="true" />
 
-	<form id="myform" name="reviewUpdate" method="POST" action="#">
+	<form id="myform" action="reviewUpdate" method="POST" action="#">
 		    <input type="hidden" name="review_id" value="${reviewRetrieve.review_id}"> 
 		    <input type="hidden" name="rating" value="${reviewRetrieve.rating}"> 
 		    <input type="hidden" name="review_content" value="${reviewRetrieve.review_content}"> 
 		    
 	<div class="myform">
 			<div class="container">
-		 		<form name="rating" id="rating" value="${reviewDTO.rating}">
+		 		<div name="rating" id="rating" value="${reviewDTO.rating}">
 			    <fieldset style="text-align: center">
 					  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점을 선택해주세요</legend>
-			        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-			        <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-			        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-			        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-			        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+			        <input type="radio" name="rating" value="5" id="rate5" disabled><label for="rate5">⭐</label>
+			        <input type="radio" name="rating" value="4" id="rate4" disabled><label for="rate4">⭐</label>
+			        <input type="radio" name="rating" value="3" id="rate3" disabled><label for="rate3">⭐</label>
+			        <input type="radio" name="rating" value="2" id="rate2" disabled><label for="rate2">⭐</label>
+			        <input type="radio" name="rating" value="1" id="rate1" disabled><label for="rate1">⭐</label>
 			     </fieldset>
-		 		</form>
+		 		</div>
 			</div>
 		
 			<div class="container">

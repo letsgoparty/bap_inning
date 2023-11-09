@@ -8,7 +8,8 @@
 		<h2 class="text-center">(음식점 이름 ${param.res_id})의 리뷰 목록</h2>
 
 <c:choose>
-	<c:when test="${not empty pageDTO.list}">
+	<c:when test="${!empty pageDTO.list}">
+	
 		<select name="" class="form-select" aria-label="Default select example" style="float: right; width: 140px">
 		  <option selected>-- 정렬 --</option>
 					<option value="recent">최신순</option>
@@ -43,10 +44,10 @@
 				<td><a href="reviewRetrieve?review_id=${reviewDTO.review_id}">더보기</a></td>
 				<td>
  					<c:forEach var="url" items="${urls}">
-					<div style="text-align:center;">
+						<div style="text-align:center;">
 					    <img class="mb-2" src="${url}" width="300" height="300" alt="이미지">
-					    </div>
-					</c:forEach>		
+					   </div>
+					</c:forEach>
 				</td>
 				<td>${reviewDTO.user_id}</td>
 	      <td>

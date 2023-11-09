@@ -5,10 +5,14 @@
 <div class="container">
 	<form action="lodReviewWrite" method="get">
    	<input type="hidden" name="lodging_id" value="${param.lodging_id}">
-		<h2 class="text-center">(숙소 이름 ${param.lodging_id})의 리뷰 목록</h2>
+   	<input type="hidden" name="lodging_name" value="${param.lodging_name}">
+   	<input type="hidden" id="lodging_name" value="${param.lodging_name}">
+<%-- 		<h2 class="text-center">${param.lodging_name}의 리뷰 목록</h2>--%>
+		<h2 class="text-center">리뷰 목록</h2>
+	<h1 class="card-title mt-3 mb-4" id="lodging_name"></h1>
 
 <c:choose>
-	<c:when test="${not empty pageDTO.list}">
+	<c:when test="${!empty pageDTO.lodList}">
 
 		<select name="" class="form-select" aria-label="Default select example" style="float: right; width: 140px">
 		  <option selected>-- 정렬 --</option>
@@ -91,7 +95,7 @@
 		<div class="container" style="text-align:center; font-size:20px; font-family: 'KBO-Dia-Gothic_light'">
 			<br><br>🥲<br>
 			아직 등록된 리뷰가 없어요.<br>
-			${param.res_id}의 첫번째 리뷰를 작성해 보세요!<br><br><br>
+			${param.lodging_name}의 첫번째 리뷰를 작성해 보세요!<br><br><br>
 		</div>
 	</c:otherwise>
 </c:choose>		

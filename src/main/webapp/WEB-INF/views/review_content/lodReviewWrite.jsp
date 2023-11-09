@@ -147,10 +147,10 @@
 	<!-- 이미지 업로드 -->
 	<div class="myform">
 			<div>
-				<p>리뷰 사진을 등록해주세요</p>
 				<div class="input_wrap">
 					<a href="javascript:" onclick="fileUploadAction()" class="btn btn-primary">사진 선택</a>
 					<input type="file" id="input_imgs" name="file" multiple />
+					<button class="btn btn-primary" id="uploadButton">업로드</button>
 				</div>
 			</div>
 			<div>
@@ -158,7 +158,6 @@
 					<img id="img" />
 				</div>
 			</div>
-			<button class="btn btn-primary" id="uploadButton">업로드</button>
 	</div>
 	<!-- 이미지 업로드 -->
 

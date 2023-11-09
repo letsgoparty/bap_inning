@@ -41,32 +41,31 @@
     </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	      
+	
+
+       
 </head>
    
 <body class="text-center">
 <jsp:include page="../common/nav.jsp" flush="true" />
 <div class="container">
     <div class="input-form-backgroud row">
-        <form action="sendEmail" method="get" class="validation-form" novalidate>
+        <form action="codeconfirm" method="post" class="validation-form" novalidate>
             <div class="input-form col-md-12 mx-auto">
                 <h4 class="mb-4">본인 확인 이메일 인증</h4>
-                <div id="inputBox">
-                    <div class="input-form-box mb-3 row">
-		                        <div class="col-md-9 mx-auto" style="margin-bottom: 10px; text-align: center;">
-		                            <span style="text-align: center; display: block;">인증코드를 받을 이메일을 입력해주세요</span>
-		                            <p></p>
-		                            <input type="text" name="email" id="email" class="form-control" autocomplete="off" required>
-		                        </div>
-		                        <div class="col-md-9 mx-auto" style="text-align: center; margin-bottom: 20px;">
-		                            <button type="submit" class="btn btn-primary" id="authBtn" style="width: 100%;">인증코드 전송</button>
-		                        </div>
-		                         
+                <p style="font-size: 14px; text-align: center; margin-bottom: 20px;">전송된 이메일의 인증코드를 입력하세요.인증코드의 유효시간은 3분입니다.</p>
+                <div id="inputBox">   
+                    <div class="row">
+                        <div class="col-md-9 mx-auto" style="margin-bottom: 10px; text-align: center;">
+                            <input type="text" class="form-control" id="authCodeInput" name="verificationCode" required>
+                        </div>
+                        <div class="col-md-9 mx-auto" style="text-align: center; margin-bottom: 20px;">
+                            <button type="submit" class="btn btn-primary" id="authCheck" style="width: 100%;">인증코드 확인</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
-        
     </div>
 </div>
 

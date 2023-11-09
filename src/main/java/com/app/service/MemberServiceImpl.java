@@ -49,26 +49,18 @@ public class MemberServiceImpl implements MemberService  {
 		return dto;
 	}
    
-	@Override
-	public int updateTemporaryPW(HashMap<String, String> map) {
-		return dao.updateTemporaryPW(map);
-	}
+	
 	@Override
 	public String findEncodePW(HashMap<String, String> map) {
 		return dao.findEncodePW(map);
 	}
  
-	@Override
-	public MemberDTO getPasswdStatus(HashMap<String, String> map) {
-		MemberDTO dto = dao.getPasswdStatus(map);
-		return dto;
-	}
+	
  
 	@Override
-	public int resetPassword(HashMap<String, String> hashmap) {
-		int n=dao.resetPassword(hashmap);
-	
-		return n;
+	public MemberDTO authcodeconfirm(MemberDTO dto) {
+		MemberDTO edto = dao.authcodeconfirm(dto);
+		return edto;
 	}
 }
 

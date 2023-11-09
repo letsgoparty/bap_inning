@@ -11,6 +11,7 @@
 	
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css">
+
   .table td, .table th {
     white-space: nowrap; /* 줄 바꿈 금지 */
     overflow: hidden;
@@ -19,7 +20,7 @@
   }
   
           .input-form {
-            max-width: 800px;
+            min-width:800px;
             margin-top: 80px;
             padding: 32px;
             background: #fff;
@@ -30,18 +31,28 @@
             -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
+        
+  .pagination{
+   display:flex;
+   justify-content:center;
+  }     
+        
 </style>
+
 	
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
-<body>
+	
+
+
  <div class="container">
   <div class="input-form-background row">
    <div class="input-form col-md-8 mx-auto">
 
 
-	<h3>내 활동_식당리뷰</h3>
+	<h3>내 활동_식당리뷰</h3>	
+	
 <div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -63,13 +74,13 @@
 							<option value="10">10개 보기</option>
 							<option value="20">20개 보기</option>
 							<option value="50">50개 보기</option>
-							<option value="100">100개 보기</option>
 						</select>
 
 					</div>
 				</div>
 
 <br>
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
@@ -86,7 +97,8 @@
   <tbody>
     <c:forEach var="review" items="${pageDTO.list}">
     <tr>
-      <th scope="row">${review.res_name}</th>
+      <th hidden data-res-id="${review.res_id}">${review.res_id}</th>
+      <th scope="row" >${review.res_name}</th>
       <td>${review.review_content}</td>
       <td>이미지</td>
 <%--       <td>${review.user_id}</td> --%>

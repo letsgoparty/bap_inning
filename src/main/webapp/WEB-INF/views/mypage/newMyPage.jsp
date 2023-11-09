@@ -64,7 +64,7 @@ $(document).ready(function(){
 			document.getElementById("editBtn").disabled=true;
 			
 	});
-	
+
 	// 닉네임 중복검사
 	$("#nicknameCheck").on("click", function () {
 	  event.preventDefault();
@@ -83,13 +83,24 @@ $(document).ready(function(){
 	    success: function (data, status, xhr) {
 	      console.log(data);
 	      $("#nicknameResult").text(data);
+	      
+	      //닉네임 전달
+	      $("#newNickname").val(newNickname);
+	      //중복확인 버튼 클릭시 닉네임 인풋 비활성화
+	      if(data=="닉네임 중복"){
+	      $("#nickname").prop("disabled",false);	    	  
+	      }else{
+	      $("#nickname").prop("disabled",true);	    	  
+	      }
+	      
+	      
 	    },
 	    error: function (xhr, status, error) {
 	      console.log("error 발생");
 	    }
 	  });
 	});
-		
+
 	 
 });
 function enableEdit() {
@@ -186,6 +197,10 @@ function enableEdit() {
 				</div>	
 				<span style="color: red" id="nicknameResult"></span>
 
+				<!-- disabled는 form에 전달이 안되어서 hidden하나 만듬 -->
+				<input hidden type="text" id="newNickname" name="newNickname" value=""/>
+				
+
 
 
 					<div class="input-group mt-3 mb-3">
@@ -235,14 +250,17 @@ function validateSubmit(){
 
 	var nicknameResult=$("#nicknameResult");
 	
+	
 	if(nicknameResult.text()===""){
 		alert("닉네임을 변경하지 않아도 중복확인을 해주세요");
 		return false;
 	}
+	
 	if(nicknameResult.text()==="닉네임 중복"){
 		alert("중복되지 않은 닉네임으로 변경해주세요");
 		return false;
 	}
+
 	
 	
 	return true;

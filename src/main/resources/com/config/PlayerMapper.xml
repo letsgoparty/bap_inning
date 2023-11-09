@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PlayerMapper">
+	<select id="find_LGplayer" resultType="PlayerDTO"
+		parameterType="hashmap">
+	<![CDATA[
+	select * from player
+	]]>
+		<choose>
+			<when test="pos != 'null'">
+				where position like #{pos} || '%' and team = #{team}
+			</when>
+			<when test="pos == 'null'">
+				where team = #{team}
+			</when>
+		</choose>
+			<![CDATA[
+			order by player_no
+				]]>
+	</select>
+	<select id="find_player" parameterType="hashmap"
+		resultType="PlayerDTO">
+		select * from player
+		where player = #{player} and team = #{team}
+	</select>
+</mapper>

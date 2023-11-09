@@ -9,6 +9,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.app.dao.MemberDAO;
+import com.app.dto.MemberDTO;
+
 /*
  * 1. 비밀번호 찾기 시, 임시 비밀번호 이메일 전송
  * 2. 회원가입 시, 인증코드 이메일 전송 
@@ -18,6 +21,9 @@ public class EmailService {
 
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	MemberDAO dao;
 
 	public String sendEmailNaver(String to) {
 
@@ -93,4 +99,9 @@ public class EmailService {
 		return auth_code;
 	}
 
+	public int saveVerificode(MemberDTO code) {
+		int n = dao.saveVerificode(code);
+		return n;
+		
+	}
 }

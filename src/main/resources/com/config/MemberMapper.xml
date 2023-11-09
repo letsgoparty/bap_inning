@@ -53,29 +53,20 @@
 	where userid=#{userid}
 	</delete>
  	
- 	<!-- 임시비밀번호로 저장 -->
-	<update id="updateTemporaryPW" parameterType="hashmap">
-	  update member
-	  set password = #{password},
-	      temp_passwd = 'false'
-	  where email = #{email}
+ 	<!-- 인증코드 저장 -->
+	<update id="saveVerificode" parameterType="MemberDTO">
+	  UPDATE member
+	  set authcode=#{authcode},cretime=#{cretime}
+	  WHERE email = #{email}
 	</update>
 	
-	<!-- 임시비밀번호 현황 -->
-	<select id="getPasswdStatus" parameterType="hashmap" 
- 	  resultType="MemberDTO">
- 	  select *
- 	  from member
- 	  where temp_passwd = #{temp_passwd}
- 	</select>
- 	
- 	<!-- 임시비밀번호 재설정 -->
- 	<update id="resetPassword" parameterType="hashmap">
-    update Member
-    set password=#{password},
-        temp_passwd='true'
-    where userid=#{userid}
-   </update>
+	<!-- 인증코드 조회 -->
+	<select id="authcodeconfirm" parameterType="MemberDTO" resultType="MemberDTO">
+	  select *
+	  from member 
+	  where email=#{email}
+	</select>
+	
  	
 	
 	<!-- 암호화된 비밀번호 가져오기 -->

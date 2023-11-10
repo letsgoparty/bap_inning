@@ -26,6 +26,18 @@
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://kit.fontawesome.com/75a1d79131.js"
 	crossorigin="anonymous"></script>
+<style>
+.profile {
+	transition: border 0.3s !important;
+	border: 1px solid #fff !important;
+	border-radius: 30px;
+}
+
+.profile:hover {
+	border: 2px solid #fff !important;
+	border-radius: 30px;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -100,48 +112,48 @@
 							자유게시판
 						</a>
 					</div>
-					
+
 					<div class="dropdown me-auto mb-2 mb-lg-0 mx-2 mt-2">
 						<a class="btn btn-secondary dropdown-toggle" href="schedule"
 							role="button"
 							style="font-family: 'KBO-Dia-Gothic_bold'; font-size: 1.2rem">
-														<c:choose>
-										<c:when test="${login.team_code eq 1}">
-											<img src="images/logo/SSG.png" width=auto height="35"> SSG랜더스
+							<c:choose>
+								<c:when test="${login.team_code eq 1}">
+									<img src="images/logo/SSG.png" width=auto height="35"> SSG랜더스
 										</c:when>
-										<c:when test="${login.team_code == 2}">
-											<img src="images/logo/키움.png" width=auto height="35"> 키움 히어로즈
+								<c:when test="${login.team_code == 2}">
+									<img src="images/logo/키움.png" width=auto height="35"> 키움 히어로즈
 										</c:when>
-										<c:when test="${login.team_code == 3}">
-											<img class="rounded-border" src="images/logo/LG.png"
-												width=auto height="35"> LG 트윈스
+								<c:when test="${login.team_code == 3}">
+									<img class="rounded-border" src="images/logo/LG.png" width=auto
+										height="35"> LG 트윈스
 										</c:when>
-										<c:when test="${login.team_code == 4}">
-											<img src="images/logo/KT.png" width=auto height="35"> KTwiz
+								<c:when test="${login.team_code == 4}">
+									<img src="images/logo/KT.png" width=auto height="35"> KTwiz
 										</c:when>
-										<c:when test="${login.team_code == 5}">
-											<img src="images/logo/KIA.png" width=auto height="35"> KIA타이거즈
+								<c:when test="${login.team_code == 5}">
+									<img src="images/logo/KIA.png" width=auto height="35"> KIA타이거즈
 										</c:when>
-										<c:when test="${login.team_code == 6}">
-											<img src="images/logo/NC.png" width=auto height="35"> NC다이노스
+								<c:when test="${login.team_code == 6}">
+									<img src="images/logo/NC.png" width=auto height="35"> NC다이노스
 										</c:when>
-										<c:when test="${login.team_code == 7}">
-											<img src="images/logo/삼성.png" width=auto height="35"> 삼성 라이온즈
+								<c:when test="${login.team_code == 7}">
+									<img src="images/logo/삼성.png" width=auto height="35"> 삼성 라이온즈
 										</c:when>
-										<c:when test="${login.team_code == 8}">
-											<img src="images/logo/롯데.png" width=auto height="35"> 롯데 자이언츠
+								<c:when test="${login.team_code == 8}">
+									<img src="images/logo/롯데.png" width=auto height="35"> 롯데 자이언츠
 										</c:when>
-										<c:when test="${login.team_code == 9}">
-											<img src="images/logo/두산.png" width=auto height="35"> 두산 베어스
+								<c:when test="${login.team_code == 9}">
+									<img src="images/logo/두산.png" width=auto height="35"> 두산 베어스
 										</c:when>
-										<c:when test="${login.team_code == 10}">
-											<img src="images/logo/한화.png" width=auto " height="35"> 한화 이글스
+								<c:when test="${login.team_code == 10}">
+									<img src="images/logo/한화.png" width=auto " height="35"> 한화 이글스
 										</c:when>
-									</c:choose>
+							</c:choose>
 						</a>
 					</div>
-					
-					
+
+
 					<c:if test="${empty login}">
 						<li class="nav-item mx-2 mt-3"><a class="btn btn-primary"
 							href="loginForm" role="button">로그인</a></li>
@@ -151,10 +163,11 @@
 					<c:if test="${!empty login}">
 						<c:if test="${login.userid ne 'admin'}">
 							<div class="dropdown mb-2 mb-lg-0 mx-5 mt-2">
-								<a class="btn btn-secondary dropdown-toggle" href="#"
+								<a class="profile btn btn-secondary dropdown-toggle" href="#"
 									role="button" data-bs-toggle="dropdown" aria-expanded="false"
-									style="color: rgb(0, 0, 0, 0.8)"> &nbsp;${login.userid} <i class="fas fa-caret-down mx-2"></i>
-								</a>
+									style="color: rgb(0, 0, 0, 0.8); border: 1px solid #fff !important"><img
+									src="images/icon/profile.png" width=auto height="30">&nbsp;
+									${login.userid} <i class="fas fa-caret-down mx-2"></i> </a>
 								<ul class="dropdown-menu" style="text-align: center;">
 									<table class="mx-auto">
 										<tr>

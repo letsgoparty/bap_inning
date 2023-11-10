@@ -33,24 +33,24 @@
 			var team = $(this).data('team');
 			console.log(player);
 
-		    var form = $('<form>', {
-		        action: 'playerInfo',
-		        method: 'GET'
-		    });
+			var form = $('<form>', {
+				action : 'playerInfo',
+				method : 'GET'
+			});
 
-		    $('<input>').attr({
-		        type: 'hidden',
-		        name: 'player',
-		        value: player
-		    }).appendTo(form);
+			$('<input>').attr({
+				type : 'hidden',
+				name : 'player',
+				value : player
+			}).appendTo(form);
 
-		    $('<input>').attr({
-		        type: 'hidden',
-		        name: 'team',
-		        value: team
-		    }).appendTo(form);
+			$('<input>').attr({
+				type : 'hidden',
+				name : 'team',
+				value : team
+			}).appendTo(form);
 
-		    form.appendTo('body').submit();
+			form.appendTo('body').submit();
 		});
 
 		$("a:contains('전체')").click(function() {
@@ -96,8 +96,25 @@
 			<div class="input-form-background col-md-9"
 				style="margin: 0px !important;">
 				<div class="input-form">
-					<h3 class="mb-2 mx-5" style="font-family: 'KBO-Dia-Gothic_bold'"><i class="fa-solid fa-user" style="color: #adadae;"></i>&nbsp; 선수
-						엔트리</h3>
+					<h3 class="mb-2 mx-5" style="font-family: 'KBO-Dia-Gothic_bold'">
+						<i class="fa-solid fa-user" style="color: #adadae;"></i>&nbsp; 선수
+						엔트리
+					</h3>
+					<div>
+						<select name="team_code" class="form-select ms-5" id="myTeam" value="${myTeam}" style="width: 40%">
+							<option value="0">---해당없음---</option>
+							<option value="1">SSG 랜더스</option>
+							<option value="2">키움 히어로즈</option>
+							<option value="3">LG 트윈스</option>
+							<option value="4">KT wiz</option>
+							<option value="4">KIA 타이거즈</option>
+							<option value="6">NC 다이노스</option>
+							<option value="삼성">삼성 라이온즈</option>
+							<option value="8">롯데 자이언츠</option>
+							<option value="9">두산 베어스</option>
+							<option value="10">한화 이글스</option>
+						</select>
+					</div>
 					<div class="category" style="float: right; clear: right;">
 						<a href="players">전체</a> <a href="players?position=투수">투수</a> <a
 							href="players?position=포수">포수</a> <a href="players?position=외야수">외야수</a>
@@ -123,9 +140,10 @@
 											<div class="txt_wrap">
 												<p class="number">${dto.player_no}</p>
 												<h3 class="player">${dto.player}</h3>
-												<p style="font-size: 0.8rem; margin-bottom:0px !important;">${dto.name}</p>
-												<i class="fa-solid fa-heart" style="color: #e86464;"></i> 
-												<span class="mb-2" style="font-size: 0.9rem!important; font-family: 'SUITE-Regular'">${dto.like_cnt}</span>
+												<p style="font-size: 0.8rem; margin-bottom: 0px !important;">${dto.name}</p>
+												<i class="fa-solid fa-heart" style="color: #e86464;"></i> <span
+													class="mb-2"
+													style="font-size: 0.9rem !important; font-family: 'SUITE-Regular'">${dto.like_cnt}</span>
 												<p class="position">${dto.position}</p>
 											</div>
 											<div class="img_wrap">

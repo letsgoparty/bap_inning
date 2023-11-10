@@ -141,6 +141,7 @@ public class TeamController {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		int myTeam = dto.getTeam_code();
 		String selectedTeam = teamService.team_name(myTeam);
+		model.addAttribute("myTeam", selectedTeam);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("team", selectedTeam);
 		map.put("pos", pos);

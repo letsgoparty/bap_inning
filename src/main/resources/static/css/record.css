@@ -1,3 +1,4 @@
+
 ol,
 ul {
     list-style: none
@@ -62,7 +63,8 @@ ul {
 .MatchBox_match_item__31PMw {
     position: relative;
     overflow: hidden;
-    background-color: var(--card-text-white)
+    background-color: var(--card-text-white);
+    border-radius: 15px;
 }
 
 .MatchBox_match_item__31PMw+.MatchBox_match_item__31PMw {

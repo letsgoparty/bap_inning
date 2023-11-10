@@ -22,6 +22,7 @@ import com.app.dto.MemberDTO;
 import com.app.dto.PlayerDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.dto.likePlayerDTO;
 import com.app.service.MemberService;
 import com.app.service.PlayerService;
 import com.app.service.ScrapingService;
@@ -149,13 +150,10 @@ public class TeamController {
 	}
 
 	@GetMapping("/playerInfo")
-	public String playerInfo(String player, Model model, HttpSession session) {
-		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
-		int myTeam = mdto.getTeam_code();
-		String selectedTeam = teamService.team_name(myTeam);
+	public String playerInfo(String player, String team, Model model) {
 
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("team", selectedTeam);
+		map.put("team", team);
 		map.put("player", player);
 		PlayerDTO dto = playerService.find_player(map);
 		model.addAttribute("dto", dto);
@@ -212,6 +210,44 @@ public class TeamController {
 			return recordHtml;
 		} else {
 			return record;
+		}
+	}
+	
+	@GetMapping("/likePlayer")
+	@ResponseBody
+	public String likePlayer(likePlayerDTO dto, HttpSession session) {
+		MemberDTO mDTO = (MemberDTO) session.getAttribute("login");
+		dto.setUserid(mDTO.getUserid());	
+		int n = playerService.like_player(dto);
+		
+		if(n>0) {
+			n = playerService.plus_likeCnt(dto);
+			return dto.getPlayer()+"의 팬이 되었습니다.";
+		} else {
+			return "팬 등록을 실패하였습니다.";
+		}
+	}
+	
+	@RequestMapping("/myPlayer")
+	public String myPlayer(HttpSession session, Model model) {
+		
+		MemberDTO mDTO = (MemberDTO) session.getAttribute("login");
+		List<PlayerDTO> list = playerService.find_myPlayer(mDTO.getUserid());
+		model.addAttribute("list", list);
+		return "/team/myPlayer";
+	}
+	
+	@GetMapping("/deletePlayer")
+	@ResponseBody
+	public String deletePlayer(likePlayerDTO dto, HttpSession session) {
+		MemberDTO mDTO = (MemberDTO) session.getAttribute("login");
+		dto.setUserid(mDTO.getUserid());	
+		int n = playerService.deletePlayer(dto);
+		if(n>0) {
+			n = playerService.minus_likeCnt(dto);
+			return dto.getPlayer()+"의 팬이 해제되었습니다.";
+		} else {
+			return "팬 해제를 실패하였습니다.";
 		}
 	}
 }

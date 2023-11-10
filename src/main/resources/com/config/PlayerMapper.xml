@@ -74,4 +74,23 @@
 	<insert id="saveRecord" parameterType="hashmap">
 		insert into record values(#{day}, #{html})
 	</insert>
+	<insert id="like_player" parameterType="likePlayerDTO">
+		insert into like_player values(#{userid}, #{team}, #{player})
+	</insert>
+	<select id="find_myPlayer" parameterType="string" resultType="PlayerDTO">
+		select * from like_player natural join player where userid=#{userid}
+	</select>
+	<delete id="deletePlayer" parameterType="likePlayerDTO">
+		delete from like_player where userid=#{userid} and team=#{team} and player=#{player}
+	</delete>
+	<update id="plus_likeCnt" parameterType="likePlayerDTO">
+		update player
+		set like_cnt = like_cnt + 1
+		where team=#{team} and player=#{player}
+	</update>
+		<update id="minus_likeCnt" parameterType="likePlayerDTO">
+		update player
+		set like_cnt = like_cnt - 1
+		where team=#{team} and player=#{player}
+	</update>
 </mapper>

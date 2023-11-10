@@ -37,6 +37,7 @@
 					<li class="list-group-item"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item active"><a href="rank">팀 순위</a></li>
 					<li class="list-group-item"><a href="players">선수 정보</a></li>
+					<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
 				</ul>
 			</aside>
 			<div class="input-form-background col-md-9"

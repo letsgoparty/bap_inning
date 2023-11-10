@@ -8,76 +8,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/sidebar.css" rel="stylesheet" />
 <title>대전 한화생명 이글스파크 주변 맛집 지도</title>
+<style>
+</style>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <body>
-        <div class="sidebar" id="sidebar">
-            <!-- 가게 정보 띄우기  -->
-            <form action="r_reviewList" method="get">
-                <input type="hidden" id="res_id" name="res_id">
-                <div class="card mt-5">
-                    <div id="res_image"></div>
-                    <div class="card-body">
-                        <h1 class="card-title mt-3 mb-4" id="res_name"></h1>
-                        <div>
-                            <img src="images/icon/icon1.png" width="13" height="13"> <span id="res_addr"></span>
-                            <p></p>
-                            <img src="images/icon/icon2.png" width="13" height="13"> <span
-                                style="font-family: 'KBO-Dia-Gothic_light';"> <span class="location">한화생명 이글스파크</span>에서 걸어서
-                                <span id="distance"></span>분
-                            </span>
-                        </div>
-                        <p></p>
-                        <img src="images/icon/icon3.png" width="13" height="13">  <span
+<body>
+	<div class="sidebar" id="sidebar">
+		<!-- 가게 정보 띄우기  -->
+		<form action="r_reviewList" method="get">
+			<input type="hidden" id="res_id" name="res_id">
+			<div class="card mt-5">
+				<div id="res_image"></div>
+				<div class="card-body">
+					<h1 class="card-title mt-3 mb-4" id="res_name"></h1>
+					<div>
+						<img src="images/icon/icon1.png" width="13" height="13"> <span
+							id="res_addr"></span>
+						<p></p>
+						<img src="images/icon/icon2.png" width="13" height="13"> <span
+							style="font-family: 'KBO-Dia-Gothic_light';"> <span
+							class="location">한화생명 이글스파크</span>에서 걸어서 <span id="distance"></span>분
+						</span>
+					</div>
+					<p></p>
+					<img src="images/icon/icon3.png" width="13" height="13"> <span
 						id="rating">&nbsp;</span>
-                        <p class="card-text mt-3" id="res_content"></p>
-                        <button type="submit" class="btn btn-primary mt-3 mb-3" id="review_btn">리뷰 보러가기</button>
-                        <button id="cancel" class="btn btn-primary mx-3">닫기</button>
-                           <button id="like_btn" class="btn btn-primary mt-3 me-3" style="float: right;">
-                                <img src="images/icon/dislike_icon.png" width=20 height=20>
-                            </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-          <!--  전체 리스트 사이드바  -->
-            <div class="sidebar" id="allinfo_sidebar">
-                <div id="all_info"></div>
-            </div>
-            <!--  한식 리스트 사이드바  -->
-            <div class="sidebar" id="KORinfo_sidebar">
-                <div id="KOR_info"></div>
-            </div>
-            <!--  양식 리스트 사이드바  -->
-            <div class="sidebar" id="USAinfo_sidebar">
-                <div id="USA_info"></div>
-            </div>
-            <!--  중식 리스트 사이드바  -->
-            <div class="sidebar" id="CHNinfo_sidebar">
-                <div id="CHN_info"></div>
-            </div>
-            <!--  일식 리스트 사이드바  -->
-            <div class="sidebar" id="JPNinfo_sidebar">
-                <div id="JPN_info"></div>
-            </div>
-            <!--  카페 리스트 사이드바  -->
-            <div class="sidebar" id="CAFEinfo_sidebar">
-                <div id="CAFE_info"></div>
-            </div>
-            <!--  패스트푸드 리스트 사이드바  -->
-            <div class="sidebar" id="FFinfo_sidebar">
-                <div id="FF_info"></div>
-            </div>
-            <div class="mt-3 mb-2" id="containerDiv">
-                <button class="btn btn-primary mb-2 category" id="find_all">맛집 전체보기</button>
-                <button class="btn btn-primary mb-2 category" id="find_KOR">🥘 한식</button>
-                <button class="btn btn-primary mb-2 category" id="find_USA">🍖 양식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CHN">🥟 중식</button>
-                <button class="btn btn-primary mb-2 category" id="find_JPN">🍣 일식</button>
-                <button class="btn btn-primary mb-2 category" id="find_CAFE">☕️ 카페</button>
-                <button class="btn btn-primary mb-2 category" id="find_FF">🍔 패스트푸드</button>
-                <div id="googleMap" style="width: 100%; height: 700px;"></div>
-            </div>
+					<p class="card-text mt-3" id="res_content"></p>
+					<button type="submit" class="btn btn-primary mt-3 mb-3"
+						id="review_btn">리뷰 보러가기</button>
+					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
+					<button id="like_btn" class="btn btn-primary mt-3 me-3"
+						style="float: right;">
+						<img src="images/icon/dislike_icon.png" width=20 height=20>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--  전체 리스트 사이드바  -->
+	<div class="sidebar" id="allinfo_sidebar">
+		<div id="all_info"></div>
+	</div>
+	<!--  한식 리스트 사이드바  -->
+	<div class="sidebar" id="KORinfo_sidebar">
+		<div id="KOR_info"></div>
+	</div>
+	<!--  양식 리스트 사이드바  -->
+	<div class="sidebar" id="USAinfo_sidebar">
+		<div id="USA_info"></div>
+	</div>
+	<!--  중식 리스트 사이드바  -->
+	<div class="sidebar" id="CHNinfo_sidebar">
+		<div id="CHN_info"></div>
+	</div>
+	<!--  일식 리스트 사이드바  -->
+	<div class="sidebar" id="JPNinfo_sidebar">
+		<div id="JPN_info"></div>
+	</div>
+	<!--  카페 리스트 사이드바  -->
+	<div class="sidebar" id="CAFEinfo_sidebar">
+		<div id="CAFE_info"></div>
+	</div>
+	<!--  패스트푸드 리스트 사이드바  -->
+	<div class="sidebar" id="FFinfo_sidebar">
+		<div id="FF_info"></div>
+	</div>
+	<div class="mt-3 mb-2" id="containerDiv">
+		<button class="btn btn-primary mb-2 category" id="find_all">맛집
+			전체보기</button>
+		<button class="btn btn-primary mb-2 category" id="find_KOR">🥘
+			한식</button>
+		<button class="btn btn-primary mb-2 category" id="find_USA">🍖
+			양식</button>
+		<button class="btn btn-primary mb-2 category" id="find_CHN">🥟
+			중식</button>
+		<button class="btn btn-primary mb-2 category" id="find_JPN">🍣
+			일식</button>
+		<button class="btn btn-primary mb-2 category" id="find_CAFE">☕️
+			카페</button>
+		<button class="btn btn-primary mb-2 category" id="find_FF">🍔
+			패스트푸드</button>
+		<div id="googleMap" style="width: 100%; height: 700px;"></div>
+	</div>
 	<script>
 
     // '찜하기' 버튼
@@ -450,7 +462,8 @@
             window.initMap = initMap;
 	
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap"></script>
 </body>
 
 </html>

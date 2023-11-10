@@ -29,13 +29,160 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <style>
-th:nth-child(7) {
-	max-width: 100px;
+th:first-child, th:nth-child(4), th:nth-child(5) {
+	max-width: 70px;
 }
-th:nth-child(2) {
-	max-width: 120px;
+
+th:nth-child(2), th:nth-child(3) {
+	max-width: 250px;
+}
+
+input[type=file] {
+	display: none;
+}
+
+.imgs_wrap {
+	border: 1px solid #d4d4d4;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin: 3% auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
+}
+
+.imgs_wrap img {
+	max-width: 150px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.myform {
+	width: 70%;
+	margin: 3% auto; 
+	height: auto;
+	padding: 50px;
+	box-sizing: border-box;
+	border: solid 1.5px #D3D3D3;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.5);
+	resize: none;
+}
+
+.container {
+	display: flex;
+	justify-content: center; /* 수평 가운데 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
 }
 </style>
+<script>
+
+//이미지 정보들을 담을 배열
+var sel_files = [];
+
+$(document).ready(function() {
+  $("#input_imgs").on("change", handleImgFileSelect);
+  
+  const fileInput = $("#input_imgs");
+
+  const uploadButton = $("#uploadButton");
+
+fileInput.change(function() {
+  // 선택한 파일을 FormData 객체에 추가
+  const selectedFiles = fileInput[0].files;
+  if (selectedFiles.length > 0) {
+      const formData = new FormData();
+      for (let i = 0; i < selectedFiles.length; i++) {
+          formData.append("file", selectedFiles[i]);
+      }
+      // formData를 전역 변수로 설정
+      window.uploadFormData = formData;
+  }
+});
+
+  // 업로드 버튼 클릭 시
+  $("#uploadButton").on("click",function(e) {
+		e.preventDefault();
+      const formData = window.uploadFormData;
+
+      if (formData) {
+          $.ajax({
+              url: "../admin/LodUploadAction",
+              type: "POST",
+              data: formData,
+              processData: false,
+              contentType: false,
+              success: function(response) {
+                	var lod_image = "lod"+response;
+					$("#upload_lod_id").val(response);
+					$("#upload_lod_image").val(lod_image);
+					
+					 Swal.fire({
+				 	        text: "이미지를 업로드 하였습니다. 숙소 등록을 완료해주세요",
+				 	        icon: 'success',
+				 	        confirmButtonColor: '#3085d6',
+				 	        button: {
+				 	            text: '확인',
+				 	        }
+						 });
+
+              },
+              error: function() {
+                  // 업로드가 실패한 경우
+                  console.error("파일 업로드 실패");
+              }
+          });
+      } else {
+          // 파일을 선택하지 않은 경우 경고 메시지 표시
+          alert("파일을 선택해주세요.");
+      }
+  });
+}); 
+
+function fileUploadAction() {
+  console.log("fileUploadAction");
+  $("#input_imgs").trigger('click');
+}
+
+function handleImgFileSelect(e) {
+  // 이미지 정보들을 초기화
+  sel_files = [];
+  $(".imgs_wrap").empty();
+
+  var files = e.target.files;
+  var filesArr = Array.prototype.slice.call(files);
+
+  var index = 0;
+  filesArr.forEach(function(f) {
+      if(!f.type.match("image.*")) {
+          alert("이미지 파일만 선택 가능합니다.");
+          return;
+      }
+
+      sel_files.push(f);
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+          var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+          $(".imgs_wrap").append(html);
+          index++;
+
+      }
+      reader.readAsDataURL(f);
+      
+  });
+}
+
+function deleteImageAction(index) {
+  console.log("index : "+index);
+  console.log("sel length : "+sel_files.length);
+
+  sel_files.splice(index, 1);
+
+  var img_id = "#img_id_"+index;
+  $(img_id).remove(); 
+}
+</script>
 
 </head>
 
@@ -91,8 +238,8 @@ th:nth-child(2) {
 				</div></li>
 
 			<!--  Place -->
-			<li class="nav-item active"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapsePages"
+			<li class="nav-item active"><a class="nav-link collapsed"
+				href="#" data-toggle="collapse" data-target="#collapsePages"
 				aria-expanded="true" aria-controls="collapsePages"> <i
 					class="fas fa-fw fa-folder"></i> <span>Place</span>
 			</a>
@@ -145,9 +292,10 @@ th:nth-child(2) {
 				<!-- 테이블 -->
 				<div class="container-fluid" style="font-family: 'SUITE-Regular';">
 					<!-- Page Heading -->
-					<div style="display: flex; justify-content: space-between; align-items: center;">
-						<h1 class="h3 mb-2 text-gray-800 mb-4 mx-2">음식점</h1>
-						<button class="btn btn-primary mb-2">등록</button>
+					<div
+						style="display: flex; justify-content: space-between; align-items: center;">
+						<h1 class="h3 mb-2 text-gray-800 mb-4 mx-2">숙소</h1>
+						<button class="btn btn-primary mb-2" id="enrollBtn">등록</button>
 					</div>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -193,7 +341,11 @@ th:nth-child(2) {
 												<td>${dto.team_code}</td>
 												<td>${dto.rating}</td>
 												<td>${dto.lodging_url}</td>
-												<td><button class="btn btn-primary deleteBtn" data-lod-name="${dto.lodging_name}" style="background-color:rgb(181,181,181); border-color:rgb(181,181,181);"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button></td>
+												<td><button class="btn btn-primary deleteBtn"
+														data-lod-name="${dto.lodging_name}"
+														style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">
+														<i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+													</button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -229,7 +381,7 @@ th:nth-child(2) {
 		</div>
 	</div>
 
-	<!-- 음식점 Modal -->
+	<!-- 숙소 Modal -->
 	<div class="modal" id="modal" role="dialog"
 		aria-labelledby="remoteModalLabel" aria-hidden="true">
 		<div class="modal-dialog" style="width: 850px;">
@@ -243,45 +395,114 @@ th:nth-child(2) {
 					<div role="content">
 						<div class="widget-body">
 							<p id="lod_imageTag"></p>
-						가게명 <input class="form-control mb-2" id="lodging_name">
-						주 소 <input class="form-control mb-2" id="lodging_addr">
-						거 리 <input class="form-control mb-2" id="distance">
-						카테고리  <select class="form-control mb-2" id="category">
-  								<option value="호텔">호텔</option>
-  								<option value="모텔">모텔</option>
-								</select>
+							가게명 <input class="form-control mb-2" id="lodging_name"> 주
+							소 <input class="form-control mb-2" id="lodging_addr"> 거 리
+							<input class="form-control mb-2" id="distance"> 카테고리 <select
+								class="form-control mb-2" id="category">
+								<option value="호텔">호텔</option>
+								<option value="모텔">모텔</option>
+							</select> 주변 구장 <select class="form-control mb-2" id="team">
+								<option value="1">SSG 랜더스필드</option>
+								<option value="2">고척 스카이돔</option>
+								<option value="3">잠실종합운동장</option>
+								<option value="4">KT위즈파크</option>
+								<option value="5">KIA챔피언스필드</option>
+								<option value="6">NC파크</option>
+								<option value="7">삼성라이온즈파크</option>
+								<option value="8">사직야구장</option>
+								<option value="10">한화생명 이글스파크</option>
 
-						주변 구장 <select class="form-control mb-2" id="team">
-  								<option value="1">SSG 랜더스필드</option>
-  								<option value="2">고척 스카이돔</option>
-  								<option value="3">잠실종합운동장</option>
-  								<option value="4">KT위즈파크</option>
-  								<option value="5">KIA챔피언스필드</option>
-  								<option value="6">NC파크</option>
-  								<option value="7">삼성라이온즈파크</option>
-  								<option value="8">사직야구장</option>
-  								<option value="10">한화생명 이글스파크</option>
-
-								</select>
-							예매 사이트  <input class="form-control mb-2" id="lodging_url">
+							</select> 예약 사이트 <input class="form-control mb-2" id="lodging_url">
 							별점 <input class="form-control mb-2" id="rating" disabled>
-							상세 설명 <textarea class="form-control mb-2" rows="3" id="lodging_content"></textarea>
-							
-							<input type="hidden" id="lodging_id">
-							<input type="hidden" id="lodging_image">
+							상세 설명
+							<textarea class="form-control mb-2" rows="3" id="lodging_content"></textarea>
+
+							<input type="hidden" id="lodging_id"> <input
+								type="hidden" id="lodging_image">
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="updateLod">수정</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color:rgb(181,181,181); border-color:rgb(181,181,181);">닫기</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">닫기</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	</div>
+	<!-- 숙소 등록 Modal -->
+	<form action="../admin/enrollLod" method="post">
+		<input type="hidden" id="upload_lod_id" name="lodging_id"> <input
+			type="hidden" id="upload_lod_image" name="lodging_image">
+		<div class="modal" id="enrollModal" role="dialog"
+			aria-labelledby="remoteModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="width: 850px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1>숙소 등록하기</h1>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+					</div>
+					<div class="modal-body">
+						<div role="content">
+							<div class="widget-body">
 
+								숙소명 <input class="form-control mb-2" id="lod_name" name="lodging_name" autocomplete="off"> 
+								주 소 <input class="form-control mb-2" id="lod_addr" name="lodging_addr" autocomplete="off"> 
+								거 리 (분)<input class="form-control mb-2" id="distance" name="distance" autocomplete="off"> 
+								카테고리 <select class="form-control mb-2" id="category" name="category">
+									<option value="호텔">호텔</option>
+									<option value="모텔">모텔</option>
+								</select> 
+								주변 구장 <select class="form-control mb-2" id="team" name="team_code">
+									<option value="1">SSG 랜더스필드</option>
+									<option value="2">고척 스카이돔</option>
+									<option value="3">잠실종합운동장</option>
+									<option value="4">KT위즈파크</option>
+									<option value="5">KIA챔피언스필드</option>
+									<option value="6">NC파크</option>
+									<option value="7">삼성라이온즈파크</option>
+									<option value="8">사직야구장</option>
+									<option value="10">한화생명 이글스파크</option>
+								</select> 
+								상세 설명
+								<textarea class="form-control mb-2" rows="3" id="lod_content" name="lodging_content"></textarea>
+								예약 사이트 URL
+								 <input class="form-control mb-2" id="lodging_url" name="lodging_url" autocomplete="off"> 
+
+								<div>
+									<p>사진(*.PNG)을 등록해주세요
+									 <i class="fa-solid fa-triangle-exclamation"
+							style="color: #c2c2c2;"></i> 최대 한 장만 가능</p>
+									<div class="input_wrap">
+										<a href="javascript:" onclick="fileUploadAction()"
+											class="btn btn-primary">사진 선택</a> 
+											<input type="file" id="input_imgs" name="file" multiple />
+									</div>
+								</div>
+
+								<div>
+									<div class="imgs_wrap">
+										<img id="img" />
+									</div>
+								</div>
+
+								<button class="btn btn-primary" id="uploadButton">업로드</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">등록</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal"
+							style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 	<script>
 		$(document).ready(function() {
 			$(document).on("click", ".open_modal", function(e) {
@@ -295,7 +516,7 @@ th:nth-child(2) {
 						lodging_name : lodging_name
 					},
 					success : function(data) {
-                        var imagePath = '../images/lodging_images/' + data.lodging_image + '.png';
+						var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + data.lodging_image + '.png';
                         var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">';
                         
 						$("#modal").modal("show");
@@ -405,6 +626,9 @@ th:nth-child(2) {
 		                }
 					});
 		        });
+				$("#enrollBtn").on("click", function(){
+					$("#enrollModal").modal("show");
+				});
 		});
 	</script>
 	<script src="../js/admin/admin.js"></script>

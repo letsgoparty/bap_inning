@@ -42,7 +42,7 @@
 			 	            text: '확인',
 			 	            closeModal: true 
 			 	        }
-					 })
+					 });
 				},
 				error : function(error) {
 					Swal.fire({

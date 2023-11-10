@@ -10,6 +10,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>선수 상세정보</title>
 <link href="css/playerInfo.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('.likeBtn').hover(function() {
+			$(this).css('cursor', 'pointer');
+		}, function() {
+			$(this).css('cursor', 'auto');
+		});
+
+		$('.likeBtn').click(function() {
+			
+			var player = $(this).data("player");
+			var team = $(this).data("team");
+			console.log(player);
+			console.log(team);
+			
+			$.ajax({
+				url : 'likePlayer',
+				method : 'GET',
+				data : {
+					player: player,
+					team: team
+				},
+				success : function(response) {
+					Swal.fire({
+			 	        text: response,
+			 	        icon: 'success',
+			 	        confirmButtonColor: '#3085d6',
+			 	        button: {
+			 	            text: '확인',
+			 	            closeModal: true 
+			 	        }
+					 })
+				},
+				error : function(error) {
+					Swal.fire({
+			 	        text: '이미 팬으로 등록된 선수입니다.',
+			 	        icon: 'warning',
+			 	        confirmButtonColor: '#3085d6',
+			 	        button: {
+			 	            text: '확인',
+			 	            closeModal: true 
+			 	        }
+					 })
+				}
+			});
+
+
+		});
+	});
+</script>
 <style>
 ul {
 	list-style: none;
@@ -19,29 +70,6 @@ h3, h4 {
 	color: rgb(0, 0, 0, 0.8) !important;
 	text-shadow: 2px 2px 4px rgba(188, 188, 188);
 	font-family: 'KBO-Dia-Gothic_bold' !important;
-}
-
-aside a {
-	text-decoration: none !important;
-	color: black !important;
-}
-
-.list-group-item:hover {
-	background-color: rgb(199, 199, 199, 0.5) !important;
-	font-color: black !important;
-	border-radius: 5px;
-}
-
-.list-group .list-group-item {
-	border: none;
-	background-color: rgba(248, 249, 250, 0.5);
-}
-
-.list-group-item.active {
-	color: white;
-	background-color: rgb(199, 199, 199, 0.7) !important;
-	border-color: #c5c5c5 !important;
-	border-radius: 5px;
 }
 
 a {
@@ -54,9 +82,10 @@ a {
 		<div class="player_dic">
 			<div class="txt_wrap">
 				<a href="players">
-					<h5 style="margin-bottom: 50px !important; color: #a7a8aa;">
-						<i class="fa-solid fa-angles-left" style="color: #a7a8aa;"></i>선수단
-						목록
+					<h5 style="margin-bottom: 20px !important; color: #a7a8aa;">
+						<i class="fa-solid fa-angles-left" style="color: #a7a8aa;"></i>
+						&nbsp;<a href="javascript:history.back()" style="color: #a7a8aa;">이전페이지</a>
+						
 					</h5>
 				</a>
 				<p class="role" id="POSITION">
@@ -73,6 +102,9 @@ a {
 						value="${dto.player}">
 				</h3>
 				<p>${dto.name}</p>
+				<div class="likeBtn" style="font-size: 1.8rem; display: inline" data-player=${dto.player} data-team=${dto.team}>
+					<i class="fa-solid fa-heart" style="color: #e86464;"></i> 
+				</div><span style="font-size: 1.5rem!important; font-family: 'SUITE-Regular'">${dto.like_cnt}</span>
 
 			</div>
 			<div class="song_wrap"></div>

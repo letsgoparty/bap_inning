@@ -128,13 +128,14 @@
 					<li class="list-group-item active"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item"><a href="rank">팀 순위</a></li>
 					<li class="list-group-item"><a href="players">선수 정보</a></li>
+					<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
 				</ul>
 			</aside>
 			<div class="input-form-background col-md-9"
 				style="margin: 0px !important;">
 				<div class="input-form">
 					<h3 class="mb-2" style="font-family: 'KBO-Dia-Gothic_bold'">
-					<i class="fa-solid fa-video" style="color: #c7c7c7;"></i>&nbsp;
+						<i class="fa-solid fa-video" style="color: #c7c7c7;"></i>&nbsp;
 						<c:choose>
 							<c:when test="${myTeam eq 'SSG'}">
         							${myTeam} 랜더스
@@ -169,7 +170,9 @@
 						</c:choose>
 						의 하이라이트
 					</h3>
-					<div class="video"><ul id="ulHighlight" class="boardMovie">${highlight}</ul></div>
+					<div class="video">
+						<ul id="ulHighlight" class="boardMovie">${highlight}</ul>
+					</div>
 				</div>
 			</div>
 		</div>

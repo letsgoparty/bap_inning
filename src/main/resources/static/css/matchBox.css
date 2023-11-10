@@ -36,6 +36,40 @@ html.QATAR2022 .MatchBox_comp_match_box__1oRmr {
     background-position: bottom,0
 }
 
+@media (min-width: 1024px)
+.Home_main_section__y9jR4 .Home_game_head__3EEZZ:not(.Home_type_ie__3vFri) {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+@media (min-width: 1024px)
+.Home_main_section__y9jR4 .Home_game_head__3EEZZ {
+    position: relative;
+}
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr .MatchBox_home__MPL6D {
+    padding-right: 73px;
+}
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr .MatchBox_away__1rDsC {
+    padding-left: 73px;
+}
+
+@media (min-width: 768px)
+.MatchBox_date__1bJ9G, .MatchBox_stadium__17mQ4 {
+    font-size: 13px;
+    line-height: 15px;
+}
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr {
+    height: 91px;
+}
+
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr .MatchBox_info__2l4DE {
+    bottom: 11px;
+}
+
 @media(min-width: 1024px) {
     html.QATAR2022 .MatchBox_comp_match_box__1oRmr {
         border-top-color:#802045;
@@ -1240,11 +1274,12 @@ html.QATAR2022 .ScoreBox_score_wrap__3akbW:first-child {
 
     .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_away__26sht,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_home__2uCuR {
         font-size: 13px;
-        line-height: 16px
+        line-height: 16px;
+        margin-top:5px;
     }
 
     .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_home__2uCuR {
-        padding: 10px 0 0
+        padding: 1px 0 0
     }
 
     .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0:after {

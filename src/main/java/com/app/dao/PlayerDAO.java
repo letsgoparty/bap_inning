@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.app.dto.PlayerDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.dto.likePlayerDTO;
 
 @Repository
 public class PlayerDAO {
@@ -78,6 +79,26 @@ public class PlayerDAO {
 	
 	public int saveRecord(HashMap<String, String> map) {
 		return session.insert("PlayerMapper.saveRecord", map);
+	}
+	
+	public int like_player(likePlayerDTO dto) {
+		return session.insert("PlayerMapper.like_player", dto);
+	}
+	
+	public List<PlayerDTO> find_myPlayer(String userid) {
+		return session.selectList("PlayerMapper.find_myPlayer", userid);
+	}
+	
+	public int deletePlayer(likePlayerDTO dto) {
+		return session.delete("PlayerMapper.deletePlayer", dto);
+	}
+	
+	public int plus_likeCnt(likePlayerDTO dto) {
+		return session.update("PlayerMapper.plus_likeCnt", dto);
+	}
+	
+	public int minus_likeCnt(likePlayerDTO dto) {
+		return session.update("PlayerMapper.minus_likeCnt", dto);
 	}
 	
 }

@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>경기 일정</title>
+<link rel="stylesheet" href="css/baseball.css">
 <style>
 .input-form {
 	max-width: 800px;
@@ -62,8 +63,8 @@
 }
 
 .team-vs .team .club-logo img {
-	max-height: 100px; /* 원하는 최대 높이로 조정하세요 */
-	width: auto; /* 가로 크기를 자동으로 조정하여 비율 유지 */
+	max-height: 100px;
+	width: auto;
 }
 
 .team-box {
@@ -135,35 +136,6 @@ table.tScore thead th {
 	background-color: #ffe992;
 }
 
-h3, h4 {
-	color: rgb(0, 0, 0, 0.8) !important;
-	text-shadow: 2px 2px 4px rgba(188, 188, 188);
-	font-family: 'KBO-Dia-Gothic_bold' !important;
-}
-
-aside a {
-	text-decoration: none !important;
-	color: black !important;
-}
-
-.list-group-item:hover {
-	background-color: rgb(199, 199, 199, 0.5) !important;
-	font-color: black !important;
-	border-radius: 5px;
-}
-
-.list-group .list-group-item {
-	border: none;
-	background-color: rgba(248, 249, 250, 0.5);
-}
-
-.list-group-item.active {
-	color: white;
-	background-color: rgb(199, 199, 199, 0.7) !important;
-	border-color: #c5c5c5 !important;
-	border-radius: 5px;
-}
-
 .tScore {
 	display: none;
 }
@@ -233,16 +205,18 @@ aside a {
 				<hr style="border: 2px solid #000;">
 				<ul class="list-group">
 					<li class="list-group-item active"><a href="schedule">경기일정</a></li>
-					<li class="list-group-item"><a href="record">경기결과</a></li>
+					<li class="list-group-item"><a href="record">경기기록</a></li>
 					<li class="list-group-item"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item"><a href="rank">팀 순위</a></li>
 					<li class="list-group-item"><a href="players">선수 정보</a></li>
+					<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
 				</ul>
 			</aside>
 			<div class="input-form-background col-md-9"
 				style="margin: 0px !important;">
 				<div class="input-form">
-					<h3><i class="fa-solid fa-calendar" style="color: #b8babc;"></i>&nbsp;
+					<h3>
+						<i class="fa-solid fa-calendar" style="color: #b8babc;"></i>&nbsp;
 						<c:choose>
 							<c:when test="${myTeam eq 'SSG'}">
         							${myTeam} 랜더스
@@ -355,7 +329,10 @@ aside a {
 																		<span>${number1} vs ${number2}</span>
 																	</c:otherwise>
 																</c:choose>
+																<div class="time"
+																	style="font-size: 1rem; color: rgb(41, 79, 170);">${schedule.time}</div>
 															</div>
+
 															<div class="team" id="team2">
 																<div class="club-logo mx-5">
 																	<img alt="${schedule.team2}"

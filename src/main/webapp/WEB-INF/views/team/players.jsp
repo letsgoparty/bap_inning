@@ -30,21 +30,27 @@
 
 		$('.brick-link').click(function() {
 			var player = $(this).data('player');
+			var team = $(this).data('team');
 			console.log(player);
 
-			var form = $('<form>', {
-				action : 'playerInfo',
-				method : 'GET'
-			});
+		    var form = $('<form>', {
+		        action: 'playerInfo',
+		        method: 'GET'
+		    });
 
-			var input = $('<input>', {
-				type : 'hidden',
-				name : 'player',
-				value : player
-			});
+		    $('<input>').attr({
+		        type: 'hidden',
+		        name: 'player',
+		        value: player
+		    }).appendTo(form);
 
-			form.append(input);
-			form.appendTo('body').submit();
+		    $('<input>').attr({
+		        type: 'hidden',
+		        name: 'team',
+		        value: team
+		    }).appendTo(form);
+
+		    form.appendTo('body').submit();
 		});
 
 		$("a:contains('전체')").click(function() {
@@ -84,6 +90,7 @@
 					<li class="list-group-item"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item"><a href="rank">팀 순위</a></li>
 					<li class="list-group-item active"><a href="players">선수 정보</a></li>
+					<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
 				</ul>
 			</aside>
 			<div class="input-form-background col-md-9"
@@ -111,12 +118,14 @@
 										data-height="260" data-width="300" data-state="start"
 										style="width: 350.33px; height: 268.44px; display: block;"><a
 										id="teamMemberDetail" class="brick-link" href="#"
-										data-player="${dto.player}">
+										data-player="${dto.player}" data-team="${dto.team}">
 											<div class="bg"></div>
 											<div class="txt_wrap">
 												<p class="number">${dto.player_no}</p>
 												<h3 class="player">${dto.player}</h3>
-												<p style="font-size: 0.8rem">${dto.name}</p>
+												<p style="font-size: 0.8rem; margin-bottom:0px !important;">${dto.name}</p>
+												<i class="fa-solid fa-heart" style="color: #e86464;"></i> 
+												<span class="mb-2" style="font-size: 0.9rem!important; font-family: 'SUITE-Regular'">${dto.like_cnt}</span>
 												<p class="position">${dto.position}</p>
 											</div>
 											<div class="img_wrap">

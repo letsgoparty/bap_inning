@@ -10,6 +10,7 @@ import com.app.dao.PlayerDAO;
 import com.app.dto.PlayerDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
+import com.app.dto.likePlayerDTO;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
@@ -60,6 +61,31 @@ public class PlayerServiceImpl implements PlayerService {
 	@Override
 	public int saveRecord(HashMap<String, String> map) {
 		return dao.saveRecord(map);
+	}
+
+	@Override
+	public int like_player(likePlayerDTO dto) {
+		return dao.like_player(dto);
+	}
+
+	@Override
+	public List<PlayerDTO> find_myPlayer(String userid) {
+		return dao.find_myPlayer(userid);
+	}
+
+	@Override
+	public int deletePlayer(likePlayerDTO dto) {
+		return dao.deletePlayer(dto);
+	}
+
+	@Override
+	public int plus_likeCnt(likePlayerDTO dto) {
+		return dao.plus_likeCnt(dto);
+	}
+
+	@Override
+	public int minus_likeCnt(likePlayerDTO dto) {
+		return dao.minus_likeCnt(dto);
 	}
 
 }

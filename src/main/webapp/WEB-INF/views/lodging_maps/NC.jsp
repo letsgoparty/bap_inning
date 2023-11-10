@@ -154,7 +154,7 @@
                     $.each(data, function (idx, ele) {
 
                         var cardId = 'card_' + idx;
-                        var imagePath = 'images/lodging_images/' + ele.lodging_image + '.png';
+                        var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + ele.lodging_image + '.png';
                         var lodging_name = ele.lodging_name;
                         var lodging_url = ele.lodging_url;
 
@@ -227,7 +227,7 @@
                     // 성공적으로 데이터를 받아왔을 때의 처리
                     $.each(data, function (idx, ele) {
                         var cardId = 'card_' + idx;
-                        var imagePath = 'images/lodging_images/' + ele.lodging_image + '.png';
+                        var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + ele.lodging_image + '.png';
                         var lodging_name = ele.lodging_name;
 
                         var cardHtml = '<form id="' + cardId + '" action="l_reviewList" method="get">' +
@@ -355,7 +355,7 @@
                                     data: { lodging_name: lodging_name },
                                     success: function (data) {
                                         // 성공적으로 데이터를 받아왔을 때의 처리
-                                        var imagePath = 'images/lodging_images/' + data.lodging_image + '.png';
+                        var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + data.lodging_image + '.png';
                                         var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
                                         $('#lodging_image').html(imgTag);
                                         

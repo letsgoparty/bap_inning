@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="PlayerMapper">
-	<select id="find_LGplayer" resultType="PlayerDTO"
+	<select id="find_Allplayer" resultType="PlayerDTO"
 		parameterType="hashmap">
 	<![CDATA[
 	select * from player
@@ -23,6 +23,55 @@
 	<select id="find_player" parameterType="hashmap"
 		resultType="PlayerDTO">
 		select * from player
-		where player = #{player} and team = #{team}
+		where player = #{player} and team =
+		#{team}
 	</select>
+	<insert id="saveSchedule" parameterType="ScheduleDTO">
+		insert into schedule
+		values (#{day}, #{time}, #{team1}, #{vs}, #{team2}, #{location})
+	</insert>
+	<select id="findSchedule" resultType="ScheduleDTO">
+		select * from schedule
+		order by 1
+	</select>
+	<delete id="deleteSchedule">
+		delete from schedule
+	</delete>
+	<insert id="savePostSeason" parameterType="string">
+		insert into postseason
+		values (#{post})
+	</insert>
+	<select id="findPostSeason" resultType="string">
+		select * from postseason
+	</select>
+	<delete id="deletePostSeason">
+		delete from postseason
+	</delete>
+	<insert id="saveRank" parameterType="TeamDTO">
+		insert into regularseason
+		values (#{rank}, #{image}, #{title}, #{match}, #{victory},#{defeat},
+		#{draw},#{rate}, #{winning}, #{recent} )
+	</insert>
+	<select id="findRank" resultType="TeamDTO">
+		SELECT * FROM regularseason ORDER BY TO_NUMBER(rank)
+	</select>
+	<delete id="deleteRank">
+		delete from regularseason
+	</delete>
+	<insert id="saveHighlight" parameterType="string">
+		insert into highlight
+		values (#{highlight})
+	</insert>
+	<select id="findHighlight" resultType="string">
+		select * from highlight
+	</select>
+	<delete id="deleteHighlight">
+		delete from highlight
+	</delete>
+	<select id="findRecord" parameterType="string" resultType="string">
+		select html from record where day = #{day}
+	</select>
+	<insert id="saveRecord" parameterType="hashmap">
+		insert into record values(#{day}, #{html})
+	</insert>
 </mapper>

@@ -11,9 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>경기 일정</title>
-<link rel="icon" type="image/png" sizes="32x32"
-	href="images/icon/favicon-32x32.png">
-
 <style>
 .input-form {
 	max-width: 800px;
@@ -236,6 +233,7 @@ aside a {
 				<hr style="border: 2px solid #000;">
 				<ul class="list-group">
 					<li class="list-group-item active"><a href="schedule">경기일정</a></li>
+					<li class="list-group-item"><a href="record">경기결과</a></li>
 					<li class="list-group-item"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item"><a href="rank">팀 순위</a></li>
 					<li class="list-group-item"><a href="players">선수 정보</a></li>
@@ -244,7 +242,7 @@ aside a {
 			<div class="input-form-background col-md-9"
 				style="margin: 0px !important;">
 				<div class="input-form">
-					<h3 style="font-family: 'KBO-Dia-Gothic_bold'"><i class="fa-solid fa-calendar" style="color: #b8babc;"></i>&nbsp;
+					<h3><i class="fa-solid fa-calendar" style="color: #b8babc;"></i>&nbsp;
 						<c:choose>
 							<c:when test="${myTeam eq 'SSG'}">
         							${myTeam} 랜더스

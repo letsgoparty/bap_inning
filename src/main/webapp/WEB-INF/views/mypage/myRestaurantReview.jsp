@@ -117,57 +117,56 @@
     </tr>
     </c:forEach>
   </tbody>
-  <!-- 페이지 번호 -->
-						<tr>
-							<td colspan="6">
-								<div class="pagination">
-									<ul class="pagination">
-
-										<!-- 페이지네이션 -->
-
-										<li
-											class="page-item ${pageDTO.curPage == 1 ? 'disabled' : ''}">
-											<a class="page-link"
-											href="my_r_review?curPage=1&amount=${pageDTO.amount}">&laquo;</a>
-										</li>
-
-										<li class="page-item ${pageDTO.prev ? '' : 'disabled'}">
-											<a class="page-link"
-											href="my_r_review?curPage=${pageDTO.startPage-1}&amount=${pageDTO.amount}">&lsaquo;</a>
-										</li>
-
-
-										<c:forEach var="num" begin="${pageDTO.startPage}"
-											end="${pageDTO.endPage}">
-											<li
-												class="page-item ${num == pageDTO.curPage ? 'active' : ''}">
-												<a class="page-link"
-												href="my_r_review?curPage=${num}&amount=${pageDTO.amount}">${num}</a>
-											</li>
-										</c:forEach>
-
-
-										<li class="page-item ${pageDTO.next ? '' : 'disabled'}">
-											<a class="page-link"
-											href="my_r_review?curPage=${pageDTO.endPage+1}&amount=${pageDTO.amount}">&rsaquo;</a>
-										</li>
-
-
-										<li
-											class="page-item ${pageDTO.curPage == pageDTO.realEnd ? 'disabled' : ''}">
-											<a class="page-link"
-											href="my_r_review?curPage=${pageDTO.realEnd}&amount=${pageDTO.amount}">&raquo;</a>
-										</li>
-
-
-
-
-										<!-- 페이지네이션 -->
-  
-  <!-- 페이지 번호 -->
   
  
 </table>
+  <!-- 페이지 번호 -->
+			<div class="pagination">
+				<ul class="pagination">
+
+					<!-- 페이지네이션 -->
+
+					<li
+						class="page-item ${pageDTO.curPage == 1 ? 'disabled' : ''}">
+						<a class="page-link"
+						href="my_r_review?curPage=1&amount=${pageDTO.amount}">&laquo;</a>
+					</li>
+
+					<li class="page-item ${pageDTO.prev ? '' : 'disabled'}">
+						<a class="page-link"
+						href="my_r_review?curPage=${pageDTO.startPage-1}&amount=${pageDTO.amount}">&lsaquo;</a>
+					</li>
+
+
+					<c:forEach var="num" begin="${pageDTO.startPage}"
+						end="${pageDTO.endPage}">
+						<li
+							class="page-item ${num == pageDTO.curPage ? 'active' : ''}">
+							<a class="page-link"
+							href="my_r_review?curPage=${num}&amount=${pageDTO.amount}">${num}</a>
+						</li>
+					</c:forEach>
+
+
+					<li class="page-item ${pageDTO.next ? '' : 'disabled'}">
+						<a class="page-link"
+						href="my_r_review?curPage=${pageDTO.endPage+1}&amount=${pageDTO.amount}">&rsaquo;</a>
+					</li>
+
+
+					<li
+						class="page-item ${pageDTO.curPage == pageDTO.realEnd ? 'disabled' : ''}">
+						<a class="page-link"
+						href="my_r_review?curPage=${pageDTO.realEnd}&amount=${pageDTO.amount}">&raquo;</a>
+					</li>
+
+
+
+
+					<!-- 페이지네이션 -->
+					</ul>
+			</div>
+ <!-- 페이지 번호 -->
 </div>
    </div>
   </div>

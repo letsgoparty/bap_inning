@@ -63,6 +63,9 @@ nav {
 	z-index: 1030 !important;
 }
 
+.navbar {
+  background-color: rgba(248, 249, 250, 0.5) !important;
+}
 </style>
 <body id="page-top">
 	<jsp:include page="common/nav.jsp" flush="true" />

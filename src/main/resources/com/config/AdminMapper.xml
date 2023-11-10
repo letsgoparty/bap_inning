@@ -11,11 +11,13 @@
 		select * from Board
 		where board_num = #{board_num}
 	</select>
+	<select id="find_Comment" resultType="Reply">
+		select * from board_reviews
+	</select>
 	<select id="find_user" resultType="MemberDTO">
 		SELECT * FROM member
 		WHERE role
 		!= 'ADMIN'
-
 	</select>
 	<select id="find_user_board" parameterType="string"
 		resultType="int">
@@ -173,6 +175,11 @@
 		select * from board
 		where userid=#{userid}
 	</select>
+		<select id="find_commentInfo" parameterType="string"
+		resultType="Reply">
+		select * from board_reviews
+		where userid=#{userid}
+	</select>
 	<delete id="delete_board" parameterType="int">
 		delete from board
 		where
@@ -230,11 +237,23 @@
 		where password=#{password}
 	</update>
 	<select id="find_seq" resultType="int">
-		select res_seq.nextval from dual
+		select res_seq.nextval from
+		dual
+	</select>
+		<select id="find_seq2" resultType="int">
+		select lod_seq.nextval from
+		dual
 	</select>
 	<insert id="enroll_res" parameterType="RestaurantDTO">
-	insert into restaurant(res_id, res_name, res_addr, res_image, res_content, distance, category, team_code)
-values(#{res_id}, #{res_name}, #{res_addr}, #{res_image}, #{res_content}, #{distance}, #{category}, #{team_code})
-
+		insert into restaurant(res_id, res_name, res_addr, res_image, res_content,
+		distance, category, team_code)
+		values(#{res_id}, #{res_name}, #{res_addr}, #{res_image}, #{res_content}, #{distance},
+		#{category}, #{team_code})
+	</insert>
+	<insert id="enroll_lod" parameterType="LodgingDTO">
+		insert into lodging(lodging_id, lodging_name, lodging_addr, lodging_image, lodging_content, 
+		distance, lodging_url, category, team_code)
+		values(#{lodging_id}, #{lodging_name}, #{lodging_addr}, #{lodging_image}, #{lodging_content}, #{distance},
+		#{lodging_url}, #{category}, #{team_code})
 	</insert>
 </mapper>

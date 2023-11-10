@@ -18,11 +18,13 @@ import com.app.dto.LodReviewDTO;
 import com.app.dto.LodgingDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.RatingDTO;
+import com.app.dto.Reply;
 import com.app.dto.ResReviewDTO;
 import com.app.dto.RestaurantDTO;
 import com.app.dto.VisitDTO;
 import com.app.service.AdminService;
 import com.app.service.FindService;
+import com.app.service.LodUploadService;
 import com.app.service.ResUploadService;
 
 @Controller
@@ -36,6 +38,9 @@ public class AdminController {
 
 	@Autowired
 	ResUploadService Uservice;
+	
+	@Autowired
+	LodUploadService Lservice;
 
 	@RequestMapping("/admin/main")
 	public String main(Model m) {
@@ -66,6 +71,13 @@ public class AdminController {
 		return data;
 	}
 
+	@RequestMapping("/admin/comment")
+	public String comment(Model m) {
+		List<Reply> list = service.find_Comment();
+		m.addAttribute("list", list);
+		return "/admin/comment";
+	}
+	
 	@RequestMapping("/admin/user")
 	public String user(Model m) {
 		List<MemberDTO> list = service.find_user();
@@ -81,10 +93,6 @@ public class AdminController {
 		return "/admin/user";
 	}
 
-	@RequestMapping("/admin/comment")
-	public String comment() {
-		return "/admin/comment";
-	}
 
 	@RequestMapping("/admin/res_review")
 	public String res_review(Model m) {
@@ -307,6 +315,13 @@ public class AdminController {
 		List<Board> list = service.find_boardInfo(userid);
 		return list;
 	}
+	
+	@PostMapping("/admin/find_user_comment_info")
+	@ResponseBody
+	public List<Reply> comment_info(String userid) {
+		List<Reply> list = service.find_commentInfo(userid);
+		return list;
+	}
 
 	@PostMapping("/admin/ResUploadAction")
 	@ResponseBody
@@ -321,9 +336,25 @@ public class AdminController {
 	
 	@PostMapping("/admin/enrollRes") 
 	public String enrollRes(RestaurantDTO dto) {
-		System.out.println(dto);
 		int n = service.enroll_res(dto);
-		return "/admin/successUpload";
+		return "/admin/successUploadRes";
+	}
+	
+	@PostMapping("/admin/LodUploadAction")
+	@ResponseBody
+	public int LodUploadAction(@RequestParam("file") MultipartFile uploadFile) throws IOException {
+		int lodging_id = service.find_seq2();
+		String dirName = null;
+
+		String url = Lservice.upload(uploadFile, dirName, lodging_id); // lodging upload service
+
+		return lodging_id;
+	}
+	
+	@PostMapping("/admin/enrollLod") 
+	public String enrollLod(LodgingDTO dto) {
+		int n = service.enroll_lod(dto);
+		return "/admin/successUploadLod";
 	}
 
 }

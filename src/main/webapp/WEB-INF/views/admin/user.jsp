@@ -578,8 +578,8 @@
                                         "<td>" + item.board_num + "</td>" +
                                         "<td>" + item.text + "</td>" +
                                         "<td>" + item.userid + "</td>" +
-                                        "<td>" + item.replydate + "</td>" +
-                                        "<td>" + item.updatedate + "</td>" +
+                                        "<td>" + item.replyDate + "</td>" +
+                                        "<td>" + item.updateDate + "</td>" +
                                         "</tr>";
                                     $("#comment_tbody").append(newRow);
                                 });

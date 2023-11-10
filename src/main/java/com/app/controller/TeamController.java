@@ -1,8 +1,11 @@
 package com.app.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.dto.MemberDTO;
 import com.app.dto.PlayerDTO;
@@ -42,12 +47,9 @@ public class TeamController {
 		MemberDTO user = memberService.mypage(userid);
 		session.setAttribute("login", user);
 
-		model.addAttribute("user", user);
-		model.addAttribute("ScoreBoard", scrapService.cachedScrapeScore());
+		List<ScheduleDTO> allScheduleList = playerService.findSchedule(); // 일정 가져오기
+		List<TeamDTO> teamDataList = playerService.findRank(); // 순위 및 정보 가져오기
 
-		List<ScheduleDTO> allScheduleList = scrapService.cacheScheduleData(); // 일정 가져오기
-		List<TeamDTO> teamDataList = scrapService.cachedRankData(); // 순위 및 정보 가져오기
-		// 나의 팀 가져오기
 		int myTeam = dto.getTeam_code();
 		String selectedTeam = teamService.team_name(myTeam);
 
@@ -68,9 +70,7 @@ public class TeamController {
 	public String highlight(Model model, HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		model.addAttribute("user", dto);
-		model.addAttribute("highlight", scrapService.cachedHighlight());
-		scrapService.cachedHighlight();
-
+		model.addAttribute("highlight", playerService.findHighlight());
 		int myTeam = dto.getTeam_code();
 		String selectedTeam = null; // 나중에 수정하기
 		switch (myTeam) {
@@ -122,7 +122,7 @@ public class TeamController {
 
 		model.addAttribute("myTeam", selectedTeam);
 
-		List<TeamDTO> teamDataList = scrapService.cachedRankData();
+		List<TeamDTO> teamDataList = playerService.findRank();
 		TeamDTO filterTeamData = new TeamDTO();
 		for (TeamDTO team : teamDataList) {
 			if (team.getTitle().equals(selectedTeam)) {
@@ -143,7 +143,7 @@ public class TeamController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("team", selectedTeam);
 		map.put("pos", pos);
-		List<PlayerDTO> list = playerService.find_LGplayer(map);
+		List<PlayerDTO> list = playerService.find_Allplayer(map);
 		model.addAttribute("list", list);
 		return "/team/players";
 	}
@@ -153,7 +153,7 @@ public class TeamController {
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		int myTeam = mdto.getTeam_code();
 		String selectedTeam = teamService.team_name(myTeam);
-		
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("team", selectedTeam);
 		map.put("player", player);
@@ -161,5 +161,57 @@ public class TeamController {
 		model.addAttribute("dto", dto);
 
 		return "/team/playerInfo";
+	}
+
+	@RequestMapping("/record")
+	public String record(Model model, HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+
+		List<ScheduleDTO> allScheduleList = playerService.findSchedule(); // 일정 가져오기
+
+		String selectedTeam = teamService.team_name(dto.getTeam_code());
+		model.addAttribute("myTeam", selectedTeam);
+
+		// 응원팀에 해당하는 일정만 필터링하기
+		List<ScheduleDTO> filterScheduleList = new ArrayList<ScheduleDTO>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM.dd(E)", Locale.ENGLISH);
+
+		LocalDate today = LocalDate.now();
+
+		for (ScheduleDTO schedule : allScheduleList) {
+			String dateString = schedule.getDay();
+			int month = Integer.parseInt(dateString.substring(0, 2));
+			int day = Integer.parseInt(dateString.substring(3, 5));
+
+			LocalDate scheduleDate = LocalDate.of(LocalDate.now().getYear(), month, day);
+
+			if ((schedule.getTeam1().equals(selectedTeam) || schedule.getTeam2().equals(selectedTeam))
+					&& scheduleDate.isBefore(today)) {
+				filterScheduleList.add(schedule);
+			}
+		}
+		model.addAttribute("filterScheduleList", filterScheduleList);
+
+		return "/team/record";
+	}
+
+	@PostMapping("/recordInfo")
+	@ResponseBody
+	public String recordInfo(@RequestParam("requestData") String day) {
+		// 1. DB에 저장된 데이터인지 확인
+		// 2. DB에 없으면 경기결과 scrap 해온 후 DB에 저장
+
+		String record = playerService.findRecord(day);
+
+		if (record == null) {
+			String recordHtml = scrapService.scrapeRecord(day);
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("day", day);
+			map.put("html", recordHtml);
+			int n = playerService.saveRecord(map);
+			return recordHtml;
+		} else {
+			return record;
+		}
 	}
 }

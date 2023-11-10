@@ -15,6 +15,7 @@ import com.app.dto.RatingDTO;
 import com.app.dto.RestaurantDTO;
 import com.app.service.AdminService;
 import com.app.service.LikeService;
+import com.app.service.PlayerService;
 import com.app.service.ScrapingService;
 
 /*******************************
@@ -33,18 +34,22 @@ public class MainController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private PlayerService playerService;
 
 	@RequestMapping("/main")
 	public String main(Model m, HttpSession session) {
-
+		
 		// KBO 리그 일정 가져오기
-		m.addAttribute("ScheduleList", service.cacheScheduleData());
+		m.addAttribute("ScheduleList", playerService.findSchedule());
 
 		// KBO 리그 순위 가져오기
-		m.addAttribute("teamDataList", service.cachedRankData());
+		m.addAttribute("teamDataList", playerService.findRank());
 
 		// 포스트 시즌 대진
-		m.addAttribute("postSeason", service.cachedPostData());
+		m.addAttribute("postSeason", playerService.findPostSeason());
+		
 		// 팀 별 일정
 		String[] teams = { "all", "SSG", "키움", "LG", "KT", "KIA", "NC", "삼성", "롯데", "두산", "한화" };
 		m.addAttribute("teams", teams);

@@ -9,41 +9,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>팀 순위</title>
+<link href="css/baseball.css" rel="stylesheet" />
 <style>
 .input-form {
 	max-width: 800px;
-}
-
-ul {
-	list-style: none;
-}
-
-h3, h4 {
-	color: rgb(0, 0, 0, 0.8) !important;
-	text-shadow: 2px 2px 4px rgba(188, 188, 188);
-	font-family: 'KBO-Dia-Gothic_bold' !important;
-}
-
-aside a {
-	text-decoration: none !important;
-	color: black !important;
-}
-
-.list-group-item:hover {
-	background-color: rgb(199, 199, 199, 0.5) !important;
-	font-color: black !important;
-	border-radius: 5px;
-}
-
-.list-group .list-group-item {
-	border: none;
-	background-color: rgba(248, 249, 250, 0.5);
-}
-
-.list-group-item.active {
-	background-color: rgb(199, 199, 199, 0.7) !important;
-	border-color: #c5c5c5 !important;
-	border-radius: 5px;
 }
 
 #rank {
@@ -64,6 +33,7 @@ aside a {
 				<hr style="border: 2px solid #000;">
 				<ul class="list-group">
 					<li class="list-group-item"><a href="schedule">경기일정</a></li>
+					<li class="list-group-item"><a href="record">경기기록</a></li>
 					<li class="list-group-item"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item active"><a href="rank">팀 순위</a></li>
 					<li class="list-group-item"><a href="players">선수 정보</a></li>

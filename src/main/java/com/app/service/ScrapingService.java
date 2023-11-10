@@ -8,13 +8,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.app.dao.PlayerDAO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
 
@@ -27,160 +33,14 @@ import com.app.dto.TeamDTO;
 @Service
 public class ScrapingService {
 
-	// KBO 리그 일정 
-	public List<ScheduleDTO> scrapeSchedule() {
-		List<ScheduleDTO> ScheduleList = new ArrayList<>();
-		// Selenium WebDriver 설정 (ChromeDriver)
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/static/driver/chromedriver.exe");
+	@Autowired
+	PlayerDAO dao;
 
-		// 브라우저 창 숨기는 옵션 추가
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless");
-		WebDriver driver = new ChromeDriver(options);
-
-		try {
-			// 셀레니움으로 웹 페이지 접근
-			driver.get("https://www.koreabaseball.com/Schedule/Schedule.aspx");
-
-			// 셀레니움으로 가져온 HTML을 Jsoup으로 파싱
-			Document doc = Jsoup.parse(driver.getPageSource());
-			Elements baseballSchedule = doc.select("#tblScheduleList > tbody > tr");
-
-			String currentDay = null;
-			for (Element Schedule : baseballSchedule) {
-				Element day = Schedule.selectFirst("td.day");
-				Element time = Schedule.selectFirst("td.time");
-				Element team1 = Schedule.selectFirst("td.play > span");
-				Element vs = Schedule.selectFirst("td.play > em");
-				Element team2 = Schedule.selectFirst("td.play > span:nth-child(3)");
-				Element location = Schedule.selectFirst("td:nth-child(8)");
-				if ("-".equals(location.text())) {
-					location = Schedule.selectFirst("td:nth-child(7)");
-				}
-
-				if (day != null) {
-					if (currentDay == null || !currentDay.equals(day.text())) {
-						currentDay = day.text();
-					}
-				}
-
-				if (time != null) {
-					ScheduleDTO dto = new ScheduleDTO(currentDay, time.text(), team1.text(), vs.text(), team2.text(),
-							location.text());
-					ScheduleList.add(dto);
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			// WebDriver 종료 (쭝요)
-			driver.quit();
-		}
-		return ScheduleList;
-	}
-
-	// KBO 리그 순위
-	public List<TeamDTO> scrapeRank() {
-		List<TeamDTO> teamDataList = new ArrayList<>();
-		try {
-
-			// KBO 리그 순위 가져오기
-			Document doc = Jsoup.connect("https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo")
-					.userAgent(
-							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36")
-					.get();
-
-			// select를 이용해서 tr들을 불러오기
-			Elements baseballTeams = doc.select("#regularTeamRecordList_table > tr");
-
-			// tr들의 반복문 돌리기
-			for (Element baseballTeam : baseballTeams) {
-				Element rank = baseballTeam.selectFirst("th"); // 등 수
-				Element title = baseballTeam.selectFirst("span:nth-child(2)"); // 팀 명
-				Element match = baseballTeam.selectFirst("td:nth-child(3)"); // 경기 수
-				Element victory = baseballTeam.selectFirst("td:nth-child(4)"); // 승
-				Element defeat = baseballTeam.selectFirst("td:nth-child(5)"); // 패
-				Element draw = baseballTeam.selectFirst("td:nth-child(6)"); // 무
-				Element rate = baseballTeam.selectFirst("td:nth-child(7)"); // 승률
-				Element winning = baseballTeam.selectFirst("td:nth-child(9)"); // 연승
-				Element recent = baseballTeam.selectFirst("td:nth-child(12)"); // 최근 10경기
-
-				if (title != null) {
-					String image = title.text();
-					TeamDTO teamData = new TeamDTO(rank.text(), image, title.text(), match.text(), victory.text(),
-							defeat.text(), draw.text(), rate.text(), winning.text(), recent.text());
-					teamDataList.add(teamData);
-				}
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return teamDataList;
-	}
-	
-	// 포스트시즌 대진
-	public Elements scrapePost() {
-
-		Elements postSeason = null;
-		
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/static/driver/chromedriver.exe");
-
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless");
-		WebDriver driver = new ChromeDriver(options);
-
-		try {
-			// 셀레니움으로 웹 페이지 접근
-			driver.get("https://www.koreabaseball.com/");
-
-			// 셀레니움으로 가져온 HTML을 Jsoup으로 파싱
-			Document doc = Jsoup.parse(driver.getPageSource());
-			postSeason = doc.select(".match-cont");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			// WebDriver 종료 (쭝요)
-			driver.quit();
-		}
-		return postSeason;
-	}
-	
-	// 오늘 경기 정보 
-	public Elements scrapeTodaySchedule() {
-
-		Elements todaySchedule = null;
-		
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/static/driver/chromedriver.exe");
-
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless");
-		WebDriver driver = new ChromeDriver(options);
-
-		try {
-			// 셀레니움으로 웹 페이지 접근
-			driver.get("https://www.koreabaseball.com/Default.aspx");
-
-			// 셀레니움으로 가져온 HTML을 Jsoup으로 파싱
-			Document doc = Jsoup.parse(driver.getPageSource());
-			todaySchedule = doc.select("div.wrap");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			// WebDriver 종료 (쭝요)
-			driver.quit();
-		}
-		return todaySchedule;
-	}
-	
 	// 스코어보드
 	public Elements scrapeScore() {
 
 		Elements ScoreBoard = null;
-		
+
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/static/driver/chromedriver.exe");
 
 		ChromeOptions options = new ChromeOptions();
@@ -202,11 +62,11 @@ public class ScrapingService {
 		}
 		return ScoreBoard;
 	}
-	
-	public Elements scrapeHighlight() {
 
-		Elements Highlight = null;
-		
+	// 경기결과
+	public String scrapeRecord(String url) {
+		Elements Record = null;
+
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/static/driver/chromedriver.exe");
 
 		ChromeOptions options = new ChromeOptions();
@@ -215,80 +75,34 @@ public class ScrapingService {
 
 		try {
 			// 셀레니움으로 웹 페이지 접근
-			driver.get("https://www.koreabaseball.com/MediaNews/Highlight/List.aspx");
-
+			driver.get("https://m.sports.naver.com/game/" + url + "/record");
+			 WebDriverWait wait = new WebDriverWait(driver, 10);
+			 WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.MatchBox_comp_match_box__1oRmr")));
 			// 셀레니움으로 가져온 HTML을 Jsoup으로 파싱
 			Document doc = Jsoup.parse(driver.getPageSource());
-			Highlight = doc.select("ul#ulHighlight.boardMovie");
-			System.out.println(Highlight);
+			Record = doc.select("section.Home_game_head__3EEZZ");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			// WebDriver 종료 (쭝요)
 			driver.quit();
 		}
-		return Highlight;
+		return Record.html();
 	}
-	
+
 	/***************** 캐싱 처리 **********************/
-	
-	private List<ScheduleDTO> cachedScheduleList = null;
-	private Elements cachedPostData = null;
-	private List<TeamDTO> cachedRankData = null;
-	private Elements cachedtodaySchedule = null;
+
 	private Elements cachedScrapeScore = null;
 	private Elements cachedHighlight = null;
-	private Elements cachedPlayers = null;
+	private Elements cachedRecord = null;
 
-	@Cacheable("scheduleData")
-	public List<ScheduleDTO> cacheScheduleData() {
-	    // 이미 데이터를 가져온 경우 다시 가져오지 않도록 체크
-	    if (cachedScheduleList == null) {
-	        cachedScheduleList = scrapeSchedule();
-	    }
-	    
-	    return cachedScheduleList;
-	}
-	
-	@Cacheable("postData")
-	public Elements cachedPostData() {
-		if(cachedPostData == null) {
-			cachedPostData = scrapePost();
-		}
-		return cachedPostData;
-	}
-	
-	@Cacheable("todayScheduleData")
-	public Elements cachedtodaySchedule() {
-		if(cachedtodaySchedule == null) {
-			cachedtodaySchedule = scrapeTodaySchedule();
-		}
-		return cachedPostData;
-	}
-	
 	@Cacheable("scoreData")
 	public Elements cachedScrapeScore() {
-		if(cachedtodaySchedule == null) {
+		if (cachedScrapeScore == null) {
 			cachedScrapeScore = scrapeScore();
 		}
 		return cachedScrapeScore;
 	}
-	
-	@Cacheable("HighlightData")
-	public Elements cachedHighlight() {
-		if(cachedHighlight == null) {
-			cachedHighlight = scrapeHighlight();
-		}
-		return cachedHighlight;
-	}
 
-
-	@Cacheable("rankData")
-	public List<TeamDTO> cachedRankData() {
-		if(cachedRankData == null) {
-			cachedRankData = scrapeRank();
-		}
-		return cachedRankData;
-	}
-	
 }

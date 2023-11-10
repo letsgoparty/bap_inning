@@ -1,87 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style type="text/css">
-
-input[type=file] {
-    display: none;
-}
-
-.my_button {
-    display: inline-block;
-    width: 200px;
-    text-align: center;
-    padding: 10px;
-    background-color: #006BCC;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.imgs_wrap {
-    border: 2px solid #A8A8A8;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin: 3% auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-}
-.imgs_wrap img {
-    max-width: 150px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-.myform{
-	   width: 70%;
-	   margin: 3% auto; /* 수평 가운데 정렬을 위한 마진 설정 */
-	   height: auto;
-	   padding: 50px;
-	   box-sizing: border-box;
-	   border: solid 1.5px #D3D3D3;
-	   border-radius: 5px;
-	   background-color: rgba(255, 255, 255, 0.5);
-	   resize: none;
-}
-.container {
-  display: flex;
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-}
-#rating fieldset{
-    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
-    border: 1px; /* 필드셋 테두리 제거 */
-    direction: rtl; /* 이모지 순서 반전 */    
-}
-#rating input[type=radio]{
-    display: none; /* 라디오박스 감춤 */
-}
-#rating input[type=radio]:checked ~ label{
-    color: activeborder; /* 마우스 클릭 체크 */
-}
-#rating label{
-    font-size: 3em; /* 이모지 크기 */
-    color: transparent; /* 기존 이모지 컬러 제거 */
-    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
-}
-#rating label:hover,
-#rating label:hover ~ label{ /* 마우스 호버 뒤에오는 이모지들 */
-    color: activeborder;
-}
-#review_content {
-	   width: 80%;
-	   margin: 0 auto; /* 수평 가운데 정렬을 위한 마진 설정 */
-	   height: 150px;
-	   padding: 10px;
-	   box-sizing: border-box;
-	   border: solid 1.5px #D3D3D3;
-	   border-radius: 5px;
-	   font-size: 16px;
-	   resize: none;
-}
-</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script type="text/javascript">
+	function cancel() {
+		var shouldCancel = confirm("작성 중인 리뷰가 있습니다. 저장하지 않고 나가시겠습니까?");
+		if (shouldCancel) {
+			window.location.href = document.referrer;
+		}
+	}
 	
 	//이미지 정보들을 담을 배열
 	var sel_files = [];
@@ -120,7 +47,14 @@ input[type=file] {
 	              contentType: false,
 	              success: function(response) {
 	                  // 업로드가 성공한 경우, review_id를 등록 form에 넘어갈 데이터로 지정 
-											$("#review_id").val(response);
+										$("#review_id").val(response);
+	                  console.error("파일 업로드 성공");
+	                  Swal.fire({
+	                      title: '파일 업로드 성공',
+	                      text: '사진이 등록되었습니다. 리뷰 작성을 완료해주세요.',
+	                      icon: 'success',
+	                      confirmButtonText: '확인'
+	                    });
 	              },
 	              error: function() {
 	                  // 업로드가 실패한 경우
@@ -185,14 +119,17 @@ input[type=file] {
 	<input type="hidden" id="review_id" name="review_id">
 	<input type="hidden" id="res_id" name="res_id" value="${res_id}">
  		<div class="container">
+ 			<div name="rating" id="rating">
 		    <fieldset style="text-align: center">
+				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">${param.res_id}(가게이름)의</legend>
 				  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점을 선택해주세요</legend>
-		        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-		        <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-		        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-		        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-		        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+		        <input type="radio" name="rating" value="5" id="rate5" required><label for="rate5">⭐</label>
+		        <input type="radio" name="rating" value="4" id="rate4" required><label for="rate4">⭐</label>
+		        <input type="radio" name="rating" value="3" id="rate3" required><label for="rate3">⭐</label>
+		        <input type="radio" name="rating" value="2" id="rate2" required><label for="rate2">⭐</label>
+		        <input type="radio" name="rating" value="1" id="rate1" required><label for="rate1">⭐</label>
 		     </fieldset>
+	     </div>
 		</div>
 
 		<div class="container">
@@ -201,7 +138,7 @@ input[type=file] {
 					  placeholder="직관팬이 작성하는 진짜 리뷰" required></textarea>
 		</div>
 			
-		<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">
+		<div class="d-grid gap-2 col-6 mx-auto">
 		  <button class="btn btn-primary" type="submit" id="registerBtn">등록</button>
 		  <button class="btn btn-primary" type="button" onclick="cancel()">취소</button>
 		</div>
@@ -214,18 +151,16 @@ input[type=file] {
 			<div>
 				<p>리뷰 사진을 등록해주세요</p>
 				<div class="input_wrap">
-					<a href="javascript:" onclick="fileUploadAction()" class="my_button">사진 선택</a>
+					<a href="javascript:" onclick="fileUploadAction()" class="btn btn-primary">사진 선택</a>
 					<input type="file" id="input_imgs" name="file" multiple />
 				</div>
 			</div>
-	
 			<div>
 				<div class="imgs_wrap">
 					<img id="img" />
 				</div>
 			</div>
-	
-			<button class="my_button" id="uploadButton">업로드</button>
+			<button class="btn btn-primary" id="uploadButton">업로드</button>
 	</div>
 	<!-- 이미지 업로드 -->
 

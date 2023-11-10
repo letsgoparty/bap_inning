@@ -40,30 +40,27 @@
 			<div class="input-form col-md-8 mx-auto">
 
 
-				<h1>마이페이지_내가 쓴 글_게시글</h1>
+				<h3>내 활동_게시글</h3>
 				<div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 					<div class="btn-group" role="group"
 						aria-label="Basic radio toggle button group">
-						<input type="radio" class="btn-check" name="btnradio"
-							id="btnradio1" autocomplete="off" checked> <label
-							class="btn btn-outline-primary" for="btnradio1">게시글</label> <input
-							type="radio" class="btn-check" name="btnradio" id="btnradio2"
-							autocomplete="off"> <label
-							class="btn btn-outline-primary" for="btnradio2">댓글</label> <input
-							type="radio" class="btn-check" name="btnradio" id="btnradio3"
-							autocomplete="off"> <label
-							class="btn btn-outline-primary" for="btnradio3">식당리뷰</label> <input
-							type="radio" class="btn-check" name="btnradio" id="btnradio4"
-							autocomplete="off"> <label
-							class="btn btn-outline-primary" for="btnradio4">숙소리뷰</label>
+						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked> 
+							<label class="btn btn-outline-primary" for="btnradio1">게시글</label> 
+							<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"> 
+							<label class="btn btn-outline-primary" for="btnradio2">댓글</label> 
+							
+<!-- 							<input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"> 
+							<label class="btn btn-outline-primary" for="btnradio3">식당리뷰</label> 
+							<input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"> 
+							<label class="btn btn-outline-primary" for="btnradio4">숙소리뷰</label> -->
 					</div>
 
 					<div>
 						<select name="amount" id="amount">
 							<option value="10">--페이지 선택--</option>
 							<option value="10">10개 보기</option>
-							<option value="2">2개 보기</option>
-							<option value="5">5개 보기</option>
+							<option value="20">20개 보기</option>
+							<option value="50">50개 보기</option>
 							<option value="100">100개 보기</option>
 						</select>
 
@@ -76,7 +73,7 @@
 							<tr>
 								<th scope="col" style="width: 40px;">글번호</th>
 								<th scope="col" style="width: 200px;">제목</th>
-								<th scope="col" style="width: 100px;">작성자</th>
+					<!-- 			<th scope="col" style="width: 100px;">작성자</th> -->
 								<th scope="col" style="width: 100px;">작성일</th>
 								<th scope="col" style="width: 100px;">조회수</th>
 								<th scope="col" style="width: 100px;">삭제</th>
@@ -87,7 +84,7 @@
 								<tr>
 									<th scope="row">${board.board_num}</th>
 									<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
-									<td>${board.userid}</td>
+					<%-- 				<td>${board.userid}</td> --%>
 									<td>${board.board_date}</td>
 									<td>${board.count}</td>
 									<td><a href="javascript:void(0);" onclick="confirmDelete(${board.board_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
@@ -160,8 +157,8 @@
 		const radioButton = document.querySelectorAll(".btn-check");
 		const link = [ "mytext",//게시글
 		"myreply",//댓글
-		"my_r_review",//식당리뷰
-		"my_l_review"//숙소리뷰
+/* 		"my_r_review",//식당리뷰
+		"my_l_review"//숙소리뷰 */
 		];
 		for (let i = 0; i < radioButton.length; i++) {
 			radioButton[i].addEventListener("change", function() {

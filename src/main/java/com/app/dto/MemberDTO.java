@@ -1,5 +1,7 @@
 package com.app.dto;
 
+import java.sql.Timestamp;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("MemberDTO")
@@ -9,27 +11,34 @@ public class MemberDTO {
     String email;
     String nickname;
     int team_code;
-    int board_count;
+    String authcode;
+	java.sql.Timestamp cretime;
+	int board_count;
     int comment_count;
     int res_review_count;
     int lod_review_count;
+    
+	
+	public MemberDTO() {	
+	}
 
-    public MemberDTO() {
-    }
 
-    public MemberDTO(String userid, String password, String email, String nickname, int team_code) {
-
+	public MemberDTO(String userid, String password, String email, String nickname, int team_code,
+			String authcode, Timestamp cretime) {
+		super();
 		this.userid = userid;
 		this.password = password;
 		this.email = email;
 		this.nickname = nickname;
 		this.team_code = team_code;
+		this.authcode = authcode;
+		this.cretime = cretime;
 	}
+
 
 	public String getUserid() {
 		return userid;
 	}
-
 
 
 	public void setUserid(String userid) {
@@ -37,11 +46,9 @@ public class MemberDTO {
 	}
 
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 
 	public void setPassword(String password) {
@@ -49,11 +56,9 @@ public class MemberDTO {
 	}
 
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 
 	public void setEmail(String email) {
@@ -61,11 +66,9 @@ public class MemberDTO {
 	}
 
 
-
 	public String getNickname() {
 		return nickname;
 	}
-
 
 
 	public void setNickname(String nickname) {
@@ -73,11 +76,9 @@ public class MemberDTO {
 	}
 
 
-
 	public int getTeam_code() {
 		return team_code;
 	}
-
 
 
 	public void setTeam_code(int team_code) {
@@ -85,6 +86,25 @@ public class MemberDTO {
 	}
 
 
+
+	public String getAuthcode() {
+		return authcode;
+	}
+
+
+	public void setAuthcode(String authcode) {
+		this.authcode = authcode;
+	}
+
+
+	public java.sql.Timestamp getCretime() {
+		return cretime;
+	}
+
+
+	public void setCretime(java.sql.Timestamp cretime) {
+		this.cretime = cretime;
+	}
 
 	public int getBoard_count() {
 		return board_count;
@@ -117,14 +137,21 @@ public class MemberDTO {
 	public void setLod_review_count(int lod_review_count) {
 		this.lod_review_count = lod_review_count;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "MemberDTO [userid=" + userid + ", password=" + password + ", email=" + email + ", nickname=" + nickname
-				+ ", team_code=" + team_code + "]";
+				+ ", team_code=" + team_code + ", authcode=" + authcode + ", cretime="
+				+ cretime + "]";
 	}
-
-
+	
+	
+	
+	
+	
+	
+	
 }
 
 	

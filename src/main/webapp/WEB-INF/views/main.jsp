@@ -39,6 +39,19 @@
 		// #all 테이블을 보이도록 설정
 		$('#all').show();
 	});
+	
+	function hideAllTables() {
+		$('.table-container').hide();
+	}
+
+	$('.table-link').on('click', function(event) {
+		event.preventDefault(); // 링크의 기본 동작 방지
+
+		hideAllTables(); // 모든 테이블을 먼저 숨김
+
+		const targetTableId = $(this).data('target');
+		$('#' + targetTableId).show(); // 클릭한 링크에 해당하는 테이블만 보이도록 설정
+	});
 </script>
 </head>
 <style>
@@ -49,6 +62,7 @@ nav {
 	left: 0 !important;
 	z-index: 1030 !important;
 }
+
 </style>
 <body id="page-top">
 	<jsp:include page="common/nav.jsp" flush="true" />
@@ -62,8 +76,14 @@ nav {
 					style="font-size: 1.3rem; font-family: 'KBO-Dia-Gothic_light';">
 					경기장 주변 음식점과 숙소를 한눈에👀 볼 수 있는 밥이닝</p>
 				<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll"
-					style="font-size: 1.5rem; font-family: 'KBO-Dia-Gothic_bold';">경기일정
-					및 순위 보러가기</a>
+					style="font-size: 1.5rem; font-family: 'SUITE-Regular'; width: 500px !important;">KBO
+					경기일정 및 순위 보러가기</a><br>
+				<c:if test="${!empty login and login.userid ne 'admin'}">
+					<a class="btn btn-primary btn-xl rounded-pill mt-4" href="schedule"
+						style="font-size: 1.5rem; width: 500px !important; font-family: 'SUITE-Regular';"><img
+						src="images/logo/${myTeam}.png" width=auto height=37> 우리팀
+						경기일정 및 순위 보러가기</a>
+				</c:if>
 			</div>
 		</div>
 	</header>
@@ -165,7 +185,7 @@ nav {
 								varStatus="loop">
 								<c:if
 									test="${loop.first or ScheduleList[loop.index - 1].day ne schedule.day}">
-									<tr style="background-color: rgb(128, 128, 92, 0.1)">
+									<tr style="text-align: center; background-color: rgb(137, 136, 140, 0.1);">
 										<td>${schedule.day}</td>
 										<td></td>
 										<td></td>
@@ -277,14 +297,15 @@ nav {
 			</div>
 			<!--  KBO 경기 일정 끝 -->
 
-			<!--  KBO 리그 순위 -->
+			<!--  포스트시즌 대진 -->
 			<div class="col-md-3 offset-md-1 pt-5"
 				style="margin-left: 2px !important">
 				<div style="font-family: 'KBO-Dia-Gothic_bold';">
 					<h2>POSTSEASON BRACKET</h2>
-					<div>${postSeason}</div>
+					<div class="match-cont">${postSeason}</div>
 				</div>
 
+				<!--  KBO 리그 순위 -->
 				<h4 style="font-family: 'KBO-Dia-Gothic_bold';">KBO 정규리그 순위</h4>
 				<table class="table table-striped"
 					style="font-family: 'KBO-Dia-Gothic_light'; font-size: 0.9rem; border-top: 1px solid #929292; margin-bottom: 50px">
@@ -305,7 +326,7 @@ nav {
 						<c:forEach var="team" items="${teamDataList}">
 							<tr
 								<c:if test="${myTeam eq team.title}">
-								style="background-color: rgb(245, 248, 75) !important;"
+								style="background-color: rgb(255, 249, 113) !important;"
         						</c:if>>
 								<th scope="row" style="font-family: 'KBO-Dia-Gothic_bold';">${team.rank}</th>
 								<td style="font-family: 'KBO-Dia-Gothic_bold';"><img

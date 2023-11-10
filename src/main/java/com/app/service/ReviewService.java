@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.app.dto.LodReviewDTO;
 import com.app.dto.ReviewDTO;
@@ -22,4 +23,6 @@ public interface ReviewService {
 	public int lod_find_seq();
 	public int save_url(HashMap<String, Object> map);
 	public int lod_save_url(HashMap<String, Object> map);
+	public List<String> res_find_img(int review_id);
+	public List<String> lod_find_img(int review_id);
 }

@@ -74,37 +74,37 @@ a {
 					<h2>${retrieve.title}</h2>
 					<span> <c:choose>
 							<c:when test="${team == 1}">
-								<img src="images/logo/SSG.png" width="40" height="30">
+								<img src="images/logo/SSG.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 2}">
-								<img src="images/logo/키움.png" width="40" height="32">
+								<img src="images/logo/키움.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 3}">
-								<img src="images/logo/LG.png" width="35" height="32">
+								<img src="images/logo/LG.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 4}">
-								<img src="images/logo/KT.png" width="35" height="35">
+								<img src="images/logo/KT.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 5}">
-								<img src="images/logo/KIA.png" width="43" height="35">
+								<img src="images/logo/KIA.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 6}">
-							<img src="images/logo/NC.png" width="43" height="35">
+								<img src="images/logo/NC.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 7}">
-								<img src="images/logo/삼성.png" width="38" height="35">
+								<img src="images/logo/삼성.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 8}">
-								<img src="images/logo/롯데.png" width="40" height="35">
+								<img src="images/logo/롯데.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 9}">
-								<img src="images/logo/두산.png" width="40" height="35">
+								<img src="images/logo/두산.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 10}">
-								<img src="images/logo/한화.png" width="50" height="35">
+								<img src="images/logo/한화.png" width=auto height="30">
 							</c:when>
 							<c:when test="${team == 0}">
-								<img src="images/logo/noTeam.png" width="36" height="40">
+								<img src="images/logo/noTeam.png" width=auto height="30">
 							</c:when>
 						</c:choose> ${retrieve.userid} 
 					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span> &nbsp; <span
@@ -149,37 +149,37 @@ a {
 						<div>
 							<c:choose>
 								<c:when test="${list.team_code == 1}">
-										<img src="images/logo/SSG.png" width="40" height="30">
+									<img src="images/logo/SSG.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 2}">
-									<img src="images/logo/키움.png" width="40" height="32">
+									<img src="images/logo/키움.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 3}">
-									<img src="images/logo/LG.png" width="35" height="32">
+									<img src="images/logo/LG.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 4}">
-									<img src="images/logo/KT.png" width="35" height="35">
+									<img src="images/logo/KT.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 5}">
-									<img src="images/logo/KIA.png" width="43" height="35">
+									<img src="images/logo/KIA.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 6}">
-									<img src="images/logo/NC.png" width="43" height="35">
+									<img src="images/logo/NC.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 7}">
-									<img src="images/logo/삼성.png" width="38" height="35">
+									<img src="images/logo/삼성.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 8}">
-									<img src="images/logo/롯데.png" width="40" height="35">
+									<img src="images/logo/롯데.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 9}">
-									<img src="images/logo/두산.png" width="40" height="35">
+									<img src="images/logo/두산.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 10}">
-									<img src="images/logo/한화.png" width="50" height="35">
+									<img src="images/logo/한화.png" width=auto height="30">
 								</c:when>
 								<c:when test="${list.team_code == 0}">
-									<img src="images/logo/noTeam.png" width="36" height="40">
+									<img src="images/logo/noTeam.png" width=auto height="30">
 								</c:when>
 							</c:choose>
 							${list.userid}<span class="mx-3"

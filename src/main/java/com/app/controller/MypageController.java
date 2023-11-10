@@ -9,22 +9,29 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.dto.MemberDTO;
+import com.app.dto.RatingDTO;
+import com.app.dto.RestaurantDTO;
 import com.app.dto.ReviewPageDTO;
 import com.app.dto.ScheduleDTO;
 import com.app.dto.TeamDTO;
 import com.app.dto.UpgradePageDTO;
 import com.app.service.BoardService;
 import com.app.service.EncodeService;
+import com.app.service.LikeService;
 import com.app.service.MemberService;
 import com.app.service.MypageService;
+import com.app.service.ReplyService;
 import com.app.service.ReviewService;
 import com.app.service.ScrapingService;
 @Controller
@@ -45,91 +52,30 @@ public class MypageController {
 	private ReviewService reviewService;
 	@Autowired
 	private EncodeService encodeService;
+	@Autowired
+	private ReplyService replyService;
+	@Autowired
+	private LikeService likeService;
 	
+	//새로 제작중인 마이페이지
 	@RequestMapping("/mypage")
-	public String mypage(Model model, HttpSession session) {
-		// 사용자정보가져오기
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		// 로그인 여부 확인은 Interceptor 이용한다.
-		String userid = dto.getUserid();
-		MemberDTO user = memberService.mypage(userid);
-		session.setAttribute("login", user); //session에 유저정보 보내기
-		model.addAttribute("user",user); //model에 유저정보 보내기
-		// 전체 일정 가져오기
-		List<ScheduleDTO> allScheduleList = scrapService.cacheScheduleData();
-		// 전체 순위 가져오기
-		List<TeamDTO> teamDataList = scrapService.cachedRankData();
-		// 나의 팀 가져오기
-		int my_teamCode = dto.getTeam_code();
-		String selectedTeam = ".."; // 나중에 수정하기
-		switch (my_teamCode) {
-		case 1:
-			selectedTeam="SSG";
-			break;
-		case 2:
-			selectedTeam="키움";
-			break;
-		case 3:
-			selectedTeam="LG";
-			break;
-		case 4:
-			selectedTeam="KT";
-			break;
-		case 5:
-			selectedTeam="KIA";
-			break;
-		case 6:
-			selectedTeam="NC";
-			break;
-		case 7:
-			selectedTeam="삼성";
-			break;
-		case 8:
-			selectedTeam="롯데";
-			break;
-		case 9:
-			selectedTeam="두산";
-			break;
-		case 10:
-			selectedTeam="한화";
-			break;
-		default:
-			break;
-		}
-		// 선택팀에 해당하는 일정만 필터링하기
-		List<ScheduleDTO> filterScheduleList = new ArrayList<ScheduleDTO>();
-		for (ScheduleDTO schedule : allScheduleList) {
-			if (schedule.getTeam1().equals(selectedTeam) || schedule.getTeam2().equals(selectedTeam)) {
-				filterScheduleList.add(schedule);
-			}
-		}
-		model.addAttribute("filterScheduleList", filterScheduleList);
+	public String new_mypage(Model model,HttpSession session) {
+		//사용자 정보 가져오기
 		
-		TeamDTO filterTeamData = new TeamDTO();
-		for(TeamDTO team : teamDataList) {
-			if(team.getTitle().equals(selectedTeam)) {
-				filterTeamData = team;
-			}
-		}
+		 MemberDTO dto=(MemberDTO)session.getAttribute("login");
+		 String userid=dto.getUserid(); 
+		 MemberDTO user=memberService.mypage(userid);
+		 session.setAttribute("login", user); 
+		 model.addAttribute("user",user);
+		 
+		 System.out.println(user);
 		
-		model.addAttribute("filterTeamData", filterTeamData);
-		return "mypage/myPage";
+		return "mypage/newMyPage";
 	}
-	//회원정보 보여주기
-	@GetMapping("/myinfo")
-	public String myinfo(HttpSession session,Model model) {
-		//세션에서 로그인정보 가져오기
-		MemberDTO user=(MemberDTO) session.getAttribute("login");
-		//로그인여부는 인터셉터
-		String userid=user.getUserid();
-		user=memberService.mypage(userid);
-		session.setAttribute("login", user);//session에 유저정보 보내기
-		model.addAttribute("user",user);//model에 유저정보 보내기.
-		
-		return "mypage/myInfo";
-	}
+	
+	
 	@PostMapping("/myinfo")
-	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("nickname") String nickname, @RequestParam("myTeam") int teamCode, HttpSession session) {
+	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("newNickname") String nickname, @RequestParam("myTeam") int teamCode, HttpSession session) {
 	    MemberDTO dto=new MemberDTO();
 	    MemberDTO user=(MemberDTO) session.getAttribute("login");
 	    String email=user.getEmail();
@@ -192,27 +138,59 @@ public class MypageController {
 	    return "mypage/failInfo";
 	}
 	
-	
+	//댓글
 	@GetMapping("/myreply")
-	public String myreply() {
-		return "mypage/myReply";
+	public ModelAndView myreply(@RequestParam(value="curPage",required = false,defaultValue = "1")int curPage,
+			@RequestParam(value = "amount",required = false, defaultValue = "10")int amount, HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		UpgradePageDTO pageDTO=mypageService.selectReply(userid, curPage, amount);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myReply");
+		mav.addObject("pageDTO",pageDTO);
+		
+		return mav;
 	}
+	//댓글 삭제
+	@GetMapping("/delete_myreply")
+	public String delete_myreply(int no,RedirectAttributes attribute,HttpServletRequest request) {
+		int n=replyService.replyDelet(no);
+		//현재페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
+		String curPage=request.getParameter("curPage");
+		String amount=request.getParameter("amount");
+		attribute.addAttribute("curPage",curPage);
+		attribute.addAttribute("amount",amount);
+		
+		return "redirect:myreply";
+	}
+
+	
 	//식당리뷰
 	@GetMapping("/my_r_review")
 	public ModelAndView myRestaurantReview(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
-			@RequestParam(value="amount",required=false,defaultValue="10")int amount,
+			@RequestParam(value="amount",required=false, defaultValue="10")int amount,
 			HttpSession session) {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
 		
-		UpgradePageDTO pageDTO=mypageService.select_r_review(curPage, amount);
+		UpgradePageDTO pageDTO=mypageService.select_r_review(userid, curPage, amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myRestaurantReview");
-		mav.addObject("pageDTO",pageDTO);		
+		mav.addObject("pageDTO",pageDTO);
 		
-		return mav;
+		
+		//식당정보 가져오기
+		List<RestaurantDTO> Rdto=null;
+		
+		/* List<Object> res_list= */
+		
+		
+		return mav; 
 	}
 	//식당리뷰 삭제
 	@GetMapping("/delete_my_r_review")
@@ -230,8 +208,33 @@ public class MypageController {
 	
 	//숙소리뷰
 	@GetMapping("/my_l_review")
-	public String myLodgingReview() {
-		return "mypage/myLodgingReview";
+	public ModelAndView myLodgingReview(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage,
+			@RequestParam(value="amount",required=false, defaultValue="10")int amount,
+			HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		String userid=user.getUserid();
+		
+		UpgradePageDTO pageDTO=mypageService.select_l_review(userid,curPage, amount);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("mypage/myLodgingReview");
+		mav.addObject("pageDTO",pageDTO);
+		
+		
+		return mav;
+	}
+	//숙소리뷰 삭제
+	@GetMapping("/delete_my_l_review")
+	public String delete_my_l_review(int num,RedirectAttributes attribute, HttpServletRequest request) {
+		int n=reviewService.lodReviewDelete(num);
+		//현재 페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
+		String curPage=request.getParameter("curPage");
+		String amount=request.getParameter("amount");
+		attribute.addAttribute("curPage",curPage);
+		attribute.addAttribute("amount",amount);
+		
+		return "redirect:my_l_review";
 	}
 	
 	//회원탈퇴
@@ -284,7 +287,7 @@ public class MypageController {
 		//세션에서 로그인정보 가져오기
 		MemberDTO user=(MemberDTO)session.getAttribute("login");
 		String userid=user.getUserid();
-		UpgradePageDTO pageDTO=mypageService.selectText(curPage,amount);
+		UpgradePageDTO pageDTO=mypageService.selectText(userid,curPage,amount);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myText");
@@ -292,6 +295,7 @@ public class MypageController {
 		
 		return mav;
 	}
+
 	
 	//마이페이지에서 게시판 삭제하기
 	@GetMapping("/delete_mytext")
@@ -304,6 +308,28 @@ public class MypageController {
 		attribute.addAttribute("amount",amount);
 		
 		return "redirect:mytext";
+	}
+	
+	//닉네임 변경 중복확인.
+	@GetMapping(value="/mypageNicknameCheck", produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String mypageNicknameCheck(@RequestParam("nickname")String nickname, @RequestParam("currNickname")String currNickname) {
+		
+		System.out.println("currnickname: "+currNickname);
+		System.out.println("nickname: "+nickname);
+		
+		if(nickname.equals(currNickname)) {
+			return "나의 팀만 변경합니다";
+		}
+		
+		MemberDTO dto=memberService.nicknameCheck(nickname);
+		String mesg="닉네임 사용 가능";
+		if(dto!=null) {
+			mesg="닉네임 중복";
+		}
+		
+		return mesg;
+		
 	}
 	
 }

@@ -48,12 +48,40 @@ public class MemberDAO {
 		}
 		
 		
-		public int updateTemporaryPW(HashMap<String, String> map) {
-			return session.update("MemberMapper.updateTemporaryPW", map);
-		}
+		//public int updateTemporaryPW(HashMap<String, String> map) {
+		//	return session.update("MemberMapper.updateTemporaryPW", map);
+		//}
 		
 		public String findEncodePW(HashMap<String, String> map) {
 			return session.selectOne("MemberMapper.findEncodePW", map);
 		}
 	
+		
+	    
+		// 인증코드 저장
+		public int saveVerificode(MemberDTO code) {
+			int n = session.insert("MemberMapper.saveVerificode", code);
+			return n;
+		}
+		
+		// 인증코드 조회
+		public MemberDTO authcodeconfirm(MemberDTO dto) {
+			MemberDTO edto = session.selectOne("MemberMapper.authcodeconfirm", dto);
+			
+			 if (edto != null) {
+			        System.out.println("DTO 조회 결과: " + edto.toString());
+			    } else {
+			        System.out.println("DTO가 null입니다.");
+			    }
+			    
+			    return edto;
+			
+		}
+	    
+		// 비밀번호 재설정
+	    public int resetPassword(HashMap<String, String> hashmap) {
+			int n=session.update("MemberMapper.resetPassword",hashmap);
+			return n;
+		}
+	    
 }

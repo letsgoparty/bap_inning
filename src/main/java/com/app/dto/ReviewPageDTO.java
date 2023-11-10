@@ -5,18 +5,28 @@ import java.util.List;
 public class ReviewPageDTO {
 
 	List<ReviewDTO> list;
+	List<LodReviewDTO> lodList;
 	int curPage;
 	int perPage = 5;
 	int totalCount;
 	
 	public ReviewPageDTO() {}
 
-	public ReviewPageDTO(List<ReviewDTO> list, int curPage, int perPage, int totalCount) {
+	public ReviewPageDTO(List<ReviewDTO> list, List<LodReviewDTO> lodList, int curPage, int perPage, int totalCount) {
 		super();
 		this.list = list;
+		this.lodList = lodList;
 		this.curPage = curPage;
 		this.perPage = perPage;
 		this.totalCount = totalCount;
+	}
+
+	public List<LodReviewDTO> getLodList() {
+		return lodList;
+	}
+
+	public void setLodList(List<LodReviewDTO> lodList) {
+		this.lodList = lodList;
 	}
 
 	public List<ReviewDTO> getList() {
@@ -53,7 +63,9 @@ public class ReviewPageDTO {
 
 	@Override
 	public String toString() {
-		return "PageDTO [list=" + list + ", curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
-				+ "]";
+		return "ReviewPageDTO [list=" + list + ", lodList=" + lodList + ", curPage=" + curPage + ", perPage=" + perPage
+				+ ", totalCount=" + totalCount + "]";
 	}
+
+
 }

@@ -14,11 +14,16 @@ public interface MypageService {
 	public int memberDelete(String userid);
 	
 	//페이징처리_게시판보기
-	public UpgradePageDTO selectText(int curPage,int amount);
-	public int totalCount_text();
+	public UpgradePageDTO selectText(String userid,int curPage,int amount);
+
+	//페이징처리_댓글
+	public UpgradePageDTO selectReply(String userid,int curPage, int amount);
 	
 	//페이징처리_식당리뷰
-	public UpgradePageDTO select_r_review(int curPage,int amount);
+	public UpgradePageDTO select_r_review(String userid, int curPage,int amount);
+	
+	//페이징처리_숙소리뷰
+	public UpgradePageDTO select_l_review(String userid,int curPage, int amount);
 	
 	
 }

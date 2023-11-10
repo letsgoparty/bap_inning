@@ -11,6 +11,7 @@
 	
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style type="text/css">
+
   .table td, .table th {
     white-space: nowrap; /* 줄 바꿈 금지 */
     overflow: hidden;
@@ -19,7 +20,7 @@
   }
   
           .input-form {
-            max-width: 800px;
+            min-width:800px;
             margin-top: 80px;
             padding: 32px;
             background: #fff;
@@ -30,26 +31,36 @@
             -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
+        
+  .pagination{
+   display:flex;
+   justify-content:center;
+  }     
+        
 </style>
+
 	
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
-<body>
+	
+
+
  <div class="container">
   <div class="input-form-background row">
    <div class="input-form col-md-8 mx-auto">
 
 
-	<h1>마이페이지_내가 쓴 글_식당리뷰</h1>
+	<h3>내 활동_식당리뷰</h3>	
+	
 <div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 
 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+<!--   <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
   <label class="btn btn-outline-primary" for="btnradio1">게시글</label>
 
   <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-  <label class="btn btn-outline-primary" for="btnradio2">댓글</label>
+  <label class="btn btn-outline-primary" for="btnradio2">댓글</label> -->
 
   <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
   <label class="btn btn-outline-primary" for="btnradio3">식당리뷰</label>
@@ -61,22 +72,22 @@
 						<select name="amount" id="amount">
 							<option value="10">--페이지 선택--</option>
 							<option value="10">10개 보기</option>
-							<option value="2">2개 보기</option>
-							<option value="5">5개 보기</option>
-							<option value="100">100개 보기</option>
+							<option value="20">20개 보기</option>
+							<option value="50">50개 보기</option>
 						</select>
 
 					</div>
 				</div>
 
 <br>
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" style="width: 40px;">리뷰번호</th>
+      <th scope="col" style="width: 40px;">식당이름</th>
       <th scope="col" style="width: 200px;">내용</th>
       <th scope="col" style="width: 100px;">이미지</th>      
-      <th scope="col" style="width: 100px;">작성자</th>
+<!--       <th scope="col" style="width: 100px;">작성자</th> -->
       <th scope="col" style="width: 100px;">별점</th>
       <th scope="col" style="width: 100px;">추천</th>
       <th scope="col" style="width: 100px;">수정</th>
@@ -86,10 +97,11 @@
   <tbody>
     <c:forEach var="review" items="${pageDTO.list}">
     <tr>
-      <th scope="row">${review.review_id}</th>
+      <th hidden data-res-id="${review.res_id}">${review.res_id}</th>
+      <th scope="row" >${review.res_name}</th>
       <td>${review.review_content}</td>
       <td>이미지</td>
-      <td>${review.user_id}</td>
+<%--       <td>${review.user_id}</td> --%>
       <td>
       	<c:choose>
       		<c:when test="${review.rating == 1}">⭐</c:when>
@@ -164,8 +176,8 @@
 <script type="text/javascript">
 const radioButton=document.querySelectorAll(".btn-check");
 const link=[
-	"mytext",//게시글
-	"myreply",//댓글
+/* 	"mytext",//게시글
+	"myreply",//댓글 */
 	"my_r_review",//식당리뷰
 	"my_l_review"//숙소리뷰
 ];
@@ -181,7 +193,7 @@ for (let i=0;i<radioButton.length;i++){
 	<script>
 	//삭제 눌렀을때 팝업으로 확인하기
 	function confirmDelete(review_id,curPage,amount){
-		var confirmation=confirm("게시글을 삭제하시겠습니까?");
+		var confirmation=confirm("리뷰를 삭제하시겠습니까?");
 		if(confirmation){
 			//확인 눌렀을때 진짜 삭제하기
 			window.location.href="delete_my_r_review?num="+review_id+ "&curPage=" + curPage + "&amount=" + amount;

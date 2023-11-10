@@ -1,0 +1,982 @@
+
+ol,
+ul {
+    list-style: none
+}
+
+.blind,
+.u_skip {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden
+}
+
+.MatchBox_match_item__31PMw {
+    --card-list-border: #f0f0f0;
+    --card-list-border-pc: #f4f4f4;
+    --card-link-area-border: hsla(0, 0%, 91.8%, 0.7);
+    --card-text: #303038;
+    --card-text-point: #3f76ff;
+    --card-text-white: #fff;
+    --card-text-gray: #858893;
+    --card-text-gray2: #666;
+    --card-text-gray3: #afb3b7;
+    --card-text-gray4: #858893;
+    --my-team-box-background: #ddd;
+    --match-live: #ff4266;
+    --link-border: #eaeaea;
+    --link-border-hover: rgba(133, 136, 147, 0.7);
+    --link-background-hover: #f7f9fa;
+    --link-live-background-hover: rgba(255, 66, 102, 0.07);
+    --status-ready-background: #3680f7;
+    --status-end-background: #f2f2f2;
+    --home-mark-background: rgba(48, 48, 56, 0.4)
+}
+
+@media(prefers-color-scheme: dark) {
+    html.DARK_THEME .MatchBox_match_item__31PMw {
+        --card-list-border: #434346;
+        --card-list-border-pc: #434346;
+        --card-link-area-border: hsla(0, 0%, 100%, 0.1);
+        --card-text: #f0f0f2;
+        --card-text-point: #6b9cff;
+        --card-text-white: #39393c;
+        --card-text-gray: #919192;
+        --card-text-gray2: #a6a6a6;
+        --card-text-gray3: #919192;
+        --card-text-gray4: #a6a6a6;
+        --my-team-box-background: #585858;
+        --match-live: #fd6481;
+        --link-border: hsla(0, 0%, 100%, 0.1);
+        --link-border-hover: rgba(145, 145, 146, 0.7);
+        --link-background-hover: #303033;
+        --link-live-background-hover: rgba(253, 100, 129, 0.07);
+        --status-ready-background: #6b9cff;
+        --status-end-background: #585858;
+        --home-mark-background: rgba(240, 240, 242, 0.4)
+    }
+}
+
+.MatchBox_match_item__31PMw {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--card-text-white);
+    border-radius: 15px;
+}
+
+.MatchBox_match_item__31PMw+.MatchBox_match_item__31PMw {
+    border-top: 1px solid var(--card-list-border)
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_match_item__31PMw+.MatchBox_match_item__31PMw {
+        border-top-color: var(--card-list-border-pc)
+    }
+}
+
+@media(min-width: 768px)and (max-width:1023px) {
+    .MatchBox_match_item__31PMw:nth-child(2) {
+        border-top: 0
+    }
+}
+
+@media(min-width: 768px)and (max-width:1023px) {
+    .MatchBox_match_item__31PMw:nth-child(2n) {
+        border-left: 1px solid var(--card-list-border)
+    }
+}
+
+.MatchBox_my_team_box__3YVvc {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 83px
+}
+
+.MatchBox_my_team_box__3YVvc:before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: -30px;
+    bottom: -30px;
+    width: 43px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: var(--my-team-box-background);
+    border-right: 1px solid rgba(0, 0, 0, .03);
+    -webkit-transform: rotate(-14deg);
+    -ms-transform: rotate(-14deg);
+    transform: rotate(-14deg)
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_my_team__oDBBU {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    padding: 20px 0;
+    line-height: 51px;
+    background: #1e3eb1;
+    -webkit-text-stroke: 1px hsla(0, 0%, 100%, .12);
+    color: rgba(0, 0, 0, .03);
+    font-weight: 800;
+    font-size: 43px;
+    font-style: italic;
+    -webkit-transform: translateY(-50%) rotate(170deg);
+    -ms-transform: translateY(-50%) rotate(170deg);
+    transform: translateY(-50%) rotate(170deg)
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_my_team__oDBBU .MatchBox_text__nwKEf {
+    display: block;
+    width: 51px;
+    min-height: 115px;
+    text-align: center
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_my_team__oDBBU:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background-color: rgba(0, 0, 0, .04)
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_emblem_wrap__1PNE9 {
+    z-index: 10;
+    position: absolute;
+    left: 3px;
+    bottom: 17px;
+    width: 77px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_my_team_box__3YVvc .MatchBox_emblem_wrap__1PNE9 {
+        bottom: auto;
+        top: 50%;
+        left: 5px;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        width: 66px
+    }
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_emblem__1W_L9 {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_my_team_box__3YVvc .MatchBox_emblem__1W_L9 {
+        width: 38px;
+        height: 38px
+    }
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_emblem__1W_L9+.MatchBox_emblem__1W_L9 {
+    margin-bottom: -7px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_my_team_box__3YVvc .MatchBox_emblem__1W_L9+.MatchBox_emblem__1W_L9 {
+        margin-bottom: 0
+    }
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_emblem__1W_L9:only-child {
+    width: 77px;
+    height: 77px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_my_team_box__3YVvc .MatchBox_emblem__1W_L9:only-child {
+        width: 66px;
+        height: 66px
+    }
+}
+
+.MatchBox_my_team_box__3YVvc .MatchBox_emblem__1W_L9 img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -webkit-filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .2));
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .2))
+}
+
+.MatchBox_item_content__1KkXZ {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 16px 18px 18px 15px;
+    color: var(--card-text);
+    letter-spacing: -.3px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_type_baseball__1nACu .MatchBox_item_content__1KkXZ {
+        max-height: 68px
+    }
+}
+
+.MatchBox_type_my_team__32pet .MatchBox_item_content__1KkXZ {
+    padding-left: 83px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_type_my_team__32pet .MatchBox_item_content__1KkXZ {
+        padding: 25px 17px 23px 0;
+        max-height: 84px
+    }
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_type_general_view__3Q89N .MatchBox_item_content__1KkXZ {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        max-height: none
+    }
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_item_content__1KkXZ {
+        padding: 15px 17px;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        grid-column-gap: 5px;
+        -webkit-column-gap: 5px;
+        -moz-column-gap: 5px;
+        column-gap: 5px;
+        max-height: 62px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+}
+
+.MatchBox_match_sub_info__2a1Zx {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    grid-column-gap: 6px;
+    -webkit-column-gap: 6px;
+    -moz-column-gap: 6px;
+    column-gap: 6px;
+    width: 100%;
+    padding-bottom: 15px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_match_sub_info__2a1Zx {
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        grid-column-gap: 0;
+        -webkit-column-gap: 0;
+        -moz-column-gap: 0;
+        column-gap: 0;
+        width: 223px;
+        padding-bottom: 0
+    }
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_type_my_team__32pet .MatchBox_match_sub_info__2a1Zx {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        grid-row-gap: 5px;
+        row-gap: 5px;
+        width: 240px;
+        padding-left: 83px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+}
+
+.MatchBox_match_sub_info__2a1Zx .MatchBox_time__1bZbx {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    line-height: 17px;
+    font-weight: 700;
+    font-size: 15px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_match_sub_info__2a1Zx .MatchBox_time__1bZbx {
+        width: 60px;
+        font-size: 12px
+    }
+}
+
+.MatchBox_match_sub_info__2a1Zx .MatchBox_status__-zxwr {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    height: 17px;
+    line-height: 17px;
+    padding: 0 5px;
+    border-radius: 3px;
+    background-color: var(--status-end-background);
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--card-text-gray4)
+}
+
+.MatchBox_type_live__2vV6B .MatchBox_match_sub_info__2a1Zx .MatchBox_status__-zxwr {
+    background-color: var(--match-live);
+    color: var(--card-text-white)
+}
+
+.MatchBox_type_ready__1OWfy .MatchBox_match_sub_info__2a1Zx .MatchBox_status__-zxwr {
+    background-color: var(--status-ready-background);
+    color: var(--card-text-white)
+}
+
+.MatchBox_match_sub_info__2a1Zx .MatchBox_add_info__1VlMV {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 17px;
+    font-size: 15px;
+    color: var(--card-text-gray2)
+}
+
+.MatchBox_match_sub_info__2a1Zx .MatchBox_stadium__2JwBI {
+    display: -webkit-box;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 16px;
+    font-size: 12px;
+    color: var(--card-text-gray)
+}
+
+.MatchBox_match_area__28gik {
+    position: relative;
+    width: calc(100% - 67px);
+    min-height: 70px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_match_area__28gik {
+        overflow: hidden;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        grid-column-gap: 12px;
+        -webkit-column-gap: 12px;
+        -moz-column-gap: 12px;
+        column-gap: 12px;
+        width: auto;
+        min-height: auto
+    }
+}
+
+.MatchBox_type_general_view__3Q89N .MatchBox_match_area__28gik {
+    min-height: auto
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_type_general_view__3Q89N .MatchBox_match_area__28gik {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+}
+
+.MatchBox_match_area__28gik .MatchBox_status__-zxwr {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    min-width: 65px;
+    line-height: 14px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--card-text-gray)
+}
+
+.MatchBox_type_live__2vV6B .MatchBox_match_area__28gik .MatchBox_status__-zxwr {
+    color: var(--match-live)
+}
+
+.MatchBox_type_ready__1OWfy .MatchBox_match_area__28gik .MatchBox_status__-zxwr {
+    color: var(--card-text-point)
+}
+
+.MatchBox_type_cancel__3VrDT .MatchBox_match_area__28gik .MatchBox_status__-zxwr,
+.MatchBox_type_ready__1OWfy .MatchBox_match_area__28gik .MatchBox_status__-zxwr {
+    width: 145px
+}
+
+.MatchBox_type_general_view__3Q89N .MatchBox_match_area__28gik .MatchBox_status__-zxwr {
+    padding-top: 4px
+}
+
+.MatchBox_link_match_end__1R9OF {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -10px;
+    bottom: -10px
+}
+
+.MatchBox_team_item__1pT_I {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    grid-column-gap: 10px;
+    -webkit-column-gap: 10px;
+    -moz-column-gap: 10px;
+    column-gap: 10px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_item__1pT_I {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1;
+        flex: 1 1;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        min-width: 0;
+        grid-column-gap: 0;
+        -webkit-column-gap: 0;
+        -moz-column-gap: 0;
+        column-gap: 0
+    }
+}
+
+@media(min-width: 1024px) {
+
+    .MatchBox_team_item__1pT_I:first-of-type .MatchBox_team_wrap__3OW9H,
+    .MatchBox_team_item__1pT_I:first-of-type .MatchBox_team_wrap__3OW9H .MatchBox_name_info__3UVqa,
+    .MatchBox_team_item__1pT_I:first-of-type .MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse
+    }
+}
+
+.MatchBox_team_item__1pT_I+.MatchBox_team_item__1pT_I {
+    margin-top: 5px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_item__1pT_I+.MatchBox_team_item__1pT_I {
+        -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+        order: 3;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
+        margin-top: 0
+    }
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_item__1pT_I+.MatchBox_team_item__1pT_I .MatchBox_score_wrap__2uoBR {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row
+    }
+}
+
+.MatchBox_match_title__YnwKA {
+    line-height: 20px;
+    font-weight: 500;
+    font-size: 15px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_match_title__YnwKA {
+        font-weight: 600;
+        font-size: 14px
+    }
+}
+
+.MatchBox_team_wrap__3OW9H {
+    overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    grid-column-gap: 7px;
+    -webkit-column-gap: 7px;
+    -moz-column-gap: 7px;
+    column-gap: 7px;
+    padding-right: 10px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_wrap__3OW9H {
+        grid-column-gap: 8px;
+        -webkit-column-gap: 8px;
+        -moz-column-gap: 8px;
+        column-gap: 8px;
+        padding-right: 0
+    }
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_emblem__1W_L9 {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_emblem__1W_L9:empty {
+    background: url(https://ssl.pstatic.net/static/sports/2023/m/05/31/no_emblem_schedule.png) no-repeat;
+    background-size: contain;
+    background-position: 50%
+}
+
+@media(prefers-color-scheme: dark) {
+    html.DARK_THEME .MatchBox_team_wrap__3OW9H .MatchBox_emblem__1W_L9:empty {
+        background-image: url(https://ssl.pstatic.net/static/sports/2023/m/05/31/no_emblem_schedule_dark.png)
+    }
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_emblem__1W_L9 img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_team_name__2thEf {
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_wrap__3OW9H .MatchBox_team_name__2thEf {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: normal;
+        -ms-flex-align: normal;
+        align-items: normal
+    }
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_name_info__3UVqa {
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    grid-column-gap: 5px;
+    -webkit-column-gap: 5px;
+    -moz-column-gap: 5px;
+    column-gap: 5px;
+    height: 32px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_wrap__3OW9H .MatchBox_name_info__3UVqa {
+        grid-column-gap: 7px;
+        -webkit-column-gap: 7px;
+        -moz-column-gap: 7px;
+        column-gap: 7px;
+        height: auto
+    }
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_team__2Cf-Y {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 20px;
+    font-weight: 500;
+    font-size: 15px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_wrap__3OW9H .MatchBox_team__2Cf-Y {
+        font-weight: 600;
+        font-size: 14px
+    }
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx {
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    grid-column-gap: 4px;
+    -webkit-column-gap: 4px;
+    -moz-column-gap: 4px;
+    column-gap: 4px;
+    margin-left: 6px
+}
+
+@media(max-width: 319px) {
+    .MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx {
+        display: none
+    }
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx {
+        margin-left: 0
+    }
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx .MatchBox_item__29C45 {
+    line-height: 20px;
+    font-size: 12px;
+    color: var(--card-text-gray)
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx .MatchBox_item__29C45 {
+        font-size: 11px
+    }
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx .MatchBox_item__29C45:first-child {
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx .MatchBox_item__29C45+.MatchBox_item__29C45 {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_sub_info__LG0Mx .MatchBox_item__29C45.MatchBox_type_point__3gGaA {
+    color: var(--card-text-point)
+}
+
+.MatchBox_team_wrap__3OW9H .MatchBox_home_mark__jmlSe {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    border-radius: 3px;
+    background-color: var(--home-mark-background);
+    text-align: center;
+    font-weight: 600;
+    font-size: 10px;
+    color: var(--card-text-white)
+}
+
+.MatchBox_score_wrap__2uoBR {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    grid-column-gap: 8px;
+    -webkit-column-gap: 8px;
+    -moz-column-gap: 8px;
+    column-gap: 8px;
+    padding-right: 18px;
+    color: var(--card-text)
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_score_wrap__2uoBR {
+        grid-column-gap: 6px;
+        -webkit-column-gap: 6px;
+        -moz-column-gap: 6px;
+        column-gap: 6px;
+        min-width: 40px;
+        padding-right: 0
+    }
+}
+
+.MatchBox_type_winner__7UYUD .MatchBox_score_wrap__2uoBR:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    height: 8px;
+    margin: auto 0;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='8' fill='none'%3E%3Cpath d='M0 4L4.5.536v6.928L0 4z' fill='%23303038'/%3E%3C/svg%3E")
+}
+
+@media(prefers-color-scheme: dark) {
+    html.DARK_THEME .MatchBox_type_winner__7UYUD .MatchBox_score_wrap__2uoBR:before {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='8' fill='none'%3E%3Cpath d='M0 4L4.5.536v6.928L0 4z' fill='%23F0F0F2'/%3E%3C/svg%3E")
+    }
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_type_winner__7UYUD .MatchBox_score_wrap__2uoBR:before {
+        display: none
+    }
+}
+
+.MatchBox_type_loser__27GFH .MatchBox_score_wrap__2uoBR {
+    color: var(--card-text-gray3)
+}
+
+.MatchBox_type_live__2vV6B .MatchBox_score_wrap__2uoBR {
+    color: var(--card-text)
+}
+
+.MatchBox_type_live__2vV6B .MatchBox_score_wrap__2uoBR:before {
+    display: none
+}
+
+.MatchBox_score_wrap__2uoBR .MatchBox_score__3nLsJ {
+    line-height: 21px;
+    font-size: 17px
+}
+
+.MatchBox_score_wrap__2uoBR .MatchBox_penalty_shoot__20m5g {
+    line-height: 14px;
+    font-weight: 700;
+    font-size: 12px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_score_wrap__2uoBR .MatchBox_penalty_shoot__20m5g {
+        margin-top: 2px;
+        line-height: 15px;
+        font-weight: 600;
+        font-size: 13px
+    }
+}
+
+.MatchBox_link_area__3gfeT {
+    position: relative;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    padding-left: 19px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_link_area__3gfeT {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        grid-column-gap: 18px;
+        -webkit-column-gap: 18px;
+        -moz-column-gap: 18px;
+        column-gap: 18px;
+        width: 223px;
+        min-height: auto;
+        margin-left: auto;
+        padding-left: 0
+    }
+
+    .MatchBox_link_area__3gfeT:before {
+        display: none
+    }
+}
+
+.MatchBox_link_area__3gfeT:before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: 0;
+    width: 1px;
+    background-color: var(--card-link-area-border)
+}
+
+.MatchBox_type_general_view__3Q89N .MatchBox_link_area__3gfeT {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_type_general_view__3Q89N .MatchBox_link_area__3gfeT {
+        position: static;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0)
+    }
+}
+
+.MatchBox_type_general_view__3Q89N .MatchBox_link_area__3gfeT:before {
+    display: none
+}
+
+.MatchBox_link_area__3gfeT .MatchBox_link_match_wrap__1XRs_ {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100%
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_link_area__3gfeT .MatchBox_link_match_wrap__1XRs_ {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        min-width: 102px;
+        margin-left: auto
+    }
+}
+
+.MatchBox_link_area__3gfeT .MatchBox_add_info__1VlMV {
+    display: -webkit-box;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    line-height: 16px;
+    text-align: right;
+    font-size: 12px;
+    color: var(--card-text-gray);
+    white-space: pre-line
+}
+
+.MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2 {
+    width: 48px;
+    height: 32px;
+    line-height: 30px;
+    border: 1px solid var(--link-border);
+    border-radius: 5px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: var(--card-text-white);
+    text-align: center
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2 {
+        -webkit-transition: all .3s cubic-bezier(.44, .11, .14, 1);
+        -o-transition: all .3s cubic-bezier(.44, .11, .14, 1);
+        transition: all .3s cubic-bezier(.44, .11, .14, 1)
+    }
+
+    .MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2:hover {
+        border-color: var(--link-border-hover);
+        background-color: var(--link-background-hover)
+    }
+}
+
+.MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2 .MatchBox_text__nwKEf {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--card-text-gray2)
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2 .MatchBox_text__nwKEf {
+        font-size: 12px
+    }
+}
+
+.MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2.MatchBox_type_live__2vV6B {
+    border-color: var(--match-live)
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2.MatchBox_type_live__2vV6B:hover {
+        background-color: var(--link-live-background-hover)
+    }
+}
+
+.MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2.MatchBox_type_live__2vV6B .MatchBox_text__nwKEf {
+    color: var(--match-live)
+}
+
+.MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2+.MatchBox_link_match__14zi2 {
+    margin-top: 6px
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_link_area__3gfeT .MatchBox_link_match__14zi2+.MatchBox_link_match__14zi2 {
+        margin-top: 0;
+        margin-left: 6px
+    }
+}

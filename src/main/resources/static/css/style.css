@@ -25,6 +25,15 @@
   }
 }
 /************** 추 가  ****************/
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
@@ -113,6 +122,7 @@ body {
 	background-color: rgba(248, 249, 250, 0.5);
 }
 
+
 .nav-item {
 	height: 45px;
 	text-align: center;
@@ -138,7 +148,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-	background-color: #808080;
+	background-color: rgb(23,123,53, 0.8);
 	border-radius: 4px;
 }
 
@@ -155,10 +165,9 @@ body::-webkit-scrollbar-track {
   z-index: 1030;
 }
 
-.form-control:focus {
-  box-shadow: 0 0 5px rgb(23,123,53)  !important; /* 가로 이동, 세로 이동, 흐림 정도, 그림자 색상 */
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 0 5px rgb(23,123,53)  !important; 
   border-color:rgb(23,123,53)  !important;
-  /* 다른 스타일을 적용할 수도 있습니다. */
 }
 
 /************** 추 가 끝 ****************/

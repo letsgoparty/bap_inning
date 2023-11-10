@@ -6,12 +6,13 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.app.dto.Board;
+import com.app.dto.LodReviewDTO;
 import com.app.dto.MemberDTO;
-import com.app.dto.ReviewDTO;
+import com.app.dto.Reply;
+import com.app.dto.ResReviewDTO;
 import com.app.dto.UpgradePageDTO;
 
 @Repository
@@ -41,11 +42,11 @@ public class MypageDAO {
 	///////////////////////////////////
 	//페이징 처리
 	//게시판
-	public int totalCount_text() {
-		return session.selectOne("MypageMapper.textTotalCount");
+	public int totalCount_text(String userid) {
+		return session.selectOne("MypageMapper.textTotalCount",userid);
 	}
 	
-	public UpgradePageDTO selectText(int curPage, int amount) {
+	public UpgradePageDTO selectText(String userid,int curPage, int amount) {
 		UpgradePageDTO pageDTO=new UpgradePageDTO();
 		pageDTO.setAmount(amount);
 		pageDTO.setCurPage(curPage);
@@ -53,7 +54,7 @@ public class MypageDAO {
 		int offset=(curPage-1)*pageDTO.getAmount();
 		int limit=pageDTO.getAmount();				
 		
-		int total = totalCount_text();
+		int total = totalCount_text(userid);
 		pageDTO.setEndPage((int) Math.ceil(curPage / 10.0) * 10);
         pageDTO.setStartPage(pageDTO.getEndPage() - 9);
         
@@ -66,7 +67,7 @@ public class MypageDAO {
         pageDTO.setNext(pageDTO.getEndPage() < pageDTO.getRealEnd());
 
 		
-		List<Board> list=session.selectList("MypageMapper.selectText",null,new RowBounds(offset,limit));
+		List<Board> list=session.selectList("MypageMapper.selectText",userid,new RowBounds(offset,limit));
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
 		pageDTO.setTotal(total);
@@ -77,11 +78,11 @@ public class MypageDAO {
 		
 	}
 	//식당리뷰
-	public int totalCount_r_review() {
-		return session.selectOne("ReviewMapper.r_totalCount");
+	public int totalCount_r_review(String userid) {
+		return session.selectOne("MypageMapper.r_reviewTotalCount",userid);
 	}
 	
-	public UpgradePageDTO select_r_review(int curPage,int amount) {
+	public UpgradePageDTO select_r_review(String user_id, int curPage,int amount) {
 		UpgradePageDTO pageDTO=new UpgradePageDTO();
 		pageDTO.setAmount(amount);
 		pageDTO.setCurPage(curPage);
@@ -89,7 +90,7 @@ public class MypageDAO {
 		int offset=(curPage-1)*pageDTO.getAmount();
 		int limit=pageDTO.getAmount();				
 		
-		int total = totalCount_r_review();
+		int total = totalCount_r_review(user_id);
 		pageDTO.setEndPage((int) Math.ceil(curPage / 10.0) * 10);
         pageDTO.setStartPage(pageDTO.getEndPage() - 9);
         
@@ -101,15 +102,80 @@ public class MypageDAO {
         pageDTO.setPrev(pageDTO.getStartPage() > 1);
         pageDTO.setNext(pageDTO.getEndPage() < pageDTO.getRealEnd());
 		
-		List<ReviewDTO> list=session.selectList("MypageMapper.select_r_review",null,new RowBounds(offset, limit));
+		List<ResReviewDTO> list=session.selectList("MypageMapper.select_r_review",user_id,new RowBounds(offset, limit));
 		pageDTO.setList(list);
-		pageDTO.setCurPage(curPage);
+		/* pageDTO.setCurPage(curPage); */
 		pageDTO.setTotal(total);
-
-		
 		
 		return pageDTO;
 		
 	}
+	
+	//댓글 보기
+	public int totalCount_reply(String userid) {
+		return session.selectOne("MypageMapper.replyTotalCount",userid);
+	}
+	public UpgradePageDTO selectReply(String userid, int curPage, int amount) {
+		UpgradePageDTO pageDTO=new UpgradePageDTO();
+		pageDTO.setAmount(amount);
+		pageDTO.setCurPage(curPage);
+		
+		int offset=(curPage-1)*pageDTO.getAmount();
+		int limit=pageDTO.getAmount();
+		
+		int total=totalCount_reply(userid);
+		pageDTO.setEndPage((int)Math.ceil(curPage/10.0)*10);
+		pageDTO.setStartPage(pageDTO.getEndPage()-9);
+		
+        pageDTO.setRealEnd((int) Math.ceil((total * 1.0) / pageDTO.getAmount()));
+        if (pageDTO.getRealEnd() < pageDTO.getEndPage()) {
+            pageDTO.setEndPage(pageDTO.getRealEnd());
+        }
+        
+        pageDTO.setPrev(pageDTO.getStartPage()>1);
+        pageDTO.setNext(pageDTO.getEndPage() < pageDTO.getRealEnd());
+        
+        List<Reply> list=session.selectList("MypageMapper.selectReply",userid,new RowBounds(offset, limit));
+        
+        pageDTO.setList(list);
+        pageDTO.setCurPage(curPage);
+        pageDTO.setTotal(total);
+		return pageDTO;
+	}
+	
+	//숙소 보기
+	public int totalCount_l_review(String user_id) {
+		return session.selectOne("MypageMapper.l_reviewTotalCount",user_id);
+	}
+	public UpgradePageDTO select_l_review(String user_id,int curPage, int amount) {
+		UpgradePageDTO pageDTO=new UpgradePageDTO();
+		pageDTO.setAmount(amount);
+		pageDTO.setCurPage(curPage);
+		
+		int offset=(curPage-1)*pageDTO.getAmount();
+		int limit=pageDTO.getAmount();
+		
+		int total=totalCount_l_review(user_id);
+		pageDTO.setEndPage((int)Math.ceil(curPage/10.0)*10);
+		pageDTO.setStartPage(pageDTO.getEndPage()-9);
+		
+        pageDTO.setRealEnd((int) Math.ceil((total * 1.0) / pageDTO.getAmount()));
+        if (pageDTO.getRealEnd() < pageDTO.getEndPage()) {
+            pageDTO.setEndPage(pageDTO.getRealEnd());
+        }
+        
+        pageDTO.setPrev(pageDTO.getStartPage()>1);
+        pageDTO.setNext(pageDTO.getEndPage() < pageDTO.getRealEnd());
+        
+        List<LodReviewDTO> list=session.selectList("MypageMapper.select_l_review",user_id,new RowBounds(offset, limit));
+        pageDTO.setList(list);
+        pageDTO.setTotal(total);
+        
+        
+        return pageDTO;
+        
+	}
+
+	
 	
 }

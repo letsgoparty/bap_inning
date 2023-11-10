@@ -2,7 +2,9 @@ package com.app.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import com.app.dto.LodReviewDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.ReviewDTO;
 import com.app.dto.ReviewPageDTO;
+import com.app.service.MemberService;
 import com.app.service.ReviewImageService;
 import com.app.service.ReviewService;
 
@@ -27,6 +30,7 @@ public class ReviewController {
 	
 	@Autowired ReviewService service;
 	@Autowired ReviewImageService imgService;
+	@Autowired MemberService memService;
 	
 	//리뷰목록
 	@GetMapping("/r_reviewList")
@@ -39,6 +43,18 @@ public class ReviewController {
 	
 	    return mav;
 	}
+//	public ModelAndView r_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int res_id, int review_id) {
+//		ReviewPageDTO pageDTO = service.r_reviewList(curPage, res_id, review_id);
+//		List<String> urls = service.res_find_img(Integer.valueOf(review_id));
+//		
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("review/r_reviewList");
+//		mav.addObject("pageDTO", pageDTO);
+//		mav.addObject("urls", urls);
+//		
+//		return mav;
+//	}
+	
 	
 	@GetMapping("/l_reviewList")
 	public ModelAndView l_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int lodging_id) {
@@ -59,11 +75,11 @@ public class ReviewController {
 		return "review/reviewWrite";
 	}
 
-	@GetMapping("/lod/reviewWrite")
+	@GetMapping("/lodReviewWrite")
 	public String lodReviewWrite(@RequestParam int lodging_id, Model m) {
 		System.out.println(lodging_id);
 		m.addAttribute("lodging_id", lodging_id);
-		return "review/reviewWrite";
+		return "review/lodReviewWrite";
 	}
 
 	//리뷰 등록
@@ -81,7 +97,7 @@ public class ReviewController {
 		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
 	}
 
-	@PostMapping("/lod/reviewWrite")
+	@PostMapping("/lodReviewWrite")
 	public String lodReview(LodReviewDTO dto, HttpSession session) {
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		dto.setUser_id(mdto.getUserid());
@@ -99,20 +115,26 @@ public class ReviewController {
 	//리뷰 상세 보기
     @GetMapping("/reviewRetrieve")
     public ModelAndView retrieve(@RequestParam("review_id") String review_id, ModelAndView mav) {
-        ReviewDTO dto = service.reviewRetrieve(review_id);
-
+    	ReviewDTO dto = service.reviewRetrieve(review_id);
+    	List<String> urls = service.res_find_img(Integer.valueOf(review_id));
+    	
         mav.setViewName("review/reviewRetrieve");
         mav.addObject("reviewRetrieve", dto);
-
+        mav.addObject("urls", urls);
+        System.out.println(urls);
+        
         return mav;
     }
 
-    @GetMapping("/lod/reviewRetrieve")
+    @GetMapping("/lodReviewRetrieve")
     public ModelAndView lodRetrieve(@RequestParam("review_id") String review_id, ModelAndView mav) {
     	LodReviewDTO dto = service.lodReviewRetrieve(review_id);
+    	List<String> urls = service.lod_find_img(Integer.valueOf(review_id));
     	
-    	mav.setViewName("review/reviewRetrieve");
+    	mav.setViewName("review/lodReviewRetrieve");
     	mav.addObject("lodReviewRetrieve", dto);
+    	mav.addObject("urls", urls);
+    	System.out.println(urls);
     	
     	return mav;
     }
@@ -131,13 +153,13 @@ public class ReviewController {
 		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
 	}
 
-	@GetMapping("/lod/reviewUpdate")
+	@GetMapping("/lodReviewUpdate")
 	public String lodReviewUpdate(@RequestParam int lodging_id, Model m) {
 		System.out.println(lodging_id);
 		m.addAttribute("lodging_id", lodging_id);
-		return "review/reviewUpdate";
+		return "review/lodReviewUpdate";
 	}
-	@PostMapping("/lod/reviewUpdate")
+	@PostMapping("/lodReviewUpdate")
 	public String lodReviewUpdate(LodReviewDTO dto) {
 		int num = service.lodReviewUpdate(dto);
 		return "redirect:reviewRetrieve?lodging_id=" + dto.getLodging_id();
@@ -146,15 +168,18 @@ public class ReviewController {
 	
 	//리뷰 삭제
 	@GetMapping("/reviewDelete")
-	public String reviewDelete(@RequestParam("review_id") int review_id) {
+	public String reviewDelete(@RequestParam("review_id") int review_id, ReviewDTO reviewDTO) {
 		int num = service.reviewDelete(review_id);
 		return "redirect:r_reviewList";
+			//	+ "?res_id=" + reviewDTO.getRes_id();
 	}
 	
-	@GetMapping("/lod/reviewDelete")
-	public String lodReviewDelete(@RequestParam("review_id") int review_id) {
+	@GetMapping("/lodReviewDelete")
+	public String lodReviewDelete(@RequestParam("review_id") int review_id, LodReviewDTO dto,
+			HttpServletRequest request) {
 		int num = service.lodReviewDelete(review_id);
-		return "redirect:l_reviewList";
+		return "redirect:main";
+//		return "redirect:l_reviewList";
 	}
 
 	

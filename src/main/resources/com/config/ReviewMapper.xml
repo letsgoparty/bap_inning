@@ -2,25 +2,31 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReviewMapper">
+
 	<!-- 음식점 리뷰 목록 -->
-	<select id="r_totalCount" resultType="int">
+	<select id="r_totalCount" resultType="int" parameterType="int">
 		select count(*)
 	  from restaurant_reviews
+	  where res_id =#{res_id}
 	</select>
 	<select id="r_reviewList"  resultType="ReviewDTO" parameterType="int">
-	  select review_id, res_id, user_id, rating, review_content, like_cnt, created_date, modified_date
+	  select review_id, res_id, user_id, rating, review_content, like_cnt, created_date, modified_date, res_name
 	  from restaurant_reviews
+	  natural join restaurant
 	  where res_id =#{res_id}
 	  order by review_id desc
 	</select>
+	
 	<!-- 숙소 리뷰 목록 -->
-	<select id="l_totalCount" resultType="int">
+	<select id="l_totalCount" resultType="int" parameterType="int">
 	  select count(*)
 	  from lodging_reviews
+	  where lodging_id =#{lodging_id}
 	</select>
 	<select id="l_reviewList"  resultType="LodReviewDTO" parameterType="int">
-	  select review_id, lodging_id, user_id, rating, review_content, like_cnt, created_date, modified_date
+	  select review_id, lodging_id, user_id, rating, review_content, like_cnt, created_date, modified_date, lodging_name
 	  from lodging_reviews
+	  natural join lodging
 	  where lodging_id =#{lodging_id}
 	  order by review_id desc
 	</select>
@@ -89,4 +95,24 @@
 		values (#{review_id},#{url})
 	</insert>
 
+	<select id="res_find_img" parameterType="int" resultType="string">
+		select url from res_review_image
+		where review_id=#{review_id}
+	</select>
+	<select id="lod_find_img" parameterType="int" resultType="string">
+		select url from lod_review_image
+		where review_id=#{review_id}
+	</select>
+	
+	<!-- 리뷰 추천 -->
+	<update id="res_like_cnt" parameterType="int">
+		update restaurant_reviews
+		set like_cnt = like_cnt + 1
+		where review_id = #{review_id}
+	</update>
+	<update id="lod_like_cnt" parameterType="int">
+		update lodging_reviews
+		set like_cnt = like_cnt + 1
+		where review_id = #{review_id}
+	</update>
 </mapper>

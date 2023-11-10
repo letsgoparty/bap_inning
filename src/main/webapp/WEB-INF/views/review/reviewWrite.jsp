@@ -8,20 +8,12 @@
 <title>리뷰 작성 화면</title>
 <link rel="icon" type="image/png" sizes="32x32"
 	href="images/icon/favicon-32x32.png">
+<link href="css/review.css" rel="stylesheet" />
 </head>
-<style>
-@font-face {
-	font-family: 'KBO-Dia-Gothic_bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff')
-		format('woff');
-	font-weight: 700;
-	font-style: normal;
-}
-</style>
-<body style="background-color:rgba(248, 249, 250) !important;">
 
+<body style="background-color:rgba(248, 249, 250) !important;">
 	<jsp:include page="../common/nav.jsp" flush="true" />
-	<jsp:include page="../review_content/reviewWrite.jsp" flush="true"/>
+	<jsp:include page="../review_content/reviewWrite.jsp" flush="true" />
+			
 </body>
 </html>

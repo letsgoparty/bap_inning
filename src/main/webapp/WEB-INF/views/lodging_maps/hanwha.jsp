@@ -29,15 +29,17 @@
 						</span>
 					</div>
 					<p></p>
-					<img src="images/icon/icon3.png" width="13" height="13"> <span id="rating">&nbsp;</span>
+					<img src="images/icon/icon3.png" width="13" height="13"> <span
+						id="rating">&nbsp;</span>
 					<p class="card-text mt-3" id="lodging_content"></p>
 					<div class="mx-2" id="lodging_url"></div>
 					<button type="submit" class="btn btn-primary mt-3 mb-3">리뷰
 						보러가기</button>
 					<button id="cancel" class="btn btn-primary mx-3">닫기</button>
-					<button id="like_btn" class="btn btn-primary mt-3 me-3" style="float: right;">
-                            <img src="images/icon/dislike_icon.png" width=20 height=20>
-                        </button>
+					<button id="like_btn" class="btn btn-primary mt-3 me-3"
+						style="float: right;">
+						<img src="images/icon/dislike_icon.png" width=20 height=20>
+					</button>
 				</div>
 			</div>
 		</form>
@@ -152,7 +154,7 @@
                     $.each(data, function (idx, ele) {
 
                         var cardId = 'card_' + idx;
-                        var imagePath = 'images/lodging_images/' + ele.lodging_image + '.png';
+                        var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + ele.lodging_image + '.png';
                         var lodging_name = ele.lodging_name;
                         var lodging_url = ele.lodging_url;
 
@@ -225,7 +227,7 @@
                     // 성공적으로 데이터를 받아왔을 때의 처리
                     $.each(data, function (idx, ele) {
                         var cardId = 'card_' + idx;
-                        var imagePath = 'images/lodging_images/' + ele.lodging_image + '.png';
+                        var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + ele.lodging_image + '.png';
                         var lodging_name = ele.lodging_name;
 
                         var cardHtml = '<form id="' + cardId + '" action="l_reviewList" method="get">' +
@@ -352,7 +354,7 @@
                                     success: function (data) {
                                         // 성공적으로 데이터를 받아왔을 때의 처리
 
-                                        var imagePath = 'images/lodging_images/' + data.lodging_image + '.png';
+                        var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + data.lodging_image + '.png';
                                         var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
                                         $('#lodging_image').html(imgTag);
                                         
@@ -416,7 +418,8 @@
             window.initMap = initMap;
 	
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&callback=initMap"></script>
 </body>
 
 </html>

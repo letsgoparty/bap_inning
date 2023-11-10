@@ -74,6 +74,10 @@ public class BoardController {
 	}
 
 	// 5. 글 수정
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String updateUI() {
+		return "update";
+	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Board board) {
 		int num = service.boardUpdate(board);

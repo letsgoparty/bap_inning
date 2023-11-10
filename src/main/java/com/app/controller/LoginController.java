@@ -49,6 +49,31 @@ public class LoginController {
 		return nextPage;
 	}
 	
+	@PostMapping("/resetpwd")	
+    public String resetPassword(HttpSession session, @RequestParam String newPasswd) {
+		 // 세션에서 이메일을 가져옴
+	    String sessionEmail = (String) session.getAttribute("email");
+
+	    // 세션에 이메일이 없으면 비번 변경 못하게..
+	    if (sessionEmail == null) {
+	    	return "login/failSendMail";
+	    } else {
+	      //비밀번호 변경을 위한 파라미터 생성
+            HashMap<String, String> map = new HashMap<String, String>();
+            String encode_newPasswd = encodeService.modify(newPasswd); // 새로운 비밀번호 암호화
+            map.put("email", sessionEmail);
+            map.put("password", encode_newPasswd);
+
+            int n=service.resetPassword(map); 
+            
+            if (n > 0) {
+            	session.invalidate(); //세션에 저장된 이메일 지워버리기
+                return "login/successresetpw";
+            } else {
+            	return "login/failresetpw2";
+            }
+	    }
+	}
 	
 	
 	

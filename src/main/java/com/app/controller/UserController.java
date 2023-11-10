@@ -97,11 +97,10 @@ public class UserController {
 
 	    // 인증코드와 입력한 코드가 일치하고, 생성된 시간이 2분 이내라면 인증 성공.테스트중이라 1분으로 설정해놈
 	    if (verificationCode.equals(authCode) && elapsedTime <= 60000) {
-	        // 비밀번호 재설정 페이지로 리다이렉트
+	    	//session.setAttribute("email", aemail); //혹시몰라 다시 저장
 	        return "login/resetpw";
 	    } else {
-	        // 인증 실패 시 거부 페이지로 리다이렉트 또는 에러 메시지 반환
-	        return "redirect:/denied";
+	    	return "login/failresetpw";
 	    }
 	}
 

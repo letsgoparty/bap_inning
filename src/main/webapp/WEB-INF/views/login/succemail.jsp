@@ -53,7 +53,7 @@
         <form action="codeconfirm" method="post" class="validation-form" novalidate>
             <div class="input-form col-md-12 mx-auto">
                 <h4 class="mb-4">본인 확인 이메일 인증</h4>
-                <p style="font-size: 14px; text-align: center; margin-bottom: 20px;">전송된 이메일의 인증코드를 입력하세요.인증코드의 유효시간은 3분입니다.</p>
+                <p style="font-size: 14px; text-align: center; margin-bottom: 20px;">전송된 이메일의 인증코드를 입력하세요.인증코드의 유효시간은 2분입니다.</p>
                 <div id="inputBox">   
                     <div class="row">
                         <div class="col-md-9 mx-auto" style="margin-bottom: 10px; text-align: center;">

@@ -67,6 +67,12 @@
 	  where email=#{email}
 	</select>
 	
+	<!-- 비밀번호 재설정 -->
+ 	<update id="resetPassword" parameterType="hashmap">
+    update Member
+    set password=#{password}
+    where email=#{email}
+   </update>
  	
 	
 	<!-- 암호화된 비밀번호 가져오기 -->

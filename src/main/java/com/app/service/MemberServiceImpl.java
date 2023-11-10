@@ -62,6 +62,13 @@ public class MemberServiceImpl implements MemberService  {
 		MemberDTO edto = dao.authcodeconfirm(dto);
 		return edto;
 	}
+	
+	@Override
+	public int resetPassword(HashMap<String, String> hashmap) {
+		int n=dao.resetPassword(hashmap);
+	
+		return n;
+	}
 }
 
 

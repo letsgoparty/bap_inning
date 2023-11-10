@@ -13,4 +13,5 @@ public interface MemberService {
 	public MemberDTO mypage(String userid);
 	public String findEncodePW(HashMap<String, String> map);
 	public MemberDTO authcodeconfirm(MemberDTO dto);
+	public int resetPassword(HashMap<String, String> hashmap);
 }

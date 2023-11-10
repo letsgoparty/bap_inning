@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비밀번호 재설정 성공 화면</title>
+    <title>비밀번호 재설정 실패</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 	$(document).ready(function() {
 		 Swal.fire({
- 	        text: "비밀번호가 성공적으로 변경되었습니다. 변경된 비밀번호로 로그인해주세요.",
+ 	        text: "인증번호가 일치하지 않거나 유효시간 만료로 비밀번호 변경이 실패했습니다",
  	        icon: 'success',
  	        confirmButtonColor: '#3085d6',
  	        button: {

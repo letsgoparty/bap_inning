@@ -75,8 +75,13 @@ public class MemberDAO {
 			    }
 			    
 			    return edto;
-			//return dto;
+			
 		}
 	    
+		// 비밀번호 재설정
+	    public int resetPassword(HashMap<String, String> hashmap) {
+			int n=session.update("MemberMapper.resetPassword",hashmap);
+			return n;
+		}
 	    
 }

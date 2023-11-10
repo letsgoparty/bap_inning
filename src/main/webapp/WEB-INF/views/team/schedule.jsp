@@ -208,8 +208,10 @@ table.tScore thead th {
 					<li class="list-group-item"><a href="record">경기기록</a></li>
 					<li class="list-group-item"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item"><a href="rank">팀 순위</a></li>
-					<li class="list-group-item"><a href="players">선수 정보</a></li>
-					<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
+					<c:if test="${myTeam ne '없음'}">
+						<li class="list-group-item"><a href="players">선수 정보</a></li>
+						<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
+					</c:if>
 				</ul>
 			</aside>
 			<div class="input-form-background col-md-9"
@@ -265,7 +267,13 @@ table.tScore thead th {
 										<c:when test="${empty filterScheduleList}">
 											<div class="swiper-slide">
 												<div class="team-box">
-													<span class="no-schedule">예정된 경기가 없습니다.</span>
+													<c:if test="${myTeam eq '없음'}">
+														<p class="no-team">응원팀이 없습니다.</p>
+														<a href="mypage">응원팀 설정하러 가기</a>
+													</c:if>
+													<c:if test="${myTeam ne '없음'}">
+														<span class="no-schedule">예정된 경기가 없습니다.</span>
+													</c:if>
 												</div>
 											</div>
 										</c:when>

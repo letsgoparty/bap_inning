@@ -7,6 +7,9 @@ public class TeamService {
 	public String team_name(int team_code) {
 		String selectedTeam = null; // 나중에 수정하기
 		switch (team_code) {
+		case 0:
+			selectedTeam = "없음";
+			break;
 		case 1:
 			selectedTeam = "SSG";
 			break;

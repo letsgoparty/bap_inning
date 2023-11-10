@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.app.dto.MemberDTO;
 import com.app.dto.UpgradePageDTO;
@@ -25,5 +26,8 @@ public interface MypageService {
 	//페이징처리_숙소리뷰
 	public UpgradePageDTO select_l_review(String userid,int curPage, int amount);
 	
-	
+	//게시글 전체삭제
+	public int deleteAll_myText(List<Integer> list);
+	//댓글 전체삭제
+	public int deleteAll_myReply(List<Integer> list);
 }

@@ -146,7 +146,7 @@ function enableEdit() {
 		<div class="input-form-background row">
 			<div class="input-form col-md-6 mx-auto">
 				
-				<h3 class="mb-3">new마이페이지</h3>
+				<h3 class="mb-3">마이페이지</h3>
 <span id="user_team_code" hidden>${user.team_code}</span>
 <input id="user_currNickname" hidden value="${user.nickname}" disabled="disabled"/>
 				

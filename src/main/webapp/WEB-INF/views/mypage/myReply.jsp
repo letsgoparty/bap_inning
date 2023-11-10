@@ -37,6 +37,65 @@
    justify-content:center;
   }   
 </style>
+
+<script>
+$(document).ready(function(){
+	
+	//전체선택
+	$("#allCheck").click(function(){
+		var allChecked=!$(this).data("allChecked");
+		$(this).data("allChecked",allChecked);
+		
+		$(".check").prop("checked",allChecked);
+		
+		if(allChecked){
+			$(this).text("전체 해제");			
+		}else{
+			$(this).text("전체 선택");
+		}
+	});
+	
+	//선택항목 삭제
+	$("#deleteAll").click(function(){
+		//확인 대화상자 띄워서 삭제여부 확인
+		var confirmed= confirm("정말 삭제하시겠습니까?");
+		
+		//사용자가 확인 선택시에만 삭제 진행
+		if(confirmed){
+			var checkedValues=[];
+			//선택된 체크박스 가져오기
+			$(".check:checked").each(function(){
+				checkedValues.push($(this).val());
+			});
+			
+			$.ajax({
+				url:"deleteAll_myreply",
+				method:"get",
+				data:{check: checkedValues},
+				success:function(data){
+					if(data==="로그인이 필요합니다"){
+						alert(data);
+						window.location.href="/app/loginForm";
+					}else{
+						window.location.href="/app/myreply";
+					}
+				},
+				error:function(error){
+                	alert("에러 발생");
+                    console.error('error: ', error);
+                    window.location.href="/app/myreply";
+				}
+				
+			});//end ajax
+			
+		}//endif
+		
+	});//end 선택항목삭제
+
+	
+});
+</script>
+
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
@@ -46,14 +105,13 @@
 
 
 	<h3>내 활동_댓글</h3>
-<div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 
 		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 		  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-		  <label class="btn btn-outline-primary" for="btnradio1">게시글</label>
+		  <label class="btn btn-outline-primary" for="btnradio1">내 게시글</label>
 		
 		  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
-		  <label class="btn btn-outline-primary" for="btnradio2">댓글</label>
+		  <label class="btn btn-outline-primary" for="btnradio2">내 댓글</label>
 		
 <!-- 		  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
 		  <label class="btn btn-outline-primary" for="btnradio3">식당리뷰</label>
@@ -61,6 +119,9 @@
 		  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
 		  <label class="btn btn-outline-primary" for="btnradio4">숙소리뷰</label> -->
 		</div>
+		
+		
+<div class="body_top pt-3" style="display:flex; justify-content: space-between; align-items: center;">
 		<div>
 		<select name="amount" id="amount">
 			<option value="10">--페이지 선택--</option>
@@ -69,9 +130,13 @@
 			<option value="50">50개 보기</option>
 			<option value="100">100개 보기</option>
 		</select>
-
 	</div>
+				<div>
+					<button class="btn btn-primary" id="allCheck">전체 선택</button>
+					<button class="btn btn-primary" id="deleteAll">선택항목 삭제</button>
+				</div>
 </div>
+
 	
 	
 <br>
@@ -91,8 +156,8 @@
     <c:forEach var="reply" items="${pageDTO.list}">
     
     <tr>
-      <th scope="row"><a href="retrieve?no=${reply.board_num}">${reply.board_num}</a></th>
-      <td>${reply.text}</td>
+      <td scope="row"><input type="checkbox" class="check" name="check" value="${reply.reviews_num}"> </td>
+      <td><a href="retrieve?no=${reply.board_num}">${reply.text}</a></td>
 <%--       <td>${reply.userid}</td> --%>
       <td>${reply.replyDate}</td>
       <td><a href="javascript:void(0);" onclick="confirmDelete(${reply.reviews_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
@@ -102,9 +167,11 @@
     </c:forEach>
 
   </tbody>
+
   
-  						<tr>
-							<td colspan="6">
+</table>
+
+  				 <!-- 페이지 번호 -->
 								<div class="pagination">
 									<ul class="pagination">
 
@@ -152,13 +219,7 @@
 
 									</ul>
 								</div>
-							</td>
-						</tr>
-  
-  
-  
-  
-</table>
+   	<!-- 페이지 번호 -->
 </div>
    </div>
   </div>

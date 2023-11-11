@@ -47,8 +47,7 @@ public class MypageController {
 	private EncodeService encodeService;
 	@Autowired
 	private ReplyService replyService;
-	@Autowired
-	private LikeService likeService;
+
 	
 	//새로 제작중인 마이페이지
 	@RequestMapping("/mypage")
@@ -63,7 +62,7 @@ public class MypageController {
 		 
 		 System.out.println(user);
 		
-		return "mypage/newMyPage";
+		return "mypage/myPage";
 	}
 	
 	
@@ -159,7 +158,26 @@ public class MypageController {
 		
 		return "redirect:myreply";
 	}
-
+	//댓글 전체삭제
+	@GetMapping("/deleteAll_myreply")
+	@ResponseBody
+	public String deleteAll_myreply(@RequestParam(value="check[]")List<Integer> checkedValues,HttpSession session ) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		int n=0;
+		System.out.println(checkedValues);
+		if(user==null) {
+			return "로그인이 필요합니다";
+		}else {
+			n=mypageService.deleteAll_myReply(checkedValues);
+		}
+		if(n>0) {
+			return "삭제되었습니다";
+		}else {
+			return "실패하였습니다";
+		}
+		
+	}
 	
 	//식당리뷰
 	@GetMapping("/my_r_review")
@@ -176,12 +194,7 @@ public class MypageController {
 		mav.setViewName("mypage/myRestaurantReview");
 		mav.addObject("pageDTO",pageDTO);
 		
-		
-		//식당정보 가져오기
-		List<RestaurantDTO> Rdto=null;
-		
-		/* List<Object> res_list= */
-		
+
 		
 		return mav; 
 	}
@@ -302,6 +315,29 @@ public class MypageController {
 		
 		return "redirect:mytext";
 	}
+	
+	//게시판. 전체삭제
+	@GetMapping("/deleteAll_mytext")
+	@ResponseBody
+	public String deleteAll_mytext(@RequestParam(value="check[]")List<Integer> checkedValues, HttpSession session) {
+		//세션에서 로그인정보 가져오기
+		MemberDTO user=(MemberDTO)session.getAttribute("login");
+		int n=0;
+		System.out.println(checkedValues);
+		if(user==null) {
+			return "로그인이 필요합니다";
+		}else {
+			n=mypageService.deleteAll_myText(checkedValues);
+		}
+		
+		if(n>0) {
+			return "삭제되었습니다";
+		}else {
+			return "실패하였습니다";
+		}
+
+	}
+	
 	
 	//닉네임 변경 중복확인.
 	@GetMapping(value="/mypageNicknameCheck", produces = "text/plain;charset=utf-8")

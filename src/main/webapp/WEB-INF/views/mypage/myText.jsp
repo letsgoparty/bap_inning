@@ -30,7 +30,71 @@
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
+
+  .pagination{
+   display:flex;
+   justify-content:center;
+  }  
 </style>
+
+<script>
+$(document).ready(function(){
+	
+	
+	//전체 선택
+	$("#allCheck").click(function(){
+		var allChecked=!$(this).data("allChecked");
+		$(this).data("allChecked",allChecked);
+		
+		$(".check").prop("checked",allChecked);
+		
+	    if (allChecked) {
+	        $(this).text("전체 해제");
+	    } else {
+	        $(this).text("전체 선택");
+	    }
+	    		
+	});
+	
+	 // 선택항목 삭제
+    $("#deleteAll").click(function(){
+        // 확인 대화상자를 띄워 사용자에게 알림
+        var confirmed = confirm("정말 삭제하시겠습니까?");
+
+        // 사용자가 확인을 선택했을 때만 삭제 진행
+        if (confirmed) {
+            var checkedValues = [];
+            // 선택된 체크박스를 가져오기
+            $(".check:checked").each(function(){
+                checkedValues.push($(this).val());
+            });
+
+            $.ajax({
+                url: "deleteAll_mytext",
+                method: "get",
+                data: { check: checkedValues },
+                success: function(data) {
+                    if (data === '로그인이 필요합니다') {
+                        alert(data);
+                        window.location.href = "/app/loginForm";
+                    } else {
+                        window.location.href = "/app/mytext";
+                    }
+                },
+                error: function(error) {
+                	alert("에러 발생");
+                    console.error('error: ', error);
+                    window.location.href="/app/mytext";
+                }
+            });
+        }
+    });
+		
+	
+	
+	
+});
+</script>
 
 </head>
 <body>
@@ -41,13 +105,12 @@
 
 
 				<h3>내 활동_게시글</h3>
-				<div class="body_top" style="display:flex; justify-content: space-between; align-items: center;">
 					<div class="btn-group" role="group"
 						aria-label="Basic radio toggle button group">
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked> 
-							<label class="btn btn-outline-primary" for="btnradio1">게시글</label> 
+							<label class="btn btn-outline-primary" for="btnradio1">내 게시글</label> 
 							<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"> 
-							<label class="btn btn-outline-primary" for="btnradio2">댓글</label> 
+							<label class="btn btn-outline-primary" for="btnradio2">내 댓글</label> 
 							
 <!-- 							<input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"> 
 							<label class="btn btn-outline-primary" for="btnradio3">식당리뷰</label> 
@@ -55,6 +118,7 @@
 							<label class="btn btn-outline-primary" for="btnradio4">숙소리뷰</label> -->
 					</div>
 
+				<div class="body_top pt-3" style="display:flex; justify-content: space-between; align-items: center;">
 					<div>
 						<select name="amount" id="amount">
 							<option value="10">--페이지 선택--</option>
@@ -65,39 +129,63 @@
 						</select>
 
 					</div>
+				
+				
+				<div>
+					<button class="btn btn-primary" id="allCheck">전체 선택</button>
+					<button class="btn btn-primary" id="deleteAll">선택항목 삭제</button>
 				</div>
+				
+				</div>
+				
+				
 				<br>
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
-								<th scope="col" style="width: 40px;">글번호</th>
+								<th scope="col" style="width: 40px;">선택</th>
+								<th scope="col" style="width: 40px;text-align: center;">카테고리</th>
 								<th scope="col" style="width: 200px;">제목</th>
 					<!-- 			<th scope="col" style="width: 100px;">작성자</th> -->
 								<th scope="col" style="width: 100px;">작성일</th>
-								<th scope="col" style="width: 100px;">조회수</th>
+								<th scope="col" style="width: 100px;text-align: center;">조회수</th>
 								<th scope="col" style="width: 100px;">삭제</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="board" items="${pageDTO.list}">
 								<tr>
-									<th scope="row">${board.board_num}</th>
+									<td scope="row"><input type="checkbox" class="check" name="check" value="${board.board_num}"> </td>
+									<td style="padding: 5px;text-align: center;"><c:choose>
+								<c:when test="${board.team_code == 1}"><img src="images/logo/SSG.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 2}"><img src="images/logo/키움.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 3}"><img src="images/logo/LG.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 4}"><img src="images/logo/KT.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 5}"><img src="images/logo/KIA.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 6}"><img src="images/logo/NC.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 7}"><img src="images/logo/삼성.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 8}"><img src="images/logo/롯데.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 9}"><img src="images/logo/두산.png" width=auto height="25"></c:when>
+								<c:when test="${board.team_code == 10}"><img src="images/logo/한화.png" width=auto height="25"></c:when>
+								<c:otherwise>
+	
+								</c:otherwise>
+							</c:choose></td>
 									<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
 					<%-- 				<td>${board.userid}</td> --%>
 									<td>${board.board_date}</td>
-									<td>${board.count}</td>
+									<td style="text-align: center;">${board.count}</td>
 									<td><a href="javascript:void(0);" onclick="confirmDelete(${board.board_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
 								</tr>
 							</c:forEach>
 
 						</tbody>
-						<!-- 페이지 번호 -->
+
+					</table>
+											<!-- 페이지 번호 -->
 
 
-
-						<tr>
-							<td colspan="6">
 								<div class="pagination">
 									<ul class="pagination">
 
@@ -145,9 +233,9 @@
 
 									</ul>
 								</div>
-							</td>
-						</tr>
-					</table>
+
+					<!-- 페이지 번호 -->
+					
 				</div>
 			</div>
 		</div>

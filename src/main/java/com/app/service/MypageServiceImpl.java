@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,18 @@ public class MypageServiceImpl implements MypageService  {
 	@Override
 	public UpgradePageDTO select_l_review(String userid,int curPage, int amount) {
 		return dao.select_l_review(userid,curPage, amount);
+	}
+/////////////////////전체삭제 
+	
+	//게시글 전체삭제
+	@Override
+	public int deleteAll_myText(List<Integer> list) {
+		return dao.deleteAll_myText(list);
+	}
+	//댓글 전체삭제
+	@Override
+	public int deleteAll_myReply(List<Integer> list) {
+		return dao.deleteAll_myReply(list);
 	}
 
 

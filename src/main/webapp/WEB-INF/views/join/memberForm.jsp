@@ -119,6 +119,10 @@
                     	
                     	$("#authCode").val(data);
                     	
+                    	// 함수실행될 때 시스템 시간을 히든 필드에 할당
+                        var clientSystemTime = new Date().getTime();
+                        $('#hiddenSystemTime').val(clientSystemTime);
+                        
                         $("#authBtn").hide();
                         $("#authCheck").show();
               	
@@ -136,11 +140,13 @@
             	var authCode = $("#authCode").val();
             	console.log(authCode);
             	var authCodeInput = $("#authCodeInput").val();
-            	if(authCode === authCodeInput) {
+            	var authCheckTime = new Date().getTime();
+            	var hiddenSystemTime = $("#hiddenSystemTime").val();
+            	if(authCode === authCodeInput && Math.abs(authCheckTime - hiddenSystemTime) <= 180000) {
             		$("#auth_result").html('<span style="color:green"><img src="images/icon/o-icon.png" width=18 height=18> 인증을 성공하셨습니다.</span>');
             		isAuthCodeVerified = true;
             	} else {
-            		$("#auth_result").html('<img src="images/icon/x-icon.png" width=20 height=20> 인증을 실패하였습니다. 다시 입력해주세요.');
+            		$("#auth_result").html('<img src="images/icon/x-icon.png" width=20 height=20> 인증을 실패하였습니다. 인증코드를 재확인하시거나 3분 유효시간을 확인해주세요.');
             		isAuthCodeVerified = false;
             	}
             });
@@ -239,7 +245,8 @@
 							<input type="text"
 								class="form-control" id="authCodeInput" required
 								style="display: none;"> <input type="hidden"
-								id="authCode">
+								id="authCode"><input type="hidden"
+								id="hiddenSystemTime">
 							<p id="auth_result" style="color: red;"></p>
 							<div class="invalid-feedback"></div>
 						</div>

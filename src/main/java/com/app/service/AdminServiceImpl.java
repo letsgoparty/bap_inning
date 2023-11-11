@@ -13,6 +13,7 @@ import com.app.dto.LodReviewDTO;
 import com.app.dto.LodgingDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.RatingDTO;
+import com.app.dto.Reply;
 import com.app.dto.ResReviewDTO;
 import com.app.dto.RestaurantDTO;
 import com.app.dto.UserDTO;
@@ -192,5 +193,25 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int enroll_res(RestaurantDTO dto) {
 		return dao.enroll_res(dto);
+	}
+
+	@Override
+	public int enroll_lod(LodgingDTO dto) {
+		return dao.enroll_lod(dto);
+	}
+
+	@Override
+	public int find_seq2() {
+		return dao.find_seq2();
+	}
+
+	@Override
+	public List<Reply> find_Comment() {
+		return dao.find_Comment();
+	}
+
+	@Override
+	public List<Reply> find_commentInfo(String userid) {
+		return dao.find_commentInfo(userid);
 	}
 }

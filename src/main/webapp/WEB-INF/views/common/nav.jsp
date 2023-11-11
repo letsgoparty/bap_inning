@@ -165,9 +165,9 @@
 							<div class="dropdown mb-2 mb-lg-0 mx-5 mt-2">
 								<a class="profile btn btn-secondary dropdown-toggle" href="#"
 									role="button" data-bs-toggle="dropdown" aria-expanded="false"
-									style="color: rgb(0, 0, 0, 0.8); border: 1px solid #fff !important"><img
+									style="color: rgb(0, 0, 0, 0.8); border: 2px solid #fff !important"><img
 									src="images/icon/profile.png" width=auto height="30">&nbsp;
-									${login.userid} <i class="fas fa-caret-down mx-2"></i> </a>
+									${login.nickname} <i class="fas fa-caret-down mx-2"></i> </a>
 								<ul class="dropdown-menu" style="text-align: center;">
 									<table class="mx-auto">
 										<tr>

@@ -11,6 +11,7 @@ import com.app.dto.LodReviewDTO;
 import com.app.dto.LodgingDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.RatingDTO;
+import com.app.dto.Reply;
 import com.app.dto.ResReviewDTO;
 import com.app.dto.RestaurantDTO;
 import com.app.dto.UserDTO;
@@ -88,6 +89,9 @@ public class AdminDAO {
 	public List<Board> find_boardInfo(String userid) {
 		return session.selectList("AdminMapper.find_boardInfo", userid);
 	}
+	public List<Reply> find_commentInfo(String userid) {
+		return session.selectList("AdminMapper.find_commentInfo", userid);
+	}
 	public int delete_board(int board_num) {
 		return session.delete("AdminMapper.delete_board", board_num);
 	}
@@ -124,8 +128,17 @@ public class AdminDAO {
 	public int find_seq() {
 		return session.selectOne("AdminMapper.find_seq");
 	}
+	public int find_seq2() {
+		return session.selectOne("AdminMapper.find_seq2");
+	}
 	public int enroll_res(RestaurantDTO dto) {
 		return session.insert("AdminMapper.enroll_res", dto);
+	}
+	public int enroll_lod(LodgingDTO dto) {
+		return session.insert("AdminMapper.enroll_lod", dto);
+	}
+	public List<Reply> find_Comment() {
+		return session.selectList("AdminMapper.find_Comment");
 	}
 	
 }

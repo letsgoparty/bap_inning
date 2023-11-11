@@ -100,21 +100,7 @@
 						<i class="fa-solid fa-user" style="color: #adadae;"></i>&nbsp; 선수
 						엔트리
 					</h3>
-					<div>
-						<select name="team_code" class="form-select ms-5" id="myTeam" value="${myTeam}" style="width: 40%">
-							<option value="0">---해당없음---</option>
-							<option value="1">SSG 랜더스</option>
-							<option value="2">키움 히어로즈</option>
-							<option value="3">LG 트윈스</option>
-							<option value="4">KT wiz</option>
-							<option value="4">KIA 타이거즈</option>
-							<option value="6">NC 다이노스</option>
-							<option value="삼성">삼성 라이온즈</option>
-							<option value="8">롯데 자이언츠</option>
-							<option value="9">두산 베어스</option>
-							<option value="10">한화 이글스</option>
-						</select>
-					</div>
+		
 					<div class="category" style="float: right; clear: right;">
 						<a href="players">전체</a> <a href="players?position=투수">투수</a> <a
 							href="players?position=포수">포수</a> <a href="players?position=외야수">외야수</a>

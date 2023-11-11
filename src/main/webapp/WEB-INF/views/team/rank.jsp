@@ -36,8 +36,10 @@
 					<li class="list-group-item"><a href="record">경기기록</a></li>
 					<li class="list-group-item"><a href="highlight">하이라이트</a></li>
 					<li class="list-group-item active"><a href="rank">팀 순위</a></li>
-					<li class="list-group-item"><a href="players">선수 정보</a></li>
-					<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
+					<c:if test="${myTeam ne '없음'}">
+						<li class="list-group-item"><a href="players">선수 정보</a></li>
+						<li class="list-group-item"><a href="myPlayer">찜한 선수</a></li>
+					</c:if>
 				</ul>
 			</aside>
 			<div class="input-form-background col-md-9"
@@ -145,7 +147,7 @@
 							</c:when>
 							<c:when test="${filterTeamData.rank == null}">
 								<p class="no-team">응원팀이 없습니다.</p>
-								<a href="myinfo">응원팀 설정하러 가기</a>
+								<a href="mypage">응원팀 설정하러 가기</a>
 							</c:when>
 						</c:choose>
 					</div>

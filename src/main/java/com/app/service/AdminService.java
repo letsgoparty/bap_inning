@@ -7,6 +7,7 @@ import com.app.dto.LodReviewDTO;
 import com.app.dto.LodgingDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.RatingDTO;
+import com.app.dto.Reply;
 import com.app.dto.ResReviewDTO;
 import com.app.dto.RestaurantDTO;
 import com.app.dto.UserDTO;
@@ -46,5 +47,9 @@ public interface AdminService {
 	public MemberDTO findUser(String userid);
 	public int updateUser(MemberDTO dto);
 	public int find_seq();
+	public int find_seq2();
 	public int enroll_res(RestaurantDTO dto);
+	public int enroll_lod(LodgingDTO dto);
+	public List<Reply> find_Comment();
+	public List<Reply> find_commentInfo(String userid);
 }

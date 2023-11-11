@@ -31,7 +31,8 @@
             -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
             box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
         }
-      .pagination{
+        
+  .pagination{
    display:flex;
    justify-content:center;
   }     
@@ -116,9 +117,11 @@
     </c:forEach>
   </tbody>
   
+</table>
+
     <!-- 페이지 번호 -->
-						<tr>
-							<td colspan="6">
+
+
 								<div class="pagination">
 									<ul class="pagination">
 
@@ -162,11 +165,12 @@
 
 
 										<!-- 페이지네이션 -->
-  
+									</ul>
+								</div>
+
   <!-- 페이지 번호 -->
-  
-  
-</table>
+
+
 </div>
    </div>
   </div>

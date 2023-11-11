@@ -63,7 +63,7 @@ input[type=file] {
 
 .myform {
 	width: 70%;
-	margin: 3% auto; /* 수평 가운데 정렬을 위한 마진 설정 */
+	margin: 3% auto; 
 	height: auto;
 	padding: 50px;
 	box-sizing: border-box;

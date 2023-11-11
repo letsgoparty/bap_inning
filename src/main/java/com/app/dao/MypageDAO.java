@@ -38,6 +38,17 @@ public class MypageDAO {
 		return n;
 	}
 	
+	///////////전체삭제 구현
+	//게시글 전체삭제
+	public int deleteAll_myText(List<Integer> list) {
+		return session.delete("MypageMapper.deleteAll_myText",list);
+	}
+	//댓글 전체삭제 
+	public int deleteAll_myReply(List<Integer> list) {
+		return session.delete("MypageMapper.deleteAll_myReply",list);
+	}
+	
+	
 	
 	///////////////////////////////////
 	//페이징 처리
@@ -77,6 +88,8 @@ public class MypageDAO {
 		return pageDTO;
 		
 	}
+	
+	
 	//식당리뷰
 	public int totalCount_r_review(String userid) {
 		return session.selectOne("MypageMapper.r_reviewTotalCount",userid);

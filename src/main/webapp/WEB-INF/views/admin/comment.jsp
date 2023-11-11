@@ -178,25 +178,13 @@
 									<tbody>
 										<c:forEach var="dto" items="${list}">
 											<tr>
-												<td><c:choose>
-														<c:when test="${dto.team_code eq '1'}">SSG 랜더스</c:when>
-														<c:when test="${dto.team_code eq '2'}">키움 히어로즈</c:when>
-														<c:when test="${dto.team_code eq '3'}">LG 트윈스</c:when>
-														<c:when test="${dto.team_code eq '4'}">KT wiz</c:when>
-														<c:when test="${dto.team_code eq '5'}">KIA 타이거즈</c:when>
-														<c:when test="${dto.team_code eq '6'}">NC 다이노스</c:when>
-														<c:when test="${dto.team_code eq '7'}">삼성 라이온즈</c:when>
-														<c:when test="${dto.team_code eq '8'}">롯데 자이언츠</c:when>
-														<c:when test="${dto.team_code eq '9'}">두산 베어스</c:when>
-														<c:when test="${dto.team_code eq '10'}">한화 이글스</c:when>
-														<c:when test="${dto.team_code eq '0'}">기타</c:when>
-													</c:choose></td>
-												<td>${dto.board_num}</td>
+												<td>${dto.reviews_num}</td>
 												<td><a href="#" class="open_modal"
-													data-board-num="${dto.board_num}">${dto.title}</a></td>
+													data-board-num="${dto.board_num}">${dto.board_num}</a></td>
+												<td>${dto.text}</td>
 												<td>${dto.userid}</td>
-												<td>${dto.board_date}</td>
-												<td>${dto.count}</td>
+												<td>${dto.replyDate}</td>
+												<td>${dto.updateDate}</td>
 											<td><a href="../delete?no=${board.board_num}" class="btn btn-primary" style="background-color:rgb(181,181,181); border-color:rgb(181,181,181); "><i class="fa-solid fa-trash" style="color: #ffffff;"></i></a></td>
 											</tr>
 										</c:forEach>

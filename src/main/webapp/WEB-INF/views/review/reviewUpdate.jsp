@@ -15,7 +15,7 @@
 	<jsp:include page="../common/nav.jsp" flush="true" />
 
 	<form id="myform" action="reviewUpdate" method="POST">
-	   	<input type="text" name="res_id" value="${reviewRetrieve.res_id}">
+	   	<input type="hidden" name="res_id" value="${reviewRetrieve.res_id}">
  	  	<input type="hidden" name="review_id" value="${reviewRetrieve.review_id}"> 
 <%-- 				<input type="text" name="res_id" value="${reviewDTO.res_id}">
 		    <input type="text" name="review_id" value="${reviewUpdate.review_id}"> 

@@ -52,7 +52,7 @@
 					</c:forEach>
 				</div>
 				</td> --%>
-					<td>${dto.user_id}</td>
+					<td>${dto.nickname}</td>
 		    	<td><c:forEach var="i" begin="1" end="${dto.rating}">⭐</c:forEach></td>
 					<td>${dto.created_date}</td>
 					<td><a href="lod_like_cnt?review_id=${dto.review_id}" class="btn btn-primary">

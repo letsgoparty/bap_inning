@@ -12,9 +12,11 @@
 	<select id="r_reviewList"  resultType="ReviewDTO" parameterType="int">
 	  select review_id, res_id, user_id, rating, review_content, like_cnt, 
 		  to_char(created_date, 'YYYY/MM/dd') as created_date, 
-		  to_char(modified_date, 'YYYY/MM/dd') as modified_date
-	  from restaurant_reviews
-<!--  	  natural join member -->
+		  to_char(modified_date, 'YYYY/MM/dd') as modified_date, nickname
+		FROM
+    	restaurant_reviews rr
+		JOIN
+   	 member m ON rr.user_id = m.userid
 	  where res_id =#{res_id}
 	  order by review_id desc 
 	</select>
@@ -28,8 +30,11 @@
 	<select id="l_reviewList"  resultType="LodReviewDTO" parameterType="int">
 	  select review_id, lodging_id, user_id, rating, review_content, like_cnt,
 	   	to_char(created_date, 'YYYY/MM/dd') as created_date, 
-	  	to_char(modified_date, 'YYYY/MM/dd') as modified_date
-	  from lodging_reviews
+	  	to_char(modified_date, 'YYYY/MM/dd') as modified_date, nickname
+		FROM
+    	lodging_reviews lr
+		JOIN
+   	 member m ON lr.user_id = m.userid
 	  where lodging_id =#{lodging_id}
 	  order by review_id desc
 	</select>
@@ -46,13 +51,21 @@
 	
 	<!-- 리뷰 상세보기 -->
 	<select id="reviewRetrieve" parameterType="string" resultType="ReviewDTO">
-  	select *
-  	from restaurant_reviews
+	  select review_id, res_id, user_id, rating, review_content, like_cnt, 
+		  created_date, modified_date, nickname
+		FROM
+    	restaurant_reviews rr
+		JOIN
+   	 member m ON rr.user_id = m.userid
 		where review_id = #{review_id}
 	</select>
 	<select id="lodReviewRetrieve" parameterType="string" resultType="LodReviewDTO">
-  	select *
-  	from lodging_reviews
+	  select review_id, lodging_id, user_id, rating, review_content, like_cnt, 
+		  created_date, modified_date, nickname
+		FROM
+			lodging_reviews lr
+  	JOIN
+   	 member m ON lr.user_id = m.userid
 		where review_id = #{review_id}
 	</select>
 	

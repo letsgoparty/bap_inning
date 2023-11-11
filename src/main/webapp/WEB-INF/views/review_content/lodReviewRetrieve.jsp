@@ -23,7 +23,7 @@
  	 		</div>
 		</div>
 		<div style="float: right">
-			<span style="font-weight: bold;">${lodReviewRetrieve.user_id}</span> &nbsp;
+			<span style="font-weight: bold;">${lodReviewRetrieve.nickname}</span> &nbsp;
 			<span>${lodReviewRetrieve.created_date}</span>&nbsp;
 			<span><a href="lod_like_cnt?review_id=${dto.review_id}" class="btn btn-primary btn-sm"
 			onclick="return false;"> <!-- 클릭막아둠 -->

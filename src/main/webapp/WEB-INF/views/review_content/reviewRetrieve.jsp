@@ -23,7 +23,7 @@
  	 		</div>
 		</div>
 		<div style="float: right">
-			<span style="font-weight: bold;">${reviewRetrieve.user_id}</span> &nbsp;
+			<span style="font-weight: bold;">${reviewRetrieve.nickname}</span> &nbsp;
 			<span>${reviewRetrieve.created_date}</span>	&nbsp;
 			<span><a href="res_like_cnt?review_id=${reviewDTO.review_id}" class="btn btn-primary btn-sm"
 			onclick="return false;"> <!-- 클릭막아둠 -->

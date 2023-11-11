@@ -147,18 +147,29 @@ public class ReviewController {
 		m.addAttribute("res_id", res_id);
 		return "review/reviewUpdate";
 	}
+	
+	@PostMapping("/reviewUpdate2")
+	public String reviewUpdate2(ReviewDTO reviewDTO) {
+		int num = service.reviewUpdate(reviewDTO);
+		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
+	}
 	@PostMapping("/reviewUpdate")
-	public String reviewUpdate(ReviewDTO reviewDTO) {
+	public String reviewUpdate(ReviewDTO reviewDTO, HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		reviewDTO.setUser_id(dto.getUserid());
+		
 		int num = service.reviewUpdate(reviewDTO);
 		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
 	}
 
+	
 	@GetMapping("/lodReviewUpdate")
 	public String lodReviewUpdate(@RequestParam int lodging_id, Model m) {
 		System.out.println(lodging_id);
 		m.addAttribute("lodging_id", lodging_id);
 		return "review/lodReviewUpdate";
 	}
+
 	@PostMapping("/lodReviewUpdate")
 	public String lodReviewUpdate(LodReviewDTO dto) {
 		int num = service.lodReviewUpdate(dto);
@@ -170,8 +181,8 @@ public class ReviewController {
 	@GetMapping("/reviewDelete")
 	public String reviewDelete(@RequestParam("review_id") int review_id, ReviewDTO reviewDTO) {
 		int num = service.reviewDelete(review_id);
-		return "redirect:r_reviewList";
-			//	+ "?res_id=" + reviewDTO.getRes_id();
+		//int res_id = reviewDTO.getRes_id();
+		return "redirect:main"; //redirect:r_reviewList?res_id=" + res_id;
 	}
 	
 	@GetMapping("/lodReviewDelete")
@@ -222,5 +233,32 @@ public class ReviewController {
 		}
 		
 		return review_id; 
+	}
+
+	//리뷰 추천
+	@GetMapping("/res_like_cnt")
+	public String res_like_cnt(ReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO)session.getAttribute("login");
+		
+		if(mdto == null) {
+			return "loginForm";
+		} else {
+			dto.setUser_id(mdto.getUserid());
+			int n = service.res_like_cnt(dto);
+		}
+		return "review/likedInfo";
+	}
+	
+	@GetMapping("/lod_like_cnt")
+	public String lod_like_cnt(LodReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO)session.getAttribute("login");
+		
+		if(mdto == null) {
+			return "loginForm";
+		} else {
+			dto.setUser_id(mdto.getUserid());
+			int n = service.lod_like_cnt(dto);
+		}
+		return "review/likedInfo";
 	}
 }

@@ -5,15 +5,11 @@
 <div class="container">
 	<form action="lodReviewWrite" method="get">
    	<input type="hidden" name="lodging_id" value="${param.lodging_id}">
-   	<input type="hidden" name="lodging_name" value="${param.lodging_name}">
-   	<input type="hidden" id="lodging_name" value="${param.lodging_name}">
-<%-- 		<h2 class="text-center">${param.lodging_name}의 리뷰 목록</h2>--%>
-		<h2 class="text-center">리뷰 목록</h2>
-	<h1 class="card-title mt-3 mb-4" id="lodging_name"></h1>
+		<h2 class="text-center">리뷰 목록 (${pageDTO.totalCount}개)</h2>
 
 <c:choose>
 	<c:when test="${!empty pageDTO.lodList}">
-
+<!-- 
 		<select name="" class="form-select" aria-label="Default select example" style="float: right; width: 140px">
 		  <option selected>-- 정렬 --</option>
 					<option value="recent">최신순</option>
@@ -25,14 +21,14 @@
 		  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
 		  <label class="form-check-label" for="flexSwitchCheckDefault">사진리뷰만 보기 </label>
 		</div>		
-
+ -->
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>리뷰번호</th>
 					<th colspan="2">내용</th>
 					<th></th>
-					<th>리뷰이미지</th>
+<!-- 					<th>리뷰이미지</th> -->
 					<th>작성자</th>
 					<th>별점</th>
 					<th>작성일</th>
@@ -46,25 +42,25 @@
 					<td>${dto.review_id}</td>
 					<td colspan="2">${dto.review_content}</td>
 					<td><a href="lodReviewRetrieve?review_id=${dto.review_id}">더보기</a></td>
-					<td>이미지추가</td>
+<%--
+				<td>
+ 				<div class="imgs_wrap"> <!-- 클래스삭제하기 -->
+ 					<c:forEach var="url" items="${urls}">
+						<div style="text-align:center;">
+					    <img class="mb-2" src="${url}" width="300" height="300" alt="이미지">
+					   </div>
+					</c:forEach>
+				</div>
+				</td> --%>
 					<td>${dto.user_id}</td>
-		      <td>
-						<c:choose>
-							<c:when test="${dto.rating == 1}">⭐</c:when>
-							<c:when test="${dto.rating == 2}">⭐⭐</c:when>
-							<c:when test="${dto.rating == 3}">⭐⭐⭐</c:when>
-							<c:when test="${dto.rating == 4}">⭐⭐⭐⭐</c:when>
-							<c:when test="${dto.rating == 5}">⭐⭐⭐⭐⭐</c:when>
-						</c:choose>
-		    	</td>
+		    	<td><c:forEach var="i" begin="1" end="${dto.rating}">⭐</c:forEach></td>
 					<td>${dto.created_date}</td>
-					<td><button id="like_btn" class="btn btn-primary" onclick="like()">
-						<img src="images/icon/thumb1_icon.png" width=20 height=20> ${dto.like_cnt}</button></td>
-					<td><button id="like_btn" class="btn btn-primary">
-						<img src="images/icon/thumb2_icon.png" width=20 height=20> 12</button></td>
+					<td><a href="lod_like_cnt?review_id=${dto.review_id}" class="btn btn-primary">
+						<img src="images/icon/thumb2_icon.png" width=20 height=20> ${dto.like_cnt}</a>
+					</td>
 				</tr>
 			</c:forEach>
-			</tbody>
+			</tbody>		      
 			
 			<!--  page 번호 출력 -->
 			<c:set var="lodging_id" value="${param.lodging_id}" />
@@ -75,18 +71,24 @@
 		  <c:if test="${totalCount%perPage != 0}">
 		    <c:set var="totalNum" value="${totalNum+1}" />
 		  </c:if>
-		   <tr>
-		    <td colspan="10">
-		    <c:forEach var="i" begin="1" end="${totalNum}" >
-		    	<c:if test="${curPage==i}">
-		    	   ${i}
-		    	</c:if>
-		    	<c:if test="${curPage!=i}">
-		    	  <a href="l_reviewList?lodging_id=${lodging_id}&curPage=${i}">${i}</a>
-		    	</c:if>
-		    </c:forEach>
-		     </td>
-		  </tr>
+	   <tr>
+	    <td colspan="9">
+				<nav aria-label="...">
+				  <ul class="pagination pagination-sm justify-content-center">
+				  	<c:forEach var="i" begin="1" end="${totalNum}" >
+				   		<c:if test="${curPage==i}">
+						    <li class="page-item active" aria-current="page">
+					      	<span class="page-link">${i}</span>
+				    		</li>
+				     	</c:if>
+						 	<c:if test="${curPage!=i}">
+				    	  <li class="page-item"><a class="page-link" href="l_reviewList?lodging_id=${lodging_id}&curPage=${i}">${i}</a></li>
+				    	</c:if>
+		    		</c:forEach>
+				  </ul>
+				</nav>
+	    </td>
+	  </tr>
 		  <!--  page 번호 출력 --> 
 		</table>
 		
@@ -95,10 +97,13 @@
 		<div class="container" style="text-align:center; font-size:20px; font-family: 'KBO-Dia-Gothic_light'">
 			<br><br>🥲<br>
 			아직 등록된 리뷰가 없어요.<br>
-			${param.lodging_name}의 첫번째 리뷰를 작성해 보세요!<br><br><br>
+			첫번째 리뷰를 작성해 보세요!<br><br><br>
 		</div>
 	</c:otherwise>
 </c:choose>		
-		<button type="submit" class="btn btn-primary">리뷰작성</button>
+
+		<div class="container">
+			<button type="submit" class="btn btn-primary">리뷰작성</button>
+		</div>
 	</form>
 </div>

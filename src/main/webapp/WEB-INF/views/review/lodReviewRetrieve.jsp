@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 작성 화면</title>
+<title>숙소 리뷰</title>
 <link rel="icon" type="image/png" sizes="32x32"
 	href="images/icon/favicon-32x32.png">
 <link href="css/review.css" rel="stylesheet" />

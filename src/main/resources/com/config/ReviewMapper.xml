@@ -10,11 +10,13 @@
 	  where res_id =#{res_id}
 	</select>
 	<select id="r_reviewList"  resultType="ReviewDTO" parameterType="int">
-	  select review_id, res_id, user_id, rating, review_content, like_cnt, created_date, modified_date, res_name
+	  select review_id, res_id, user_id, rating, review_content, like_cnt, 
+		  to_char(created_date, 'YYYY/MM/dd') as created_date, 
+		  to_char(modified_date, 'YYYY/MM/dd') as modified_date
 	  from restaurant_reviews
-	  natural join restaurant
+<!--  	  natural join member -->
 	  where res_id =#{res_id}
-	  order by review_id desc
+	  order by review_id desc 
 	</select>
 	
 	<!-- 숙소 리뷰 목록 -->
@@ -24,9 +26,10 @@
 	  where lodging_id =#{lodging_id}
 	</select>
 	<select id="l_reviewList"  resultType="LodReviewDTO" parameterType="int">
-	  select review_id, lodging_id, user_id, rating, review_content, like_cnt, created_date, modified_date, lodging_name
+	  select review_id, lodging_id, user_id, rating, review_content, like_cnt,
+	   	to_char(created_date, 'YYYY/MM/dd') as created_date, 
+	  	to_char(modified_date, 'YYYY/MM/dd') as modified_date
 	  from lodging_reviews
-	  natural join lodging
 	  where lodging_id =#{lodging_id}
 	  order by review_id desc
 	</select>
@@ -56,7 +59,7 @@
 	<!-- 리뷰 수정 -->
 	<update id="reviewUpdate" parameterType="ReviewDTO">
 		update restaurant_reviews
-		set review_content = #{review_content}, rating=#{rating}, modified_date = sysdate
+		set review_content = #{review_content}, rating=#{rating}
 		where review_id = #{review_id}
 	</update>
 	<update id="lodReviewUpdate" parameterType="LodReviewDTO">
@@ -104,6 +107,7 @@
 		where review_id=#{review_id}
 	</select>
 	
+	
 	<!-- 리뷰 추천 -->
 	<update id="res_like_cnt" parameterType="int">
 		update restaurant_reviews
@@ -115,4 +119,10 @@
 		set like_cnt = like_cnt + 1
 		where review_id = #{review_id}
 	</update>
+	
+	<!-- 리뷰 추천시 like_review 테이블에 insert -->
+	<insert id="insertLike">
+		insert into like_review(userid, tb, review_id) 
+		values(#{userid}, #{review_id})
+	</insert>
 </mapper>

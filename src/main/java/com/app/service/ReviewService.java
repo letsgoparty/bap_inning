@@ -25,4 +25,8 @@ public interface ReviewService {
 	public int lod_save_url(HashMap<String, Object> map);
 	public List<String> res_find_img(int review_id);
 	public List<String> lod_find_img(int review_id);
+//	public int res_like_cnt(int review_id);
+//	public int lod_like_cnt(int review_id);
+	public int res_like_cnt(ReviewDTO dto);
+	public int lod_like_cnt(LodReviewDTO dto);
 }

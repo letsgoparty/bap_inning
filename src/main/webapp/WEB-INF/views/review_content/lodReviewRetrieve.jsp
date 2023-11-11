@@ -4,11 +4,11 @@
 <link href="css/review.css" rel="stylesheet" />
 
 <form id="myform" action="lodReviewUpdate" method="get">
-	    <input type="hidden" name="lodging_id" id="lodging_id" value="${param.lodging_id}">
+	    <input type="hidden" name="lodging_id" value="${lodReviewRetrieve.lodging_id}">
 	    <input type="hidden" name="review_id" value="${lodReviewRetrieve.review_id}"> 
-	    <input type="hidden" name="rating" value="${lodReviewRetrieve.rating}"> 
+<%-- 	    <input type="hidden" name="rating" value="${lodReviewRetrieve.rating}"> 
 	    <input type="hidden" name="review_content" value="${lodReviewRetrieve.review_content}"> 
-	    
+	     --%>
 <div class="myform">
 		<div class="container">
  	 		<div name="rating" id="rating" value="${lodReviewRetrieve.rating}">
@@ -23,9 +23,12 @@
  	 		</div>
 		</div>
 		<div style="float: right">
-			<span style="font-weight: bold;">${lodReviewRetrieve.user_id}</span> &nbsp;
-			<span>${lodReviewRetrieve.created_date}</span>	&nbsp;
-			<span>추천수: ${lodReviewRetrieve.like_cnt}</span>
+			<span style="font-weight: bold;">${lodReviewRetrieve.nickname}</span> &nbsp;
+			<span>${lodReviewRetrieve.created_date}</span>&nbsp;
+			<span><a href="lod_like_cnt?review_id=${dto.review_id}" class="btn btn-primary btn-sm"
+			onclick="return false;"> <!-- 클릭막아둠 -->
+					<img src="images/icon/thumb2_icon.png" width=15 height=15> ${lodReviewRetrieve.like_cnt}</a>
+			</span>
 		</div>
 		<div class="container">
 			<textarea class="col-auto form-control" type="text" id="review_content" name="review_content"
@@ -53,14 +56,12 @@
 		    </c:when>
 		</c:choose>
 		
-			<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">
+			<div class="d-grid gap-2 col-6 mx-auto">
 			  <button class="btn btn-primary" type="submit" id="editBtn">수정</button>
 				<button class="btn btn-primary" type="button" id="deleteBtn" onclick="del('${lodReviewRetrieve.review_id}')">삭제</button>			
-			  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${lodging_id}')">목록보기</button>
+			  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${lodReviewRetrieve.res_id}')">목록보기</button>
 			</div>
-			<c:set var="lodging_id" value="${param.lodging_id}" />
-		<a href="l_reviewList?lodging_id=${lodging_id}">이동하기</a>
-</body>
+
 	</div>
 </form>	
 
@@ -76,7 +77,7 @@
 	  }
 	}
 
-	//버튼
+	//삭제 버튼
 	function del(review_id) {
 	    var shouldDelete = confirm("리뷰를 삭제하시겠습니까?");
 	    if (shouldDelete) {
@@ -84,6 +85,7 @@
 	    }
 	}
 	
+	//목록보기 버튼
 	function cancel(lodging_id){
 		window.location.href = "l_reviewList?lodging_id=" + lodging_id;
 	}

@@ -4,8 +4,8 @@
 <link href="css/review.css" rel="stylesheet" />
 
 <form id="myform" action="reviewUpdate" method="get">
-<!--   	<input type="hidden" name="res_id" value="${param.res_id}"> --> 
- 	    <input type="hidden" name="review_id" value="${reviewRetrieve.review_id}"> 
+   	<input type="hidden" name="res_id" value="${reviewRetrieve.res_id}">
+ 	  <input type="hidden" name="review_id" value="${reviewRetrieve.review_id}"> 
 <%--	    <input type="hidden" name="rating" value="${reviewRetrieve.rating}"> 
 	    <input type="hidden" name="review_content" value="${reviewRetrieve.review_content}"> 
 	     --%>
@@ -23,9 +23,12 @@
  	 		</div>
 		</div>
 		<div style="float: right">
-			<span style="font-weight: bold;">${reviewRetrieve.user_id}</span> &nbsp;
+			<span style="font-weight: bold;">${reviewRetrieve.nickname}</span> &nbsp;
 			<span>${reviewRetrieve.created_date}</span>	&nbsp;
-			<span>추천수: ${reviewRetrieve.like_cnt}</span>
+			<span><a href="res_like_cnt?review_id=${reviewDTO.review_id}" class="btn btn-primary btn-sm"
+			onclick="return false;"> <!-- 클릭막아둠 -->
+					<img src="images/icon/thumb2_icon.png" width=15 height=15 > ${reviewRetrieve.like_cnt}</a>
+			</span>
 		</div>
 		<div class="container">
 			<textarea class="col-auto form-control" type="text" id="review_content" name="review_content"
@@ -49,12 +52,12 @@
 						</div>
 					</div>
 		    </c:when>
-		</c:choose>
+		</c:choose>		
 		
-			<div class="d-grid gap-2 col-6 mx-auto" style="font-family: 'KBO-Dia-Gothic_bold'">
+			<div class="d-grid gap-2 col-6 mx-auto">
 			  <button class="btn btn-primary" type="submit" id="editBtn">수정</button>
 				<button class="btn btn-primary" type="button" id="deleteBtn" onclick="del('${reviewRetrieve.review_id}')">삭제</button>			
-			  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${param.res_id}')">목록보기</button>
+			  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${reviewRetrieve.res_id}')">목록보기</button>
 			</div>
 		
 	</div>
@@ -72,7 +75,7 @@ for (var i = 0; i < radioButtons.length; i++) {
   }
 }
 
-//버튼
+//삭제 버튼
 function del(review_id) {
     var shouldDelete = confirm("리뷰를 삭제하시겠습니까?");
     if (shouldDelete) {
@@ -80,18 +83,19 @@ function del(review_id) {
     }
 }
 
+//목록보기 버튼
 function cancel(res_id){
 	window.location.href = "r_reviewList?res_id=" + res_id;
 }
 
 
+// 현재 사용자와 작성자의 아이디를 비교하여 버튼 표시 여부 결정
 var currentUserID = "${login.userid}";
 var authorID = "${reviewRetrieve.user_id}";
 
 var editBtn = document.getElementById("editBtn");
 var deleteBtn = document.getElementById("deleteBtn");
 
-// 현재 사용자와 작성자의 아이디를 비교하여 버튼 표시 여부 결정
 if (currentUserID === authorID) {
 	editBtn.style.display = "block";
 	deleteBtn.style.display = "block";

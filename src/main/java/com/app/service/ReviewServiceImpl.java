@@ -98,5 +98,25 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<String> lod_find_img(int review_id) {
 		return dao.lod_find_img(review_id);
 	}
+
+//	@Override
+//	public int res_like_cnt(int review_id) {
+//		return dao.res_like_cnt(review_id);
+//	}
+//
+//	@Override
+//	public int lod_like_cnt(int review_id) {
+//		return dao.lod_like_cnt(review_id);
+//	}
+
+	@Override
+	public int res_like_cnt(ReviewDTO dto) {
+		return dao.res_like_cnt(dto);
+	}
+
+	@Override
+	public int lod_like_cnt(LodReviewDTO dto) {
+		return dao.lod_like_cnt(dto);
+	}
 	
 }

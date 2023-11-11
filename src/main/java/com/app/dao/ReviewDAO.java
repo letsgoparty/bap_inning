@@ -122,4 +122,18 @@ public class ReviewDAO {
 	public List<String> lod_find_img(int review_id) {
 		return session.selectList("ReviewMapper.lod_find_img", review_id);
 	}
+	
+	//리뷰 추천
+//	public int res_like_cnt(int review_id) {
+//		return session.update("ReviewMapper.res_like_cnt", review_id);
+//	}
+//	public int lod_like_cnt(int review_id) {
+//		return session.update("ReviewMapper.lod_like_cnt", review_id);
+//	}
+	public int res_like_cnt(ReviewDTO dto) {
+		return session.update("ReviewMapper.res_like_cnt", dto);
+	}	
+	public int lod_like_cnt(LodReviewDTO dto) {
+		return session.update("ReviewMapper.lod_like_cnt", dto);
+	}	
 }

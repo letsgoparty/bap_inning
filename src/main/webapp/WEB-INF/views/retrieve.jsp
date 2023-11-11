@@ -31,6 +31,7 @@ a {
 		<form class="form-horizontal" action="update" method="post">
 			<input type="hidden" name="title" value="${retrieve.title}">
 			<input type="hidden" name="team_code" value="${retrieve.team_code}">
+			
 			<div class="form-group">
 				<div>
 					<p>
@@ -108,9 +109,9 @@ a {
 							</c:when>
 						</c:choose> ${retrieve.userid} 
 					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span> &nbsp; <span
-						class="gray-font">조회수: ${retrieve.count}</span> <a type="submit" href="update"
-						class="ms-3">수정</a> <a href="delete?no=${retrieve.board_num}"
-						class="mx-1">삭제</a>
+						class="gray-font">조회수: ${retrieve.count}</span> 
+						<a type="submit" href="update?no=${retrieve.board_num}"	class="ms-3">수정</a> 
+						<a href="delete?no=${retrieve.board_num}" class="mx-1">삭제</a>
 					<hr>
 				</div>
 			</div>

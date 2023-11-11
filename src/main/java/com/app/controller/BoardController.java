@@ -75,7 +75,12 @@ public class BoardController {
 
 	// 5. 글 수정
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateUI() {
+	public String updateUI(int no, Model m) {
+		Board board = service.selectByNo(no);
+		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
+		m.addAttribute("team", team_code);
+		m.addAttribute(board);
+		System.out.println("수정"+board);
 		return "update";
 	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

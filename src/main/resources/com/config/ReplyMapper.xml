@@ -17,6 +17,7 @@
 		select *
 		from board_reviews
 		where board_num = #{board_num}
+		order by reviews_num
 	</select>
 
 	<delete id="replyDelet" parameterType="Reply">

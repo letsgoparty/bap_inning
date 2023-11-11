@@ -28,9 +28,10 @@ a {
 <body>
 	<jsp:include page="common/nav.jsp" flush="true" />
 	<div class="container mt-4 board">
-		<form class="form-horizontal" action="updateForm" method="post">
+		<form class="form-horizontal" action="update" method="post">
 			<input type="hidden" name="title" value="${retrieve.title}">
 			<input type="hidden" name="team_code" value="${retrieve.team_code}">
+			
 			<div class="form-group">
 				<div>
 					<p>
@@ -70,6 +71,7 @@ a {
 							</c:when>
 						</c:choose>
 					</p>
+					<%-- <c:if test="${retrieve.userid} == "></c:if> --%>
 					<h2>${retrieve.title}</h2>
 					<span> <c:choose>
 							<c:when test="${team == 1}">
@@ -105,11 +107,11 @@ a {
 							<c:when test="${team == 0}">
 								<img src="images/logo/noTeam.png" width=auto height="30">
 							</c:when>
-						</c:choose> ${retrieve.userid}
-					</span> &nbsp; <span class="gray-font">2023.10.25</span> &nbsp; <span
-						class="gray-font">조회수: ${retrieve.count}</span> <a type="submit"
-						class="ms-3">수정</a> <a href="delete?no=${retrieve.board_num}"
-						class="mx-1">삭제</a>
+						</c:choose> ${retrieve.userid} 
+					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span> &nbsp; <span
+						class="gray-font">조회수: ${retrieve.count}</span> 
+						<a type="submit" href="update?no=${retrieve.board_num}"	class="ms-3">수정</a> 
+						<a href="delete?no=${retrieve.board_num}" class="mx-1">삭제</a>
 					<hr>
 				</div>
 			</div>
@@ -145,7 +147,6 @@ a {
 			<div class="mb-4">
 				<c:forEach var="list" items="${retrieve.replyList}">
 					<div class="row">
-
 						<div>
 							<c:choose>
 								<c:when test="${list.team_code == 1}">

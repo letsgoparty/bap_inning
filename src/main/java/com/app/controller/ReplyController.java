@@ -33,8 +33,10 @@ public class ReplyController {
 
 	// 댓글 삭제
 	@RequestMapping(value = "/replydelete", method = RequestMethod.GET)
-	public String replyDelet(int no) {
-		int num = replyService.replyDelet(no);
+	public String replyDelet(Reply reply) {
+		int a = reply.getBoard_num();
+		int num = replyService.replyDelet(reply);
+		System.out.println(reply);
 		return "redirect:list";
 	}
 

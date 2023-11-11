@@ -47,7 +47,7 @@
 		<![CDATA[
 		select board_num, title,
 		userid, text, team_code,
-		to_char(board_date, 'YYYY/MM/DD.HH24:MI')
+		to_char(board_date, 'YYYY/MM/DD HH24:MI')
 		as board_date,
 		count
 		from board
@@ -112,7 +112,7 @@
 	<select id="selectByNo" resultType="Board" parameterType="int">
 		select
 		board_num, title, userid, text,
-		to_char(board_date, 'YYYY/MM/dd') as
+		to_char(board_date, 'YYYY/MM/DD HH24:MI') as
 		board_date, team_code,
 		count
 		from board

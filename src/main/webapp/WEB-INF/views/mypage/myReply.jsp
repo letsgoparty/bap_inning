@@ -49,7 +49,7 @@ $(document).ready(function(){
 		$(".check").prop("checked",allChecked);
 		
 		if(allChecked){
-			$(this).text("전체 해제");			
+			$(this).text("선택 해제");			
 		}else{
 			$(this).text("전체 선택");
 		}
@@ -108,10 +108,10 @@ $(document).ready(function(){
 
 		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 		  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-		  <label class="btn btn-outline-primary" for="btnradio1">내 게시글</label>
+		  <label class="btn btn-outline-primary" for="btnradio1">게시글</label>
 		
 		  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
-		  <label class="btn btn-outline-primary" for="btnradio2">내 댓글</label>
+		  <label class="btn btn-outline-primary" for="btnradio2">댓글</label>
 		
 <!-- 		  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
 		  <label class="btn btn-outline-primary" for="btnradio3">식당리뷰</label>
@@ -153,18 +153,24 @@ $(document).ready(function(){
   </thead>
   <tbody>
 
-    <c:forEach var="reply" items="${pageDTO.list}">
-    
-    <tr>
-      <td scope="row"><input type="checkbox" class="check" name="check" value="${reply.reviews_num}"> </td>
-      <td><a href="retrieve?no=${reply.board_num}">${reply.text}</a></td>
-<%--       <td>${reply.userid}</td> --%>
-      <td>${reply.replyDate}</td>
-      <td><a href="javascript:void(0);" onclick="confirmDelete(${reply.reviews_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
-
-    </tr>
-    
-    </c:forEach>
+        <c:choose>
+            <c:when test="${not empty pageDTO.list}">
+                <c:forEach var="reply" items="${pageDTO.list}">
+                    <tr>
+                        <td scope="row"><input type="checkbox" class="check" name="check" value="${reply.reviews_num}"> </td>
+                        <td><a href="retrieve?no=${reply.board_num}">${reply.text}</a></td>
+                        <%-- <td>${reply.userid}</td> --%>
+                        <td>${reply.replyDate}</td>
+                        <td><a href="javascript:void(0);" onclick="confirmDelete(${reply.reviews_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
+                    </tr>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <tr>
+                    <td colspan="4" style="text-align:center;">아직 작성한 댓글이 없습니다</td>
+                </tr>
+            </c:otherwise>
+        </c:choose>
 
   </tbody>
 

@@ -353,7 +353,12 @@ public class MypageController {
 		
 		System.out.println("currnickname: "+currNickname);
 		System.out.println("nickname: "+nickname);
+		//닉네임 빈칸으로 중복확인 누른 경우
+	    if (nickname == null || nickname.trim().isEmpty()) {
+	        return "닉네임을 입력해주세요";
+	    }
 		
+		//닉네임 변경 안하는 경우
 		if(nickname.equals(currNickname)) {
 			return "나의 팀만 변경합니다";
 		}

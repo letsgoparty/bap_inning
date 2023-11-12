@@ -69,7 +69,7 @@ $(document).ready(function(){
 	$("#nicknameCheck").on("click", function () {
 	  event.preventDefault();
 
-	  var newNickname = $("#nickname").val();
+	  var newNickname = $("#nickname").val();	  
 	  var currNickname = $("#user_currNickname").val();
 
 	  $.ajax({
@@ -88,9 +88,11 @@ $(document).ready(function(){
 	      $("#newNickname").val(newNickname);
 	      //중복확인 버튼 클릭시 닉네임 인풋 비활성화
 	      if(data=="닉네임 중복"){
-	      $("#nickname").prop("disabled",false);	    	  
+	      	$("#nickname").prop("disabled",false);	    	  
+	      }else if(data=="닉네임을 입력해주세요"){
+	    	  $("#nickname").prop("disabled",false);
 	      }else{
-	      $("#nickname").prop("disabled",true);	    	  
+	      	$("#nickname").prop("disabled",true);	    	  
 	      }
 	      
 	      
@@ -99,6 +101,7 @@ $(document).ready(function(){
 	      console.log("error 발생");
 	    }
 	  });
+	  
 	});
 
 	 
@@ -258,6 +261,10 @@ function validateSubmit(){
 	
 	if(nicknameResult.text()==="닉네임 중복"){
 		alert("중복되지 않은 닉네임으로 변경해주세요");
+		return false;
+	}
+	if(nicknameResult.text()==="닉네임을 입력해주세요"){
+		alert("닉네임을 입력해주세요");
 		return false;
 	}
 

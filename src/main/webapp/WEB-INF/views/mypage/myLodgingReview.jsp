@@ -93,28 +93,39 @@
     </tr>
   </thead>
   <tbody>
+  
+    	<c:choose>
+  		<c:when test="${not empty pageDTO.list}">
+		    <c:forEach var="review" items="${pageDTO.list}">
+		    <tr>
+		      <th scope="row">${review.lodging_name}</th>
+		      <td>${review.review_content}</td>
+		      <td>이미지</td>
+		<%--       <td>${review.user_id}</td> --%>
+		      <td>
+		      	<c:choose>
+		      		<c:when test="${review.rating == 1}">⭐</c:when>
+		      		<c:when test="${review.rating == 2}">⭐⭐</c:when>
+		      		<c:when test="${review.rating == 3}">⭐⭐⭐</c:when>
+		      		<c:when test="${review.rating == 4}">⭐⭐⭐⭐</c:when>
+		      		<c:when test="${review.rating == 5}">⭐⭐⭐⭐⭐</c:when>
+		      	</c:choose>
+		      </td>
+		      <td>${review.like_cnt}</td>
+		      <td><a href="lodReviewRetrieve?review_id=${review.review_id}">수정</a></td>
+		      <td><a href="javascript:void(0);" onclick="confirmDelete(${review.review_id},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
+		      
+		    </tr>
+		    </c:forEach>
+  		
+  		</c:when>
+  		<c:otherwise>
+  			<tr>
+  				<td colspan="7" style="text-align:center;">아직 작성한 리뷰가 없습니다</td>
+  			</tr>
+  		</c:otherwise>
+  	</c:choose>
     
-    <c:forEach var="review" items="${pageDTO.list}">
-    <tr>
-      <th scope="row">${review.lodging_name}</th>
-      <td>${review.review_content}</td>
-      <td>이미지</td>
-<%--       <td>${review.user_id}</td> --%>
-      <td>
-      	<c:choose>
-      		<c:when test="${review.rating == 1}">⭐</c:when>
-      		<c:when test="${review.rating == 2}">⭐⭐</c:when>
-      		<c:when test="${review.rating == 3}">⭐⭐⭐</c:when>
-      		<c:when test="${review.rating == 4}">⭐⭐⭐⭐</c:when>
-      		<c:when test="${review.rating == 5}">⭐⭐⭐⭐⭐</c:when>
-      	</c:choose>
-      </td>
-      <td>${review.like_cnt}</td>
-      <td><a href="lodReviewRetrieve?review_id=${review.review_id}">수정</a></td>
-      <td><a href="javascript:void(0);" onclick="confirmDelete(${review.review_id},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
-      
-    </tr>
-    </c:forEach>
   </tbody>
   
 </table>

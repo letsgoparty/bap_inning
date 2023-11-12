@@ -49,7 +49,7 @@ $(document).ready(function(){
 		$(".check").prop("checked",allChecked);
 		
 	    if (allChecked) {
-	        $(this).text("전체 해제");
+	        $(this).text("선택 해제");
 	    } else {
 	        $(this).text("전체 선택");
 	    }
@@ -108,9 +108,9 @@ $(document).ready(function(){
 					<div class="btn-group" role="group"
 						aria-label="Basic radio toggle button group">
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked> 
-							<label class="btn btn-outline-primary" for="btnradio1">내 게시글</label> 
+							<label class="btn btn-outline-primary" for="btnradio1">게시글</label> 
 							<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"> 
-							<label class="btn btn-outline-primary" for="btnradio2">내 댓글</label> 
+							<label class="btn btn-outline-primary" for="btnradio2">댓글</label> 
 							
 <!-- 							<input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"> 
 							<label class="btn btn-outline-primary" for="btnradio3">식당리뷰</label> 
@@ -154,31 +154,40 @@ $(document).ready(function(){
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="board" items="${pageDTO.list}">
+						<c:choose>
+							<c:when test="${not empty pageDTO.list}">
+								<c:forEach var="board" items="${pageDTO.list}">
+									<tr>
+										<td scope="row"><input type="checkbox" class="check" name="check" value="${board.board_num}"> </td>
+										<td style="padding: 5px;text-align: center;"><c:choose>
+									<c:when test="${board.team_code == 1}"><img src="images/logo/SSG.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 2}"><img src="images/logo/키움.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 3}"><img src="images/logo/LG.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 4}"><img src="images/logo/KT.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 5}"><img src="images/logo/KIA.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 6}"><img src="images/logo/NC.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 7}"><img src="images/logo/삼성.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 8}"><img src="images/logo/롯데.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 9}"><img src="images/logo/두산.png" width=auto height="25"></c:when>
+									<c:when test="${board.team_code == 10}"><img src="images/logo/한화.png" width=auto height="25"></c:when>
+									<c:otherwise>
+		
+									</c:otherwise>
+								</c:choose></td>
+										<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
+						<%-- 				<td>${board.userid}</td> --%>
+										<td>${board.board_date}</td>
+										<td style="text-align: center;">${board.count}</td>
+										<td><a href="javascript:void(0);" onclick="confirmDelete(${board.board_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
 								<tr>
-									<td scope="row"><input type="checkbox" class="check" name="check" value="${board.board_num}"> </td>
-									<td style="padding: 5px;text-align: center;"><c:choose>
-								<c:when test="${board.team_code == 1}"><img src="images/logo/SSG.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 2}"><img src="images/logo/키움.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 3}"><img src="images/logo/LG.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 4}"><img src="images/logo/KT.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 5}"><img src="images/logo/KIA.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 6}"><img src="images/logo/NC.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 7}"><img src="images/logo/삼성.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 8}"><img src="images/logo/롯데.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 9}"><img src="images/logo/두산.png" width=auto height="25"></c:when>
-								<c:when test="${board.team_code == 10}"><img src="images/logo/한화.png" width=auto height="25"></c:when>
-								<c:otherwise>
-	
-								</c:otherwise>
-							</c:choose></td>
-									<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
-					<%-- 				<td>${board.userid}</td> --%>
-									<td>${board.board_date}</td>
-									<td style="text-align: center;">${board.count}</td>
-									<td><a href="javascript:void(0);" onclick="confirmDelete(${board.board_num},${pageDTO.curPage},${pageDTO.amount})">삭제</a></td>
+									<td colspan="6" style="text-align:center;">아직 작성한 게시글이 없습니다</td>
 								</tr>
-							</c:forEach>
+							</c:otherwise>
+						</c:choose>
 
 						</tbody>
 

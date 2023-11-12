@@ -65,7 +65,7 @@ public class BoardDAO {
 		return session.insert("BoardMapper.boardWrite", board);
 	}
 
-	public int boardUpdate( Board board) {
+	public int boardUpdate(Board board) {
 		return session.update("BoardMapper.boardUpdate", board);
 	}
 

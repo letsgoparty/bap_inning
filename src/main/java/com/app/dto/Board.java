@@ -17,7 +17,7 @@ public class Board {
 	 * 구단번호 team_code
 	 */
 	List<Reply> replyList;
-	int board_num;
+	Integer board_num;
 	String title;
 	String text;
 	String userid;
@@ -28,7 +28,7 @@ public class Board {
 	public Board() {
 	}
 
-	public Board(List<Reply> replyList, int board_num, String title, String text, String userid, String board_date, int count, int team_code) {
+	public Board(List<Reply> replyList, Integer board_num, String title, String text, String userid, String board_date, int count, int team_code) {
 		super();
 		this.replyList= replyList;
 		this.board_num = board_num;
@@ -49,11 +49,11 @@ public class Board {
 		this.replyList = replyList;
 	}
 
-	public int getBoard_num() {
+	public Integer getBoard_num() {
 		return board_num;
 	}
 
-	public void setBoard_num(int board_num) {
+	public void setBoard_num(Integer board_num) {
 		this.board_num = board_num;
 	}
 

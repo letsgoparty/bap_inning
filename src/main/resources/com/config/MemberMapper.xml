@@ -24,7 +24,7 @@
  	</insert>
  	
  	<select id="login" parameterType="hashmap" resultType="MemberDTO">
- 	   select userid, password, email, nickname, team_code
+ 	   select userid, password, email, nickname, team_code, profileimgurl
  	   from member
  	   where userid=#{userid} and password=#{password}
  	</select>

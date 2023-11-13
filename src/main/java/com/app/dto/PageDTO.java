@@ -6,7 +6,7 @@ public class PageDTO {
 
 	List<Board> list;
 	int curPage; // 현재 페이지
-	int perPage = 3; // 한페이지에 보여질 데이터 개수
+	int perPage = 7; // 한페이지에 보여질 데이터 개수
 	int totalCount; // 데이터 개수
 
 	String type;

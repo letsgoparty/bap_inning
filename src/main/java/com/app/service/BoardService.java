@@ -19,4 +19,6 @@ public interface BoardService {
 	public int save_url(HashMap<String, Object> map);
 	public List<String> find_img(int board_num);
 	public int delete_img(int board_num);
+	public String nickname(String userid);
+	
 }

@@ -145,8 +145,9 @@ a {
 					<tr>
 						<td>${board.board_num}</td>
 						<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>
-						<td>${board.userid}</td>
+						<td>${board.nickname}</td>
 						<td><c:choose>
+								<c:when test="${board.team_code == 0}"><img src="images/logo/ALL.png" width=auto height="34"></c:when>
 								<c:when test="${board.team_code == 1}"><img src="images/logo/SSG.png" width=auto height="30"></c:when>
 								<c:when test="${board.team_code == 2}"><img src="images/logo/키움.png" width=auto height="30"></c:when>
 								<c:when test="${board.team_code == 3}"><img src="images/logo/LG.png" width=auto height="30"></c:when>

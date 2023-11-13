@@ -91,4 +91,7 @@ public class BoardDAO {
 	public int delete_img(int board_num) {
 		return session.delete("BoardMapper.delete_img", board_num);
 	}
+	public String nickname(String userid) {
+		return session.selectOne("BoardMapper.nickname", userid);
+	}
 }

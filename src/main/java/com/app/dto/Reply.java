@@ -22,11 +22,12 @@ public class Reply {
 	int team_code;
 	String replyDate;
 	String updateDate;
+	String nickname;
 	
 	public Reply() {
 	}
 	
-	public Reply(int reviews_num, int board_num, String text, String userid, String replyDate, String updateDate) {
+	public Reply(int reviews_num, int board_num, String text, String userid, String replyDate, String updateDate, String nickname) {
 		super();
 		this.reviews_num = reviews_num;
 		this.board_num = board_num;
@@ -34,6 +35,7 @@ public class Reply {
 		this.userid = userid;
 		this.replyDate = replyDate;
 		this.updateDate = updateDate;
+		this.nickname = nickname;
 	}
 	public int getReviews_num() {
 		return reviews_num;
@@ -79,11 +81,20 @@ public class Reply {
 	public void setTeam_code(int team_code) {
 		this.team_code = team_code;
 	}
+	
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	@Override
 	public String toString() {
 		return "ReplyDTO [reviews_num=" + reviews_num + ", board_num=" + board_num + ", text=" + text + ", userid="
-				+ userid + ", replyDate=" + replyDate + ", updateDate=" + updateDate + "]";
+				+ userid + ", replyDate=" + replyDate + ", updateDate=" + updateDate + ", nickname=" + nickname + "]";
 	}
 	
 	

@@ -14,9 +14,9 @@
 	</insert>
 
 	<select id="replyList" resultType="Reply" parameterType="int">
-		select *
-		from board_reviews
-		where board_num = #{board_num}
+		select a.reviews_num, a.board_num, a.text, a.userid, a.replydate, a.updatedate, a.team_code, b.nickname
+		from board_reviews a, member b
+		where a.userid = b.userid and board_num = #{board_num} 
 		order by reviews_num
 	</select>
 

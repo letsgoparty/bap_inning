@@ -73,6 +73,10 @@ public class BoardServiceImpl implements BoardService {
 	public int delete_img(int board_num) {
 		return dao.delete_img(board_num);
 	}
+	@Override
+	public String nickname(String userid) {
+		return dao.nickname(userid);
+	}
 
 
 }

@@ -26,13 +26,16 @@ public class ReplyDAO {
 			return session.insert("ReplyMapper.replyInsert", reply);
 		}
 		// 삭제
-		public int replyDelet(Reply reply) {
-			return session.delete("ReplyMapper.replyDelet", reply);
+		public int replyDelet(int no) {
+			return session.delete("ReplyMapper.replyDelet", no);
 		}
 		// 목록
 		public List<Reply> replyList(int no){
 			
 			return session.selectList("ReplyMapper.replyList", no);
+		}
+		public int replyNo(int no) {
+			return session.selectOne("ReplyMapper.replyNo", no);
 		}
 
 }

@@ -11,6 +11,7 @@ public interface ReplyService {
 	// 등록
 	public int replyInsert(Reply reply);
 	// 삭제
-	public int replyDelet(Reply reply);
+	public int replyDelet(int no);
+	public int replyNo(int no);
 	
 }

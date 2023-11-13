@@ -266,11 +266,13 @@ input[type=file] {
 						</div>
 						<div class="col-md-10 my-2">${list.text}</div>
 						<div class="col-md-2">
-							<c:if test="${user eq list.userid}">
+						<c:if test="${!empty login}">
+							<c:if test="${login.userid eq list.userid}">
 								<button type="button" class="btn btn-primary">
 									<a href="replydelete?no=${list.reviews_num}">삭제</a>
 								</button>
 							</c:if>
+						</c:if>
 							<br>
 						</div>
 					</div>

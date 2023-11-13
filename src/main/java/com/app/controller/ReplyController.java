@@ -33,11 +33,13 @@ public class ReplyController {
 
 	// 댓글 삭제
 	@RequestMapping(value = "/replydelete", method = RequestMethod.GET)
-	public String replyDelet(Reply reply) {
-		int a = reply.getBoard_num();
-		int num = replyService.replyDelet(reply);
-		System.out.println(reply);
-		return "redirect:list";
+	public String replyDelet(int no) {
+		
+		int num1 = replyService.replyNo(no);
+		int num = replyService.replyDelet(no);
+		System.out.println("넘1"+num1);
+		System.out.println("넘2"+num);
+		return "redirect:retrieve?no="+num1;
 	}
 
 }

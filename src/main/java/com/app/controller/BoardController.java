@@ -77,8 +77,8 @@ public class BoardController {
 		Board board = service.selectByNo(no);
 		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
 		m.addAttribute("team", team_code);
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		m.addAttribute("user", dto.getUserid());
+		//MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		//m.addAttribute("user", dto.getUserid());
 		
 		List<String> urls = service.find_img(no);
 		m.addAttribute("urls", urls);

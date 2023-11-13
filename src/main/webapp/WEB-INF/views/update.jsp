@@ -31,8 +31,8 @@ a {
 		<form class="form-horizontal" action="update" method="post">
 			<div class="form-group">
 				<div>
-				<input type="text" name="board_num" value="${board.board_num}">
-				<input type="text" name="userid" value="${board.userid}">
+				<input type="hidden" name="board_num" value="${board.board_num}">
+				<input type="hidden" name="userid" value="${board.userid}">
 					<label for="team_code">카테고리</label> 
 					<select name="team_code" class="form-select mt-2" style="width: 100%">
 						<option value="0">---해당없음---</option>

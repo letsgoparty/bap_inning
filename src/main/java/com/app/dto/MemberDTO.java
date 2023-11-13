@@ -17,14 +17,14 @@ public class MemberDTO {
     int comment_count;
     int res_review_count;
     int lod_review_count;
-    
+    String profileimgurl;
 	
 	public MemberDTO() {	
 	}
 
 
 	public MemberDTO(String userid, String password, String email, String nickname, int team_code,
-			String authcode, Timestamp cretime) {
+			String authcode, Timestamp cretime, String profileimgurl) {
 		super();
 		this.userid = userid;
 		this.password = password;
@@ -33,6 +33,7 @@ public class MemberDTO {
 		this.team_code = team_code;
 		this.authcode = authcode;
 		this.cretime = cretime;
+		this.profileimgurl = profileimgurl;
 	}
 
 
@@ -106,6 +107,16 @@ public class MemberDTO {
 		this.cretime = cretime;
 	}
 
+	public String getProfileimgurl() {
+		return profileimgurl;
+	}
+
+
+	public void setProfileimgurl(String profileimgurl) {
+		this.profileimgurl = profileimgurl;
+	}
+	
+	
 	public int getBoard_count() {
 		return board_count;
 	}
@@ -142,14 +153,9 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [userid=" + userid + ", password=" + password + ", email=" + email + ", nickname=" + nickname
-				+ ", team_code=" + team_code + ", authcode=" + authcode + ", cretime="
-				+ cretime + "]";
+				+ ", team_code=" + team_code + ", authcode=" + authcode + ", cretime=" + cretime + ", profileimgurl="
+				+ profileimgurl + "]";
 	}
-	
-	
-	
-	
-	
 	
 	
 }

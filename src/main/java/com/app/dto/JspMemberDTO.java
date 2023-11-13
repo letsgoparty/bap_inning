@@ -10,13 +10,13 @@ public class JspMemberDTO {
     String email2;
     String nickname;
     int team_code;
-
+    String profileimgurl;
 
     public JspMemberDTO() {
     }
 
 
-	public JspMemberDTO(String userid, String password, String email1, String email2, String nickname, int team_code) {
+	public JspMemberDTO(String userid, String password, String email1, String email2, String nickname, int team_code, String profileimgurl) {
 		super();
 		this.userid = userid;
 		this.password = password;
@@ -24,6 +24,7 @@ public class JspMemberDTO {
 		this.email2 = email2;
 		this.nickname = nickname;
 		this.team_code = team_code;
+		this.profileimgurl = profileimgurl;
 	}
 
 
@@ -85,14 +86,22 @@ public class JspMemberDTO {
 	public void setTeam_code(int team_code) {
 		this.team_code = team_code;
 	}
+   
+	public String getProfileimgurl() {
+		return profileimgurl;
+	}
+
+
+	public void setProfileimgurl(String profileimgurl) {
+		this.profileimgurl = profileimgurl;
+	}
 
 
 	@Override
 	public String toString() {
 		return "JspMemberDTO [userid=" + userid + ", password=" + password + ", email1=" + email1 + ", email2=" + email2
-				+ ", nickname=" + nickname + ", team_code=" + team_code + "]";
+				+ ", nickname=" + nickname + ", team_code=" + team_code + ", profileimgurl=" + profileimgurl + "]";
 	}
-
 }  
     
    

@@ -1,0 +1,153 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardMapper">
+	<sql id="search">
+		<where>
+			<if test="type != null and keyword != null">
+				<choose>
+					<when test="type =='T'.toString()">
+						TITLE LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='C'.toString()">
+						TEXT LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='W'.toString()">
+						USERID LIKE '%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</if>
+		</where>
+	</sql>
+
+
+	<delete id="boardDelete" parameterType="int">
+		delete from board
+		where
+		board_num = #{board_num}
+	</delete>
+	<update id="boardUpdate" parameterType="Board">
+		update board
+		set
+		title=#{title} , userid = #{userid}, text = #{text}
+		where board_num =
+		#{board_num}
+	</update>
+	<insert id="boardWrite" parameterType="Board">
+		insert into board
+		(board_num,title,userid,text,team_code)
+		values (#{board_num},
+		#{title},#{userid},#{text},#{team_code})
+	</insert>
+
+
+	<select id="selectList" resultType="Board"
+		parameterType="hashmap">
+		<![CDATA[
+		select board_num, title,
+		userid, text, team_code,
+		to_char(board_date, 'YYYY/MM/DD HH24:MI')
+		as board_date,
+		count
+		from board
+		]]>
+		<if test="team != 'null' and team != 0">
+			where team_code=#{team}
+			<if test="type != null and keyword != null">
+				<choose>
+					<when test="type =='T'.toString()">
+						AND TITLE LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='C'.toString()">
+						AND TEXT LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='W'.toString()">
+						AND USERID LIKE '%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</if>
+		</if>
+		<if test="team == 'null' or team == 0">
+			<include refid="search"></include>
+		</if>
+		<![CDATA[
+		order by board_num desc
+		]]>
+	</select>
+
+	<select id="totalCount" resultType="int" parameterType="hashmap">
+		<![CDATA[
+		select count(*)
+		from board
+		]]>
+		<if test="team != 'null' and team != 0">
+			where team_code=#{team}
+			<if test="type != null and keyword != null">
+				<choose>
+					<when test="type =='T'.toString()">
+						AND TITLE LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='C'.toString()">
+						AND TEXT LIKE '%'||#{keyword}||'%'
+					</when>
+					<when test="type =='W'.toString()">
+						AND USERID LIKE '%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</if>
+		</if>
+		<if test="team == 'null'">
+			<include refid="search"></include>
+		</if>
+	</select>
+
+
+	<update id="readCnt" parameterType="int">
+		update board
+		set count = count
+		+ 1
+		where board_num = #{board_num}
+	</update>
+	<select id="selectByNo" resultType="Board" parameterType="int">
+		select
+		board_num, title, userid, text,
+		to_char(board_date, 'YYYY/MM/DD
+		HH24:MI') as
+		board_date, team_code,
+		count
+		from board
+		where board_num =
+		#{board_num}
+	</select>
+
+	<select id="find_team" resultType="int" parameterType="string">
+		select team_code from member
+		where userid=#{userid}
+	</select>
+	<!-- 이미지 업로드 -->
+	<select id="find_seq" resultType="int">
+		SELECT board_seq.nextval
+		FROM
+		dual
+	</select>
+
+	<insert id="save_url" parameterType="hashmap">
+		insert into board_image
+		values (#{board_num},#{url})
+	</insert>
+
+	<select id="find_img" parameterType="int" resultType="string">
+		select url
+		from board_image
+		where board_num=#{board_num}
+	</select>
+
+	<delete id="delete_img" parameterType="int">
+		delete from board_image
+		where board_num=#{board_num}
+	</delete>
+
+</mapper>
+
+

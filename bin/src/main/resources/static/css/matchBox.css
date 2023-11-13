@@ -1,0 +1,1306 @@
+.MatchBox_team__2Cf-Y, .MatchBox_score__3nLsJ {
+	font-family: 'KBO-Dia-Gothic_bold' !important;
+	font-size: 1rem;
+	margin: 5px;
+}
+
+.LivePlayer_player_wrap__2-kPW {
+	display: none;
+}
+
+.MatchBox_comp_match_box__1oRmr {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 99px;
+    background: #294faa;
+    border-top: 1px solid rgba(0,0,0,.07);
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    color: #fff
+}
+
+body.HANGZHOU2022 .MatchBox_comp_match_box__1oRmr {
+    border-bottom: 0;
+    background-image: url(https://ssl.pstatic.net/static/sports/2023/m/08/18/hangzhou_scoreboard_bg.png);
+    background-size: cover;
+    background-position: top
+}
+
+html.QATAR2022 .MatchBox_comp_match_box__1oRmr {
+    border-top-color: #7a1e42;
+    border-bottom-color: #7a1e42;
+    background-image: url(https://ssl.pstatic.net/static/sports/2022/pc/10/17/qatar_scoreboard_bg.png);
+    background-color: #802045;
+    background-size: 100% 100%;
+    background-position: bottom,0
+}
+
+@media (min-width: 1024px)
+.Home_main_section__y9jR4 .Home_game_head__3EEZZ:not(.Home_type_ie__3vFri) {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+@media (min-width: 1024px)
+.Home_main_section__y9jR4 .Home_game_head__3EEZZ {
+    position: relative;
+}
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr .MatchBox_home__MPL6D {
+    padding-right: 73px;
+}
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr .MatchBox_away__1rDsC {
+    padding-left: 73px;
+}
+
+@media (min-width: 768px)
+.MatchBox_date__1bJ9G, .MatchBox_stadium__17mQ4 {
+    font-size: 13px;
+    line-height: 15px;
+}
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr {
+    height: 91px;
+}
+
+@media (min-width: 1160px)
+.MatchBox_comp_match_box__1oRmr .MatchBox_info__2l4DE {
+    bottom: 11px;
+}
+
+@media(min-width: 1024px) {
+    html.QATAR2022 .MatchBox_comp_match_box__1oRmr {
+        border-top-color:#802045;
+        background-image: url(https://ssl.pstatic.net/static/sports/2022/pc/10/17/qatar_scoreboard_bg_pc.png)
+    }
+
+    html.QATAR2022 .MatchBox_comp_match_box__1oRmr:after {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        border-top: 1px solid rgba(0,0,0,.08);
+        content: ""
+    }
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm {
+    background-color: #274281
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_home__MPL6D {
+    padding-right: 85px
+}
+
+@media(max-width: 280px) {
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_home__MPL6D {
+        padding-right:70px
+    }
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_away__1rDsC {
+    padding-left: 85px
+}
+
+@media(max-width: 280px) {
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_away__1rDsC {
+        padding-left:70px
+    }
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_info__2l4DE {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_state__2AzL_ {
+    margin-top: 2px;
+    background-color: #1c3264
+}
+
+body.HANGZHOU2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_state__2AzL_ {
+    background-image: -webkit-gradient(linear,right top,left top,from(#6724f5),color-stop(96.4%,#950bd6));
+    background-image: -o-linear-gradient(right,#6724f5,#950bd6 96.4%);
+    background-image: linear-gradient(270deg,#6724f5,#950bd6 96.4%)
+}
+
+html.QATAR2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_state__2AzL_ {
+    background-color: #31c2a8
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_pitcher__2Krgp {
+    margin-top: 2px
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_text__22e-R {
+    padding-bottom: 7px
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_live__14lmu .MatchBox_state__2AzL_ {
+    background-color: #f23f58
+}
+
+body.HANGZHOU2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_live__14lmu .MatchBox_state__2AzL_ {
+    background-color: #ff18cc
+}
+
+@media(min-width: 1160px) {
+    html.QATAR2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_live__14lmu {
+        padding:5px 0
+    }
+
+    html.QATAR2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_live__14lmu .MatchBox_info__2l4DE {
+        bottom: 16px
+    }
+}
+
+html.QATAR2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_live__14lmu .MatchBox_state__2AzL_ {
+    background-color: #fc2b54
+}
+
+.MatchBox_comp_match_box__1oRmr.MatchBox_type_finished__1kK4- .MatchBox_state__2AzL_ {
+    background-color: #294588
+}
+
+body.HANGZHOU2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_finished__1kK4- .MatchBox_state__2AzL_ {
+    background-image: -webkit-gradient(linear,right top,left top,from(#6724f5),color-stop(96.4%,#950bd6));
+    background-image: -o-linear-gradient(right,#6724f5,#950bd6 96.4%);
+    background-image: linear-gradient(270deg,#6724f5,#950bd6 96.4%)
+}
+
+@media(min-width: 1160px) {
+    html.QATAR2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_finished__1kK4- {
+        padding:5px 0
+    }
+
+    html.QATAR2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_finished__1kK4- .MatchBox_info__2l4DE {
+        bottom: 16px
+    }
+}
+
+html.QATAR2022 .MatchBox_comp_match_box__1oRmr.MatchBox_type_finished__1kK4- .MatchBox_state__2AzL_ {
+    background-color: #661131
+}
+
+.MatchBox_type_basketball__39cOu .MatchBox_home__MPL6D {
+    padding-right: 46px
+}
+
+.MatchBox_type_basketball__39cOu .MatchBox_away__1rDsC {
+    padding-left: 46px
+}
+
+.MatchBox_info__2l4DE {
+    position: absolute;
+    left: 70px;
+    right: 70px;
+    bottom: 23px;
+    text-align: center
+}
+
+body.HANGZHOU2022 .MatchBox_info__2l4DE {
+    top: 50%!important;
+    bottom: auto!important;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.MatchBox_home__MPL6D {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 50%;
+    padding-right: 53px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.MatchBox_home__MPL6D .MatchBox_score_area__2bf1P {
+    text-align: right
+}
+
+.MatchBox_away__1rDsC {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 50%;
+    padding-left: 53px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.MatchBox_away__1rDsC .MatchBox_team_area__a9Jet {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1
+}
+
+.MatchBox_away__1rDsC .MatchBox_score_area__2bf1P {
+    text-align: left
+}
+
+.MatchBox_team_area__a9Jet {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    min-width: 0;
+    padding: 10px 0 9px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+html.QATAR2022 .MatchBox_team_area__a9Jet {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.MatchBox_team_area__a9Jet .MatchBox_image__3CcVt {
+    text-align: center
+}
+
+.MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+    padding: 0 3px;
+    text-align: center;
+    letter-spacing: -.5px
+}
+
+html.QATAR2022 .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    position: relative
+}
+
+@media(min-width: 768px) {
+    html.QATAR2022 .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+        max-width:calc(100% - 60px)
+    }
+}
+
+@media(min-width: 1160px) {
+    html.QATAR2022 .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+        max-width:calc(100% - 78px)
+    }
+}
+
+.MatchBox_team_area__a9Jet .MatchBox_name__11AyG {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    font-size: 13px;
+    line-height: 16px
+}
+
+@media(max-width: 767px) {
+    .MatchBox_team_area__a9Jet .MatchBox_name__11AyG {
+        display:-webkit-box;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        white-space: normal
+    }
+}
+
+body.HANGZHOU2022 .MatchBox_team_area__a9Jet .MatchBox_name__11AyG {
+    font-weight: 700
+}
+
+.MatchBox_team_area__a9Jet .MatchBox_badge__p5jYW {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin: -2px 3px 0 0;
+    border-radius: 3px;
+    background-color: #163379;
+    font-size: 9px;
+    line-height: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle
+}
+
+.MatchBox_team_area__a9Jet .MatchBox_pitcher__2Krgp {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 1px;
+    font-size: 10px;
+    line-height: 15px;
+    color: #ffffff;
+}
+
+body.HANGZHOU2022 .MatchBox_team_area__a9Jet .MatchBox_pitcher__2Krgp {
+    color: #ffbde5
+}
+
+.MatchBox_score_area__2bf1P {
+    padding-top: 22px
+}
+
+.MatchBox_image__3CcVt:empty:before {
+    background: url(https://sports-phinf.pstatic.net/team/no_emblem_s_square.png) no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    vertical-align: top;
+    content: ""
+}
+
+@media(min-width: 768px) {
+    .MatchBox_image__3CcVt:empty:before {
+        width:54px;
+        height: 54px
+    }
+}
+
+@media(min-width: 1160px) {
+    .MatchBox_image__3CcVt:empty:before {
+        width:72px;
+        height: 72px
+    }
+}
+
+@media(max-width: 767px) {
+    body.HANGZHOU2022 .MatchBox_image__3CcVt:empty:before {
+        width:45px;
+        height: 45px
+    }
+}
+
+.MatchBox_image__3CcVt img {
+    width: 40px;
+    height: 40px;
+    vertical-align: top
+}
+
+@media(max-width: 767px) {
+    body.HANGZHOU2022 .MatchBox_image__3CcVt img {
+        width:45px;
+        height: 45px
+    }
+}
+
+.MatchBox_score__33SVc {
+    font-size: 38px;
+    line-height: 43px;
+    font-family: "Anton",Arial,sans-serif;
+    font-weight: 400
+}
+
+body.HANGZHOU2022 .MatchBox_score__33SVc {
+    position: relative
+}
+
+.MatchBox_penalty_shoot__3r_f- {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    font-family: "Anton",Arial,sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: -.711px;
+    text-align: center;
+    color: #fff9c8
+}
+
+.MatchBox_count_time__2Nxq4 {
+    margin-top: -2px;
+    font-size: 30px;
+    line-height: 41px;
+    font-weight: 500;
+    font-family: "Anton",Arial,sans-serif
+}
+
+.MatchBox_count_time__2Nxq4 .MatchBox_colon__2Vs4q {
+    position: relative;
+    margin: 0 4px;
+    color: transparent
+}
+
+.MatchBox_count_time__2Nxq4 .MatchBox_colon__2Vs4q:before {
+    position: absolute;
+    left: 2px;
+    top: 15px;
+    width: 3px;
+    height: 3px;
+    border-radius: 1.5px;
+    background: #fff;
+    content: ""
+}
+
+.MatchBox_count_time__2Nxq4 .MatchBox_colon__2Vs4q:after {
+    position: absolute;
+    left: 2px;
+    top: 24px;
+    width: 3px;
+    height: 3px;
+    border-radius: 1.5px;
+    background: #fff;
+    content: ""
+}
+
+.MatchBox_state__2AzL_ {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 0 10px;
+    height: 20px;
+    border-radius: 9.5px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+html.QATAR2022 .MatchBox_state__2AzL_ {
+    min-width: 62px
+}
+
+.MatchBox_dot__8v3ZG {
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: 9px 2px 0;
+    border-radius: 50%;
+    background: hsla(0,0%,100%,.5);
+    vertical-align: top
+}
+
+.MatchBox_date__1bJ9G {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 13px
+}
+
+.MatchBox_date__1bJ9G .MatchBox_time__2z_nB {
+    padding-left: 2px
+}
+
+.MatchBox_stadium__17mQ4 {
+    display: block;
+    font-size: 11px;
+    line-height: 13px;
+    color: #91adf1;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+html.QATAR2022 .MatchBox_stadium__17mQ4 {
+    color: #ffb6d1
+}
+
+body.HANGZHOU2022 .MatchBox_stadium__17mQ4 {
+    color: #ffbde5
+}
+
+@media(min-width: 768px) {
+    .MatchBox_comp_match_box__1oRmr {
+        height:94px
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_home__MPL6D {
+        padding-right: 65px
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_away__1rDsC {
+        padding-left: 65px
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_team_area__a9Jet {
+        padding: 12px 0 0
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_info__2l4DE {
+        bottom: 14px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm {
+        height: 105px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_home__MPL6D {
+        padding-right: 143px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_away__1rDsC {
+        padding-left: 143px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_team_area__a9Jet {
+        padding: 0
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_state__2AzL_ {
+        margin: -1px 0 8px
+    }
+
+    .MatchBox_score_area__2bf1P {
+        min-width: 78px;
+        padding-top: 19px
+    }
+
+    .MatchBox_score_area__2bf1P .MatchBox_score__33SVc {
+        font-size: 43px
+    }
+
+    .MatchBox_image__3CcVt img {
+        width: 54px;
+        height: 54px
+    }
+
+    .MatchBox_state__2AzL_ {
+        padding: 0 11px;
+        font-size: 13px
+    }
+
+    .MatchBox_date__1bJ9G,.MatchBox_stadium__17mQ4 {
+        font-size: 13px;
+        line-height: 15px
+    }
+
+    .MatchBox_team_area__a9Jet {
+        display: block;
+        padding: 24px 0 0
+    }
+
+    .MatchBox_team_area__a9Jet .MatchBox_name__11AyG {
+        font-size: 20px;
+        line-height: 24px
+    }
+
+    .MatchBox_team_area__a9Jet .MatchBox_badge__p5jYW {
+        width: 17px;
+        height: 17px;
+        margin: -4px 6px 0 0;
+        font-size: 11px;
+        line-height: 17px
+    }
+
+    .MatchBox_team_area__a9Jet .MatchBox_image__3CcVt {
+        float: left
+    }
+
+    .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        min-height: 54px;
+        padding: 0 3px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    .MatchBox_team_area__a9Jet .MatchBox_pitcher__2Krgp {
+        margin-top: 4px;
+        font-size: 13px
+    }
+
+    .MatchBox_home__MPL6D .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+        text-align: right
+    }
+
+    .MatchBox_home__MPL6D .MatchBox_image__3CcVt,html.QATAR2022 .MatchBox_home__MPL6D .MatchBox_text__22e-R {
+        float: right
+    }
+
+    .MatchBox_away__1rDsC .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+        text-align: left
+    }
+}
+
+@media(min-width: 1024px) {
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_football__1yZ1d {
+        height:109px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_football__1yZ1d .MatchBox_info__2l4DE {
+        bottom: 18px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_football__1yZ1d .MatchBox_team_area__a9Jet {
+        padding-top: 25px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_football__1yZ1d .MatchBox_score_area__2bf1P {
+        padding-top: 32px
+    }
+}
+
+@media(min-width: 1160px) {
+    .MatchBox_comp_match_box__1oRmr {
+        height:91px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_football__1yZ1d .MatchBox_team_area__a9Jet {
+        padding-top: 16px
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_home__MPL6D {
+        padding-right: 73px
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_away__1rDsC {
+        padding-left: 73px
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_team_area__a9Jet {
+        padding: 5px 0 0
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+        height: 74px
+    }
+
+    .MatchBox_comp_match_box__1oRmr .MatchBox_info__2l4DE {
+        bottom: 11px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm {
+        height: 132px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_home__MPL6D {
+        padding-right: 150px
+    }
+
+    .MatchBox_comp_match_box__1oRmr.MatchBox_type_ready__2Q2dm .MatchBox_away__1rDsC {
+        padding-left: 150px
+    }
+
+    .MatchBox_team_area__a9Jet {
+        padding: 34px 0 0
+    }
+
+    .MatchBox_team_area__a9Jet .MatchBox_text__22e-R {
+        padding: 0 2px;
+        height: 72px
+    }
+
+    .MatchBox_count_time__2Nxq4 {
+        font-size: 38px;
+        line-height: 59px
+    }
+
+    .MatchBox_count_time__2Nxq4 .MatchBox_colon__2Vs4q:before {
+        width: 4px;
+        height: 4px;
+        border-radius: 2px;
+        top: 17px;
+        left: 3px
+    }
+
+    .MatchBox_count_time__2Nxq4 .MatchBox_colon__2Vs4q:after {
+        width: 4px;
+        height: 4px;
+        border-radius: 2px;
+        top: 33px;
+        left: 3px
+    }
+
+    .MatchBox_score_area__2bf1P {
+        padding-top: 21px
+    }
+
+    .MatchBox_score_area__2bf1P .MatchBox_score__33SVc {
+        font-size: 43px
+    }
+
+    .MatchBox_image__3CcVt img {
+        width: 72px;
+        height: 72px
+    }
+}
+
+.MatchBox_link_nation__3GAk8 {
+    position: absolute;
+    top: -40px;
+    bottom: 0;
+    left: -5px;
+    right: -5px
+}
+
+@media(min-width: 768px) {
+    .MatchBox_link_nation__3GAk8 {
+        top:0
+    }
+
+    .MatchBox_home__MPL6D .MatchBox_link_nation__3GAk8 {
+        right: -54px
+    }
+
+    .MatchBox_away__1rDsC .MatchBox_link_nation__3GAk8 {
+        left: -54px
+    }
+}
+
+@media(min-width: 1160px) {
+    .MatchBox_home__MPL6D .MatchBox_link_nation__3GAk8 {
+        right:-72px
+    }
+
+    .MatchBox_away__1rDsC .MatchBox_link_nation__3GAk8 {
+        left: -72px
+    }
+}
+
+.ScoreBox_comp_score_box__1jaYr {
+    position: relative;
+    background-color: #264ba4;
+    color: #fff
+}
+
+html.QATAR2022 .ScoreBox_comp_score_box__1jaYr {
+    background-color: #802045
+}
+
+@media(min-width: 1024px) {
+    html.QATAR2022 .ScoreBox_comp_score_box__1jaYr {
+        background-color:#7c1f43
+    }
+}
+
+body.HANGZHOU2022 .ScoreBox_comp_score_box__1jaYr {
+    background-image: -webkit-gradient(linear,right top,left top,from(#6856e9),color-stop(#a839fd),to(#da315a));
+    background-image: -o-linear-gradient(right,#6856e9,#a839fd,#da315a);
+    background-image: linear-gradient(270deg,#6856e9,#a839fd,#da315a)
+}
+
+body.HANGZHOU2022 .ScoreBox_comp_score_box__1jaYr:nth-child(4):before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid hsla(0,0%,100%,.1);
+    content: ""
+}
+
+.ScoreBox_score_board__2hY8- {
+    padding: 0 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 {
+    position: relative;
+    height: 71px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476:before {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    content: ""
+}
+
+body.HANGZHOU2022 .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476:before {
+    border-color: hsla(0,0%,100%,.1)
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ {
+    position: relative;
+    width: 50px;
+    margin-right: 4px;
+    font-size: 11px
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_away__26sht,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_home__2uCuR {
+    height: 15px;
+    line-height: 16px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_team__2gH5O {
+    padding: 6px 0 4px;
+    color: #91adf1
+}
+
+@media(min-width: 768px) {
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_team__2gH5O {
+        padding:5px 0
+    }
+}
+
+body.HANGZHOU2022 .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_team__2gH5O {
+    color: #ffbde5
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_home__2uCuR {
+    padding-top: 8px
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    overflow: hidden
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi.ScoreBox_shadow_left__GbXMP:after,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi.ScoreBox_shadow_right__17W3O:before {
+    display: none
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 18px;
+    background-image: -webkit-gradient(linear,left top,right top,color-stop(50%,#264ba4),to(rgba(38,75,164,0)));
+    background-image: -o-linear-gradient(left,#264ba4 50%,rgba(38,75,164,0));
+    background-image: linear-gradient(90deg,#264ba4 50%,rgba(38,75,164,0));
+    z-index: 3000;
+    content: ""
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 18px;
+    background-image: -webkit-gradient(linear,right top,left top,color-stop(50%,#264ba4),to(rgba(38,75,164,0)));
+    background-image: -o-linear-gradient(right,#264ba4 50%,rgba(38,75,164,0));
+    background-image: linear-gradient(270deg,#264ba4 50%,rgba(38,75,164,0));
+    z-index: 3000;
+    content: ""
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi .ScoreBox_board_table__3V6uh {
+    width: 100%
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi .ScoreBox_board_table__3V6uh th {
+    width: 20px
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi .ScoreBox_board_table__3V6uh td:first-child,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_scroll__3AdTi .ScoreBox_board_table__3V6uh th:first-child {
+    min-width: 0;
+    width: 0
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_round__1sOLq {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1;
+    flex: 1 1
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 {
+    position: relative;
+    width: 80px;
+    margin-left: 10px;
+    margin-right: -6px;
+    color: #71bcff
+}
+
+body.HANGZHOU2022 .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 {
+    color: #71eeff
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 .ScoreBox_board_table__3V6uh {
+    width: 100%
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 .ScoreBox_board_table__3V6uh td:first-child,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 .ScoreBox_board_table__3V6uh th:first-child {
+    font-weight: 700
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 .ScoreBox_board_table__3V6uh th {
+    color: currentColor
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_volleyball__3sJFI .ScoreBox_title__2jVlJ {
+    min-width: 82px
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_volleyball__3sJFI .ScoreBox_round__1sOLq {
+    -ms-flex-preferred-size: 300px;
+    flex-basis: 300px
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_title__2jVlJ {
+    min-width: 68px
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th {
+    width: 35px
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td:first-child,.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th:first-child {
+    min-width: 0;
+    width: 0
+}
+
+.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_result__3atD0 {
+    width: 55px
+}
+
+.ScoreBox_board_table__3V6uh {
+    table-layout: fixed
+}
+
+.ScoreBox_board_table__3V6uh td,.ScoreBox_board_table__3V6uh th {
+    font-size: 11px
+}
+
+.ScoreBox_board_table__3V6uh thead th {
+    height: 25px;
+    line-height: 24px
+}
+
+.ScoreBox_board_table__3V6uh thead th.ScoreBox_point__1VNlA {
+    font-weight: 600
+}
+
+body.HANGZHOU2022 .ScoreBox_board_table__3V6uh thead th.ScoreBox_point__1VNlA {
+    color: #71eeff
+}
+
+.ScoreBox_board_table__3V6uh th {
+    color: #91adf1;
+    font-weight: 400
+}
+
+body.HANGZHOU2022 .ScoreBox_board_table__3V6uh th {
+    color: #ffbde5
+}
+
+.ScoreBox_board_table__3V6uh th span {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap
+}
+
+body.HANGZHOU2022 .ScoreBox_board_table__3V6uh th.ScoreBox_on__3nlXj {
+    color: #fff
+}
+
+.ScoreBox_board_table__3V6uh th.ScoreBox_on__3nlXj span {
+    position: relative;
+    display: block
+}
+
+.ScoreBox_board_table__3V6uh th.ScoreBox_on__3nlXj span:after {
+    position: absolute;
+    left: 50%;
+    right: 0;
+    bottom: -1px;
+    max-width: 12px;
+    border-bottom: 2px solid;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 3010;
+    content: ""
+}
+
+.ScoreBox_board_table__3V6uh th.ScoreBox_point__1VNlA {
+    color: #71bcff;
+    font-weight: 700
+}
+
+.ScoreBox_board_table__3V6uh tbody tr:first-child td,.ScoreBox_board_table__3V6uh tbody tr:first-child th {
+    padding-top: 7px
+}
+
+.ScoreBox_board_table__3V6uh td {
+    height: 15px;
+    text-align: center
+}
+
+body.HANGZHOU2022 .ScoreBox_board_table__3V6uh td.ScoreBox_point__1VNlA {
+    font-weight: 600;
+    color: #71eeff
+}
+
+.ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh {
+    width: 100%
+}
+
+.ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td:first-child,.ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th:first-child {
+    min-width: 0;
+    width: 0
+}
+
+.ScoreBox_score_wrap__3akbW {
+    width: 50%;
+    padding: 8px 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li {
+    overflow: hidden;
+    margin-top: 3px;
+    padding-left: 10px;
+    font-size: 11px;
+    color: #bcd0f3
+}
+
+body.HANGZHOU2022 .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li,html.QATAR2022 .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li {
+    color: #fff
+}
+
+html.QATAR2022 .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li .ScoreBox_icon_goal__2NKT6 circle {
+    stroke: #000
+}
+
+html.QATAR2022 .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li .ScoreBox_icon_goal__2NKT6 path {
+    fill: #000
+}
+
+html.QATAR2022 .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li .ScoreBox_icon_own_goal__klPo6 circle {
+    stroke: #da0000
+}
+
+html.QATAR2022 .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li .ScoreBox_icon_own_goal__klPo6 path {
+    fill: #da0000
+}
+
+.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li:first-child {
+    margin-top: 0
+}
+
+.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx .ScoreBox_time__1TH1J {
+    padding-left: 3px;
+    color: #fff
+}
+
+.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx .ScoreBox_icon_goal__2NKT6,.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx .ScoreBox_icon_own_goal__klPo6 {
+    width: 11px;
+    height: 11px;
+    margin-top: 2px
+}
+
+.ScoreBox_score_wrap__3akbW:first-child {
+    border-right: 1px solid rgba(0,0,0,.08);
+    text-align: right
+}
+
+body.HANGZHOU2022 .ScoreBox_score_wrap__3akbW:first-child {
+    border-color: hsla(0,0%,100%,.1)
+}
+
+html.QATAR2022 .ScoreBox_score_wrap__3akbW:first-child {
+    border-color: rgba(0,0,0,.09)
+}
+
+.ScoreBox_score_wrap__3akbW:first-child .ScoreBox_score_list__2YPKx li {
+    padding-right: 10px
+}
+
+.ScoreBox_score_wrap__3akbW:first-child .ScoreBox_score_list__2YPKx li .ScoreBox_icon_goal__2NKT6,.ScoreBox_score_wrap__3akbW:first-child .ScoreBox_score_list__2YPKx li .ScoreBox_icon_own_goal__klPo6 {
+    margin-left: 4px
+}
+
+.ScoreBox_score_wrap__3akbW+.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li .ScoreBox_icon_goal__2NKT6,.ScoreBox_score_wrap__3akbW+.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li .ScoreBox_icon_own_goal__klPo6 {
+    float: left;
+    margin-right: 4px
+}
+
+@media(min-width: 768px) {
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ {
+        width:auto;
+        font-size: 12px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_home__2uCuR {
+        padding-top: 6px;
+        padding-bottom: 0
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 {
+        width: 112px;
+        margin-left: 11px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0 .ScoreBox_board_table__3V6uh th {
+        width: 33px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh {
+        width: auto
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th {
+        width: 28px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td:first-child,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th:first-child {
+        width: 0
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_board_table__3V6uh th {
+        font-size: 12px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_board_table__3V6uh th.ScoreBox_on__3nlXj span:after {
+        max-width: 15px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_round__1sOLq {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_baseball__38_92 .ScoreBox_title__2jVlJ {
+        min-width: 53px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_baseball__38_92 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_baseball__38_92 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th {
+        width: 30px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_baseball__38_92 .ScoreBox_scroll__3AdTi .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_baseball__38_92 .ScoreBox_scroll__3AdTi .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th {
+        width: 26px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_volleyball__3sJFI .ScoreBox_title__2jVlJ {
+        min-width: 107px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_volleyball__3sJFI .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_volleyball__3sJFI .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th {
+        width: 50px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_title__2jVlJ {
+        min-width: 107px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td,.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th {
+        width: 58px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh td:first-child,.ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_round__1sOLq .ScoreBox_board_table__3V6uh th:first-child {
+        width: 0
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_basketball__24Q30 .ScoreBox_result__3atD0 {
+        width: 106px
+    }
+
+    .ScoreBox_score_wrap__3akbW {
+        padding: 9px 0 7px
+    }
+
+    .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx li {
+        overflow: hidden;
+        margin-top: 2px;
+        padding-left: 10px;
+        font-size: 13px
+    }
+
+    .ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx .ScoreBox_icon_goal__2NKT6,.ScoreBox_score_wrap__3akbW .ScoreBox_score_list__2YPKx .ScoreBox_icon_own_goal__klPo6 {
+        width: 13px;
+        height: 13px
+    }
+}
+
+@media(min-width: 1160px) {
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 {
+        height:79px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ:before,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476:before {
+        top: 26px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_away__26sht,.ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_home__2uCuR {
+        font-size: 13px;
+        line-height: 16px;
+        margin-top:5px;
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_title__2jVlJ .ScoreBox_home__2uCuR {
+        padding: 1px 0 0
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_result__3atD0:after {
+        top: 26px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_board_table__3V6uh thead th {
+        height: 27px;
+        line-height: 26px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_board_table__3V6uh th span {
+        height: 26px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_board_table__3V6uh tr:first-child td {
+        padding: 9px 0 1px
+    }
+
+    .ScoreBox_score_board__2hY8-.ScoreBox_type_table__2T476 .ScoreBox_board_table__3V6uh td {
+        font-size: 13px
+    }
+}
+

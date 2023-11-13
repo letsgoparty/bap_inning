@@ -1,0 +1,88 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#googleMap {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	max-width: 1500px;
+}
+
+.container {
+	margin-left: 300px;
+}
+
+#sidebar .card {
+    margin-top: 0 !important;
+}
+
+.card {
+	margin-top: 100px !important;
+}
+
+
+
+.btn-primary {
+	font-family: sans-serif !important;
+}
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 100vh;
+	display: none;
+	font-family: 'KBO-Dia-Gothic_bold' !important;
+}
+
+.sidebar {
+	margin-left: 10px;
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+#sidebar {
+	margin-top:120px;
+}
+
+.sidebar::-webkit-scrollbar {
+	width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb  {
+	background-color: rgb(23,123,53,0.8);
+	border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+	background-color: #f1f1f1;
+	border-radius: 4px;
+}
+
+#distance {
+	color: rgb(194, 48, 48);
+	font-family: 'KBO-Dia-Gothic_bold';
+}
+
+#res_name, #lodging_name {
+	font-family: 'KBO-Dia-Gothic_bold';
+	text-align: center;
+	
+}
+
+#res_content, #res_addr, #lodging_url, #lodging_addr, #lodging_content {
+	font-family: 'KBO-Dia-Gothic_light';
+}
+
+.category {
+	border-radius: 30px !important; 
+}
+
+#lodging_url {
+	font-family: sans-serif !important;
+}
+
+

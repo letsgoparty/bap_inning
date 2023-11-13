@@ -100,6 +100,16 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public int res_del_img(int review_id) {
+		return dao.res_del_img(review_id);
+	}
+	
+	@Override
+	public int lod_del_img(int review_id) {
+		return dao.lod_del_img(review_id);
+	}
+	
+	@Override
 	public int res_like_cnt(ReviewDTO dto) {
 		return dao.res_like_cnt(dto);
 	}
@@ -108,5 +118,5 @@ public class ReviewServiceImpl implements ReviewService {
 	public int lod_like_cnt(LodReviewDTO dto) {
 		return dao.lod_like_cnt(dto);
 	}
-	
+
 }

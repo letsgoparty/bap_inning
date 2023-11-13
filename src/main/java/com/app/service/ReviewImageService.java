@@ -13,8 +13,11 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -107,5 +110,47 @@ public class ReviewImageService {
     }
 
     
+    //음식점 리뷰 삭제 시 스토리지의 객체 삭제
+    public void res_del_img(int review_id) {
+        String folderKey = "res_review/res_" + review_id + "/";
 
+        // 폴더 내의 객체 목록 가져오기
+        ListObjectsV2Request listObjectsRequest = new ListObjectsV2Request().withBucketName(bucketName).withPrefix(folderKey);
+        ListObjectsV2Result objectListing = s3.listObjectsV2(listObjectsRequest);
+
+        // 폴더 내의 각 객체를 삭제
+        for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+            String objectKey = objectSummary.getKey();
+            try {
+                s3.deleteObject(bucketName, objectKey);
+                System.out.format("객체 %s가 삭제되었습니다.\n", objectKey);
+            } catch (AmazonS3Exception e) {
+                e.printStackTrace();
+            } catch (SdkClientException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //숙소 리뷰 삭제 시 스토리지의 객체 삭제
+    public void lod_del_img(int review_id) {
+    	String folderKey = "lod_review/lod_" + review_id + "/";
+    	
+    	// 폴더 내의 객체 목록 가져오기
+    	ListObjectsV2Request listObjectsRequest = new ListObjectsV2Request().withBucketName(bucketName).withPrefix(folderKey);
+    	ListObjectsV2Result objectListing = s3.listObjectsV2(listObjectsRequest);
+    	
+    	// 폴더 내의 각 객체를 삭제
+    	for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+    		String objectKey = objectSummary.getKey();
+    		try {
+    			s3.deleteObject(bucketName, objectKey);
+    			System.out.format("객체 %s가 삭제되었습니다.\n", objectKey);
+    		} catch (AmazonS3Exception e) {
+    			e.printStackTrace();
+    		} catch (SdkClientException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    }
 }

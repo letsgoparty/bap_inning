@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class ReviewController {
 	    ModelAndView mav = new ModelAndView();
 	    mav.setViewName("review/r_reviewList");
 	    mav.addObject("pageDTO", pageDTO);
-
+	    
 	    return mav;
 	}
 
@@ -177,16 +176,21 @@ public class ReviewController {
 	
 	//리뷰 삭제
 	@GetMapping("/reviewDelete")
-	public String reviewDelete(@RequestParam("review_id") int review_id, ReviewDTO reviewDTO) {
+	public String reviewDelete(@RequestParam("review_id") int review_id
+			,@RequestParam(value = "res_id", required = false) Integer res_id
+			, ReviewDTO dto) {
 		int num = service.reviewDelete(review_id);
-		//int res_id = reviewDTO.getRes_id();
-		return "redirect:main"; //redirect:r_reviewList?res_id=" + res_id;
+		num = service.res_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
+		imgService.res_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
+		return "redirect:main";
+//		return "redirect:r_reviewList?res_id=" + dto.getRes_id();
 	}
 	
 	@GetMapping("/lodReviewDelete")
-	public String lodReviewDelete(@RequestParam("review_id") int review_id, LodReviewDTO dto,
-			HttpServletRequest request) {
+	public String lodReviewDelete(@RequestParam("review_id") int review_id, LodReviewDTO dto) {
 		int num = service.lodReviewDelete(review_id);
+		num = service.lod_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
+		imgService.lod_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
 		return "redirect:main";
 //		return "redirect:l_reviewList";
 	}
@@ -233,6 +237,7 @@ public class ReviewController {
 		return review_id; 
 	}
 
+	
 	//리뷰 추천
 	@GetMapping("/res_like_cnt")
 	public String res_like_cnt(ReviewDTO dto, HttpSession session) {

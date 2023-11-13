@@ -110,13 +110,16 @@ public class ReviewDAO {
 		return session.selectList("ReviewMapper.lod_find_img", review_id);
 	}
 	
+	//리뷰 이미지 삭제
+	public int res_del_img(int review_id) {
+		return session.delete("ReviewMapper.res_del_img", review_id);
+	}
+	public int lod_del_img(int review_id) {
+		return session.delete("ReviewMapper.lod_del_img", review_id);
+	}
+	
+	
 	//리뷰 추천
-//	public int res_like_cnt(int review_id) {
-//		return session.update("ReviewMapper.res_like_cnt", review_id);
-//	}
-//	public int lod_like_cnt(int review_id) {
-//		return session.update("ReviewMapper.lod_like_cnt", review_id);
-//	}
 	public int res_like_cnt(ReviewDTO dto) {
 		return session.update("ReviewMapper.res_like_cnt", dto);
 	}	

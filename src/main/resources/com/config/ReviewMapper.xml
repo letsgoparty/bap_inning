@@ -122,6 +122,16 @@
 		where review_id=#{review_id}
 	</select>
 	
+	<!-- 리뷰 이미지 삭제 -->
+	<delete id="res_del_img" parameterType="int">
+		delete from res_review_image
+		where review_id = #{review_id}
+	</delete>
+	<delete id="lod_del_img" parameterType="int">
+		delete from lod_review_image
+		where review_id = #{review_id}
+	</delete>
+	
 	
 	<!-- 리뷰 추천 -->
 	<update id="res_like_cnt" parameterType="int">

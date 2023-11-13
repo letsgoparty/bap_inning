@@ -75,12 +75,11 @@ public class MypageController {
 	public String memberUpdate(@RequestParam("userid") String userid, @RequestParam("newNickname") String nickname, @RequestParam("myTeam") int teamCode, HttpSession session) {
 	    MemberDTO dto=new MemberDTO();
 	    MemberDTO user=(MemberDTO) session.getAttribute("login");
-	    String email=user.getEmail();
 	  
 	    dto.setUserid(userid);
-	    dto.setEmail(email);
 	    dto.setNickname(nickname);
 	    dto.setTeam_code(teamCode);
+
 	  
 	    int n=mypageService.memberUpdate(dto);
 	   if(n>0) {
@@ -154,10 +153,8 @@ public class MypageController {
 	//댓글 삭제
 	@GetMapping("/delete_myreply")
 	public String delete_myreply(int no,RedirectAttributes attribute,HttpServletRequest request) {
-		Reply reply=new Reply();
-		reply.setReviews_num(no);
-		
-		int n=replyService.replyDelet(reply);
+
+		int n=replyService.replyDelet(no);
 		//현재페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
 		String curPage=request.getParameter("curPage");
 		String amount=request.getParameter("amount");

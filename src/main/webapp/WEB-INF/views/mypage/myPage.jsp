@@ -36,12 +36,23 @@ span {
     display: block;
     text-align: right;
 }
+
+.profile-img{
+width:50px;
+height:50px; 
+margin-bottom:10px; 
+object-fin:cover;  
+border-radius: 50%;
+}
 </style> 
 	 
 
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <script>
 //나의 팀 드롭다운이 선택되어있게끔
@@ -137,14 +148,14 @@ function enableEdit() {
 	
 }; */
 
-
 </script>
+
 
 </head>
 <body>
 	<jsp:include page="../common/nav.jsp" flush="true"/> 
 	
-
+	
 	<div class="container">
 		<div class="input-form-background row">
 			<div class="input-form col-md-6 mx-auto">
@@ -156,6 +167,46 @@ function enableEdit() {
 				<div class="myinfo">
 				<h5 class="mb-3">내 정보</h5>
 				<form action="myinfo" method="post" onsubmit="return validateSubmit();"> <!-- onsubmit="return validateEmail()" -->
+				
+				<!-- 프로필 이미지 변경 -->
+				<%-- <div style="display: flex; align-items: center;">
+					<div>
+						<c:choose>
+						    <c:when test="${empty user.profileimgurl}">
+						        <img alt="프로필사진" src="images/icon/profile.png" class="profile-img" id="previewImage">
+						    </c:when>
+						    <c:otherwise>
+						        <img alt="프로필사진" src="${user.profileimgurl}" class="profile-img" id="previewImage">
+						    </c:otherwise>
+						</c:choose>
+					</div>
+					<div>&nbsp;
+						<button class="btn btn-primary" type="button" id="changeProfileImg" data-toggle="modal" data-target="#uploadModal">사진 변경</button>
+					</div>
+				</div>
+					<!-- 이미지 업로드 모달 -->
+					<div class="modal" id="uploadModal" tabindex="-1" role="dialog"aria-labelledby="uploadModalLabel" aria-hidden="true">
+												    <div class="modal-dialog" role="document">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 class="modal-title" id="uploadModalLabel">프로필 이미지 업로드</h5>
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true">&times;</span>
+						                </button>
+						            </div>
+						            <div class="modal-body">
+						                <input type="file" id="profileImage" accept="image/*" class="form-control">
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-secondary" data-dismiss="modal">업로드</button>
+						              
+						            </div>
+						        </div>
+						    </div>
+					 </div>
+ --%>
+				<!-- 프로필 이미지 변경 -->
+				
 				<input type="hidden" name="userid" value="${user.userid}">
 					<div>
 					<span style="color: red" id="result"></span>
@@ -238,7 +289,7 @@ function enableEdit() {
 
  				<br>
  				<div class="list-group">
-					<a href="like" class="list-group-item list-group-item-action">❤️ 내 찜 보기</a>
+					<a href="like" class="list-group-item list-group-item-action">❤️ 찜한 음식점/숙소 보기</a>
 					<a href="myPlayer" class="list-group-item list-group-item-action">⚾ 찜한 선수</a>
 					<a href="mytext" class="list-group-item list-group-item-action">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 글</a>
 						

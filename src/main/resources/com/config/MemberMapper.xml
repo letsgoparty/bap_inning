@@ -38,7 +38,7 @@
  	
  	<update id="memberUpdate" parameterType="MemberDTO">
 	 update Member
-	 set email=#{email},nickname=#{nickname},team_code=#{team_code}
+	 set nickname=#{nickname},team_code=#{team_code}
 	where userid=#{userid}
 	</update>
 	

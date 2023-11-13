@@ -164,13 +164,15 @@ input[type=file] {
 							<c:when test="${team == 0}">
 								<img src="images/logo/noTeam.png" width=auto height="30">
 							</c:when>
-						</c:choose> ${nickname}
+						</c:choose> ${nickname} ${userid}
 					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span>
 					&nbsp; <span class="gray-font">조회수: ${retrieve.count}</span>
-					<c:if test="${user eq retrieve.userid}">
+					<c:if test="${!empty login}">
+							<c:if test="${login.userid eq retrieve.userid}">
 						<a type="submit" href="update?no=${retrieve.board_num}"
 							class="ms-3">수정</a>
 						<a href="delete?no=${retrieve.board_num}" class="mx-1">삭제</a>
+							</c:if>
 					</c:if>
 
 					<hr>

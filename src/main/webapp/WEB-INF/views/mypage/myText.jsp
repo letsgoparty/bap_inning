@@ -171,7 +171,7 @@ $(document).ready(function(){
 									<c:when test="${board.team_code == 9}"><img src="images/logo/두산.png" width=auto height="25"></c:when>
 									<c:when test="${board.team_code == 10}"><img src="images/logo/한화.png" width=auto height="25"></c:when>
 									<c:otherwise>
-		
+										<img src="images/logo/ALL.png" width=auto height="25">
 									</c:otherwise>
 								</c:choose></td>
 										<td><a href="retrieve?no=${board.board_num}">${board.title}</a></td>

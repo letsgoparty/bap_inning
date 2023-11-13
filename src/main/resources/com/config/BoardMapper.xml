@@ -4,21 +4,19 @@
 
 <mapper namespace="BoardMapper">
 	<sql id="search">
-		<where>
 			<if test="type != null and keyword != null">
 				<choose>
 					<when test="type =='T'.toString()">
-						TITLE LIKE '%'||#{keyword}||'%'
+						AND a.TITLE LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='C'.toString()">
-						TEXT LIKE '%'||#{keyword}||'%'
+						AND a.TEXT LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='W'.toString()">
-						USERID LIKE '%'||#{keyword}||'%'
+						AND a.USERID LIKE '%'||#{keyword}||'%'
 					</when>
 				</choose>
 			</if>
-		</where>
 	</sql>
 
 
@@ -54,17 +52,17 @@
     	where a.userid = b.userid
 		]]>
 		<if test="team != 'null' and team != 0">
-			AND team_code=#{team}
+			AND a.team_code=#{team}
 			<if test="type != null and keyword != null">
 				<choose>
 					<when test="type =='T'.toString()">
-						AND TITLE LIKE '%'||#{keyword}||'%'
+						AND a.TITLE LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='C'.toString()">
-						AND TEXT LIKE '%'||#{keyword}||'%'
+						AND a.TEXT LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='W'.toString()">
-						AND USERID LIKE '%'||#{keyword}||'%'
+						AND a.USERID LIKE '%'||#{keyword}||'%'
 					</when>
 				</choose>
 			</if>
@@ -73,33 +71,35 @@
 			<include refid="search"></include>
 		</if>
 		<![CDATA[
-		order by board_num desc
+		order by a.board_num desc
 		]]>
 	</select>
 
 	<select id="totalCount" resultType="int" parameterType="hashmap">
 		<![CDATA[
 		select count(*)
-		from board
+		from board a
 		]]>
 		<if test="team != 'null' and team != 0">
-			where team_code=#{team}
+			where a.team_code=#{team}
 			<if test="type != null and keyword != null">
 				<choose>
 					<when test="type =='T'.toString()">
-						AND TITLE LIKE '%'||#{keyword}||'%'
+						AND a.TITLE LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='C'.toString()">
-						AND TEXT LIKE '%'||#{keyword}||'%'
+						AND a.TEXT LIKE '%'||#{keyword}||'%'
 					</when>
 					<when test="type =='W'.toString()">
-						AND USERID LIKE '%'||#{keyword}||'%'
+						AND a.USERID LIKE '%'||#{keyword}||'%'
 					</when>
 				</choose>
 			</if>
 		</if>
 		<if test="team == 'null'">
-			<include refid="search"></include>
+			<where>
+				<include refid="search"></include>
+			</where>
 		</if>
 	</select>
 

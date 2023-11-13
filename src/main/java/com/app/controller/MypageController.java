@@ -1,4 +1,5 @@
 package com.app.controller;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,8 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.dto.MemberDTO;
+import com.app.dto.Reply;
+import com.app.dto.ResReviewDTO;
 import com.app.dto.RestaurantDTO;
 import com.app.dto.UpgradePageDTO;
+import com.app.dto.mypageReviewImgDTO;
 import com.app.service.BoardService;
 import com.app.service.EncodeService;
 import com.app.service.LikeService;
@@ -149,7 +153,10 @@ public class MypageController {
 	//댓글 삭제
 	@GetMapping("/delete_myreply")
 	public String delete_myreply(int no,RedirectAttributes attribute,HttpServletRequest request) {
-		int n=replyService.replyDelet(no);
+		Reply reply=new Reply();
+		reply.setReviews_num(no);
+		
+		int n=replyService.replyDelet(reply);
 		//현재페이지와 페이지당컨텐츠수 유지하면서 리다이렉트
 		String curPage=request.getParameter("curPage");
 		String amount=request.getParameter("amount");
@@ -194,7 +201,20 @@ public class MypageController {
 		mav.setViewName("mypage/myRestaurantReview");
 		mav.addObject("pageDTO",pageDTO);
 		
-
+		//이미지 가져오기 
+		List<ResReviewDTO> reviewList=pageDTO.getList();
+		List<mypageReviewImgDTO> allURLs=new ArrayList<mypageReviewImgDTO>();
+		for(ResReviewDTO reviewDTO:reviewList) {
+			mypageReviewImgDTO imgDTO=new mypageReviewImgDTO();
+			int review_id=Integer.parseInt(reviewDTO.getReview_id());
+			imgDTO.setReview_id(String.valueOf(review_id));
+			List<String> urls=reviewService.res_find_img(review_id);
+			imgDTO.setUrls(urls);
+			allURLs.add(imgDTO);
+			System.out.println(imgDTO);
+		}
+		mav.addObject("allURLs",allURLs);
+		System.out.println(allURLs);
 		
 		return mav; 
 	}

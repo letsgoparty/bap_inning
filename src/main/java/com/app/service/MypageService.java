@@ -30,4 +30,5 @@ public interface MypageService {
 	public int deleteAll_myText(List<Integer> list);
 	//댓글 전체삭제
 	public int deleteAll_myReply(List<Integer> list);
+	
 }

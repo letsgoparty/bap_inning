@@ -29,12 +29,26 @@ a {
 	<jsp:include page="common/nav.jsp" flush="true" />
 	<div class="container mt-4 board">
 		<form class="form-horizontal" action="update" method="post">
-			<input type="hidden" name="title" value="${board.title}">
-			<input type="hidden" name="team_code" value="${board.team_code}">
 			<div class="form-group">
 				<div>
-					<p>
-						<c:choose>
+				<input type="text" name="board_num" value="${board.board_num}">
+				<input type="text" name="userid" value="${board.userid}">
+					<label for="team_code">카테고리</label> 
+					<select name="team_code" class="form-select mt-2" style="width: 100%">
+						<option value="0">---해당없음---</option>
+						<option value="1">SSG 랜더스</option>
+						<option value="2">키움 히어로즈</option>
+						<option value="3">LG 트윈스</option>
+						<option value="4">KT wiz</option>
+						<option value="5">KIA 타이거즈</option>
+						<option value="6">NC 다이노스</option>
+						<option value="7">삼성 라이온즈</option>
+						<option value="8">롯데 자이언츠</option>
+						<option value="9">두산 베어스</option>
+						<option value="10">한화 이글스</option>
+					</select>
+					<p>현재 팀 : 
+					<c:choose>
 							<c:when test="${board.team_code eq 0}">
 								<span id="team">기타</span>
 							</c:when>
@@ -69,9 +83,12 @@ a {
 								<span id="team">한화</span>
 							</c:when>
 						</c:choose>
+						
 					</p>
-					<h2><input type="text" name="title" value="${board.title}"></h2>
-					
+					<h2>
+						<input type="text" name="title" value="${board.title}">
+					</h2>
+
 					<span> <c:choose>
 							<c:when test="${team == 1}">
 								<img src="images/logo/SSG.png" width=auto height="30">
@@ -106,11 +123,9 @@ a {
 							<c:when test="${team == 0}">
 								<img src="images/logo/noTeam.png" width=auto height="30">
 							</c:when>
-						</c:choose> ${board.userid} 
+						</c:choose> ${board.userid}
 					</span> &nbsp; <span class="gray-font"></span> &nbsp; <span
-						class="gray-font"></span> <a type="submit"
-						class="ms-3">저장</a> <a href="delete?no=${board.board_num}"
-						class="mx-1">삭제</a>
+						class="gray-font"></span> <a href="retrieve?no=${board.board_num}" class="mx-1">취소</a>
 					<hr>
 				</div>
 			</div>
@@ -118,8 +133,9 @@ a {
 				<div class="mb-4">
 					<textarea class="form-control" rows="10"
 						style="border: none; background-color: rgba(248, 249, 250, 0.5);"
-						name="text" >${board.text}</textarea>
+						name="text">${board.text}</textarea>
 				</div>
+				<button type="submit" class="btn btn-primary mx-2">저장</button>
 				<button type="button" class="btn btn-primary" onclick="go_list()">목록</button>
 			</div>
 		</form>

@@ -214,4 +214,9 @@ public class AdminServiceImpl implements AdminService {
 	public List<Reply> find_commentInfo(String userid) {
 		return dao.find_commentInfo(userid);
 	}
+
+	@Override
+	public int delete_comment(int reviews_num) {
+		return dao.delete_comment(reviews_num);
+	}
 }

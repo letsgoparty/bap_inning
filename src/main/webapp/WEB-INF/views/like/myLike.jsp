@@ -59,7 +59,7 @@
 						<div class="card mb-3" style="max-width: 650px; cursor: pointer;">
 							<div class="row g-0">
 								<div class="col-md-4">
-									<img src="images/restaurant_images/${dto.res_image}.png"
+									<img src="https://kr.object.ncloudstorage.com/team2-bucket/restaurant_images/${dto.res_image}.png"
 										class="rounded-start" width="200px" height="200px">
 								</div>
 								<div class="col-md-8">
@@ -178,7 +178,7 @@
 						<div class="card mb-3" style="max-width: 650px; cursor: pointer;">
 							<div class="row g-0">
 								<div class="col-md-4">
-									<img src="images/lodging_images/${dto.lodging_image}.png"
+									<img src="https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/${dto.lodging_image}.png"
 										class="rounded-start" width="200px" height="200px">
 								</div>
 								<div class="col-md-8">

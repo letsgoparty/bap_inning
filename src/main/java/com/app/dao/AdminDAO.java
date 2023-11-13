@@ -95,6 +95,9 @@ public class AdminDAO {
 	public int delete_board(int board_num) {
 		return session.delete("AdminMapper.delete_board", board_num);
 	}
+	public int delete_comment(int reviews_num) {
+		return session.delete("AdminMapper.delete_comment", reviews_num);
+	}
 	public int delete_res_review(int review_id) {
 		return session.delete("AdminMapper.delete_res_review", review_id);
 	}

@@ -29,7 +29,7 @@ public class SchedulingConfig {
 	@Autowired
 	PlayerDAO dao;
 
-	@Scheduled(cron = "0 0 8 * * ?") // 매일 아침 10시에 실행 (일단 임시로 8시라 지정함)
+	@Scheduled(cron = "0 11 1 * * ?") // 매일 아침 10시에 실행 (일단 임시로 8시라 지정함)
 	public void save_schedule() {
 //		scrapeRank();  정규시즌이 종료 ➜ 정규리그 순위 갱신 중단
 		scrapeSchedule();

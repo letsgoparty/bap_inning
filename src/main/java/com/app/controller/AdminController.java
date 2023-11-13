@@ -23,9 +23,14 @@ import com.app.dto.ResReviewDTO;
 import com.app.dto.RestaurantDTO;
 import com.app.dto.VisitDTO;
 import com.app.service.AdminService;
+import com.app.service.BoardService;
+import com.app.service.BoardUploadService;
 import com.app.service.FindService;
 import com.app.service.LodUploadService;
+import com.app.service.ReplyService;
 import com.app.service.ResUploadService;
+import com.app.service.ReviewImageService;
+import com.app.service.ReviewService;
 
 @Controller
 public class AdminController {
@@ -41,6 +46,18 @@ public class AdminController {
 	
 	@Autowired
 	LodUploadService Lservice;
+	
+	@Autowired 
+	ReviewService Rservice;
+	
+	@Autowired 
+	ReviewImageService imgService;
+	
+	@Autowired
+	BoardService Bservice;
+
+	@Autowired
+	BoardUploadService uploadService;
 
 	@RequestMapping("/admin/main")
 	public String main(Model m) {
@@ -261,9 +278,23 @@ public class AdminController {
 	@ResponseBody
 	public String deleteBoard(int board_num) {
 		int n = service.delete_board(board_num);
+		n = Bservice.delete_img(board_num);
+		uploadService.delete(board_num);
 
 		if (n > 0) {
 			return "게시글을  삭제하였습니다.";
+		} else {
+			return "삭제를 실패하였습니다.";
+		}
+	}
+	
+	@PostMapping("/admin/deleteComment")
+	@ResponseBody
+	public String deleteComment(int reviews_num) {
+		int n = service.delete_comment(reviews_num);
+		
+		if (n > 0) {
+			return "댓글을  삭제하였습니다.";
 		} else {
 			return "삭제를 실패하였습니다.";
 		}
@@ -273,6 +304,8 @@ public class AdminController {
 	@ResponseBody
 	public String deleteResReview(int review_id) {
 		int n = service.delete_res_review(review_id);
+		n = Rservice.res_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
+		imgService.res_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
 
 		if (n > 0) {
 			return "리뷰를  삭제하였습니다.";
@@ -285,6 +318,8 @@ public class AdminController {
 	@ResponseBody
 	public String deleteLodReview(int review_id) {
 		int n = service.delete_lod_review(review_id);
+		n = Rservice.lod_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
+		imgService.lod_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
 
 		if (n > 0) {
 			return "리뷰를  삭제하였습니다.";

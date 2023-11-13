@@ -67,6 +67,7 @@ public class BoardController {
 		
 		//String[] team_code = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 		PageDTO xx=service.selectList(curPage,type,keyword,team);
+		System.out.println("pagedto "+xx);
 		return xx;
 	}
 
@@ -77,6 +78,9 @@ public class BoardController {
 		Board board = service.selectByNo(no);
 		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
 		m.addAttribute("team", team_code);
+		String nickname = service.nickname(board.getUserid());
+		m.addAttribute("nickname", nickname);
+		System.out.println("닉네임"+m);
 		//MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		//m.addAttribute("user", dto.getUserid());
 		

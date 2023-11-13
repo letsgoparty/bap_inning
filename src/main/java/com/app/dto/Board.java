@@ -24,11 +24,12 @@ public class Board {
 	String board_date;
 	int count;
 	int team_code;
+	String nickname;
 	
 	public Board() {
 	}
 
-	public Board(List<Reply> replyList, Integer board_num, String title, String text, String userid, String board_date, int count, int team_code) {
+	public Board(List<Reply> replyList, Integer board_num, String title, String text, String userid, String board_date, int count, int team_code, String nickname) {
 		super();
 		this.replyList= replyList;
 		this.board_num = board_num;
@@ -38,6 +39,7 @@ public class Board {
 		this.board_date = board_date;
 		this.count = count;
 		this.team_code = team_code;
+		this.nickname = nickname;
 	}
 	
 
@@ -104,11 +106,18 @@ public class Board {
 	public void setTeam_code(int team_code) {
 		this.team_code = team_code;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	@Override
 	public String toString() {
 		return "BoardDTO [replyList=" + replyList + ", board_num=" + board_num + ", title=" + title + ", text=" + text + ", userid=" + userid
-				+ ", board_date=" + board_date + ", count=" + count + ", team_code=" + team_code + "]";
+				+ ", board_date=" + board_date + ", count=" + count + ", team_code=" + team_code + ", nickname=" + nickname +"]";
 	}
 	
 	

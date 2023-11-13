@@ -164,7 +164,7 @@ input[type=file] {
 							<c:when test="${team == 0}">
 								<img src="images/logo/noTeam.png" width=auto height="30">
 							</c:when>
-						</c:choose> ${retrieve.userid}
+						</c:choose> ${nickname}
 					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span>
 					&nbsp; <span class="gray-font">조회수: ${retrieve.count}</span>
 					<c:if test="${user eq retrieve.userid}">
@@ -214,7 +214,9 @@ input[type=file] {
 								autocomplete="off">
 						</div>
 						<div class="col-md-2">
+						<c:if test="${!empty login}">
 							<button type="submit" class="btn btn-primary">등록</button>
+						</c:if>
 							<br>
 						</div>
 					</div>
@@ -261,7 +263,7 @@ input[type=file] {
 									<img src="images/logo/noTeam.png" width=auto height="30">
 								</c:when>
 							</c:choose>
-							${list.userid}<span class="mx-3"
+							${list.nickname}<span class="mx-3"
 								style="color: rgb(185, 185, 185)">${list.updateDate}</span>
 						</div>
 						<div class="col-md-10 my-2">${list.text}</div>

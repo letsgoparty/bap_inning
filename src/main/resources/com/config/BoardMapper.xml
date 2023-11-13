@@ -45,15 +45,16 @@
 	<select id="selectList" resultType="Board"
 		parameterType="hashmap">
 		<![CDATA[
-		select board_num, title,
-		userid, text, team_code,
-		to_char(board_date, 'YYYY/MM/DD HH24:MI')
+		select a.board_num, a.title,
+		a.userid, a.text, a.team_code,
+		to_char(a.board_date, 'YYYY/MM/DD HH24:MI')
 		as board_date,
-		count
-		from board
+		a.count, b.nickname
+		from board a, member b
+    	where a.userid = b.userid
 		]]>
 		<if test="team != 'null' and team != 0">
-			where team_code=#{team}
+			AND team_code=#{team}
 			<if test="type != null and keyword != null">
 				<choose>
 					<when test="type =='T'.toString()">
@@ -122,7 +123,8 @@
 	</select>
 
 	<select id="find_team" resultType="int" parameterType="string">
-		select team_code from member
+		select
+		team_code from member
 		where userid=#{userid}
 	</select>
 	<!-- 이미지 업로드 -->
@@ -147,6 +149,11 @@
 		delete from board_image
 		where board_num=#{board_num}
 	</delete>
+
+	<select id="nickname" parameterType="String" resultType="string">
+		select nickname from member where userid=#{userid}
+	</select>
+
 
 </mapper>
 

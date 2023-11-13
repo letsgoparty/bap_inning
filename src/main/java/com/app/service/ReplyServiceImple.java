@@ -25,9 +25,12 @@ public class ReplyServiceImple implements ReplyService {
 	}
 
 	@Override
-	public int replyDelet(Reply reply) {
-		return dao.replyDelet(reply);
+	public int replyDelet(int no) {
+		return dao.replyDelet(no);
 	}
 
-
+	@Override
+	public int replyNo(int no) {
+		return dao.replyNo(no);
+	}
 }

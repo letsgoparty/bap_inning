@@ -20,9 +20,15 @@
 		order by reviews_num
 	</select>
 
-	<delete id="replyDelet" parameterType="Reply">
+	<delete id="replyDelet" parameterType="int">
 		delete from board_reviews
 		where reviews_num = #{reviews_num}
 	</delete>
+	
+	<select id="replyNo" parameterType="int" resultType="int">
+		select board_num
+		from board_reviews
+		where reviews_num = #{reviews_num}
+	</select>
 
 </mapper>

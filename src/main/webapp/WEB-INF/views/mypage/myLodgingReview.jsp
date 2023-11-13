@@ -16,7 +16,7 @@
     white-space: nowrap; /* 줄 바꿈 금지 */
     overflow: hidden;
     text-overflow: ellipsis; /* 길 경우 ... 으로 표시 */
-    max-width:200px
+    max-width:350px
   }
   
           .input-form {
@@ -46,7 +46,7 @@
 
  <div class="container">
   <div class="input-form-background row">
-   <div class="input-form col-md-8 mx-auto">
+   <div class="input-form col-md-9 mx-auto">
 
 	<h3>내 활동_숙소리뷰</h3>
 
@@ -83,13 +83,13 @@
   <thead>
     <tr>
       <th scope="col" style="width: 40px;">숙소이름</th>
-      <th scope="col" style="width: 200px;">내용</th>
-      <th scope="col" style="width: 100px;">이미지</th>      
+      <th scope="col" style="width: 350px;">내용</th>
+      <th scope="col" style="width: 80px;">사진</th>      
 <!--       <th scope="col" style="width: 100px;">작성자</th> -->
       <th scope="col" style="width: 100px;">별점</th>
-      <th scope="col" style="width: 100px;">추천</th>
-      <th scope="col" style="width: 100px;">수정</th>
-      <th scope="col" style="width: 100px;">삭제</th>
+      <th scope="col" style="width: 80px;">추천</th>
+      <th scope="col" style="width: 80px;">수정</th>
+      <th scope="col" style="width: 80px;">삭제</th>
     </tr>
   </thead>
   <tbody>
@@ -100,7 +100,22 @@
 		    <tr>
 		      <th scope="row">${review.lodging_name}</th>
 		      <td>${review.review_content}</td>
-		      <td>이미지</td>
+		      
+		      <!--이미지이미지이미지 -->
+		      
+       <td style="padding:4px;">
+			 <c:forEach var="urlDTO" items="${allURLs}">
+			 	<c:if test="${urlDTO.review_id eq review.review_id}">
+            <c:forEach var="url" items="${urlDTO.urls}" varStatus="status">
+                <c:if test="${status.index eq 0}">
+                    <img src="${url}" alt="이미지" style="height:50px; width:80px; object-fit: cover; border-radius: 10px;">
+                </c:if>
+            </c:forEach>
+			 	</c:if>
+			 </c:forEach>
+        </td>
+		      
+		      <!--이미지이미지이미지 -->
 		<%--       <td>${review.user_id}</td> --%>
 		      <td>
 		      	<c:choose>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.app.dto.LodReviewDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.Reply;
 import com.app.dto.ResReviewDTO;
@@ -211,10 +212,9 @@ public class MypageController {
 			List<String> urls=reviewService.res_find_img(review_id);
 			imgDTO.setUrls(urls);
 			allURLs.add(imgDTO);
-			System.out.println(imgDTO);
 		}
 		mav.addObject("allURLs",allURLs);
-		System.out.println(allURLs);
+		//이미지 가져오기 
 		
 		return mav; 
 	}
@@ -246,6 +246,22 @@ public class MypageController {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/myLodgingReview");
 		mav.addObject("pageDTO",pageDTO);
+		
+		//이미지 가져오기 
+		List<LodReviewDTO> reviewList=pageDTO.getList();
+		List<mypageReviewImgDTO> allURLs=new ArrayList<mypageReviewImgDTO>();
+		for(LodReviewDTO reviewDTO:reviewList) {
+			mypageReviewImgDTO imgDTO=new mypageReviewImgDTO();
+			int review_id=reviewDTO.getReview_id();
+			imgDTO.setReview_id(String.valueOf(review_id));
+			List<String> urls=reviewService.lod_find_img(review_id);
+			imgDTO.setUrls(urls);
+			allURLs.add(imgDTO);
+			//System.out.println(imgDTO);
+		}
+		mav.addObject("allURLs",allURLs);
+		//System.out.println(allURLs);
+		//이미지 가져오기 
 		
 		
 		return mav;

@@ -54,17 +54,26 @@
 						<td colspan="2">${dto.review_content}</td>
 						<td><a href="lodReviewRetrieve?review_id=${dto.review_id}">더보기</a></td>
 						<td>
-			 				<div class="imgs_wrap"> <!-- 클래스삭제하기 -->
-			 					<c:forEach var="url" items="${urls}">
-									<div style="text-align:center;">
-								    <img class="mb-2" src="${url}" width="300" height="300" alt="이미지">
-								   </div>
-								</c:forEach>
-							</div>
+						<c:forEach var="urlDTO" items="${allURLs}">
+							<c:if test="${urlDTO.review_id eq dto.review_id}">
+							  <c:forEach var="url" items="${urlDTO.urls}" varStatus="status">
+							    <img class="mb-2" src="${url}" alt="이미지" style="height:90px; height:90px; object-fit: cover; border-radius: 5px;">
+							  </c:forEach>
+							</c:if>
+						</c:forEach>
 						</td>
 						<td>${dto.nickname}</td>
 			    	<td><c:forEach var="i" begin="1" end="${dto.rating}">⭐</c:forEach></td>
-						<td>${dto.created_date}</td>
+						<td>
+							<c:choose>
+							    <c:when test="${dto.created_date eq dto.modified_date}">
+							       ${dto.created_date}
+							    </c:when>
+							    <c:otherwise>
+							       ${dto.modified_date} (수정됨)
+							    </c:otherwise>
+							</c:choose>					
+						</td>
 						<td><a href="lod_like_cnt?review_id=${dto.review_id}" class="btn btn-primary">
 							<img src="images/icon/thumb2_icon.png" width=20 height=20> ${dto.like_cnt}</a>
 						</td>

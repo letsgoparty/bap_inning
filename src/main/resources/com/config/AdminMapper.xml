@@ -185,6 +185,11 @@
 		where
 		board_num = #{board_num}
 	</delete>
+	<delete id="delete_comment" parameterType="int">
+		delete from board_reviews
+		where
+		reviews_num = #{reviews_num}
+	</delete>
 	<delete id="delete_res_review" parameterType="int">
 		delete from
 		restaurant_reviews

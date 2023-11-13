@@ -72,8 +72,7 @@ th:nth-child(5) {
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">계정 관리</h6>
-						<a class="collapse-item" href="../admin/user">USER</a> <a
-							class="collapse-item" href="../admin/admin">ADMIN</a>
+						<a class="collapse-item" href="../admin/user">USER</a>
 					</div>
 				</div></li>
 

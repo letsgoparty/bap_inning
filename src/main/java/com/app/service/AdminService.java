@@ -36,6 +36,7 @@ public interface AdminService {
 	public List<LodReviewDTO> find_lodInfo(String userid);
 	public List<Board> find_boardInfo(String userid);
 	public int delete_board(int board_num);
+	public int delete_comment(int reviews_num);
 	public int delete_res_review(int review_id);
 	public int delete_lod_review(int review_id);
 	public VisitDTO todayVisitCheck();

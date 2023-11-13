@@ -33,9 +33,11 @@
 	font-weight: 400;
 	font-style: normal;
 }
-
 </style>
-
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -66,14 +68,13 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">계정 관리</h6>
-						<a class="collapse-item" href="../admin/user">USER</a> <a
-							class="collapse-item" href="../admin/admin">ADMIN</a>
+						<a class="collapse-item" href="../admin/user">USER</a>
 					</div>
 				</div></li>
 
 			<!-- Activity  -->
-			<li class="nav-item active"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
+			<li class="nav-item active"><a class="nav-link collapsed"
+				href="#" data-toggle="collapse" data-target="#collapseUtilities"
 				aria-expanded="true" aria-controls="collapseUtilities"> <i
 					class="fa-solid fa-database"></i></i> <span>Activity</span>
 			</a>
@@ -82,9 +83,10 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">게시글/댓글/리뷰 관리</h6>
 						<a class="collapse-item" href="../admin/board">Board</a> <a
-							class="collapse-item active" href="../admin/comment">Comment</a> <a
-							class="collapse-item" href="../admin/res_review">Restaurant Review</a> <a
-							class="collapse-item" href="../admin/lod_review">Lodging Review</a>
+							class="collapse-item active" href="../admin/comment">Comment</a>
+						<a class="collapse-item" href="../admin/res_review">Restaurant
+							Review</a> <a class="collapse-item" href="../admin/lod_review">Lodging
+							Review</a>
 					</div>
 				</div></li>
 
@@ -98,8 +100,8 @@
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">음식점/숙소 관리</h6>
-						<a class="collapse-item" href="../admin/res">Restaurant</a> 
-						<a class="collapse-item" href="../admin/lod">Lodging</a> 
+						<a class="collapse-item" href="../admin/res">Restaurant</a> <a
+							class="collapse-item" href="../admin/lod">Lodging</a>
 					</div>
 				</div></li>
 
@@ -185,7 +187,11 @@
 												<td>${dto.userid}</td>
 												<td>${dto.replyDate}</td>
 												<td>${dto.updateDate}</td>
-											<td><a href="../delete?no=${board.board_num}" class="btn btn-primary" style="background-color:rgb(181,181,181); border-color:rgb(181,181,181); "><i class="fa-solid fa-trash" style="color: #ffffff;"></i></a></td>
+												<td><button class="btn btn-primary deleteBtn"
+														data-reviews_num="${dto.reviews_num}"
+														style="background-color: rgb(181, 181, 181); border-color: rgb(181, 181, 181);">
+														<i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+													</button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -227,8 +233,9 @@
 		<div class="modal-dialog" style="width: 850px;">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h1 class="modal-title" id="title"></h1>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h1 class="modal-title" id="title"></h1>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
 				</div>
 				<div class="modal-body">
 
@@ -279,6 +286,46 @@
 				$("#modal").hide();
 				$("#modal-content").empty();
 			});
+			
+			// 삭제 버튼
+			  $(document).on("click", ".deleteBtn", function (e) {
+		            var reviews_num = $(this).data("reviews_num");
+		            var text = "댓글을 삭제하시겠습니까?";
+		            Swal.fire({
+		                text: text,
+		                icon: 'warning',
+		                showCancelButton: true,
+		                confirmButtonColor: '#3085d6',
+		                confirmButtonText: '삭제',
+		                cancelButtonText: '취소',
+		            }).then(result => {
+		                if (result.isConfirmed) {
+		                    $.ajax({
+		                        url: "../admin/deleteComment",
+		                        type: "POST",
+		                        data: {
+		                        	reviews_num: reviews_num
+		                        },
+		                        success: function (response) {
+		                            Swal.fire({
+		                                text: response,
+		                                icon: 'success',
+		                                confirmButtonColor: '#3085d6',
+		                                button: {
+		                                    text: '확인',
+		                                    closeModal: true
+		                                }
+		                            }).then(() => {
+		                                window.location.href = '../admin/comment';
+		                            });
+		                        },
+		                        error: function (error) {
+		                            console.error("에러 발생");
+		                        }
+		                    });
+		                }
+					});
+		        });
 		});
 	</script>
 	<script src="../js/admin/admin.js"></script>

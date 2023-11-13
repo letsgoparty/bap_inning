@@ -24,14 +24,14 @@
  	</insert>
  	
  	<select id="login" parameterType="hashmap" resultType="MemberDTO">
- 	   select userid, password, email, nickname, team_code, profileimgurl
+ 	   select *
  	   from member
  	   where userid=#{userid} and password=#{password}
  	</select>
  	
     <select id="mypage" parameterType="string"
  	  resultType="MemberDTO">
- 	   select userid, password, email, nickname, team_code
+ 	   select *
  	   from member
  	   where userid=#{userid} 
  	</select>

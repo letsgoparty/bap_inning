@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +104,22 @@
 		      <th hidden data-res-id="${review.res_id}">${review.res_id}</th>
 		      <th scope="row" >${review.res_name}</th>
 		      <td>${review.review_content}</td>
-		      <td>이미지</td>
+
+		      <!-- 이미지이미지이미지 -->
+       <td>
+			 <c:forEach var="urlDTO" items="${allURLs}">
+			 	<c:if test="${urlDTO.review_id eq review.review_id}">
+            <c:forEach var="url" items="${urlDTO.urls}" varStatus="status">
+                <c:if test="${status.index eq 0}">
+                    <img src="${url}" alt="이미지" style="height:100px; width:auto;">
+                </c:if>
+            </c:forEach>
+			 	</c:if>
+			 </c:forEach>
+        </td>
+		      <!-- 이미지이미지이미지 -->
+		      
+		      
 		<%--       <td>${review.user_id}</td> --%>
 		      <td>
 		      	<c:choose>
@@ -183,6 +200,11 @@
    </div>
   </div>
  </div>
+
+
+
+
+
 
 <script type="text/javascript">
 const radioButton=document.querySelectorAll(".btn-check");

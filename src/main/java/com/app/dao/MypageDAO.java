@@ -48,6 +48,8 @@ public class MypageDAO {
 		return session.delete("MypageMapper.deleteAll_myReply",list);
 	}
 	
+
+	
 	
 	
 	///////////////////////////////////

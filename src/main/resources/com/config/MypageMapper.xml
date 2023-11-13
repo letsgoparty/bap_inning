@@ -60,6 +60,12 @@
 	from board_reviews
 	where userid=#{userid}
 </select>
+	<!-- 댓글 하나 삭제 -->
+	<delete id="delete_myReply" parameterType="int">
+	delete from board_reviews
+	where reviews_num=#{reviews_num}
+	</delete>
+	
 	<!-- 댓글 전체삭제 -->
 	<delete id="deleteAll_myReply" parameterType="list">
 		delete board_reviews

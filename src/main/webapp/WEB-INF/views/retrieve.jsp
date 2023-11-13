@@ -110,8 +110,11 @@ a {
 						</c:choose> ${retrieve.userid} 
 					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span> &nbsp; <span
 						class="gray-font">조회수: ${retrieve.count}</span> 
+						<c:if test="${user eq retrieve.userid}">
 						<a type="submit" href="update?no=${retrieve.board_num}"	class="ms-3">수정</a> 
 						<a href="delete?no=${retrieve.board_num}" class="mx-1">삭제</a>
+						</c:if>
+						
 					<hr>
 				</div>
 			</div>
@@ -188,9 +191,11 @@ a {
 						</div>
 						<div class="col-md-10 my-2">${list.text}</div>
 						<div class="col-md-2">
+							<c:if test="${user eq list.userid}">
 							<button type="button" class="btn btn-primary">
 								<a href="replydelete?no=${list.reviews_num}">삭제</a>
 							</button>
+							</c:if>
 							<br>
 						</div>
 					</div>

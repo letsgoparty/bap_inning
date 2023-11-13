@@ -40,9 +40,9 @@ public class BoardController {
 	public String write(Board board, HttpSession session) {
 		// user sesstion넣기
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		System.out.println(dto);
 		board.setUserid(dto.getUserid());
 		int num = service.boardWrite(board);
-		System.out.println(num);
 		return "redirect:list";
 	}
 
@@ -66,10 +66,13 @@ public class BoardController {
 		Board board = service.selectByNo(no);
 		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
 		m.addAttribute("team", team_code);
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		System.out.println(dto);
+		m.addAttribute("user", dto.getUserid());
+		
 		// 댓글 조회
 		List<Reply> reply = replyService.replyList(no);
 		board.setReplyList(reply);
-		System.out.println("asdf"+board);
 		return board;
 	}
 
@@ -80,11 +83,11 @@ public class BoardController {
 		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
 		m.addAttribute("team", team_code);
 		m.addAttribute(board);
-		System.out.println("수정"+board);
 		return "update";
 	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Board board) {
+		System.out.println(board);
 		int num = service.boardUpdate(board);
 		return "redirect:list";
 	}

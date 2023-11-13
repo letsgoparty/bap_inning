@@ -14,8 +14,24 @@ public class ReviewDTO {
 	String created_date;
 	String modified_date;
 	String nickname;
+	String res_name;
 	
 	public ReviewDTO() {
+	}
+
+	public ReviewDTO(Integer review_id, Integer res_id, String user_id, String rating, String review_content,
+			String like_cnt, String created_date, String modified_date, String nickname, String res_name) {
+		super();
+		this.review_id = review_id;
+		this.res_id = res_id;
+		this.user_id = user_id;
+		this.rating = rating;
+		this.review_content = review_content;
+		this.like_cnt = like_cnt;
+		this.created_date = created_date;
+		this.modified_date = modified_date;
+		this.nickname = nickname;
+		this.res_name = res_name;
 	}
 
 	public ReviewDTO(Integer review_id, Integer res_id, String user_id, String rating, String review_content,
@@ -35,7 +51,6 @@ public class ReviewDTO {
 	public Integer getReview_id() {
 		return review_id;
 	}
-
 
 	public void setReview_id(Integer review_id) {
 		this.review_id = review_id;
@@ -120,11 +135,21 @@ public class ReviewDTO {
 		this.nickname = nickname;
 	}
 
+	public String getRes_name() {
+		return res_name;
+	}
+
+	public void setRes_name(String res_name) {
+		this.res_name = res_name;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewDTO [review_id=" + review_id + ", res_id=" + res_id + ", user_id=" + user_id + ", rating="
 				+ rating + ", review_content=" + review_content + ", like_cnt=" + like_cnt + ", created_date="
-				+ created_date + ", modified_date=" + modified_date + ", nickname=" + nickname + "]";
+				+ created_date + ", modified_date=" + modified_date + ", nickname=" + nickname + ", res_name="
+				+ res_name + "]";
 	}
+
 
 }

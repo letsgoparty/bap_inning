@@ -10,88 +10,89 @@
 	href="images/icon/favicon-32x32.png">
 <link href="css/review.css" rel="stylesheet" />
 </head>
-
-<body style="background-color:rgba(248, 249, 250) !important;">
+<body>
 	<jsp:include page="../common/nav.jsp" flush="true" />
 
 	<form id="myform" action="lodReviewUpdate" method="POST">
 		    <input type="hidden" name="review_id" value="${lodReviewRetrieve.review_id}"> 
 		    <input type="hidden" name="rating" value="${lodReviewRetrieve.rating}"> 
-		    <input type="hidden" name="review_content" value="${lodReviewRetrieve.review_content}"> 
-		    
-	<div class="myform">
+		<div class="myform">
 			<div class="container">
-		 		<form name="rating" id="rating" value="${reviewDTO.rating}">
+		 		<div name="rating" id="rating" value="${lodReviewRetrieve.rating}">
 			    <fieldset style="text-align: center">
-					  <legend style="font-family: 'KBO-Dia-Gothic_bold'">별점을 선택해주세요</legend>
-			        <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-			        <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+					  <legend style="font-family: 'KBO-Dia-Gothic_bold'">리뷰를 수정해주세요</legend>
+			        <input type="radio" name="rating" value="5" id="rate5"><label for="rate5">⭐</label>
+			        <input type="radio" name="rating" value="4" id="rate4"><label for="rate4">⭐</label>
 			        <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-			        <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-			        <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+			        <input type="radio" name="rating" value="2" id="rate2"><label for="rate2">⭐</label>
+			        <input type="radio" name="rating" value="1" id="rate1"><label for="rate1">⭐</label>
 			     </fieldset>
-		 		</form>
+	 	 		</div>
 			</div>
 		
 			<div class="container" style="display: flex; flex-direction: column;">
 				<textarea class="col-auto form-control" type="text" id="review_content" name="review_content"
 						  style="font-family: 'KBO-Dia-Gothic_light'" 
 						  placeholder="직관팬이 작성하는 진짜 리뷰" required>${lodReviewRetrieve.review_content}</textarea>
-				<p id="charCount" style="color: gray; font-size: 14px;">0/400</p>
+				<p id="charCount" style="color: gray; font-size: 14px;">${currentLength}/400</p>
 			</div>
 		
-		<!-- 이미지 업로드 -->
-		<c:choose>
-		    <c:when test="${!empty urls}">
-				  <div class="imgs_wrap">
-		        <c:forEach var="url" items="${urls}">
-		            <div style="text-align:center; display: inline-block;">
-		            	 <a href="#" onclick="openModal('${url}')">
-		                <img id="img" class="mb-2" src="${url}" alt="이미지">
-		               </a>
-		            </div>
-		        </c:forEach>
-						<div id="myModal" class="modal">
-						    <span class="close" onclick="closeModal()">&times;</span>
-						    <img id="modalImg" src="" alt="모달 이미지">
-						</div>
-					</div>
-		    </c:when>
-		</c:choose>
-		<div>
-			<div class="input_wrap" style="display: flex; flex-direction: column;">
-				<div>
-					<a href="javascript:" onclick="fileUploadAction()" class="btn btn-primary">사진 선택</a>
-					<input type="file" id="input_imgs" name="file" multiple />
-					<button class="btn btn-primary" id="uploadButton">첨부하기</button>
-				</div>
-			</div>
+			<!-- 이미지 업로드 -->
 			<div>
-				<div class="imgs_wrap">
+				<div class="input_wrap" style="display: flex; flex-direction: column;">
+					<div>
+						<a href="javascript:" onclick="fileUploadAction()" class="btn btn-primary">사진 선택</a>
+						<input type="file" id="input_imgs" name="file" multiple />
+						<button class="btn btn-primary" id="uploadButton">첨부하기</button>
+					</div>
 				</div>
-					<img id="img" />
+				<div>
+		
+				<c:choose>
+				    <c:when test="${!empty urls}">
+						  <div class="imgs_wrap">
+				        <c:forEach var="url" items="${urls}">
+				            <div style="text-align:center; display: inline-block;">
+				                <img id="img" class="mb-2" src="${url}" alt="이미지">
+				            </div>
+				        </c:forEach>
+				       </div>
+				    </c:when>
+				    <c:otherwise>
+						  <div>
+								<div class="imgs_wrap">
+								</div>
+									<img id="img" />
+							</div>
+				    </c:otherwise>
+				</c:choose>		
 			</div>
-		<!-- 이미지 업로드 -->
+			<!-- 이미지 업로드 -->			
+				<div class="d-grid gap-2 col-6 mx-auto">
+				  <button class="btn btn-primary" type="submit" id="editBtn">수정</button>
+				  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${lodReviewRetrieve.res_id}')">돌아가기</button>
+				</div>
 			
-			<div class="d-grid gap-2 col-6 mx-auto">
-			  <button class="btn btn-primary" type="submit" id="registerBtn">리뷰 등록</button>
-			  <button class="btn btn-primary" type="button" onclick="cancel()">취소</button>
-			</div>
-			
-		</div>
 		</div>
 	</form>	
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="js/review.js"></script>
 <script type="text/javascript">
-	function showConfirmation() {
-	    alert("등록이 완료되었습니다.");
-	    window.location.href = "l_reviewList";
+	//별점 출력
+	var ratingValue = ${lodReviewRetrieve.rating};
+	
+	var radioButtons = document.getElementsByName("rating");
+	for (var i = 0; i < radioButtons.length; i++) {
+	  if (parseInt(radioButtons[i].value) === ratingValue) {
+	    radioButtons[i].checked = true;
 	  }
-	function cancel(){
+	}
+	
+	//목록보기 버튼
+	function cancel(res_id) {
 		var shouldCancel = confirm("작성 중인 리뷰가 있습니다. 저장하지 않고 나가시겠습니까?");
 		if (shouldCancel) {
-			location.href = document.referrer;
+		window.location.href = "l_reviewList?res_id=" + res_id;
 		}
 	}
 	
@@ -198,23 +199,6 @@
 	  $(img_id).remove(); 
 	}
 	//이미지 업로드 끝
-
-	//리뷰 글자수 제한
-  var textarea = document.getElementById('review_content');
-  var charCount = document.getElementById('charCount');
-
-  textarea.addEventListener('input', function () {
-    var currentLength = textarea.value.length;
-    var maxLength = parseInt(textarea.getAttribute('maxlength'));
-    
-    if (currentLength > maxLength) {
-      textarea.value = textarea.value.substring(0, maxLength);
-      currentLength = maxLength;
-    }
-
-    charCount.textContent = currentLength + '/' + maxLength;
-  });
-  
 </script>
 
 </body>

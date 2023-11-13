@@ -28,8 +28,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int reviewWrite(ReviewDTO reviewDTO) {
-		return dao.reviewWrite(reviewDTO);
+	public int reviewWrite(ReviewDTO dto) {
+		return dao.reviewWrite(dto);
 	}
 
 	@Override
@@ -48,8 +48,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public int reviewUpdate(ReviewDTO reviewDTO) {
-		return dao.reviewUpdate(reviewDTO);
+	public int reviewUpdate(ReviewDTO dto) {
+		return dao.reviewUpdate(dto);
 	}
 	
 	@Override
@@ -98,16 +98,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<String> lod_find_img(int review_id) {
 		return dao.lod_find_img(review_id);
 	}
-
-//	@Override
-//	public int res_like_cnt(int review_id) {
-//		return dao.res_like_cnt(review_id);
-//	}
-//
-//	@Override
-//	public int lod_like_cnt(int review_id) {
-//		return dao.lod_like_cnt(review_id);
-//	}
 
 	@Override
 	public int res_like_cnt(ReviewDTO dto) {

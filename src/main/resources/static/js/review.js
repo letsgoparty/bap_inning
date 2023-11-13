@@ -30,3 +30,18 @@ window.onclick = function(event) {
 }
 
 
+//리뷰 작성 글자수 제한
+var textarea = document.getElementById('review_content');
+var charCount = document.getElementById('charCount');
+
+textarea.addEventListener('input', function () {
+  var currentLength = textarea.value.length;
+  var maxLength = parseInt(textarea.getAttribute('maxlength'));
+  
+  if (currentLength > maxLength) {
+    textarea.value = textarea.value.substring(currentLength, maxLength);
+    currentLength = maxLength;
+  }
+
+  charCount.textContent = currentLength + '/400';
+});

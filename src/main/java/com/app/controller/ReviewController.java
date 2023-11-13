@@ -36,26 +36,14 @@ public class ReviewController {
 	@GetMapping("/r_reviewList")
 	public ModelAndView r_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int res_id) {
 	    ReviewPageDTO pageDTO = service.r_reviewList(curPage, res_id);
-
+	    
 	    ModelAndView mav = new ModelAndView();
 	    mav.setViewName("review/r_reviewList");
 	    mav.addObject("pageDTO", pageDTO);
-	
+
 	    return mav;
 	}
-//	public ModelAndView r_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int res_id, int review_id) {
-//		ReviewPageDTO pageDTO = service.r_reviewList(curPage, res_id, review_id);
-//		List<String> urls = service.res_find_img(Integer.valueOf(review_id));
-//		
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("review/r_reviewList");
-//		mav.addObject("pageDTO", pageDTO);
-//		mav.addObject("urls", urls);
-//		
-//		return mav;
-//	}
-	
-	
+
 	@GetMapping("/l_reviewList")
 	public ModelAndView l_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int lodging_id) {
 		ReviewPageDTO pageDTO = service.l_reviewList(curPage, lodging_id);
@@ -84,17 +72,17 @@ public class ReviewController {
 
 	//리뷰 등록
 	@PostMapping("/reviewWrite")
-	public String review(ReviewDTO reviewDTO, HttpSession session) {
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		reviewDTO.setUser_id(dto.getUserid());
+	public String review(ReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		dto.setUser_id(mdto.getUserid());
 		
-		if(reviewDTO.getReview_id() == null) {
-			reviewDTO.setReview_id(service.find_seq());
+		if(dto.getReview_id() == null) {
+			dto.setReview_id(service.find_seq());
 		}
 		
-		System.out.println(reviewDTO);
-		service.reviewWrite(reviewDTO);
-		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
+		System.out.println(dto);
+		service.reviewWrite(dto);
+		return "redirect:r_reviewList?res_id=" + dto.getRes_id();
 	}
 
 	@PostMapping("/lodReviewWrite")
@@ -141,37 +129,47 @@ public class ReviewController {
     
     
 	//리뷰 수정
-	@GetMapping("/reviewUpdate")
-	public String reviewUpdate(@RequestParam int res_id, Model m) {
-		System.out.println(res_id);
-		m.addAttribute("res_id", res_id);
-		return "review/reviewUpdate";
-	}
-	
-	@PostMapping("/reviewUpdate2")
-	public String reviewUpdate2(ReviewDTO reviewDTO) {
-		int num = service.reviewUpdate(reviewDTO);
-		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
-	}
+    @GetMapping("/reviewUpdate")
+    public ModelAndView reviewUpdate(@RequestParam("review_id") String review_id, ModelAndView mav) {
+    	ReviewDTO dto = service.reviewRetrieve(review_id);
+    	List<String> urls = service.res_find_img(Integer.valueOf(review_id));
+    	
+        mav.setViewName("review/reviewUpdate");
+        mav.addObject("reviewRetrieve", dto);
+        mav.addObject("urls", urls);
+        System.out.println(urls);
+        
+        return mav;
+    }
+
 	@PostMapping("/reviewUpdate")
-	public String reviewUpdate(ReviewDTO reviewDTO, HttpSession session) {
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		reviewDTO.setUser_id(dto.getUserid());
+	public String reviewUpdate(ReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		dto.setUser_id(mdto.getUserid());
 		
-		int num = service.reviewUpdate(reviewDTO);
-		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
+		int num = service.reviewUpdate(dto);
+		return "redirect:r_reviewList?res_id=" + dto.getRes_id();
 	}
 
 	
 	@GetMapping("/lodReviewUpdate")
-	public String lodReviewUpdate(@RequestParam int lodging_id, Model m) {
-		System.out.println(lodging_id);
-		m.addAttribute("lodging_id", lodging_id);
-		return "review/lodReviewUpdate";
+	public ModelAndView lodReviewUpdate(@RequestParam("review_id") String review_id, ModelAndView mav) {
+    	LodReviewDTO dto = service.lodReviewRetrieve(review_id);
+    	List<String> urls = service.lod_find_img(Integer.valueOf(review_id));
+    	
+        mav.setViewName("review/lodReviewUpdate");
+        mav.addObject("lodReviewRetrieve", dto);
+        mav.addObject("urls", urls);
+        System.out.println(urls);
+        
+        return mav;
 	}
 
 	@PostMapping("/lodReviewUpdate")
-	public String lodReviewUpdate(LodReviewDTO dto) {
+	public String lodReviewUpdate(LodReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		dto.setUser_id(mdto.getUserid());
+		
 		int num = service.lodReviewUpdate(dto);
 		return "redirect:reviewRetrieve?lodging_id=" + dto.getLodging_id();
 	}
@@ -261,4 +259,5 @@ public class ReviewController {
 		}
 		return "review/likedInfo";
 	}
+	
 }

@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,12 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.JspMemberDTO;
 import com.app.dto.MemberDTO;
 import com.app.service.EmailService;
 import com.app.service.EncodeService;
 import com.app.service.MemberService;
+import com.app.service.ProfilUploadService;
 
 @Controller
 public class MemberController {
@@ -25,6 +29,9 @@ public class MemberController {
 	
 	@Autowired
 	EmailService emailService;
+	
+	@Autowired
+	ProfilUploadService profilUploadService;
 	
 	
 	@RequestMapping("/memberForm")	
@@ -47,6 +54,7 @@ public class MemberController {
 	    dbdto.setEmail(combinedEmail); // MemberDTO의 setEmail 메서드를 사용하여 email 설정
 	    dbdto.setNickname(dto.getNickname());
 	    dbdto.setTeam_code(dto.getTeam_code());
+	    dbdto.setProfileimgurl(dto.getProfileimgurl());
 		//System.out.println(dto);
 		//System.out.println(dbdto);
 	    MemberDTO Mdto = Eservice.register(dbdto);
@@ -90,5 +98,25 @@ public class MemberController {
 		}
 		return mesg;
 	}
+	
+	//포로필 이미지 업로드
+		@PostMapping("/profileupload")
+		@ResponseBody
+		public String uploadPost(@RequestParam("upload") MultipartFile uploadFile) throws IOException {
+		    
+		    // dirName을 지정하여 서비스 메서드 호출
+	        String dirName = "joinprofile";
+	        String fileUrl = profilUploadService.upload(uploadFile, dirName);
+		    
+	        //디버깅
+	        if (fileUrl != null) {
+	            System.out.println("파일성공적 업로드 File URL: " + fileUrl);
+	        } else {
+	            System.out.println("파일업로드 실패");
+	        }
+
+	        return fileUrl;
+	     }
+	
 	
 }

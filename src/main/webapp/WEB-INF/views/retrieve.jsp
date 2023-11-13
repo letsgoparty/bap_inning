@@ -14,6 +14,38 @@
 a {
 	text-decoration: none !important;
 }
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 50px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* 모달 이미지 스타일 */
+#modalImg {
+	display: block;
+	margin: auto;
+	max-width: 80%;
+	max-height: 80%;
+}
+
+input[type=file] {
+	display: none;
+}
+
+.imgs_wrap img {
+	width: 350px;
+	height: 350px;
+	object-fit: cover; 
+	margin-left: 10px;
+}
 </style>
 <script type="text/javascript">
 	function go_list() {
@@ -23,6 +55,31 @@ a {
 		alert(${list.reivews_num});
 		
 	}
+	//모달 열기
+	function openModal(url) {
+	    window.open(url, '_blank', 'width=600, height=400');
+	    // 새 창에 클릭 이벤트 추가
+	    if (newWindow) {
+	        newWindow.addEventListener('click', function() {
+	            // 클릭 시 창 닫기
+	            newWindow.close();
+	        });
+	    }
+	}
+
+	// 모달 닫기
+	function closeModal() {
+	    var modal = document.getElementById('myModal');
+	    modal.style.display = 'none';
+	}
+
+	// 모달 외부 클릭 시 닫기
+	window.onclick = function(event) {
+	    var modal = document.getElementById('myModal');
+	    if (event.target === modal) {
+	        modal.style.display = 'none';
+	    }
+	}
 </script>
 </head>
 <body>
@@ -31,7 +88,7 @@ a {
 		<form class="form-horizontal" action="update" method="post">
 			<input type="hidden" name="title" value="${retrieve.title}">
 			<input type="hidden" name="team_code" value="${retrieve.team_code}">
-			
+
 			<div class="form-group">
 				<div>
 					<p>
@@ -107,20 +164,41 @@ a {
 							<c:when test="${team == 0}">
 								<img src="images/logo/noTeam.png" width=auto height="30">
 							</c:when>
-						</c:choose> ${retrieve.userid} 
-					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span> &nbsp; <span
-						class="gray-font">조회수: ${retrieve.count}</span> 
-						<a type="submit" href="update?no=${retrieve.board_num}"	class="ms-3">수정</a> 
+						</c:choose> ${retrieve.userid}
+					</span> &nbsp; <span class="gray-font">${retrieve.board_date}</span>
+					&nbsp; <span class="gray-font">조회수: ${retrieve.count}</span>
+					<c:if test="${user eq retrieve.userid}">
+						<a type="submit" href="update?no=${retrieve.board_num}"
+							class="ms-3">수정</a>
 						<a href="delete?no=${retrieve.board_num}" class="mx-1">삭제</a>
+					</c:if>
+
 					<hr>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="mb-4">
-					<textarea class="form-control" rows="10"
+					<textarea class="form-control" rows=auto
 						style="border: none; background-color: rgba(248, 249, 250, 0.5);"
 						name="text" disabled>${retrieve.text}</textarea>
 				</div>
+				<c:choose>
+					<c:when test="${!empty urls}">
+						<div class="imgs_wrap">
+							<c:forEach var="url" items="${urls}">
+								<div style="text-align: center; display: inline-block;">
+									<a href="#" onclick="openModal('${url}')"> <img id="img"
+										class="mb-2" src="${url}" alt="이미지">
+									</a>
+								</div>
+							</c:forEach>
+							<div id="myModal" class="modal">
+								<span class="close" onclick="closeModal()">&times;</span> <img
+									id="modalImg" src="" alt="모달 이미지">
+							</div>
+						</div>
+					</c:when>
+				</c:choose>
 				<button type="button" class="btn btn-primary" onclick="go_list()">목록</button>
 			</div>
 		</form>
@@ -188,9 +266,11 @@ a {
 						</div>
 						<div class="col-md-10 my-2">${list.text}</div>
 						<div class="col-md-2">
-							<button type="button" class="btn btn-primary">
-								<a href="replydelete?no=${list.reviews_num}">삭제</a>
-							</button>
+							<c:if test="${user eq list.userid}">
+								<button type="button" class="btn btn-primary">
+									<a href="replydelete?no=${list.reviews_num}">삭제</a>
+								</button>
+							</c:if>
 							<br>
 						</div>
 					</div>

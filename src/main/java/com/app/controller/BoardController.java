@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,15 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.Board;
 import com.app.dto.MemberDTO;
 import com.app.dto.PageDTO;
 import com.app.dto.Reply;
 import com.app.service.BoardService;
+import com.app.service.BoardUploadService;
 import com.app.service.ReplyService;
 
 @Controller
@@ -26,6 +32,8 @@ public class BoardController {
 	BoardService service;
 	@Autowired
 	ReplyService replyService;
+	@Autowired
+	BoardUploadService uploadService;
 	
 	
 
@@ -38,11 +46,14 @@ public class BoardController {
 	// 2. 글쓰기
 	@RequestMapping(value = "write", method = RequestMethod.POST)
 	public String write(Board board, HttpSession session) {
-		// user sesstion넣기
+		// user session넣기
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		board.setUserid(dto.getUserid());
+		if(board.getBoard_num() == null) {
+			board.setBoard_num(service.find_seq());
+		}
 		int num = service.boardWrite(board);
-		System.out.println(num);
+
 		return "redirect:list";
 	}
 
@@ -66,10 +77,15 @@ public class BoardController {
 		Board board = service.selectByNo(no);
 		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
 		m.addAttribute("team", team_code);
+		MemberDTO dto = (MemberDTO) session.getAttribute("login");
+		m.addAttribute("user", dto.getUserid());
+		
+		List<String> urls = service.find_img(no);
+		m.addAttribute("urls", urls);
+		
 		// 댓글 조회
 		List<Reply> reply = replyService.replyList(no);
 		board.setReplyList(reply);
-		System.out.println("asdf"+board);
 		return board;
 	}
 
@@ -80,11 +96,11 @@ public class BoardController {
 		int team_code = service.find_team(board.getUserid()); // 작성자의 팀 가져오기
 		m.addAttribute("team", team_code);
 		m.addAttribute(board);
-		System.out.println("수정"+board);
 		return "update";
 	}
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(Board board) {
+		System.out.println(board);
 		int num = service.boardUpdate(board);
 		return "redirect:list";
 	}
@@ -93,6 +109,28 @@ public class BoardController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int no) {
 		int num = service.boardDelete(no);
+		num = service.delete_img(no);
+		uploadService.delete(no);
 		return "redirect:list";
+	}
+	
+	// 7. 이미지 업로드
+	@PostMapping("/uploadImage")
+	@ResponseBody
+	public int uploadPost(@RequestParam("file") MultipartFile[] uploadFile, Model m) throws IOException {
+	    int board_num = service.find_seq();
+	    String dirName = null;
+	    int index = 0;
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    map.put("board_num", board_num);
+	    for (MultipartFile multipartFile : uploadFile) {
+	        index++;
+	        String url = uploadService.upload(multipartFile, dirName, board_num, index);
+	        map.put("url", url);
+	        
+	        int n = service.save_url(map); 
+	    }
+
+	    return board_num; 
 	}
 }

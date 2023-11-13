@@ -19,19 +19,19 @@
  	</select>
  	
  	<insert id="memberAdd" parameterType="MemberDTO">
- 	   insert into member (userid, password, email, nickname, team_code)
- 	   values ( #{userid}, #{password},#{email},#{nickname},#{team_code, jdbcType=NUMERIC})
+ 	   insert into member (userid, password, email, nickname, team_code, profileimgurl)
+ 	   values ( #{userid}, #{password},#{email},#{nickname},#{team_code, jdbcType=NUMERIC}, #{profileimgurl})
  	</insert>
  	
  	<select id="login" parameterType="hashmap" resultType="MemberDTO">
- 	   select userid, password, email, nickname, team_code
+ 	   select *
  	   from member
  	   where userid=#{userid} and password=#{password}
  	</select>
  	
     <select id="mypage" parameterType="string"
  	  resultType="MemberDTO">
- 	   select userid, password, email, nickname, team_code
+ 	   select *
  	   from member
  	   where userid=#{userid} 
  	</select>

@@ -26,8 +26,43 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
         $(document).ready(function () {
+        	
+        	// 파일 업로드 이벤트가 발생
+		    $("#profileImage").change(function () {
+		        var fileInput = document.getElementById('profileImage');
+		        var file = fileInput.files[0];
+		
+		        var formData = new FormData();
+		        formData.append('upload', file);
+		
+		        $.ajax({
+		            type: 'POST',
+		            url: "profileupload",
+		            data: formData,
+		            processData: false,
+		            contentType: false,
+		            success: function (data) {
+		                
+		                console.log('File URL:', data);
+
+		                // 받은 파일 URL을 이미지로 표시
+		                $("#imageContainer").html("<img src='" + data + "' alt='Uploaded Image'>");
+
+		                console.log('proimg의 값:', $("#proimg").val());
+		                console.log('데이터 타입:', typeof data);
+		                // 값을 할당
+		                $("#proimg").val(data); 
+			            },
+		            error: function (error) {
+		                console.log('Error:', error);
+		            }
+		        });
+		    });
+
             // 비밀번호 일치 여부 확인
             $("#passwd2").on("keyup", function () {
                 var passwd = $("#passwd").val();
@@ -168,6 +203,43 @@
 				<h3 class="mb-3">회원가입</h3>
 				<form action="memberAdd" method="POST" class="validation-form"
 					novalidate onsubmit="return validateForm()">
+					<div class="container mt-5">
+						    <div class="row">
+						        <div class="col-md-6 mb-3">
+						            <!-- 이미지를 보여주는 컨테이너 -->
+						            <div id="imageContainer" style="position: relative;">
+						                <img id="uploadedImage" src="images/icon/profile.png" alt="프로필 이미지" style="width: 25%; height: auto;">
+						                <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#uploadModal">
+						                    프로필 이미지 업로드
+						                </button>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+						
+						<!-- 이미지 업로드 모달 -->
+						<div class="modal" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+						    <div class="modal-dialog" role="document">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 class="modal-title" id="uploadModalLabel">프로필 이미지 업로드</h5>
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true">&times;</span>
+						                </button>
+						            </div>
+						            <div class="modal-body">
+						                <input type="file" id="profileImage" accept="image/*" class="form-control">
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-secondary" data-dismiss="modal">업로드</button>
+						              
+						            </div>
+						        </div>
+						    </div>
+						</div>			
+					<div class="row" style="margin-bottom: 20px;">	</div>								
+					<input type="hidden" id="proimg" name="profileimgurl"> 	
+
 
 					<label for="userid">아이디</label> <span style="color: red"
 						id="idResult"></span>

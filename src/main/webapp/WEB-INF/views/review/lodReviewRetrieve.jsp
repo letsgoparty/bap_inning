@@ -1,3 +1,4 @@
+<%@page import="com.app.controller.ReviewController"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,6 +17,10 @@
 	<form id="myform" action="lodReviewUpdate" method="get">
 	    <input type="hidden" name="lodging_id" value="${lodReviewRetrieve.lodging_id}">
 	    <input type="hidden" name="review_id" value="${lodReviewRetrieve.review_id}"> 
+<%-- 
+	    <input type="hidden" name="review_content" value="${lodReviewRetrieve.review_content}"> 
+	    <input type="text" name="review_id" value="${lodReviewRetrieve.user_id}"> 
+ --%>
 		<div class="myform">
 			<div class="container">
 	 	 		<div name="rating" id="rating" value="${lodReviewRetrieve.rating}">
@@ -62,9 +67,7 @@
 			        </c:forEach>
 							<div id="myModal" class="modal">
 							    <span class="close" onclick="closeModal()">&times;</span>
-							    <div class="modal-content">
 							    <img id="modalImg" src="" alt="모달 이미지">
-							    </div>
 							</div>
 						</div>
 			    </c:when>
@@ -73,9 +76,8 @@
 				<div class="d-grid gap-2 col-6 mx-auto">
 				  <button class="btn btn-primary" type="submit" id="editBtn">수정</button>
 					<button class="btn btn-primary" type="button" id="deleteBtn" onclick="del('${lodReviewRetrieve.review_id}')">삭제</button>			
-				  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${lodReviewRetrieve.res_id}')">목록보기</button>
+				  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${lodReviewRetrieve.lodging_id}')">목록보기</button>
 				</div>
-	
 		</div>
 	</form>	
 
@@ -103,7 +105,6 @@
 	function cancel(lodging_id){
 		window.location.href = "l_reviewList?lodging_id=" + lodging_id;
 	}
-
 
 	// 현재 사용자와 작성자의 아이디를 비교하여 버튼 표시 여부 결정
 	var currentUserID = "${login.userid}";

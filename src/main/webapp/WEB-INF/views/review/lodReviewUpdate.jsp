@@ -14,9 +14,9 @@
 	<jsp:include page="../common/nav.jsp" flush="true" />
 
 	<form id="myform" action="lodReviewUpdate" method="POST">
-		    <input type="hidden" name="review_id" value="${lodReviewRetrieve.review_id}"> 
-		    <input type="hidden" name="rating" value="${lodReviewRetrieve.rating}"> 
-		<div class="myform">
+		    <input type="hidden" name="lodging_id" value="${lodReviewRetrieve.lodging_id}"> 
+	 		  <input type="hidden" name="review_id" value="${lodReviewRetrieve.review_id}"> 
+	 	<div class="myform">
 			<div class="container">
 		 		<div name="rating" id="rating" value="${lodReviewRetrieve.rating}">
 			    <fieldset style="text-align: center">
@@ -46,8 +46,8 @@
 						<button class="btn btn-primary" id="uploadButton">첨부하기</button>
 					</div>
 				</div>
+				
 				<div>
-		
 				<c:choose>
 				    <c:when test="${!empty urls}">
 						  <div class="imgs_wrap">
@@ -70,9 +70,9 @@
 			<!-- 이미지 업로드 -->			
 				<div class="d-grid gap-2 col-6 mx-auto">
 				  <button class="btn btn-primary" type="submit" id="editBtn">수정</button>
-				  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${lodReviewRetrieve.res_id}')">돌아가기</button>
+				  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${lodReviewRetrieve.lodging_id}')">돌아가기</button>
 				</div>
-			
+			</div>
 		</div>
 	</form>	
 
@@ -89,10 +89,10 @@
 	}
 	
 	//목록보기 버튼
-	function cancel(res_id) {
+	function cancel(lodging_id) {
 		var shouldCancel = confirm("작성 중인 리뷰가 있습니다. 저장하지 않고 나가시겠습니까?");
 		if (shouldCancel) {
-		window.location.href = "l_reviewList?res_id=" + res_id;
+		window.location.href = "l_reviewList?lodging_id=" + lodging_id;
 		}
 	}
 	

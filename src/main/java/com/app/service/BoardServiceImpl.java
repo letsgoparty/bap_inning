@@ -1,5 +1,8 @@
 package com.app.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +53,26 @@ public class BoardServiceImpl implements BoardService {
 	public int find_team(String userid) {
 		return dao.find_team(userid);
 	}
+	
+	@Override
+	public int find_seq() {
+		return dao.find_seq();
+	}
+
+	@Override
+	public int save_url(HashMap<String, Object> map) {
+		return dao.save_url(map);
+	}
+
+	@Override
+	public List<String> find_img(int board_num) {
+		return dao.find_img(board_num);
+	}
+
+	@Override
+	public int delete_img(int board_num) {
+		return dao.delete_img(board_num);
+	}
+
 
 }

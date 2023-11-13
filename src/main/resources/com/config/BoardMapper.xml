@@ -37,7 +37,7 @@
 	<insert id="boardWrite" parameterType="Board">
 		insert into board
 		(board_num,title,userid,text,team_code)
-		values (board_seq.nextval,
+		values (#{board_num},
 		#{title},#{userid},#{text},#{team_code})
 	</insert>
 
@@ -112,18 +112,41 @@
 	<select id="selectByNo" resultType="Board" parameterType="int">
 		select
 		board_num, title, userid, text,
-		to_char(board_date, 'YYYY/MM/DD HH24:MI') as
+		to_char(board_date, 'YYYY/MM/DD
+		HH24:MI') as
 		board_date, team_code,
 		count
 		from board
-		where board_num = #{board_num}
+		where board_num =
+		#{board_num}
 	</select>
 
 	<select id="find_team" resultType="int" parameterType="string">
-	select team_code from member
-	where userid=#{userid}
+		select team_code from member
+		where userid=#{userid}
+	</select>
+	<!-- 이미지 업로드 -->
+	<select id="find_seq" resultType="int">
+		SELECT board_seq.nextval
+		FROM
+		dual
 	</select>
 
+	<insert id="save_url" parameterType="hashmap">
+		insert into board_image
+		values (#{board_num},#{url})
+	</insert>
+
+	<select id="find_img" parameterType="int" resultType="string">
+		select url
+		from board_image
+		where board_num=#{board_num}
+	</select>
+
+	<delete id="delete_img" parameterType="int">
+		delete from board_image
+		where board_num=#{board_num}
+	</delete>
 
 </mapper>
 

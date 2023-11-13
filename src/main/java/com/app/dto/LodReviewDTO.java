@@ -13,14 +13,14 @@ public class LodReviewDTO {
 	String like_cnt;
 	String created_date;
 	String modified_date;
+	String lodging_name;
 	String nickname;
-	
 	
 	public LodReviewDTO() {
 	}
 
 	public LodReviewDTO(Integer review_id, Integer lodging_id, String user_id, String rating, String review_content,
-			String like_cnt, String created_date, String modified_date, String nickname) {
+			String like_cnt, String created_date, String modified_date, String lodging_name, String nickname) {
 		super();
 		this.review_id = review_id;
 		this.lodging_id = lodging_id;
@@ -30,6 +30,7 @@ public class LodReviewDTO {
 		this.like_cnt = like_cnt;
 		this.created_date = created_date;
 		this.modified_date = modified_date;
+		this.lodging_name = lodging_name;
 		this.nickname = nickname;
 	}
 
@@ -81,20 +82,25 @@ public class LodReviewDTO {
 	public void setModified_date(String modified_date) {
 		this.modified_date = modified_date;
 	}
+	public String getLodging_name() {
+		return lodging_name;
+	}
+	public void setLodging_name(String lodging_name) {
+		this.lodging_name = lodging_name;
+	}
 	public String getNickname() {
 		return nickname;
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+
 	@Override
 	public String toString() {
 		return "LodReviewDTO [review_id=" + review_id + ", lodging_id=" + lodging_id + ", user_id=" + user_id
 				+ ", rating=" + rating + ", review_content=" + review_content + ", like_cnt=" + like_cnt
-				+ ", created_date=" + created_date + ", modified_date=" + modified_date + ", nickname="
-				+ nickname + "]";
+				+ ", created_date=" + created_date + ", modified_date=" + modified_date + ", lodging_name="
+				+ lodging_name + ", nickname=" + nickname + "]";
 	}
-	
-	
-	
+
 }

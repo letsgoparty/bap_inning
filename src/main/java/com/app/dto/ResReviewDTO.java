@@ -2,10 +2,7 @@ package com.app.dto;
 
 import org.apache.ibatis.type.Alias;
 
-/*
- * 임시 
- */
-
+@Alias("ResReviewDTO")
 public class ResReviewDTO {
 
 	String review_id;
@@ -17,12 +14,13 @@ public class ResReviewDTO {
 	String created_date;
 	String modified_date;
 	String res_name;
+	String nickname;
 	
 	public ResReviewDTO() {
 	}
 
-	public ResReviewDTO(String review_id, String res_id, String user_id, String rating, String review_content, String like_cnt,
-			String created_date, String modified_date) {
+	public ResReviewDTO(String review_id, String res_id, String user_id, String rating, String review_content,
+			String like_cnt, String created_date, String modified_date, String res_name, String nickname) {
 		super();
 		this.review_id = review_id;
 		this.res_id = res_id;
@@ -32,8 +30,9 @@ public class ResReviewDTO {
 		this.like_cnt = like_cnt;
 		this.created_date = created_date;
 		this.modified_date = modified_date;
+		this.res_name = res_name;
+		this.nickname = nickname;
 	}
-
 
 	public String getReview_id() {
 		return review_id;
@@ -114,7 +113,6 @@ public class ResReviewDTO {
 		this.modified_date = modified_date;
 	}
 
-	
 
 	public String getRes_name() {
 		return res_name;
@@ -124,12 +122,20 @@ public class ResReviewDTO {
 		this.res_name = res_name;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	@Override
 	public String toString() {
-		return "ReviewDTO [review_id=" + review_id + ", res_id=" + res_id + ", user_id=" + user_id + ", rating="
+		return "ResReviewDTO [review_id=" + review_id + ", res_id=" + res_id + ", user_id=" + user_id + ", rating="
 				+ rating + ", review_content=" + review_content + ", like_cnt=" + like_cnt + ", created_date="
-				+ created_date + ", modified_date=" + modified_date + "]";
+				+ created_date + ", modified_date=" + modified_date + ", res_name=" + res_name + ", nickname="
+				+ nickname + "]";
 	}
-	
 	
 }

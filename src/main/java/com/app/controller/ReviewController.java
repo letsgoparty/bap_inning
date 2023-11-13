@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.app.dto.LodReviewDTO;
 import com.app.dto.MemberDTO;
 import com.app.dto.ReviewDTO;
 import com.app.dto.ReviewPageDTO;
+import com.app.dto.mypageReviewImgDTO;
 import com.app.service.MemberService;
 import com.app.service.ReviewImageService;
 import com.app.service.ReviewService;
@@ -40,7 +42,20 @@ public class ReviewController {
 	    mav.setViewName("review/r_reviewList");
 	    mav.addObject("pageDTO", pageDTO);
 	    
-	    return mav;
+		//리뷰 이미지 출력 
+		List<ReviewDTO> list = pageDTO.getList();
+		List<mypageReviewImgDTO> allURLs = new ArrayList<mypageReviewImgDTO>();
+		for(ReviewDTO dto : list) {
+			mypageReviewImgDTO imgdto = new mypageReviewImgDTO();
+			int review_id = dto.getReview_id();
+			List<String> urls = service.res_find_img(review_id);
+			imgdto.setReview_id(String.valueOf(review_id));
+			imgdto.setUrls(urls);
+			allURLs.add(imgdto);
+		}
+		mav.addObject("allURLs",allURLs);
+
+		return mav;
 	}
 
 	@GetMapping("/l_reviewList")
@@ -51,6 +66,18 @@ public class ReviewController {
 		mav.setViewName("review/l_reviewList");
 		mav.addObject("pageDTO", pageDTO);
 		
+		//리뷰 이미지 출력 
+		List<LodReviewDTO> lodList = pageDTO.getLodList();
+		List<mypageReviewImgDTO> allURLs = new ArrayList<mypageReviewImgDTO>();
+		for(LodReviewDTO dto : lodList) {
+			mypageReviewImgDTO imgdto = new mypageReviewImgDTO();
+			int review_id = dto.getReview_id();
+			List<String> urls = service.lod_find_img(review_id);
+			imgdto.setReview_id(String.valueOf(review_id));
+			imgdto.setUrls(urls);
+			allURLs.add(imgdto);
+		}
+		mav.addObject("allURLs",allURLs);
 		return mav;
 	}
 	

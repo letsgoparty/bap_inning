@@ -53,13 +53,13 @@
 					<td colspan="2">${dto.review_content}</td>
 					<td><a href="reviewRetrieve?review_id=${dto.review_id}">더보기</a></td>
 					<td>
-		 				<div class="imgs_wrap"> <!-- 클래스삭제하기 -->
-		 					<c:forEach var="url" items="${urls}">
-								<div style="text-align:center;">
-							    <img class="mb-2" src="${url}" width="300" height="300" alt="이미지">
-							   </div>
-							</c:forEach>
-						</div>
+					<c:forEach var="urlDTO" items="${allURLs}">
+						<c:if test="${urlDTO.review_id eq dto.review_id}">
+						  <c:forEach var="url" items="${urlDTO.urls}" varStatus="status">
+						    <img class="mb-2" src="${url}" alt="이미지" style="height:90px; height:90px; object-fit: cover; border-radius: 5px;">
+						  </c:forEach>
+						</c:if>
+					</c:forEach>
 					</td>
 					<td>${dto.nickname}</td>
 		    	<td><c:forEach var="i" begin="1" end="${dto.rating}">⭐</c:forEach></td>

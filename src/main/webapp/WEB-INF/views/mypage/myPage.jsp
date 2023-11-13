@@ -239,7 +239,7 @@ function enableEdit() {
  				<br>
  				<div class="list-group">
 					<a href="like" class="list-group-item list-group-item-action">❤️ 내 찜 보기</a>
-					<a href="players" class="list-group-item list-group-item-action">⚾ 찜한 선수</a>
+					<a href="myPlayer" class="list-group-item list-group-item-action">⚾ 찜한 선수</a>
 					<a href="mytext" class="list-group-item list-group-item-action">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 글</a>
 						
 					<a href="my_r_review" class="list-group-item list-group-item-action">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;나의 리뷰</a>

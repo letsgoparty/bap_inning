@@ -28,26 +28,13 @@ public class ReviewDAO {
 		int offset = (curPage-1)*pageDTO.getPerPage();
 		int limit = pageDTO.getPerPage();
 		List<ReviewDTO> list =  session.selectList("ReviewMapper.r_reviewList", res_id, new RowBounds(offset, limit));
-		
+
 		pageDTO.setList(list);
 		pageDTO.setCurPage(curPage);
 		pageDTO.setTotalCount(r_totalCount(res_id));
 		
 		return pageDTO;
 	}
-//	public ReviewPageDTO r_reviewList(int curPage, int res_id, int review_id) {
-//		ReviewPageDTO pageDTO = new ReviewPageDTO();
-//		int offset = (curPage-1)*pageDTO.getPerPage();
-//		int limit = pageDTO.getPerPage();
-//		List<ReviewDTO> list =  session.selectList("ReviewMapper.r_reviewList", res_id, new RowBounds(offset, limit));
-//		List<String> urls = session.selectList("ReviewMapper.res_find_img", review_id);
-//		
-//		pageDTO.setList(list);
-//		pageDTO.setCurPage(curPage);
-//		pageDTO.setTotalCount(r_totalCount(res_id));
-//
-//		return pageDTO;
-//	}
 	
 	//숙소 전체 리뷰
 	public int l_totalCount(int lodging_id) {
@@ -69,8 +56,8 @@ public class ReviewDAO {
 	
 	
 	//리뷰 등록
-	public int reviewWrite(ReviewDTO reviewDTO) {
-		return session.insert("ReviewMapper.reviewWrite", reviewDTO);
+	public int reviewWrite(ReviewDTO dto) {
+		return session.insert("ReviewMapper.reviewWrite", dto);
 	}
 	public int lodReviewWrite(LodReviewDTO dto) {
 		return session.insert("ReviewMapper.lodReviewWrite", dto);
@@ -85,8 +72,8 @@ public class ReviewDAO {
 	}
 	
 	//리뷰 수정
-	public int reviewUpdate(ReviewDTO reviewDTO) {
-		return session.update("ReviewMapper.reviewUpdate", reviewDTO);
+	public int reviewUpdate(ReviewDTO dto) {
+		return session.update("ReviewMapper.reviewUpdate", dto);
 	}
 	public int lodReviewUpdate(LodReviewDTO dto) {
 		return session.update("ReviewMapper.lodReviewUpdate", dto);
@@ -123,13 +110,16 @@ public class ReviewDAO {
 		return session.selectList("ReviewMapper.lod_find_img", review_id);
 	}
 	
+	//리뷰 이미지 삭제
+	public int res_del_img(int review_id) {
+		return session.delete("ReviewMapper.res_del_img", review_id);
+	}
+	public int lod_del_img(int review_id) {
+		return session.delete("ReviewMapper.lod_del_img", review_id);
+	}
+	
+	
 	//리뷰 추천
-//	public int res_like_cnt(int review_id) {
-//		return session.update("ReviewMapper.res_like_cnt", review_id);
-//	}
-//	public int lod_like_cnt(int review_id) {
-//		return session.update("ReviewMapper.lod_like_cnt", review_id);
-//	}
 	public int res_like_cnt(ReviewDTO dto) {
 		return session.update("ReviewMapper.res_like_cnt", dto);
 	}	

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,26 +35,14 @@ public class ReviewController {
 	@GetMapping("/r_reviewList")
 	public ModelAndView r_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int res_id) {
 	    ReviewPageDTO pageDTO = service.r_reviewList(curPage, res_id);
-
+	    
 	    ModelAndView mav = new ModelAndView();
 	    mav.setViewName("review/r_reviewList");
 	    mav.addObject("pageDTO", pageDTO);
-	
+	    
 	    return mav;
 	}
-//	public ModelAndView r_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int res_id, int review_id) {
-//		ReviewPageDTO pageDTO = service.r_reviewList(curPage, res_id, review_id);
-//		List<String> urls = service.res_find_img(Integer.valueOf(review_id));
-//		
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("review/r_reviewList");
-//		mav.addObject("pageDTO", pageDTO);
-//		mav.addObject("urls", urls);
-//		
-//		return mav;
-//	}
-	
-	
+
 	@GetMapping("/l_reviewList")
 	public ModelAndView l_reviewList(@RequestParam(value = "curPage", required = false, defaultValue = "1") int curPage, int lodging_id) {
 		ReviewPageDTO pageDTO = service.l_reviewList(curPage, lodging_id);
@@ -84,17 +71,17 @@ public class ReviewController {
 
 	//리뷰 등록
 	@PostMapping("/reviewWrite")
-	public String review(ReviewDTO reviewDTO, HttpSession session) {
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		reviewDTO.setUser_id(dto.getUserid());
+	public String review(ReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		dto.setUser_id(mdto.getUserid());
 		
-		if(reviewDTO.getReview_id() == null) {
-			reviewDTO.setReview_id(service.find_seq());
+		if(dto.getReview_id() == null) {
+			dto.setReview_id(service.find_seq());
 		}
 		
-		System.out.println(reviewDTO);
-		service.reviewWrite(reviewDTO);
-		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
+		System.out.println(dto);
+		service.reviewWrite(dto);
+		return "redirect:r_reviewList?res_id=" + dto.getRes_id();
 	}
 
 	@PostMapping("/lodReviewWrite")
@@ -141,37 +128,47 @@ public class ReviewController {
     
     
 	//리뷰 수정
-	@GetMapping("/reviewUpdate")
-	public String reviewUpdate(@RequestParam int res_id, Model m) {
-		System.out.println(res_id);
-		m.addAttribute("res_id", res_id);
-		return "review/reviewUpdate";
-	}
-	
-	@PostMapping("/reviewUpdate2")
-	public String reviewUpdate2(ReviewDTO reviewDTO) {
-		int num = service.reviewUpdate(reviewDTO);
-		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
-	}
+    @GetMapping("/reviewUpdate")
+    public ModelAndView reviewUpdate(@RequestParam("review_id") String review_id, ModelAndView mav) {
+    	ReviewDTO dto = service.reviewRetrieve(review_id);
+    	List<String> urls = service.res_find_img(Integer.valueOf(review_id));
+    	
+        mav.setViewName("review/reviewUpdate");
+        mav.addObject("reviewRetrieve", dto);
+        mav.addObject("urls", urls);
+        System.out.println(urls);
+        
+        return mav;
+    }
+
 	@PostMapping("/reviewUpdate")
-	public String reviewUpdate(ReviewDTO reviewDTO, HttpSession session) {
-		MemberDTO dto = (MemberDTO) session.getAttribute("login");
-		reviewDTO.setUser_id(dto.getUserid());
+	public String reviewUpdate(ReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		dto.setUser_id(mdto.getUserid());
 		
-		int num = service.reviewUpdate(reviewDTO);
-		return "redirect:r_reviewList?res_id=" + reviewDTO.getRes_id();
+		int num = service.reviewUpdate(dto);
+		return "redirect:r_reviewList?res_id=" + dto.getRes_id();
 	}
 
 	
 	@GetMapping("/lodReviewUpdate")
-	public String lodReviewUpdate(@RequestParam int lodging_id, Model m) {
-		System.out.println(lodging_id);
-		m.addAttribute("lodging_id", lodging_id);
-		return "review/lodReviewUpdate";
+	public ModelAndView lodReviewUpdate(@RequestParam("review_id") String review_id, ModelAndView mav) {
+    	LodReviewDTO dto = service.lodReviewRetrieve(review_id);
+    	List<String> urls = service.lod_find_img(Integer.valueOf(review_id));
+    	
+        mav.setViewName("review/lodReviewUpdate");
+        mav.addObject("lodReviewRetrieve", dto);
+        mav.addObject("urls", urls);
+        System.out.println(urls);
+        
+        return mav;
 	}
 
 	@PostMapping("/lodReviewUpdate")
-	public String lodReviewUpdate(LodReviewDTO dto) {
+	public String lodReviewUpdate(LodReviewDTO dto, HttpSession session) {
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		dto.setUser_id(mdto.getUserid());
+		
 		int num = service.lodReviewUpdate(dto);
 		return "redirect:reviewRetrieve?lodging_id=" + dto.getLodging_id();
 	}
@@ -179,16 +176,21 @@ public class ReviewController {
 	
 	//리뷰 삭제
 	@GetMapping("/reviewDelete")
-	public String reviewDelete(@RequestParam("review_id") int review_id, ReviewDTO reviewDTO) {
+	public String reviewDelete(@RequestParam("review_id") int review_id
+			,@RequestParam(value = "res_id", required = false) Integer res_id
+			, ReviewDTO dto) {
 		int num = service.reviewDelete(review_id);
-		//int res_id = reviewDTO.getRes_id();
-		return "redirect:main"; //redirect:r_reviewList?res_id=" + res_id;
+		num = service.res_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
+		imgService.res_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
+		return "redirect:main";
+//		return "redirect:r_reviewList?res_id=" + dto.getRes_id();
 	}
 	
 	@GetMapping("/lodReviewDelete")
-	public String lodReviewDelete(@RequestParam("review_id") int review_id, LodReviewDTO dto,
-			HttpServletRequest request) {
+	public String lodReviewDelete(@RequestParam("review_id") int review_id, LodReviewDTO dto) {
 		int num = service.lodReviewDelete(review_id);
+		num = service.lod_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
+		imgService.lod_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
 		return "redirect:main";
 //		return "redirect:l_reviewList";
 	}
@@ -235,6 +237,7 @@ public class ReviewController {
 		return review_id; 
 	}
 
+	
 	//리뷰 추천
 	@GetMapping("/res_like_cnt")
 	public String res_like_cnt(ReviewDTO dto, HttpSession session) {
@@ -261,4 +264,5 @@ public class ReviewController {
 		}
 		return "review/likedInfo";
 	}
+	
 }

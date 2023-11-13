@@ -52,7 +52,8 @@
 	<!-- 리뷰 상세보기 -->
 	<select id="reviewRetrieve" parameterType="string" resultType="ReviewDTO">
 	  select review_id, res_id, user_id, rating, review_content, like_cnt, 
-		  created_date, modified_date, nickname
+		  to_char(created_date, 'YYYY/MM/dd HH:SS') as created_date,
+		  to_char(modified_date, 'YYYY/MM/dd HH:SS') as modified_date, nickname
 		FROM
     	restaurant_reviews rr
 		JOIN
@@ -61,7 +62,8 @@
 	</select>
 	<select id="lodReviewRetrieve" parameterType="string" resultType="LodReviewDTO">
 	  select review_id, lodging_id, user_id, rating, review_content, like_cnt, 
-		  created_date, modified_date, nickname
+		  to_char(created_date, 'YYYY/MM/dd HH:SS') as created_date,
+		  to_char(modified_date, 'YYYY/MM/dd HH:SS') as modified_date, nickname
 		FROM
 			lodging_reviews lr
   	JOIN
@@ -72,7 +74,7 @@
 	<!-- 리뷰 수정 -->
 	<update id="reviewUpdate" parameterType="ReviewDTO">
 		update restaurant_reviews
-		set review_content = #{review_content}, rating=#{rating}
+		set review_content = #{review_content}, rating=#{rating}, modified_date = sysdate
 		where review_id = #{review_id}
 	</update>
 	<update id="lodReviewUpdate" parameterType="LodReviewDTO">
@@ -119,6 +121,16 @@
 		select url from lod_review_image
 		where review_id=#{review_id}
 	</select>
+	
+	<!-- 리뷰 이미지 삭제 -->
+	<delete id="res_del_img" parameterType="int">
+		delete from res_review_image
+		where review_id = #{review_id}
+	</delete>
+	<delete id="lod_del_img" parameterType="int">
+		delete from lod_review_image
+		where review_id = #{review_id}
+	</delete>
 	
 	
 	<!-- 리뷰 추천 -->

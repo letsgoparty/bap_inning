@@ -53,6 +53,8 @@ public class TeamController {
 
 		int myTeam = dto.getTeam_code();
 		String selectedTeam = teamService.team_name(myTeam);
+		
+		model.addAttribute("ScoreBoard", scrapService.scrapeScore());
 
 		model.addAttribute("myTeam", selectedTeam);
 		// 응원팀에 해당하는 일정만 필터링하기

@@ -1,0 +1,41 @@
+.category {
+	border-radius: 30px;
+}
+
+#location,
+#rating {
+	font-weight: bold;
+}
+
+.no_like {
+	font-size: 30px;
+	font-weight: bold;
+	border: 1px solid #ccc;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.card.highlighted {
+	background-color: rgb(195, 195, 195, 0.3);
+	border: 2px solid rgb(102, 187, 106);
+}
+
+.deleteBtn,
+.res_infoBtn,
+.lod_infoBtn {
+	color: white !important;
+	background-color: rgb(102, 187, 106, 0.9) !important;
+}
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 400px;
+	height: 100vh;
+	display: none;
+	margin-top: 100px;
+	margin-left: 10px;
+	max-height: 100%;
+	overflow-y: auto;
+}

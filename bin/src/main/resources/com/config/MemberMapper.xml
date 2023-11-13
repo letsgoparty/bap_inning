@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+
+ 	<select id="idCheck" parameterType="string" 
+ 	  resultType="MemberDTO">
+ 	  select *
+ 	  from member
+ 	  where userid = #{userid}
+ 	</select>
+ 	
+ 	<select id="nicknameCheck" parameterType="string" 
+ 	  resultType="MemberDTO">
+ 	  select *
+ 	  from member
+ 	  where nickname = #{nickname}
+ 	</select>
+ 	
+ 	<insert id="memberAdd" parameterType="MemberDTO">
+ 	   insert into member (userid, password, email, nickname, team_code, profileimgurl)
+ 	   values ( #{userid}, #{password},#{email},#{nickname},#{team_code, jdbcType=NUMERIC}, #{profileimgurl})
+ 	</insert>
+ 	
+ 	<select id="login" parameterType="hashmap" resultType="MemberDTO">
+ 	   select *
+ 	   from member
+ 	   where userid=#{userid} and password=#{password}
+ 	</select>
+ 	
+    <select id="mypage" parameterType="string"
+ 	  resultType="MemberDTO">
+ 	   select *
+ 	   from member
+ 	   where userid=#{userid} 
+ 	</select>
+ 	
+ 	<update id="memberUpdate" parameterType="MemberDTO">
+	 update Member
+	 set email=#{email},nickname=#{nickname},team_code=#{team_code}
+	where userid=#{userid}
+	</update>
+	
+	<update id="pwChange" parameterType="hashmap">
+	update Member
+	set password=#{password}
+	where userid=#{userid}
+	</update>
+	
+	<delete id="memberDelete" parameterType="string">
+	delete from Member
+	where userid=#{userid}
+	</delete>
+ 	
+ 	<!-- 인증코드 저장 -->
+	<update id="saveVerificode" parameterType="MemberDTO">
+	  UPDATE member
+	  set authcode=#{authcode},cretime=#{cretime}
+	  WHERE email = #{email}
+	</update>
+	
+	<!-- 인증코드 조회 -->
+	<select id="authcodeconfirm" parameterType="MemberDTO" resultType="MemberDTO">
+	  select *
+	  from member 
+	  where email=#{email}
+	</select>
+	
+	<!-- 비밀번호 재설정 -->
+ 	<update id="resetPassword" parameterType="hashmap">
+    update Member
+    set password=#{password}
+    where email=#{email}
+   </update>
+ 	
+	
+	<!-- 암호화된 비밀번호 가져오기 -->
+	<select id="findEncodePW" parameterType="string" resultType="string">
+		select password from member 
+		where userid =#{userid}
+	</select>
+	
+</mapper>

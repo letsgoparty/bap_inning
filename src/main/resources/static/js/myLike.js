@@ -79,7 +79,7 @@ $(document).ready(function() {
 			data: { res_name: res_name },
 			success: function(data) {
 				// 성공적으로 데이터를 받아왔을 때의 처리
-				var imagePath = 'images/restaurant_images/' + data.res_image + '.png';
+				var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/restaurant_images/' + data.res_image + '.png';
 				var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
 				$('#res_image').html(imgTag);
 				$('#res_name').text(data.res_name);
@@ -140,7 +140,7 @@ $(document).ready(function() {
 			data: { lodging_name: lodging_name },
 			success: function(data) {
 
-				var imagePath = 'images/lodging_images/' + data.lodging_image + '.png';
+				var imagePath = 'https://kr.object.ncloudstorage.com/team2-bucket/lodging_images/' + data.lodging_image + '.png';
 				var imgTag = '<img src="' + imagePath + '" class="card-img-top" alt="img" width="300px" height="300px">'
 				$('#lodging_image').html(imgTag);
 

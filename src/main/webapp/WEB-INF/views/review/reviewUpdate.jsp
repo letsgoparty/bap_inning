@@ -45,8 +45,8 @@
 						<button class="btn btn-primary" id="uploadButton">첨부하기</button>
 					</div>
 				</div>
-				<div>
 		
+				<div>
 				<c:choose>
 				    <c:when test="${!empty urls}">
 						  <div class="imgs_wrap">
@@ -71,7 +71,7 @@
 				  <button class="btn btn-primary" type="submit" id="editBtn">수정</button>
 				  <button class="btn btn-primary" type="button" id="cancelBtn" onclick="cancel('${reviewRetrieve.res_id}')">돌아가기</button>
 				</div>
-			
+			</div>			
 		</div>
 	</form>
 

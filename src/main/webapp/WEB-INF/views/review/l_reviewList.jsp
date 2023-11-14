@@ -57,7 +57,7 @@
 						<c:forEach var="urlDTO" items="${allURLs}">
 							<c:if test="${urlDTO.review_id eq dto.review_id}">
 							  <c:forEach var="url" items="${urlDTO.urls}" varStatus="status">
-							    <img class="mb-2" src="${url}" alt="이미지" style="height:90px; height:90px; object-fit: cover; border-radius: 5px;">
+						    	<img class="mb-2" src="${url}" alt="이미지" style="height:50px; width:80px; object-fit: cover; border-radius: 10px;">
 							  </c:forEach>
 							</c:if>
 						</c:forEach>

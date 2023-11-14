@@ -197,7 +197,7 @@ public class ReviewController {
 		dto.setUser_id(mdto.getUserid());
 		
 		int num = service.lodReviewUpdate(dto);
-		return "redirect:reviewRetrieve?lodging_id=" + dto.getLodging_id();
+		return "redirect:l_reviewList?lodging_id=" + dto.getLodging_id();
 	}
 
 	
@@ -209,8 +209,8 @@ public class ReviewController {
 		int num = service.reviewDelete(review_id);
 		num = service.res_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
 		imgService.res_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
-		return "redirect:main";
-//		return "redirect:r_reviewList?res_id=" + dto.getRes_id();
+		
+		return "review/deletedInfo";
 	}
 	
 	@GetMapping("/lodReviewDelete")
@@ -218,8 +218,8 @@ public class ReviewController {
 		int num = service.lodReviewDelete(review_id);
 		num = service.lod_del_img(review_id); // 1. 이미지url저장하는 테이블 데이터 삭제
 		imgService.lod_del_img(review_id); // 2. 오브젝트 스토리지 데이터 삭제 
-		return "redirect:main";
-//		return "redirect:l_reviewList";
+		
+		return "review/deletedInfo";
 	}
 
 	

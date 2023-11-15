@@ -55,7 +55,6 @@
 ## 프로젝트 흐름도
 ![](https://velog.velcdn.com/images/gangintheremark/post/654dcc43-4d2b-4105-9615-4aaaf99c8d08/image.png)
 
----
 
 ## 화면 
 ### 메인화면

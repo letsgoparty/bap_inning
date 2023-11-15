@@ -53,7 +53,7 @@
 <br>
 
 ## 프로젝트 흐름도
-![](https://velog.velcdn.com/images/gangintheremark/post/654dcc43-4d2b-4105-9615-4aaaf99c8d08/image.png)
+![](https://velog.velcdn.com/images/gangintheremark/post/659d9767-5c41-45da-b749-13cb53687318/image.png)
 
 
 ## 화면 

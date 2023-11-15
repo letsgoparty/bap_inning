@@ -48,12 +48,12 @@
 <br>
 
 ## 기술스택
-![Alt text](image.png)
+![](https://velog.velcdn.com/images/gangintheremark/post/d7206116-e9fc-431a-b04a-5f1a1701d624/image.png)
 
 <br>
 
 ## 프로젝트 흐름도
-![Alt text](image-1.png) 
+![](https://velog.velcdn.com/images/gangintheremark/post/654dcc43-4d2b-4105-9615-4aaaf99c8d08/image.png)
 
 ---
 

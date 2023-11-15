@@ -55,6 +55,7 @@
 ## 프로젝트 흐름도
 ![](https://velog.velcdn.com/images/gangintheremark/post/654dcc43-4d2b-4105-9615-4aaaf99c8d08/image.png)
 
+---
 
 ## 화면 
 ### 메인화면
@@ -81,3 +82,6 @@
 ### 관리자 페이지
 ![](https://velog.velcdn.com/images/gangintheremark/post/444f5700-aa49-43ef-8942-0df0e4277f94/image.gif)
 ![](https://velog.velcdn.com/images/gangintheremark/post/33a67e5d-ee10-4690-8f66-d747e1bfa55f/image.gif)
+
+## 🏆 수상 
+![](https://velog.velcdn.com/images/gangintheremark/post/da0c7a50-b8f2-411a-8e6b-4429e58538f9/image.jpg)

@@ -1,4 +1,4 @@
-# ⚾️ 밥이닝 (inning) : Springboot를 이용한 KBO 야구 정보 공유 플랫폼
+# ⚾️ 밥이닝 (inning) : Springboot를 이용한 KBO 리그 종합 정보 플랫폼
 ![mainlogo](https://github.com/gangintheremark/bap_inning/assets/81904943/94fa2081-c814-488f-a374-515e4bef8ca3)
 
 <br>
